@@ -1,6 +1,6 @@
 @Android @SignIn
 
-Feature: Sign In Functionality Check
+Feature: Sign In Feature Functionality Check
 
   Background:
     Given User is on sign in page
@@ -44,13 +44,8 @@ Feature: Sign In Functionality Check
     When User click sign in button
     Then User see warning message "Invalid phone number" on sign in page
 
-  @SI-IPN001
-  Scenario: Go to sign up screen by tapping sign up text
-    When User click sign up button
-    Then User directed to sign up screen
-
-  @SI-IPN005
-  Scenario: Back to sign in screen by tapping back button while in sign up screen
+  @SI-IPN001 @SI-IPN005
+  Scenario: Go to sign up screen by tapping sign up text and click back button
     When User click sign up button
     Then User directed to sign up screen
     When User click back button on sign up screen
@@ -63,19 +58,12 @@ Feature: Sign In Functionality Check
     When User click back button on input pin screen
     Then User directed to sign in screen
 
-  @SI-IP005
-  Scenario: Go to forgot pin screen by tapping forgot pin text
+  @SI-IP005 @SI-IP006
+  Scenario: Go to forgot pin screen by tapping forgot pin text and click back button
     When User input phone number "08555333444"
     And User click sign in button
-    When User click forgot pin text
-    Then User directed to forgot pin screen
-
-  @SI-IP006
-  Scenario: Back to sign in screen by tapping back button while in forgot pin screen
-    When User input phone number "08555333444"
-    And User click sign in button
-    Then User directed to input pin screen
     When User click forgot pin text
     Then User directed to forgot pin screen
     When User click back button on forgot pin screen
     Then User directed to input pin screen
+

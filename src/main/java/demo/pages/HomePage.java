@@ -22,7 +22,13 @@ public class HomePage extends AndroidPageObject {
     public void clickHistoryButton() {
         clickOn(HomePageLocator.History_Button);
     }
+    public void clickVoucherButton() {
+        clickOn(HomePageLocator.Voucher_Button);
+    }
     public void clickProfileButton() {
         clickOn(HomePageLocator.Profile_Button);
+    }
+    public String getWarningMessage() {
+        return getText(HomePageLocator.Warning_Message);
     }
 }

@@ -120,4 +120,5 @@ public class SignInStepsDefinition {
     public void userClickBackButtonOnInputPinScreen() {
         signInInputPinPage.clickBackButton();
     }
+
 }
