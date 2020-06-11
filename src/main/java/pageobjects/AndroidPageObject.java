@@ -46,7 +46,7 @@ public class AndroidPageObject {
     }
 
     /**
-     * Perform waiting condition untill the element is available.
+     * Perform waiting condition until the element is available.
      * @param id locator of element
      */
     public void waitUntilEnabled(By id) {
@@ -83,6 +83,16 @@ public class AndroidPageObject {
     public String checkToast(By id) {
         WebElement toast = androidDriver.findElement(id);
         return toast.getAttribute("name");
+    }
+
+    /**
+     * Perform getting text from pop up dialog box
+     * @param id locator of element
+     * @return return condition
+     */
+    public String getText(By id) {
+        WebElement text = androidDriver.findElement(id);
+        return text.getText();
     }
 
 //    public boolean checkIfToastDisplayed(By id) {
