@@ -33,6 +33,9 @@ dependencies {
     // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
     compile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.0'
 
+    // https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+    compile group: 'io.rest-assured', name: 'rest-assured', version: '4.3.0'
+
     // https://mvnrepository.com/artifact/net.masterthought/cucumber-reporting
     compile group: 'net.masterthought', name: 'cucumber-reporting', version: '5.2.2'
 }

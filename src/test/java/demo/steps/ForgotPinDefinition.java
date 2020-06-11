@@ -1,0 +1,239 @@
+package demo.steps;
+
+import demo.pages.LoginHalim.LoginPage;
+import demo.pages.MainPageHalim.MainPage;
+import demo.pages.LoginHalim.PinPage;
+import demo.pages.MainPageHalim.ProfilePage;
+import demo.pages.api.otp.OtpController;
+import demo.pages.device.DeviceButton;
+import demo.pages.displayerror.DisplayErrorPage;
+import demo.pages.forgotpin.ConfirmPinPage;
+import demo.pages.forgotpin.NewPinPage;
+import demo.pages.forgotpin.OtpPage;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import org.junit.Assert;
+
+public class ForgotPinDefinition {
+    String phonenumber;
+    String newPin;
+    String otp;
+    LoginPage loginPage = new LoginPage();//dummy
+    PinPage pinPage = new PinPage();//dummy
+    OtpPage otpPage = new OtpPage();
+    OtpController otpController = new OtpController();
+    NewPinPage newPinPage = new NewPinPage();
+    ConfirmPinPage confirmPinPage = new ConfirmPinPage();
+    MainPage mainPage = new MainPage();
+    ProfilePage profilePage = new ProfilePage();
+    DisplayErrorPage displayErrorPage = new DisplayErrorPage();
+    DeviceButton deviceButton = new DeviceButton();
+
+    //DUMMY
+    @Given("User in the sign in page")
+    public void userInTheSignInPage() {
+        loginPage.isOnPage();
+    }
+
+    //DUMMY
+    @When("User input registered phone number {string}")
+    public void userInputRegisteredPhoneNumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+        loginPage.inputNomor(this.phonenumber);
+    }
+
+    //DUMMY
+    @And("User click the sign in button")
+    public void userClickTheSignInButton() {
+        loginPage.clickSignIn();
+    }
+
+    //DUMMY
+    @And("User click the forgot pin text")
+    public void userClickTheForgotPinText() {
+        pinPage.clickForgot();
+    }
+
+
+    @And("User input valid otp number with user id {string}")
+    public void userInputValidOtpNumber(String userId) {
+        Response response = otpController.getOtpNumber(userId);
+        String otp = response.path("code").toString();
+        //String otp = "1111";
+        otpPage.inputOTP(otp);
+    }
+
+    @And("User click next button on the otp page")
+    public void userClickNextButtonOnTheOtpPage() {
+        otpPage.clickNextOtp();
+    }
+
+    @And("User input new PIN {string}")
+    public void userInputNewPIN(String pin) {
+        newPinPage.inputNewPin(pin);
+        this.newPin = pin;
+    }
+
+    @And("User click next button on the new pin page")
+    public void userClickNextButtonOnTheNewPinPage() {
+        newPinPage.clickNext();
+    }
+
+    @And("User input the new pin on confirmation page")
+    public void userInputTheNewPinOnConfirmationPage() {
+        confirmPinPage.inputConfirmPin(this.newPin);
+    }
+
+    @And("User click finish button on the confirmation page")
+    public void userClickFinishButtonOnTheConfirmationPage() {
+        confirmPinPage.clickFinish();
+    }
+
+    @And("User input new pin number on the page")
+    public void userInputNewPinNumberOnThePage() {
+        pinPage.inputPin(this.newPin);
+    }
+
+    @And("User is in the main page")
+    public void userIsInTheMainPage() {
+        mainPage.isInTheMainPage();
+    }
+
+    @And("User click the profile menu on the bottom bar")
+    public void userClickTheProfileMenuOnTheBottomBar() {
+        mainPage.clickProfileMenu();
+    }
+
+    @And("User click the sign out menu")
+    public void userClickTheSignOutMenu() {
+        profilePage.clickSignOutMenu();
+    }
+
+    @Then("User is back at the sign in page")
+    public void userIsBackAtTheSignInPage() {
+        Assert.assertTrue(loginPage.isOnPageBool());
+    }
+
+    @And("User wait for the otp to expire in three minutes.")
+    public void userWaitForTheOtpToExpireInThreeMinutes() {
+        otpPage.waitForResend();
+    }
+
+    @And("User Click resend OTP")
+    public void userClickResendOTP() {
+        otpPage.clickResendOtp();
+    }
+
+    @And("User input invalid otp number")
+    public void userInputInvalidOtpNumber() {
+        otpPage.inputOTP("1234");
+    }
+
+    @Then("User see display error {string}")
+    public void userSeeDisplayError(String errorMessage) {
+        Assert.assertTrue(displayErrorPage.isDisplayed());
+        Assert.assertEquals(errorMessage, displayErrorPage.getErrorText());
+    }
+
+    @Then("User cannot click next the button is disabled")
+    public void userCannotClickNextTheButtonIsDisabled() {
+        Assert.assertFalse(otpPage.checkIfNextEnabled());
+    }
+
+    @And("User input two digits otp number with user id {string}")
+    public void userInputTwoDigitsOtpNumberWithUserId(String userId) {
+        Response response = otpController.getOtpNumber(userId);
+        String otp = response.path("code").toString();
+        String twodigit = otp.substring(0, 3);
+        otpPage.inputOTP(twodigit);
+    }
+
+    @And("User get otp number with user id {string}")
+    public void userGetOtpNumber(String userId) {
+        Response response = otpController.getOtpNumber(userId);
+        this.otp = response.path("code").toString();
+    }
+
+    @And("User input the old otp")
+    public void userInputTheOldOtp() {
+        otpPage.inputOTP(this.otp);
+    }
+
+    @Then("User see warning message {string}")
+    public void userSeeWarningMessage(String warning) {
+        Assert.assertEquals(warning, newPinPage.getWarningMessage());
+    }
+
+    @And("User input incorrect pin on the confirmation page {string}")
+    public void userInputIncorrectPinOnTheConfirmationPage(String incorrectpin) {
+        confirmPinPage.inputConfirmPin(incorrectpin);
+    }
+
+    @Then("User see warning message on the confirmation page {string}")
+    public void userSeeWarningMessageOnTheConfirmationPage(String warning) {
+        Assert.assertEquals(warning, confirmPinPage.getWarningMessage());
+    }
+
+    @And("User input old pin number on the page {string}")
+    public void userInputOldPinNumberOnThePage(String oldpin) {
+        pinPage.inputPin(oldpin);
+    }
+
+    @Then("User see warning message on pin page {string}")
+    public void userSeeWarningMessageOnPinPage(String error) {
+        Assert.assertEquals(error, pinPage.getWarningMessage());
+    }
+
+    @Then("User is in the new pin page")
+    public void userIsInTheNewPinPage() {
+        Assert.assertTrue(newPinPage.isOnPage());
+    }
+
+    @And("User click the back arrow icon on top bar")
+    public void userClickTheBackArrowIconOnTopBarOnOTPPage() {
+        confirmPinPage.clickBack();
+    }
+
+    @Then("User is in the pin page")
+    public void userIsInThePinPage() {
+        Assert.assertTrue(pinPage.isOnPage());
+    }
+
+    @And("User click device back button")
+    public void userClickDeviceBackButton() {
+        deviceButton.pressDeviceBack();
+    }
+
+    @And("User lock the device")
+    public void userLockTheDevice() {
+        deviceButton.pressLockDevice();
+    }
+
+    @And("User unlock the device")
+    public void userUnlockTheDevice() {
+        deviceButton.pressUnlockDevice();
+    }
+
+    @Then("User is in otp page")
+    public void userIsInOtpPage() {
+        Assert.assertTrue(otpPage.isOnPage());
+    }
+
+    @Then("User cannot click resend the button is disabled")
+    public void userCannotClickResendTheButtonIsDisabled() {
+        Assert.assertFalse(otpPage.checkIfResendEnabled());
+    }
+
+    @And("User turn internet off")
+    public void userTurnInternetOff() {
+        deviceButton.turnInternetOff();
+    }
+
+    @And("User is in the confirmation page")
+    public void userIsInTheConfirmationPage() {
+        Assert.assertTrue(confirmPinPage.isOnPage());
+    }
+}
