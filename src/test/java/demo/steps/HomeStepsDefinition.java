@@ -32,7 +32,8 @@ public class HomeStepsDefinition {
     }
 
     @When("User click one of promotion banner")
-    public void userClickOneOfPromotionBanner() {
+    public void userClickOneOfPromotionBanner() throws InterruptedException {
+        wait(10);
         homePage.clickPromotionBanner();
     }
 
@@ -73,7 +74,8 @@ public class HomeStepsDefinition {
     }
 
     @When("User click home button")
-    public void userClickHomeButton() {
+    public void userClickHomeButton() throws InterruptedException {
+        wait(10);
         homePage.clickHomeButton();
     }
 
@@ -94,4 +96,5 @@ public class HomeStepsDefinition {
         String actual = promotionListPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
     }
+
 }

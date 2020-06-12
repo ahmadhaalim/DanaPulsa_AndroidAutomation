@@ -9,7 +9,6 @@ public interface SignInInputPinPageLocator {
     By EnterYourPin_Text = MobileBy.id("tvLoginLabelPin");
     By Input_Pin_Field = MobileBy.id("pinLogin");
     By ForgotPin_Button = MobileBy.id("btnLoginForgotPin");
-    By ErrorDialog_Box = MobileBy.id();
-    By ErrorDialog_Text = MobileBy.id();
-    By ErrorDialog_OK_Button = MobileBy.id();
+    By ErrorDialog_Text = MobileBy.id("tvDialogContent");
+    By ErrorDialog_OK_Button = MobileBy.id("btnDialogPositive");
 }

@@ -18,7 +18,7 @@ public class SignInPage extends AndroidPageObject {
         clickOn(SignInPageLocator.SignUp_Button);
     }
     public void checkErrorDialog() {
-        waitUntilDisplayed(SignInPageLocator.ErrorDialog_Box);
+        waitUntilDisplayed(SignInPageLocator.ErrorDialog_Text);
     }
     public void clickErrorDialogOkButton() {
         clickOn(SignInPageLocator.ErrorDialog_OK_Button);

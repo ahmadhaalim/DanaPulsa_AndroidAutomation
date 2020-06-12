@@ -12,7 +12,7 @@ public class SignInInputPinPage extends AndroidPageObject {
         typeON(SignInInputPinPageLocator.Input_Pin_Field, pin);
     }
     public void checkErrorDialog() {
-        waitUntilDisplayed(SignInInputPinPageLocator.ErrorDialog_Box);
+        waitUntilDisplayed(SignInInputPinPageLocator.ErrorDialog_Text);
     }
     public String getErrorDialogText() {
         return getText(SignInInputPinPageLocator.ErrorDialog_Text);
