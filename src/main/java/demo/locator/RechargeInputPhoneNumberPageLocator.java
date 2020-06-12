@@ -3,7 +3,7 @@ package demo.locator;
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 
-public interface RechargeInputPhoneNumberPage {
+public interface RechargeInputPhoneNumberPageLocator {
     // Text View
     By RECENT_PHONE_NUMBER = MobileBy.id("tvRecentNumberPhone");
     By RECENT_DATE = MobileBy.id("tvRecentNumberDate");

@@ -3,7 +3,7 @@ package demo.locator;
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 
-public interface RechargePaymentStatusPage {
+public interface RechargePaymentStatusPageLocator {
     // Text View
     By TRANSACTION_RESULT = MobileBy.id("tvTransactionResult");
 
