@@ -4,8 +4,8 @@ import demo.locator.HomePageLocator;
 import pageobjects.AndroidPageObject;
 
 public class HomePage extends AndroidPageObject {
-    public void isOnPage() {
-        waitUntilDisplayed(HomePageLocator.DANA_Balance);
+    public boolean isOnPage() {
+        return checkIfDisplayed(HomePageLocator.DANA_Balance);
     }
     public void clickMobileRechargeButton() {
         clickOn(HomePageLocator.MobileRecharge_Button);

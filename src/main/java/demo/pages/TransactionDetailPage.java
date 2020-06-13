@@ -4,8 +4,8 @@ import demo.locator.TransactionDetailPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class TransactionDetailPage extends AndroidPageObject {
-    public void isOnPage(){
-        waitUntilDisplayed(TransactionDetailPageLocator.Transaction_Status);
+    public boolean isOnPage(){
+        return checkIfDisplayed(TransactionDetailPageLocator.Transaction_Status);
     }
     public void clickBackButton(){
         clickOn(TransactionDetailPageLocator.Back_Button);

@@ -5,8 +5,8 @@ import pageobjects.AndroidPageObject;
 
 public class SignInPage extends AndroidPageObject {
 
-    public void isOnPage() {
-        waitUntilDisplayed(SignInPageLocator.DANA_Logo);
+    public boolean isOnPage() {
+        return checkIfDisplayed(SignInPageLocator.DANA_Logo);
     }
     public void inputPhoneNumber(String phoneNumber) {
         typeON(SignInPageLocator.Input_PhoneNumber_Field, phoneNumber);

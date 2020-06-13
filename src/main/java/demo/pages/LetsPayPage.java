@@ -4,8 +4,8 @@ import demo.locator.LetsPayPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class LetsPayPage extends AndroidPageObject {
-    public void isOnPage() {
-        waitUntilDisplayed(LetsPayPageLocator.Total_Price);
+    public boolean isOnPage() {
+        return checkIfDisplayed(LetsPayPageLocator.Total_Price);
     }
     public void clickBackButton() {
         clickOn(LetsPayPageLocator.Back_Button);
@@ -21,5 +21,8 @@ public class LetsPayPage extends AndroidPageObject {
     }
     public void clickPayButton() {
         clickOn(LetsPayPageLocator.Pay_Button);
+    }
+    public void clickVoucherActionButton(){
+        clickOn(LetsPayPageLocator.Voucher_Button);
     }
 }

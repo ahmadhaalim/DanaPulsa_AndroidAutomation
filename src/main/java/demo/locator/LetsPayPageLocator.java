@@ -8,4 +8,5 @@ public interface LetsPayPageLocator {
     By Pay_Button = MobileBy.id("btnCheckoutPay");
     By Total_Price = MobileBy.id("tvCheckoutTotalValue");
     By Yes_Button = MobileBy.id("btnDialogPositive");
+    By Voucher_Button = MobileBy.id("tvCheckoutVoucherAction");
 }

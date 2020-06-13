@@ -1,5 +1,6 @@
 package demo.steps;
 
+import demo.driver.AndroidDriverInstance;
 import demo.pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -10,14 +11,7 @@ public class HistoryStepsDefinition {
 
     HomePage homePage = new HomePage();
     HistoryPage historyPage = new HistoryPage();
-    MobileRechargePage mobileRechargePage = new MobileRechargePage();
-    LetsPayPage letsPayPage = new LetsPayPage();
-    PaymentSuccesPage paymentSuccesPage = new PaymentSuccesPage();
     TransactionDetailPage transactionDetailPage = new TransactionDetailPage();
-
-    String totalPrice = "";
-    String transactionId = "";
-    String transactionDate = "";
 
     @When("User click history button")
     public void userClickHistoryButton() {
@@ -26,7 +20,7 @@ public class HistoryStepsDefinition {
 
     @Then("User directed to history screen")
     public void userDirectedToHistoryScreen() {
-        historyPage.isOnPage();
+        Assert.assertTrue(historyPage.isOnPage());
     }
 
     @And("User see {string} info")
@@ -40,70 +34,42 @@ public class HistoryStepsDefinition {
         historyPage.clickCompletedTab();
     }
 
-    @When("User input phone number {string} on mobile recharge screen")
-    public void userInputPhoneNumberOnMobileRechargeScreen(String phoneNumber) {
-        mobileRechargePage.InputPhoneNumber(phoneNumber);
-    }
-
-    @And("User click nominal top up {string}")
-    public void userClickNominalTopUp(String pulsaNominal) {
-        mobileRechargePage.ChoosePulsaNominal(pulsaNominal);
-    }
-
-    @Then("User directed to lets pay screen")
-    public void userDirectedToLetsPayScreen() {
-        letsPayPage.isOnPage();
-    }
-
-    @When("User click back button on lets pay screen")
-    public void userClickBackButtonOnLetsPayScreen() {
-        totalPrice = letsPayPage.getTotalPrice();
-        letsPayPage.clickBackButton();
-    }
-
-    @And("User click yes button on cancel transaction dialog")
-    public void userClickYesButtonOnCancelTransactionDialog() {
-        letsPayPage.checkIfDialogBoxIsDisplayed();
-        letsPayPage.clickYesButton();
-    }
 
     @Then("User see  latest pending transaction at in progress tab")
     public void userSeeLatestPendingTransactionAtInProgressTab() {
         historyPage.waitUntilTransactionItemIsDiyplayed();
     }
 
-    @When("User click pending transaction")
-    public void userClickPendingTransaction() {
-        historyPage.clickInProgressTransaction(totalPrice);
+    @When("User click {string} tab on history screen")
+    public void userClickTabOnHistoryScreen(String tabKeyword) {
+        if("In Progress".equals(tabKeyword)){
+            historyPage.clickInProgressTab();
+        } else if("Completed".equals(tabKeyword)){
+            historyPage.clickCompletedTab();
+        }
     }
 
-    @When("User click pay on lets pay screen")
-    public void userClickPayOnLetsPayScreen() {
-        letsPayPage.clickPayButton();
+    @Then("User see {string} on history screen")
+    public void userSeeOnHistoryScreen(String expected) {
+        String actual = historyPage.getWarningMessage();
+        Assert.assertEquals(expected, actual);
     }
 
-    @Then("User directed to payment success info")
-    public void userDirectedToPaymentSuccessInfo() {
-        paymentSuccesPage.isOnPage();
-        transactionDate = paymentSuccesPage.getTransactionDate();
-        transactionId = paymentSuccesPage.getTransactionId();
+    @When("User click in progress transaction with price {string}")
+    public void userClickInProgressTransactionWithNominal(String price) {
+        historyPage.waitUntilTransactionItemIsDiyplayed();
+        historyPage.clickInProgressTransaction(price);
     }
 
-    @When("User click back to home button")
-    public void userClickBackToHomeButton() {
-        paymentSuccesPage.clickBackToHomeButton();
-    }
-
-    @And("User click completed transaction")
-    public void userClickCompletedTransaction() {
-        historyPage.clickCompletedTransaction(transactionDate);
+    @And("User click completed transaction with price {string}")
+    public void userClickCompletedTransactionWithPrice(String price) {
+        historyPage.waitUntilTransactionItemIsDiyplayed();
+        historyPage.clickCompletedTransaction(price);
     }
 
     @Then("User directed to transaction detail screen")
     public void userDirectedToTransactionDetailScreen() {
-        transactionDetailPage.isOnPage();
-        String actualPrice = transactionDetailPage.getTotalPrice();
-        Assert.assertEquals(totalPrice, actualPrice);
+        Assert.assertTrue(transactionDetailPage.isOnPage());
     }
 
     @When("User click back button on transaction detail screen")
@@ -111,14 +77,42 @@ public class HistoryStepsDefinition {
         transactionDetailPage.clickBackButton();
     }
 
-    @And("User click one completed transaction")
-    public void userClickOneCompletedTransaction() {
-        historyPage.clickOneOfCompletedTransaction();
+    @And("User click in progress tab while internet is off")
+    public void userClickInProgressTabWhileInternetIsOff() {
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+        historyPage.clickInProgressTab();
     }
 
-    @And("User see warning message {string} at transaction detail screen")
-    public void userSeeWarningMessageAtTransactionDetailScreen(String expected) {
+    @Then("User see warning {string} on history screen")
+    public void userSeeWarningOnHistoryScreen(String expected) {
+        String actual = historyPage.getWarningMessage();
+        Assert.assertEquals(expected, actual);
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+    }
+
+    @When("User click completed tab while internet is off")
+    public void userClickCompletedTabWhileInternetIsOff() {
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+        historyPage.clickCompletedTab();
+    }
+
+    @And("User click one completed transaction while internet is off")
+    public void userClickOneCompletedTransactionWhileInternetIsOff() {
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+        historyPage.clickOneCompletedTransaction();
+    }
+
+    @And("User see warning {string} at transaction detail screen")
+    public void userSeeWarningAtTransactionDetailScreen(String expected) {
         String actual = transactionDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
     }
+
+
 }

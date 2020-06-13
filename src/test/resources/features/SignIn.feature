@@ -1,12 +1,14 @@
 @Android @SignIn
 
+#Tap/Tapping = Click/Clicking
 Feature: Sign In Feature Functionality Check
 
   Background:
     Given User is on sign in page
 
   @SI001
-  Scenario: User successfully sign in using registered phone number
+  Scenario: Successfully sign in using registered phone number
+    #Change the phone number according your data table
     When User input phone number "08555333444"
     And User click sign in button
     Then User directed to input pin screen
@@ -14,10 +16,10 @@ Feature: Sign In Feature Functionality Check
     Then User directed to home screen
     When User click profile button
     Then User directed to profile screen
-    And User see phone number used to signing in
+    And User see phone number  "08555333444" used to signing in on profile screen
 
   @SI002
-  Scenario: User failed to sign in using registered phone number because internet connection problem
+  Scenario: Failed to sign in using registered phone number because internet connection isn't available
     When User input phone number "08555333444"
     And User click sign in button
     Then User directed to input pin screen
@@ -26,21 +28,26 @@ Feature: Sign In Feature Functionality Check
 
 
   @SI003-006
-  Scenario Outline: User failed to sign in using invalid phone number or invalid pin
+  Scenario Outline: User failed to sign in
     When User input phone number "<phone>"
     And User click sign in button
     Then User directed to input pin screen
     When User input pin "<pin>"
     Then User see warning message "<error>" on input pin screen
     Examples:
+    #Change the registered phone number according your data table
       | phone         | pin    | error                |
+      #Registered phone number but using invalid PIN
       | 08555333444   | 987654 | Invalid PIN          |
+      #Unregistered phone number
       | 081223232323  | 987654 | Invalid phone number |
+      #Registered phone number but invalid format (Start with +62)
       | +628555333444 | 123456 | Invalid phone number |
+      #Registered phone number but invalid format (Start with 62)
       | 628555333444  | 123456 | Invalid phone number |
 
   @SI007
-  Scenario: User click sign in button without filling phone number field
+  Scenario: Go to input pin screen without filling the phone number field
     When User click sign in button
     Then User see warning message "Invalid phone number" on sign in page
 
@@ -62,6 +69,7 @@ Feature: Sign In Feature Functionality Check
   Scenario: Go to forgot pin screen by tapping forgot pin text and click back button
     When User input phone number "08555333444"
     And User click sign in button
+    Then User directed to input pin screen
     When User click forgot pin text
     Then User directed to forgot pin screen
     When User click back button on forgot pin screen

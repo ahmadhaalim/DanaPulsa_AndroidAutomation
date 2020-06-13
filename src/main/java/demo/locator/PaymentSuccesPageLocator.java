@@ -8,5 +8,6 @@ public interface PaymentSuccesPageLocator {
     By Transaction_Id = MobileBy.id("tvTransactionIdValue");
     By Transaction_Date = MobileBy.id("tvTransactionDateValue");
     By Check_Icon = MobileBy.id("ivTransactionIcon");
+    By Yes_Button = MobileBy.id("btnDialogPositive");
 
 }

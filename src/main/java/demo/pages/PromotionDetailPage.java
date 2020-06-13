@@ -5,8 +5,8 @@ import pageobjects.AndroidPageObject;
 
 public class PromotionDetailPage extends AndroidPageObject {
 
-    public void isOnPage() {
-        waitUntilDisplayed(PromotionDetailPageLocator.Promo_Title);
+    public boolean isOnPage() {
+        return checkIfDisplayed(PromotionDetailPageLocator.Promo_Title);
     }
     public void clickBackButton() {
         clickOn(PromotionDetailPageLocator.Back_Button);

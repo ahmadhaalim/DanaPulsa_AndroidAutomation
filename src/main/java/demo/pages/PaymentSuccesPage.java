@@ -5,8 +5,8 @@ import pageobjects.AndroidPageObject;
 
 public class PaymentSuccesPage extends AndroidPageObject {
 
-    public void isOnPage(){
-        waitUntilDisplayed(PaymentSuccesPageLocator.Check_Icon);
+    public boolean isOnPage(){
+        return checkIfDisplayed(PaymentSuccesPageLocator.Check_Icon);
     }
     public void clickBackToHomeButton(){
         clickOn(PaymentSuccesPageLocator.BackToHome_Button);
@@ -17,4 +17,5 @@ public class PaymentSuccesPage extends AndroidPageObject {
     public String getTransactionDate(){
         return getText(PaymentSuccesPageLocator.Transaction_Date);
     }
+    public void clickYesButton() {clickOn(PaymentSuccesPageLocator.Yes_Button);}
 }

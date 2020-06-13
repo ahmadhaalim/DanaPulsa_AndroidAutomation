@@ -5,8 +5,11 @@ import demo.locator.PromotionListPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class PromotionListPage extends AndroidPageObject {
-    public void isOnPage() {
-        waitUntilDisplayed(PromotionListPageLocator.Promotion_Banner);
+    public boolean isOnPage() {
+        return checkIfDisplayed(PromotionListPageLocator.PromotionList_Title);
+    }
+    public boolean checkPromotionBanner(){
+        return checkIfDisplayed(PromotionListPageLocator.Promotion_Banner);
     }
     public void clickBackButton() {
         clickOn(PromotionListPageLocator.Back_Button);

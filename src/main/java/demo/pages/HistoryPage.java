@@ -9,8 +9,8 @@ import pageobjects.AndroidPageObject;
 import java.util.List;
 
 public class HistoryPage extends AndroidPageObject {
-    public void isOnPage() {
-        waitUntilDisplayed(HistoryPageLocator.Completed_Tab);
+    public boolean isOnPage() {
+        return checkIfDisplayed(HistoryPageLocator.Completed_Tab);
     }
     public void waitUntilTransactionItemIsDiyplayed() {
         waitUntilDisplayed(HistoryPageLocator.Transaction_Item);
@@ -18,9 +18,12 @@ public class HistoryPage extends AndroidPageObject {
     public String getWarningMessage() {
         return getText(HistoryPageLocator.Warning_Message);
     }
+    public void clickInProgressTab() { clickOn(HistoryPageLocator.InProgress_Tab);
+    }
     public void clickCompletedTab() {
         clickOn(HistoryPageLocator.Completed_Tab);
     }
+    public void clickOneCompletedTransaction(){clickOn(HistoryPageLocator.Transaction_Item);}
 
     public void clickInProgressTransaction(String price) {
         List<AndroidElement> itemPrice = AndroidDriverInstance.androidDriver
@@ -39,10 +42,6 @@ public class HistoryPage extends AndroidPageObject {
                 clickOn(HistoryPageLocator.Transaction_Item);
             }
         }
-    }
-
-    public void clickOneOfCompletedTransaction(){
-        clickOn(HistoryPageLocator.Transaction_Item);
     }
 
 }

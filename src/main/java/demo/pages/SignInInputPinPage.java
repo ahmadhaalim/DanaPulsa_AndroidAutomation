@@ -5,8 +5,8 @@ import pageobjects.AndroidPageObject;
 
 public class SignInInputPinPage extends AndroidPageObject {
 
-    public void isOnPage() {
-        waitUntilDisplayed(SignInInputPinPageLocator.EnterYourPin_Text);
+    public boolean isOnPage() {
+        return checkIfDisplayed(SignInInputPinPageLocator.EnterYourPin_Text);
     }
     public void inputPin(String pin) {
         typeON(SignInInputPinPageLocator.Input_Pin_Field, pin);
