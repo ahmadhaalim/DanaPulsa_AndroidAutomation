@@ -19,25 +19,25 @@ public class VoucherPage extends AndroidPageObject{
     public void clickOneOfVoucherBanner(){
         clickOn(VoucherPageLocator.Voucher_Banner);
     }
-    public void chooseVoucherBanner(String kind) {
-        List<AndroidElement> voucher = AndroidDriverInstance.androidDriver
-                .findElements(VoucherPageLocator.Voucher_Name);
-        for (int i = 0; i < voucher.size(); i++) {
-            if (kind.equalsIgnoreCase(voucher.get(i).getText())) {
+    public void chooseVoucherBanner(String value) {
+        List<AndroidElement> valueInBanner = AndroidDriverInstance.androidDriver
+                .findElements(VoucherPageLocator.Voucher_Amount);
+        for (int i = 0; i < valueInBanner.size(); i++) {
+            if (value.equalsIgnoreCase(valueInBanner.get(i).getText())) {
                 clickOn(VoucherPageLocator.Voucher_Banner);
             }
         }
     }
     public String getVoucherValue(String value){
-        List<AndroidElement> amount = AndroidDriverInstance.androidDriver
+        List<AndroidElement> valueInBanner = AndroidDriverInstance.androidDriver
                 .findElements(VoucherPageLocator.Voucher_Amount);
-        String getAmount = "";
-        for (int i = 0; i < amount.size(); i++) {
-            if (value.equalsIgnoreCase(amount.get(i).getText())) {
-                getAmount = getText(VoucherPageLocator.Voucher_Amount);
+        String getValue = "";
+        for (int i = 0; i < valueInBanner.size(); i++) {
+            if (value.equalsIgnoreCase(valueInBanner.get(i).getText())) {
+                getValue = getText(VoucherPageLocator.Voucher_Amount);
             }
         }
-        return getAmount;
+        return getValue;
     }
     public void clickAllButton(){
         clickOn(VoucherPageLocator.All_Button);

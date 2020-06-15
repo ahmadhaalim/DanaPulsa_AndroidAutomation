@@ -44,7 +44,8 @@ Feature: Home Feature Functionality Check
     When User click history button
     Then User directed to history screen
     #Precondition to get completed transaction
-    When User click in progress transaction with price "Rp5.000"
+    When User click "in progress" tab
+    And User click in progress transaction with price "Rp5.000"
     Then User directed to lets pay screen
     When User click pay button
     Then User directed to payment success screen
@@ -53,8 +54,8 @@ Feature: Home Feature Functionality Check
     #Main scenario
     When User click history button
     And User click completed tab
-    And User click completed transaction with price "Rp5.000"
-    Then User directed to transaction detail screen
+    And User click completed transaction summary
+    Then User directed to transaction detail screen with price "Rp.5000"
     When User click back button on transaction detail screen
     Then User directed to history screen
 

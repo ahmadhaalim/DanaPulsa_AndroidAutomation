@@ -35,13 +35,28 @@ public class HistoryPage extends AndroidPageObject {
         }
     }
     public void clickCompletedTransaction(String date) {
-        List<AndroidElement> itemPrice = AndroidDriverInstance.androidDriver
+        List<AndroidElement> itemDate = AndroidDriverInstance.androidDriver
                 .findElements(HistoryPageLocator.TransactionItem_Date);
-        for (int i = 0; i < itemPrice.size(); i++) {
-            if (date.equalsIgnoreCase(itemPrice.get(i).getText())) {
-                clickOn(HistoryPageLocator.Transaction_Item);
+        List<AndroidElement> itemStatus = AndroidDriverInstance.androidDriver
+                .findElements(HistoryPageLocator.Transaction_Status);
+        for (int i = 0; i < itemDate.size(); i++) {
+            if (date.equalsIgnoreCase(itemDate.get(i).getText())) {
+                if("Completed".equalsIgnoreCase(itemStatus.get(i).getText())) {
+                    clickOn(HistoryPageLocator.Transaction_Item);
+                }
             }
         }
     }
 
+    public String checkInProgressTransactionStatus() {
+        String status = "";
+        List<AndroidElement> itemDate = AndroidDriverInstance.androidDriver
+                .findElements(HistoryPageLocator.Transaction_Status);
+        for (int i = 0; i < itemDate.size(); i++) {
+            if ("In Progress".equalsIgnoreCase(itemDate.get(i).getText())) {
+                status = "In Progress";
+            }
+        }
+        return status;
+    }
 }

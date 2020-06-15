@@ -45,6 +45,7 @@ Feature: Voucher Feature Functionality Check
     And User click "Discount" button on voucher screen
     Then User see voucher banner "5%"
 
+   #[WARNING] Run this scenario first before @VOSC004, @VOSC005, and @VOSC006
   @VOSC004
   Scenario: Go to Cashback Voucher List screen by tapping Casback button
     #Precondition to get cashback voucher
@@ -75,8 +76,12 @@ Feature: Voucher Feature Functionality Check
     Then User directed to voucher detail screen
     When user click back button on voucher detail screen
     Then User directed to voucher screen
+    When User click voucher banner "5.0000"
+    Then User directed to voucher detail screen
+    When user click back button on voucher detail screen
+    Then User directed to voucher screen
 
-  @VOSC018-VOSC021
+  @VOSC018-VOSC020
   Scenario Outline: Voucher doesn't show up because internet connection isn't available
     When User click voucher button while internet is off
     Then User directed to voucher screen
@@ -87,3 +92,11 @@ Feature: Voucher Feature Functionality Check
       | All      |
       | Discount |
       | Cashback |
+
+  @VOSC021
+  Scenario: Voucher Detail doesn't show up because internet connection isn't available
+    When User click voucher button
+    Then User directed to voucher screen
+    When User click one of voucher banner while internet is off
+    Then User directed to voucher detail screen
+    Then User see warning "Connection error" on voucher detail screen

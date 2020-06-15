@@ -9,13 +9,15 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.sql.Time;
+
 public class VoucherStepsDefinition {
 
     VoucherPage voucherPage = new VoucherPage();
     HomePage homePage = new HomePage();
     VoucherDetailPage voucherDetailPage = new VoucherDetailPage();
 
-    String voucherTitleExpected = "";
+    String expectedValue = "";
 
     @When("User click voucher button")
     public void userClickVoucherButton() {
@@ -54,13 +56,15 @@ public class VoucherStepsDefinition {
 
     @And("User click voucher banner {string}")
     public void userClickVoucherBanner(String value) {
-        voucherTitleExpected = voucherPage.getVoucherValue(value);
+        expectedValue = voucherPage.getVoucherValue(value);
         voucherPage.chooseVoucherBanner(value);
     }
 
     @Then("User directed to voucher detail screen")
     public void userDirectedToVoucherDetailScreen() {
         Assert.assertTrue(voucherDetailPage.isOnPage());
+        String actualValue = voucherDetailPage.getVoucherValue();
+        Assert.assertEquals(expectedValue, actualValue);
     }
 
     @When("user click back button on voucher detail screen")
@@ -71,6 +75,21 @@ public class VoucherStepsDefinition {
     @Then("User see warning {string} on voucher screen")
     public void userSeeWarningOnVoucherScreen(String expected) {
         String actual = voucherPage.getWarningMessage();
+        Assert.assertEquals(expected, actual);
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+    }
+
+    @When("User click one of voucher banner while internet is off")
+    public void userClickOneOfVoucherBannerWhileInternetIsOff() {
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+        voucherPage.clickOneOfVoucherBanner();
+    }
+
+    @Then("User see warning {string} on voucher detail screen")
+    public void userSeeWarningOnVoucherDetailScreen(String expected) {
+        String actual = voucherDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
         AndroidDriverInstance.androidDriver.toggleData();
         AndroidDriverInstance.androidDriver.toggleWifi();

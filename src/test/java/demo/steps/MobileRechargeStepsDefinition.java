@@ -16,6 +16,12 @@ public class MobileRechargeStepsDefinition {
     PaymentSuccesPage paymentSuccesPage = new PaymentSuccesPage();
     PickAvoucherPage pickAvoucherPage = new PickAvoucherPage();
 
+    public String transactionDate = "";
+    public String transactionID = "";
+    public String transactionStatus = "";
+    public String transactionPhone = "";
+    public String transactionProduct = "";
+
     @Then("User directed to mobile recharge screen")
     public void userDirectedToMobileRechargeScreen() {
         Assert.assertTrue(mobileRechargePage.isOnPage());
@@ -55,6 +61,11 @@ public class MobileRechargeStepsDefinition {
     @Then("User directed to payment success screen")
     public void userDirectedToPaymentSuccessScreen() {
         Assert.assertTrue(paymentSuccesPage.isOnPage());
+        transactionDate = paymentSuccesPage.getTransactionDate();
+        transactionID = paymentSuccesPage.getTransactionId();
+        transactionStatus = paymentSuccesPage.getTransactionStatus();
+        transactionPhone = paymentSuccesPage.getTransactionPhone();
+        transactionProduct = paymentSuccesPage.getTransactionProduct();
     }
 
     @When("User click back to home button")
