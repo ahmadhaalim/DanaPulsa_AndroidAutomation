@@ -1,4 +1,4 @@
-package demo.locator;
+package demo.locator.nauval;
 
 import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
