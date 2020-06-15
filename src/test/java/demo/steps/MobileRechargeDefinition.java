@@ -14,12 +14,12 @@ public class MobileRechargeDefinition {
     public void userClickMobileRechargeIcon() {
     }
 
-    @And("User input {int}")
-    public void userInputPhoneNumber(int phoneNumber) {
+    @And("User input {string}")
+    public void userInputPhoneNumber(String phoneNumber) {
     }
 
-    @And("User choose top up nominal based on {string}")
-    public void userChooseTopUpNominalBasedOn(String provider) {
+    @And("User choose {string} nominal")
+    public void userChooseTopUpNominalBasedOn(String topUp) {
     }
 
     @And("User see payment detail page")
@@ -34,4 +34,12 @@ public class MobileRechargeDefinition {
     public void userSeePaymentSuccessPage() {
     }
 
+    @And("User check status voucher availability {string}")
+    public void userCheckStatusVoucherAvailability(String statusVoucher) {
+
+    }
+
+    @And("User choose voucher value {string}")
+    public void userChooseVoucherValueChooseVoucher(String voucherValue) {
+    }
 }
