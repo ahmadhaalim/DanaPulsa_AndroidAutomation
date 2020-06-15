@@ -59,16 +59,16 @@ Feature: Home Feature Functionality Check
 
   @HOSC027
   Scenario: Promotion banner image doesn't show up on home screen because internet connection isn't available
-    When User click home button
+    When User click home button while internet is off
     Then User see warning message "Connection error" on promotion area
 
   @HOSC028 @HOSC030
   Scenario: Promotion detail doesn't show up because internet connection isn't available
-    When User click promotion banner on home screen
+    When User click promotion banner on home screen while internet is off
     Then User directed from home screen to "Promotion Detail Screen"
     And User see warning message "Connection error" on promotion detail screen
 
   @HOSC029
   Scenario: Promotion list doesn't show up after tapping view all button
-    When User click view all on home screen
+    When User click view all on home screen while internet is off
     Then User directed from home screen to "Promotion List Screen"

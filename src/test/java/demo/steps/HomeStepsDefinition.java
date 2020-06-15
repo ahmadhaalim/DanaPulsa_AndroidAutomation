@@ -82,8 +82,6 @@ public class HomeStepsDefinition {
 
     @When("User click home button")
     public void userClickHomeButton() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
         homePage.clickHomeButton();
     }
 
@@ -95,8 +93,8 @@ public class HomeStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
-    @When("User click promotion banner on home screen")
-    public void userClickPromotionBannerOnHomeScreen() {
+    @When("User click promotion banner on home screen while internet is off")
+    public void userClickPromotionBannerOnHomeScreenWhileInternetIsOff() {
         AndroidDriverInstance.androidDriver.toggleData();
         AndroidDriverInstance.androidDriver.toggleWifi();
         homePage.clickPromotionBanner();
@@ -110,8 +108,8 @@ public class HomeStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
-    @When("User click view all on home screen")
-    public void userClickViewAllOnHomeScreen() throws InterruptedException {
+    @When("User click view all on home screen while internet is off")
+    public void userClickViewAllOnHomeScreenWhileInternetIsOff() {
         AndroidDriverInstance.androidDriver.toggleData();
         AndroidDriverInstance.androidDriver.toggleWifi();
         homePage.clickViewAllButton();
@@ -130,5 +128,12 @@ public class HomeStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleData();
         AndroidDriverInstance.androidDriver.toggleWifi();
         homePage.clickVoucherButton();
+    }
+
+    @When("User click home button while internet is off")
+    public void userClickHomeButtonWhileInternetIsOff() {
+        AndroidDriverInstance.androidDriver.toggleData();
+        AndroidDriverInstance.androidDriver.toggleWifi();
+        homePage.clickHomeButton();
     }
 }

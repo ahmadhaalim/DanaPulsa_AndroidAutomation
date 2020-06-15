@@ -3,10 +3,12 @@
 #Tap/Tapping = Click/Clicking
 Feature: Home Feature Functionality Check
 
+#[Warning] Please use a new fresh account, which no transaction has been made before!!!
+
   @HISC001
   Background:
     Given User is on sign in page
-    #Change the phone number according your data table
+    #Change the phone number according your account
     When User input phone number "08555333444"
     And User click sign in button
     Then User directed to input pin screen
