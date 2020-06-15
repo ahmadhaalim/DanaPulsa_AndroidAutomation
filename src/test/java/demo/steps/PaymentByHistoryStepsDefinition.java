@@ -18,6 +18,10 @@ public class PaymentByHistoryStepsDefinition {
     public void userClickUnfinishedPayment() {
     }
 
+    @And("User see payment detail page")
+    public void userSeePaymentDetailPage() {
+    }
+
     @And("User click Pay Now")
     public void userClickPayNow() {
     }
@@ -25,4 +29,5 @@ public class PaymentByHistoryStepsDefinition {
     @Then("User see Payment Success Page")
     public void userSeePaymentSuccessPage() {
     }
+
 }
