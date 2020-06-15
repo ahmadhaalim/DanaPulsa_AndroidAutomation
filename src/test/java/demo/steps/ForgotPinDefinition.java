@@ -1,15 +1,15 @@
 package demo.steps;
 
-import demo.pages.LoginHalim.LoginPage;
-import demo.pages.MainPageHalim.MainPage;
-import demo.pages.LoginHalim.PinPage;
-import demo.pages.MainPageHalim.ProfilePage;
+import demo.pages.loginHalim.LoginPage;
+import demo.pages.mainPageHalim.MainPage;
+import demo.pages.loginHalim.PinPage;
+import demo.pages.mainPageHalim.ProfilePage;
 import demo.pages.api.otp.OtpController;
 import demo.pages.device.DeviceButton;
 import demo.pages.displayerror.DisplayErrorPage;
-import demo.pages.forgotpin.ConfirmPinPage;
-import demo.pages.forgotpin.NewPinPage;
-import demo.pages.forgotpin.OtpPage;
+import demo.pages.forgotchangepin.ConfirmPinPage;
+import demo.pages.forgotchangepin.NewPinPage;
+import demo.pages.forgotchangepin.OtpPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -59,7 +59,7 @@ public class ForgotPinDefinition {
 
 
     @And("User input valid otp number with user id {string}")
-    public void userInputValidOtpNumber(String userId) {
+    public void userInputValidOtpNumber(String userId) throws InterruptedException {
         Response response = otpController.getOtpNumber(userId);
         String otp = response.path("code").toString();
         //String otp = "1111";
@@ -92,14 +92,15 @@ public class ForgotPinDefinition {
         confirmPinPage.clickFinish();
     }
 
-    @And("User input new pin number on the page")
+    @And("User input new pin number on the pin page")
     public void userInputNewPinNumberOnThePage() {
         pinPage.inputPin(this.newPin);
     }
 
     @And("User is in the main page")
     public void userIsInTheMainPage() {
-        mainPage.isInTheMainPage();
+        Assert.assertTrue(mainPage.isOnPage());
+
     }
 
     @And("User click the profile menu on the bottom bar")
@@ -144,7 +145,7 @@ public class ForgotPinDefinition {
     }
 
     @And("User input two digits otp number with user id {string}")
-    public void userInputTwoDigitsOtpNumberWithUserId(String userId) {
+    public void userInputTwoDigitsOtpNumberWithUserId(String userId) throws InterruptedException {
         Response response = otpController.getOtpNumber(userId);
         String otp = response.path("code").toString();
         String twodigit = otp.substring(0, 3);
@@ -152,7 +153,7 @@ public class ForgotPinDefinition {
     }
 
     @And("User get otp number with user id {string}")
-    public void userGetOtpNumber(String userId) {
+    public void userGetOtpNumber(String userId) throws InterruptedException {
         Response response = otpController.getOtpNumber(userId);
         this.otp = response.path("code").toString();
     }
@@ -228,12 +229,47 @@ public class ForgotPinDefinition {
     }
 
     @And("User turn internet off")
-    public void userTurnInternetOff() {
+    public void userTurnInternetOff() throws InterruptedException {
         deviceButton.turnInternetOff();
     }
 
     @And("User is in the confirmation page")
     public void userIsInTheConfirmationPage() {
         Assert.assertTrue(confirmPinPage.isOnPage());
+    }
+
+    @And("User input their pin on the pin page {string}")
+    public void userInputTheirPinOnThePinPage(String pin) {
+        pinPage.inputPin(pin);
+    }
+
+    @And("User click the change pin menu")
+    public void userClickTheChangePinMenu() {
+        profilePage.clickChangePinMenu();
+    }
+
+    @And("User is in the profile page")
+    public void userIsInTheProfilePage() {
+        Assert.assertTrue(profilePage.isOnPage());
+    }
+
+    @Then("User cannot click finish button the button is disabled")
+    public void userCannotClickConfirmButtonTheButtonIsDisabled() {
+        Assert.assertFalse(confirmPinPage.checkIfConfirmEnabled());
+    }
+
+    @And("User click home button and reopen the app")
+    public void userClickHomeButton() throws InterruptedException {
+        deviceButton.pressHomeButton();
+    }
+
+
+    @And("User input otp via pasting")
+    public void userInputOtpViaPasting() {
+        otpPage.setForPaste();
+    }
+    @Then("User cant perform paste on the input")
+    public void userCantPerformPasteOnTheInput() {
+
     }
 }

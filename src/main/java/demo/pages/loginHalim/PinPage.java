@@ -1,7 +1,6 @@
-package demo.pages.LoginHalim;
+package demo.pages.loginHalim;
 
 import demo.driver.AndroidDriverInstance;
-import demo.locator.ForgotPinPageLocator;
 import demo.locator.PinPageLocator;
 import pageobjects.AndroidPageObject;
 

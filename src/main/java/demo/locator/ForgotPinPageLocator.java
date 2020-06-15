@@ -4,13 +4,13 @@ import io.appium.java_client.MobileBy;
 import org.openqa.selenium.By;
 
 public interface ForgotPinPageLocator {
-    By FORGOT_PIN_OTP_LABEL = MobileBy.id("tvOtpConfirmLabel");
+    By PIN_OTP_LABEL = MobileBy.id("tvOtpConfirmLabel");
     By PHONENUMBER_OTP_LABEL = MobileBy.id("tvOtpConfirmPhone");
     By OTP_INPUT = MobileBy.id("otpPIN"); //INPUT OTP
     By RESEND_LABEL = MobileBy.id("tvResendOtpLabel");
     By RESEND_BUTTON = MobileBy.id("btnResendOtp");
     By NEXT_BUTTON = MobileBy.id("btnPinNext");
-    By FORGOT_PIN_TITLE = MobileBy.id("tvActivityTitle");
+    By PIN_TITLE = MobileBy.id("tvActivityTitle");
 
 
     By NEW_PIN_LABEL = MobileBy.id("tvPinLabel");

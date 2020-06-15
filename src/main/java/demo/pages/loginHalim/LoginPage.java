@@ -1,4 +1,4 @@
-package demo.pages.LoginHalim;
+package demo.pages.loginHalim;
 
 import demo.locator.LoginPageLocator;
 import pageobjects.AndroidPageObject;

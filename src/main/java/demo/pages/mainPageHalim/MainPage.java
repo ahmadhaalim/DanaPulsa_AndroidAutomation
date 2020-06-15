@@ -1,11 +1,11 @@
-package demo.pages.MainPageHalim;
+package demo.pages.mainPageHalim;
 
 import demo.locator.MainPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class MainPage extends AndroidPageObject {
-    public void isInTheMainPage(){
-        waitUntilDisplayed(MainPageLocator.MOBILE_CHARGE_BUTTON);
+    public boolean isOnPage(){
+        return checkIfDisplayed(MainPageLocator.MOBILE_CHARGE_BUTTON);
     }
 
     public void clickProfileMenu(){

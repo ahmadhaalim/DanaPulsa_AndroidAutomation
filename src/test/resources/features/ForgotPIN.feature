@@ -1,25 +1,28 @@
 @Android @ForgotPIN
 Feature: Check the Forgot PIN feature functionality
-
+  #BEFORE YOU RUN THE TEST MAKE SURE TO CHANGE YOUR PHONE NUMBER, YOUR ACCOUNT USER ID
+  #RUN THIS EXACTLY BEFORE RUNNING CHANGE PIN !!!
   Background:
     Given User in the sign in page
 
   @FP_001
   Scenario: Successfully change pin using Forgot Pin feature with valid otp and PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User input new PIN "909090"
     And User click next button on the new pin page
     And User input the new pin on confirmation page
     And User click finish button on the confirmation page
     And User in the sign in page
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     And User input registered phone number "08126022339"
     And User click the sign in button
-    And User input new pin number on the page
+    And User input new pin number on the pin page
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the sign out menu
@@ -28,21 +31,24 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP_002
   Scenario: Successfully change pin using Forgot PIN with valid resended OTP, and PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
     And User wait for the otp to expire in three minutes.
     And User Click resend OTP
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
     And User click next button on the otp page
-    And User input new PIN "909090"
+    And User input new PIN "919191"
     And User click next button on the new pin page
     And User input the new pin on confirmation page
     And User click finish button on the confirmation page
     And User in the sign in page
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     And User input registered phone number "08126022339"
     And User click the sign in button
-    And User input new pin number on the page
+    And User input new pin number on the pin page
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the sign out menu
@@ -50,6 +56,7 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP_003
   Scenario: Forgot PIN with invalid OTP
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -59,6 +66,7 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP_004
   Scenario: Forgot PIN with empty OTP
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -66,50 +74,58 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP_005
   Scenario: Forgot PIN but inputting with only 2 digits of OTP number
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input two digits otp number with user id "1"
     Then User cannot click next the button is disabled
 
   @FP_006
   Scenario: Forgot PIN but with expired OTP
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User get otp number with user id "1"
     And User wait for the otp to expire in three minutes.
     And User input the old otp
-    Then User cannot click next the button is disabled
+    And User click next button on the otp page
+    Then User see display error "Code is expired. Please tap Resend button"
 
   @FP_007
   Scenario: Forgot PIN with valid OTP but empty new PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     Then User cannot click next the button is disabled
 
   @FP_008
   Scenario: Forgot PIN with valid OTP but invalid new PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User input new PIN "91919"
     Then User cannot click next the button is disabled
 
   @FP_009-014
   Scenario Outline: Forgot PIN with valid OTP but invalid new PIN (symbols and alphabets)
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User input new PIN "<PIN>"
     And User click next button on the new pin page
@@ -126,23 +142,25 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP_015
   Scenario: Forgot PIN with valid OTP but empty confirmation PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User input new PIN "898989"
     And User click next button on the new pin page
-    Then User cannot click next the button is disabled
+    Then User cannot click finish button the button is disabled
 
   @FP_016
   Scenario: Forgot PIN with valid OTP but with incorrect confirmation PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User input new PIN "898989"
     And User click next button on the new pin page
@@ -152,35 +170,40 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP_017
   Scenario: Successfully do Forgot PIN with valid otp and PIN, but Login with Old PIN
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User input new PIN "909090"
     And User click next button on the new pin page
     And User input the new pin on confirmation page
     And User click finish button on the confirmation page
     And User in the sign in page
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     And User input registered phone number "08126022339"
     And User click the sign in button
-    And User input old pin number on the page "123456"
+    And User input old pin number on the page "919191"
     Then User see warning message on pin page "Invalid PIN"
 
   @FP-OTP_001
   Scenario: Resend button tapped after waiting for 3 minutes
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
     And User wait for the otp to expire in three minutes.
     And User Click resend OTP
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
     And User click next button on the otp page
     Then User is in the new pin page
 
   @FP-OTP_002
   Scenario: Go back to Sign In PIN Screen Using the Arrow Icon Button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -190,6 +213,7 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-OTP_003
   Scenario: Proceed to Sign In Screen Using the device back button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -197,10 +221,20 @@ Feature: Check the Forgot PIN feature functionality
     And User click device back button
     Then User is in the pin page
 
-    #FP-OTP_004
+  @FP-OTP_004
+  Scenario: Back to OTP Screen by opening the app after tapping the device home button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    And User is in otp page
+    And User click home button and reopen the app
+    Then User is in otp page
+
 
   @FP-OTP_005
   Scenario: Still on OTP Screen by opening the app after locking and unlocking the device
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -211,6 +245,7 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-OTP_006
   Scenario: Resend button tapped without waiting for 3 minutes
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -218,6 +253,7 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-OTP_007
   Scenario: Resend button tapped after it has been tapped before
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -228,6 +264,7 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-OTP_008
   Scenario: Resend button tapped after waiting for 3 minutes but can't connect to the server
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
@@ -237,25 +274,37 @@ Feature: Check the Forgot PIN feature functionality
     Then User see display error "Connection error"
 
     #@FP-OTP_009
-
-  @FP-OTP_010
-  Scenario: Click next with valid OTP but can't connect to server
+  @FP-OTP_009
+  Scenario: Pasted Valid OTP from clipboard
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input otp via pasting
+    Then User cant perform paste on the input
+
+
+  @FP-OTP_010
+  Scenario: Click next with valid OTP but can't connect to server
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User turn internet off
     And User click next button on the otp page
     Then User see display error "Connection error"
 
   @FP-NP_001
   Scenario: Go back to Forgot PIN-OTP Screen Using the Arrow Icon Button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User is in the new pin page
     And User click the back arrow icon on top bar
@@ -263,25 +312,39 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-NP_002
   Scenario: Go back to Forgot PIN-OTP Screen using the device back button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
     And User is in the new pin page
     And User click device back button
     Then User is in otp page
 
-    #FP-NP_003
-
-  @FP-NP_004
-  Scenario: Still on New PIN screen by opening the app after locking and unlocking the device
+  @FP-NP_003
+  Scenario: Back to New PIN screen by opening the app after tapping the device home button
+     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
+    And User click next button on the otp page
+    And User is in the new pin page
+    And User click home button and reopen the app
+    Then User is in the new pin page
+
+
+  @FP-NP_004
+  Scenario: Still on New PIN screen by opening the app after locking and unlocking the device
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "1"
     And User click next button on the otp page
     And User is in the new pin page
     And User lock the device
@@ -292,13 +355,14 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-CP_001
   Scenario: Go back to Forgot PIN - New PIN Screen Using the Arrow Icon Button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
-    And User input new PIN "909090"
+    And User input new PIN "919191"
     And User click next button on the new pin page
     And User is in the confirmation page
     And User click the back arrow icon on top bar
@@ -306,29 +370,44 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-CP_002
   Scenario: Go back to Forgot PIN-New PIN Screen using the device back button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
-    And User input new PIN "909090"
+    And User input new PIN "919191"
     And User click next button on the new pin page
     And User is in the confirmation page
     And User click device back button
     Then User is in the new pin page
 
-    #FP-CP_003
-
-  @FP-CP_004
-  Scenario: Still on Confirm PIN screen screen by opening the app after locking and unlocking the device
+  @FP-CP_003
+  Scenario: Back to Confirm PIN screen screen by opening the app after tapping the device home button
+      #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
-    #OTP REST ASSURED BLOM JALAN
     And User click next button on the otp page
-    And User input new PIN "909090"
+    And User input new PIN "919191"
+    And User click next button on the new pin page
+    And User is in the confirmation page
+    And User click home button and reopen the app
+    Then User is in the confirmation page
+
+  @FP-CP_004
+  Scenario: Still on Confirm PIN screen screen by opening the app after locking and unlocking the device
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User input new PIN "919191"
     And User click next button on the new pin page
     And User is in the confirmation page
     And User lock the device
@@ -339,14 +418,16 @@ Feature: Check the Forgot PIN feature functionality
 
   @FP-CP_006
   Scenario: Input all valid OTP, new PIN, and confirm PIN, but can't connect to server when clicking finish button
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
     And User wait for the otp to expire in three minutes.
     And User Click resend OTP
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input valid otp number with user id "1"
     And User click next button on the otp page
-    And User input new PIN "909090"
+    And User input new PIN "919191"
     And User click next button on the new pin page
     And User input the new pin on confirmation page
     And User turn internet off

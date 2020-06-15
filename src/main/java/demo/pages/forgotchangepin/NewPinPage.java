@@ -1,4 +1,4 @@
-package demo.pages.forgotpin;
+package demo.pages.forgotchangepin;
 
 import demo.driver.AndroidDriverInstance;
 import demo.locator.ForgotPinPageLocator;

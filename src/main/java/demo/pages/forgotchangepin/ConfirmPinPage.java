@@ -1,4 +1,4 @@
-package demo.pages.forgotpin;
+package demo.pages.forgotchangepin;
 
 import demo.driver.AndroidDriverInstance;
 import demo.locator.ForgotPinPageLocator;
@@ -16,6 +16,10 @@ public class ConfirmPinPage extends AndroidPageObject {
 
     public void clickFinish() {
         clickOn(ForgotPinPageLocator.FINISH_CONFIRM_BUTTON);
+    }
+
+    public boolean checkIfConfirmEnabled(){
+        return checkIfEnabled(ForgotPinPageLocator.FINISH_CONFIRM_BUTTON);
     }
 
     public void clickBack() {
