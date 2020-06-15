@@ -19,7 +19,7 @@ public class RechargeChooseTopUpPage implements RechargeChooseTopUpPageLocator {
             }
         }
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
