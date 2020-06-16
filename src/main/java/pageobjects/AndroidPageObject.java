@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static demo.driver.AndroidDriverInstance.androidDriver;
 
 public class AndroidPageObject {
@@ -83,6 +85,21 @@ public class AndroidPageObject {
     public String checkToast(By id) {
         WebElement toast = androidDriver.findElement(id);
         return toast.getAttribute("name");
+    }
+
+    public void multipleID(String name, By locator){
+        List<AndroidElement> filters = androidDriver.findElements(locator);
+        for (AndroidElement filter : filters) {
+            if (filter.getText().equalsIgnoreCase(name)) {
+                filter.click();
+                break;
+            }
+        }
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 //    public boolean checkIfToastDisplayed(By id) {

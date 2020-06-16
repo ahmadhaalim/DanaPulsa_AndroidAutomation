@@ -24,7 +24,7 @@ public interface RechargePaymentStatusPageLocator {
     By TRANSACTION_HISTORY_INFO = MobileBy.id("tvTransactionHistoryInformation");
 
     // Image View
-    By TRANSACTION_SUCCESS_ICON = MobileBy.id("ivTransactionIcon");
+    By TRANSACTION_STATUS_ICON = MobileBy.id("ivTransactionIcon");
 
     // Button
     By BACK_TO_HOME_BUTTON = MobileBy.id("btnBackToHome");
