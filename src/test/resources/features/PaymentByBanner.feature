@@ -1,5 +1,6 @@
 @Android
 Feature: Payment
+  @MR028,MR029
   Scenario: Complete payment by Promotion Banner
     Given User at main page
     When User click Promotion Banner

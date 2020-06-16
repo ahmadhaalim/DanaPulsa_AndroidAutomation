@@ -1,5 +1,6 @@
 @Android
 Feature: Payment
+  @MR026,MR027
   Scenario: Complete payment by In Progress page
     Given User at main page
     When User click History
