@@ -19,6 +19,7 @@ public class PaymentByHistory {
         return signInLabel.isDisplayed();
     }
 
-    public void chooseHistory(){pageObject.clickOn(History_Button);
+    public void chooseHistory() {
+        pageObject.clickOn(History_Button);
     }
 }
