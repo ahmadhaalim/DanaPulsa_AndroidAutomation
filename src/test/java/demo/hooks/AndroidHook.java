@@ -1,5 +1,6 @@
 package demo.hooks;
 import demo.driver.AndroidDriverInstance;
+import demo.pages.ProfilePage;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
@@ -7,6 +8,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class AndroidHook {
+
 
     @Before(value = "@Android")
     public void initializeWebDriver() {

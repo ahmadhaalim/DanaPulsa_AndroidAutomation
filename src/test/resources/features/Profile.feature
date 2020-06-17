@@ -40,3 +40,36 @@ Feature: Profile Feature Functionality Check
     Then User directed to profile screen
     When User click sign out button on profile screen
     Then User see warning pop up "Connection Error"
+
+  #---Activity outside app scenarios---#
+
+  @OutsideAppProfile @PRSC005
+  Scenario: Proceed to device home by tapping device back button
+    When User click profile button
+    Then User directed to profile screen
+    When User click device back button
+    Then User directed to device home from profile screen
+
+  @OutsideAppProfile @PRSC006
+  Scenario: Back to profile screen by opening the app after running in the background
+    When User click profile button
+    Then User directed to profile screen
+    When User open the app after running in the background for a moment
+    Then User directed to profile screen
+
+  @OutsideAppProfile @PRSC007
+  Scenario: Still on profile screen when unlocking device
+    When User click profile button
+    Then User directed to profile screen
+    When User lock the device
+    And User unlock the device
+    Then User directed to profile screen
+
+  @OutsideAppProfile @PRSC008
+  Scenario: Proceed to device home by tapping device back button after signing out from the app
+    When User click profile button
+    Then User directed to profile screen
+    When User click sign out button on profile screen
+    Then User directed to sign in screen
+    When User click device back button
+    Then User directed to device home from sign in screen

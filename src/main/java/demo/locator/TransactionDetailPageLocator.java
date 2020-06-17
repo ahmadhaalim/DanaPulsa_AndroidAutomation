@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 
 public interface TransactionDetailPageLocator {
     By Back_Button = MobileBy.id();
+    By TransactionDetail_Header = MobileBy.id("tvTransactionIdLabel");
     By Transaction_Status = MobileBy.id("tvTransactionStatusValue");
     By Transaction_Price = MobileBy.id("tvTransactionTotalValue");
     By Transaction_ID = MobileBy.id("tvTransactionIdValue");

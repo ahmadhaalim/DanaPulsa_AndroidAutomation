@@ -15,7 +15,7 @@ Feature: Voucher Feature Functionality Check
     Then User directed to home screen
 
   #[WARNING] Run this scenario first before other scenarios!
-  @VOSC001 @VOSC011-VOSC013
+  @VOSC001 @VOSC010-VOSC012
   Scenario Outline: User doesn't have any voucher
     When User click voucher button
     Then User directed to voucher screen
@@ -65,7 +65,7 @@ Feature: Voucher Feature Functionality Check
     #Main scenario
     When User click history button
     And User click "Cashback" button on voucher screen
-    Then User see voucher banner "5.0000"
+    Then User see voucher banner "5.000"
 
   @VOSC002 @VOSC005 @VOSC006
   Scenario: Go to voucher detail screen by tapping all button and click back button
@@ -100,3 +100,56 @@ Feature: Voucher Feature Functionality Check
     When User click one of voucher banner while internet is off
     Then User directed to voucher detail screen
     Then User see warning "Connection error" on voucher detail screen
+
+
+  #---Activity outside app scenarios---#
+
+  @OutsideAppVoucher @VOSC007
+  Scenario: Proceed to device Home by tapping device back button
+    When User click voucher button
+    Then User directed to voucher screen
+    When User click device home button
+    Then User directed to device home from voucher screen
+
+  @OutsideAppVoucher @VOSC008
+  Scenario: Back to voucher screen by opening the app after running in the background
+    When User click voucher button
+    Then User directed to voucher screen
+    When User open the app after running in the background for a moment
+    Then User directed to voucher screen
+
+  @OutsideAppVoucher @VOSC009
+  Scenario: Still on voucher screen when unlocking device
+    When User click voucher button
+    Then User directed to voucher screen
+    When User lock the device
+    And User unlock the device
+    Then User directed to voucher screen
+
+  @OutsideAppVoucher @VOSC013
+  Scenario: Back to voucher screen by tapping device back button while in voucher detail screen
+    When User click voucher button
+    Then User directed to voucher screen
+    When User click voucher banner "5%"
+    Then User directed to voucher detail screen
+    When User click device back button
+    Then User directed to voucher screen
+
+  @OutsideAppVoucher @VOSC014
+  Scenario: Back to voucher detail screen by opening the app after running in the background
+    When User click voucher button
+    Then User directed to voucher screen
+    When User click voucher banner "5%"
+    Then User directed to voucher detail screen
+    When User open the app after running in the background for a moment
+    Then User directed to voucher detail screen
+
+  @OutsideAppVoucher @VOSC015
+  Scenario: Still on voucher detail screen when unlocking device
+    When User click voucher button
+    Then User directed to voucher screen
+    When User click voucher banner "5%"
+    Then User directed to voucher detail screen
+    When User lock the device
+    And User unlock the device
+    Then User directed to voucher detail screen

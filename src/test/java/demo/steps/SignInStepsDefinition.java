@@ -1,14 +1,14 @@
 package demo.steps;
 
-import demo.driver.AndroidDriverInstance;
 import demo.pages.*;
+import deviceutilities.AndroidDeviceUtilities;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class SignInStepsDefinition {
+public class SignInStepsDefinition extends AndroidDeviceUtilities {
 
     SignInPage signInPage = new SignInPage();
     SignInInputPinPage signInInputPinPage = new SignInInputPinPage();
@@ -26,8 +26,6 @@ public class SignInStepsDefinition {
 
     @When("User input phone number {string}")
     public void userInputPhoneNumber(String phoneNumber) {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
         signInPage.inputPhoneNumber(phoneNumber);
     }
 
@@ -55,13 +53,13 @@ public class SignInStepsDefinition {
     }
 
     @Then("User see warning message {string} on sign in page")
-    public void userSeeWarningMessageOnSignInPage(String errorMessageExpectation) {
+    public void userSeeWarningMessageOnSignInPage(String expected) {
         signInPage.checkErrorDialog();
-        String errorMessage = signInPage.getErrorDialogText();
-        Assert.assertEquals(errorMessageExpectation, errorMessage);
+        String actual = signInPage.getErrorDialogText();
+        Assert.assertEquals(expected, actual);
         signInPage.clickErrorDialogOkButton();
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
     }
 
     @When("User click sign up button")
@@ -89,4 +87,16 @@ public class SignInStepsDefinition {
         signInInputPinPage.clickBackButton();
     }
 
+    @When("User input pin {string} while internet is off")
+    public void userInputPinWhileInternetIsOff(String pin) throws InterruptedException {
+        toggleData();
+        toggleWifi();
+        Thread.sleep(3000);
+        signInInputPinPage.inputPin(pin);
+    }
+
+    @Then("User directed to device home from sign in screen")
+    public void userDirectedToDeviceHomeFromSignInScreen() {
+        Assert.assertFalse(signInPage.isOnPage());
+    }
 }

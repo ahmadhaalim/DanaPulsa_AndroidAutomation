@@ -17,7 +17,7 @@ Feature: Home Feature Functionality Check
 
 
   #[WARNING] Run this scenario first before other scenarios!
-  @HISC011 @HISC012
+  @HISC010 @HISC011
   Scenario Outline: User doesn't have in progress or completed transaction
     When User click history button
     Then User directed to history screen
@@ -31,8 +31,6 @@ Feature: Home Feature Functionality Check
   @HISC002-HISC006
   Scenario: User make success payment from pending transaction and go to transaction detail screen
     #Precondition to get in progress transaction
-    When User click home button
-    Then User directed to home screen
     When User click "Mobile Recharge Icon" on home screen
     Then User directed from home screen to "Mobile Recharge Screen"
     When User input phone number "087712345678" on mobile recharge screen
@@ -85,4 +83,62 @@ Feature: Home Feature Functionality Check
     And User click one completed transaction while internet is off
     Then User directed to transaction detail screen
     And User see warning "Connection error" at transaction detail screen
+
+
+  #---Activity outside app scenarios---#
+
+  @OutsideAppHistory @HISC007
+  Scenario: Proceed to device home by tapping device back button
+    When User click history button
+    Then User directed to history screen
+    When User click device back button
+    Then User directed to device home from history screen
+
+  @OutsideAppHistory @HISC008
+  Scenario: Back to history screen by opening the app after running in the background
+    When User click history button
+    Then User directed to history screen
+    When User open the app after running in the background for a moment
+    Then User directed to history screen
+
+  @OutsideAppHistory @HISC009
+  Scenario: Still on history screen when unlocking device
+    When User click history button
+    Then User directed to history screen
+    When User lock the device
+    And User unlock the device
+    Then User directed to history screen
+
+  @OutsideAppHistory @HISC012
+  Scenario: Back to history screen by tapping device back button while on completed transaction detail screen
+    When User click history button
+    Then User directed to history screen
+    When User click completed tab
+    And User click one of completed transaction summary
+    And User click device back button
+    Then User directed to history screen
+
+  @OutsideAppHistory @HISC013
+  Scenario: Back to completed transaction detail screen by opening the app after running in the background
+    When User click history button
+    Then User directed to history screen
+    When User click completed tab
+    And User click one of completed transaction summary
+    And User open the app after running in the background for a moment
+    Then User directed to transaction detail screen
+
+  @OutsideAppHistory @HISC014
+  Scenario: Still on completed transaction detail screen when unlocking device
+    When User click history button
+    Then User directed to history screen
+    When User click completed tab
+    And User click one of completed transaction summary
+    When User lock the device
+    And User unlock the device
+    Then User directed to transaction detail screen
+
+
+
+
+
 

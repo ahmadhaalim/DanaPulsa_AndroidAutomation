@@ -5,7 +5,7 @@ import pageobjects.AndroidPageObject;
 
 public class TransactionDetailPage extends AndroidPageObject {
     public boolean isOnPage(){
-        return checkIfDisplayed(TransactionDetailPageLocator.Transaction_Status);
+        return checkIfDisplayed(TransactionDetailPageLocator.TransactionDetail_Header);
     }
     public void clickBackButton(){
         clickOn(TransactionDetailPageLocator.Back_Button);

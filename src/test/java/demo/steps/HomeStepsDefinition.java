@@ -1,16 +1,16 @@
 package demo.steps;
 
-import demo.driver.AndroidDriverInstance;
 import demo.pages.HomePage;
 import demo.pages.MobileRechargePage;
 import demo.pages.PromotionDetailPage;
 import demo.pages.PromotionListPage;
+import deviceutilities.AndroidDeviceUtilities;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class HomeStepsDefinition {
+public class HomeStepsDefinition extends AndroidDeviceUtilities {
 
     HomePage homePage = new HomePage();
     MobileRechargePage mobileRechargePage = new MobileRechargePage();
@@ -89,14 +89,14 @@ public class HomeStepsDefinition {
     public void userSeeWarningMessageOnPromotionArea(String expected) {
         String actual = homePage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
     }
 
     @When("User click promotion banner on home screen while internet is off")
     public void userClickPromotionBannerOnHomeScreenWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+          toggleWifi();
+        toggleData();
         homePage.clickPromotionBanner();
     }
 
@@ -104,14 +104,14 @@ public class HomeStepsDefinition {
     public void userSeeWarningMessageOnPromotionDetailScreen(String expected) {
         String actual = promotionDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
     }
 
     @When("User click view all on home screen while internet is off")
     public void userClickViewAllOnHomeScreenWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
         homePage.clickViewAllButton();
     }
 
@@ -119,21 +119,31 @@ public class HomeStepsDefinition {
     public void userSeeWarningMessageOnPromotionListScreen(String expected) {
         String actual = promotionListPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
     }
 
     @When("User click voucher button while internet is off")
     public void userClickVoucherButtonWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
         homePage.clickVoucherButton();
     }
 
     @When("User click home button while internet is off")
     public void userClickHomeButtonWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        toggleWifi();
+        toggleData();
         homePage.clickHomeButton();
+    }
+
+    @Then("User directed to device home from home screen")
+    public void userDirectedToDeviceHomeFromHomeScreen() {
+        Assert.assertFalse(homePage.isOnPage());
+    }
+
+    @Then("User directed to promotion detail screen")
+    public void userDirectedToPromotionDetailScreen() {
+        Assert.assertTrue(promotionDetailPage.isOnPage());
     }
 }

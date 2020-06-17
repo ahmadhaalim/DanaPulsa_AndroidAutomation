@@ -13,6 +13,18 @@ public class VoucherPage extends AndroidPageObject{
     public boolean isOnPage(){
         return checkIfDisplayed(VoucherPageLocator.All_Button);
     }
+    public void clickAllButton(){
+        clickOn(VoucherPageLocator.All_Button);
+    }
+    public void clickDiscountButton(){
+        clickOn(VoucherPageLocator.Discount_Button);
+    }
+    public void clickCashbackButton(){
+        clickOn(VoucherPageLocator.Cashback_Button);
+    }
+    public String getWarningMessage(){
+        return getText(VoucherPageLocator.Warning_Message);
+    }
     public void checkIfVoucherBannerIsDisplayed(){
         waitUntilDisplayed(VoucherPageLocator.Voucher_Banner);
     }
@@ -39,17 +51,4 @@ public class VoucherPage extends AndroidPageObject{
         }
         return getValue;
     }
-    public void clickAllButton(){
-        clickOn(VoucherPageLocator.All_Button);
-    }
-    public void clickDiscountButton(){
-        clickOn(VoucherPageLocator.Discount_Button);
-    }
-    public void clickCashbackButton(){
-        clickOn(VoucherPageLocator.Cashback_Button);
-    }
-    public String getWarningMessage(){
-        return getText(VoucherPageLocator.Warning_Message);
-    }
-
 }

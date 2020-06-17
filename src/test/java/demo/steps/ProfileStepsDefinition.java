@@ -70,4 +70,9 @@ public class ProfileStepsDefinition {
         String actual = profilePage.getWarningMessage();
         Assert.assertEquals(expected, actual);
     }
+
+    @Then("User directed to device home from profile screen")
+    public void userDirectedToDeviceHomeFromProfileScreen() {
+        Assert.assertFalse(profilePage.isOnPage());
+    }
 }

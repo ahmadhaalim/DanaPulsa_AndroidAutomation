@@ -23,12 +23,12 @@ Feature: Sign In Feature Functionality Check
     When User input phone number "08555333444"
     And User click sign in button
     Then User directed to input pin screen
-    When User input pin "123456"
+    When User input pin "123456" while internet is off
     Then User see warning message "Connection error" on sign in page
 
 
   @SI003-006
-  Scenario Outline: User failed to sign in
+  Scenario Outline: User failed to sign in because invalid data input
     When User input phone number "<phone>"
     And User click sign in button
     Then User directed to input pin screen
@@ -75,3 +75,53 @@ Feature: Sign In Feature Functionality Check
     When User click back button on forgot pin screen
     Then User directed to input pin screen
 
+
+  #---Activity outside app scenarios---#
+
+  @OutsideAppSignIn @SI-IPN002
+  Scenario: Proceed to Device Home by tapping "Device Back" Button
+    When User click device home button
+    Then User directed to device home from sign in screen
+
+  @OutsideAppSignIn @SI-IPN003
+  Scenario: Back to sign in Screen by opening the app after running in the background
+    When User open the app after running in the background for a moment
+    Then User directed to sign in screen
+
+  @OutsideAppSignIn @SI-IPN004
+  Scenario: Still on sign in Screen when unlocking device
+    When User lock the device
+    And User unlock the device
+    Then User directed to sign in screen
+
+  @OutsideAppSignIn @SI-IPN006
+  Scenario: Back to sign in screen by tapping device back button while in sign up screen
+    When User click sign up button
+    Then User directed to sign up screen
+    When User click device back button
+    Then User directed to sign in screen
+
+  @OutsideAppSignIn @SI-IP002
+  Scenario: Back to sign in screen by tapping device back button
+    When User input phone number "08555333444"
+    Then User directed to input pin screen
+    When User click device back button
+    Then User directed to sign in screen
+
+  @OutsideAppSignIn @SI-IP003
+  Scenario: Back to input pin screen by opening the app after running in the background
+    When User input phone number "08555333444"
+    Then User directed to input pin screen
+    When User open the app after running in the background for a moment
+    Then User directed to input pin screen
+
+  @OutsideAppSignIn @SI-IP004
+  Scenario: Still on input pin screen when unlocking device
+    When User input phone number "08555333444"
+    Then User directed to input pin screen
+    When User lock the device
+    And User unlock the device
+    Then User directed to input pin screen
+
+  @OutsideAppSignIn @SI-IP007
+  Scenario: Back to input pin screen by tapping device back button while in forgot pin screen

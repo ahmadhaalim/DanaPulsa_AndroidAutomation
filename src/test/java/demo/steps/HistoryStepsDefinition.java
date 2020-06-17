@@ -141,4 +141,14 @@ public class HistoryStepsDefinition extends MobileRechargeStepsDefinition {
         String actual = historyPage.checkInProgressTransactionStatus();
         Assert.assertEquals(expected, actual);
     }
+
+    @Then("User directed to device home from history screen")
+    public void userDirectedToDeviceHomeFromHistoryScreen() {
+        Assert.assertFalse(historyPage.isOnPage());
+    }
+
+    @And("User click one of completed transaction summary")
+    public void userClickOneOfCompletedTransactionSummary() {
+        historyPage.clickOneCompletedTransaction();
+    }
 }

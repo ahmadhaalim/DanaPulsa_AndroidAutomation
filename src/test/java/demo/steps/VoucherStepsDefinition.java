@@ -94,4 +94,9 @@ public class VoucherStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleData();
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
+
+    @Then("User directed to device home from voucher screen")
+    public void userDirectedToDeviceHomeFromVoucherScreen() {
+        Assert.assertFalse(voucherPage.isOnPage());
+    }
 }
