@@ -125,3 +125,10 @@ Feature: Sign In Feature Functionality Check
 
   @OutsideAppSignIn @SI-IP007
   Scenario: Back to input pin screen by tapping device back button while in forgot pin screen
+    When User input phone number "08555333444"
+    Then User directed to input pin screen
+    When User click forgot pin text
+    Then User directed to forgot pin screen
+    When User click device back button
+    Then User directed to input pin screen
+

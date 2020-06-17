@@ -34,5 +34,11 @@ public class AndroidDeviceUtilities {
         }
         Thread.sleep(5000);
     }
+    public void setClipboardText(String text){
+        AndroidDriverInstance.androidDriver.setClipboardText(text);
+    }
+    public String getClipboardText(){
+        return AndroidDriverInstance.androidDriver.getClipboardText();
+    }
 
 }
