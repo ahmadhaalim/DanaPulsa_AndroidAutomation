@@ -31,16 +31,12 @@ public class DeviceButton {
     }
 
 
-    public void turnInternetOff() throws InterruptedException {
+    public void switchInternet() throws InterruptedException {
 //        ConnectionState state = AndroidDriverInstance.androidDriver.setConnection(new ConnectionStateBuilder()
 //                .withDataDisabled().withWiFiDisabled().build());
         Thread.sleep(3000);
         AndroidDriverInstance.androidDriver.toggleData();
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
-    public void turnInternetOn() throws InterruptedException {
-        Thread.sleep(3000);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-    }
+
 }

@@ -14,6 +14,7 @@ import pageobjects.AndroidPageObject;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.time.Duration;
 
 public class OtpPage extends AndroidPageObject {
     public boolean isOnPage() {
@@ -40,22 +41,25 @@ public class OtpPage extends AndroidPageObject {
         clickOn(ForgotPinPageLocator.RESEND_BUTTON);
     }
 
-    public void setForPaste(){
-        AndroidDriverInstance.androidDriver.setClipboardText("123456");
+    public void setForPaste(String otp){
+        AndroidDriverInstance.androidDriver.setClipboardText(otp);
     }
 
-    public void tryToPaste() {
-        TouchAction action = new TouchAction(AndroidDriverInstance.androidDriver);
+    public boolean tryToPaste(String deviceType) {
         AndroidElement element = AndroidDriverInstance.androidDriver.findElement(ForgotPinPageLocator.OTP_INPUT);
-        action.longPress(LongPressOptions.longPressOptions()
-                .withElement (ElementOption.element (element)))
-                .perform ();
+        TouchAction action = new TouchAction(AndroidDriverInstance.androidDriver)
+                .longPress(new LongPressOptions()
+                        .withElement(ElementOption.element(element))
+                        .withDuration(Duration.ofMillis(4000)))
+                .release()
+                .perform();
         System.out.println("LongPressed Tapped");
         ImageController imageController = new ImageController();
         try {
-            imageController.checkIfWarningDisplayed("Capture.PNG");
+            return imageController.checkIfWarningDisplayed(deviceType +"paste.png");
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 

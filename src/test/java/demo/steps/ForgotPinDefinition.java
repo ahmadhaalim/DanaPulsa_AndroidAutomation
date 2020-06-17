@@ -230,7 +230,7 @@ public class ForgotPinDefinition {
 
     @And("User turn internet off")
     public void userTurnInternetOff() throws InterruptedException {
-        deviceButton.turnInternetOff();
+        deviceButton.switchInternet();
     }
 
     @And("User is in the confirmation page")
@@ -264,12 +264,40 @@ public class ForgotPinDefinition {
     }
 
 
-    @And("User input otp via pasting")
-    public void userInputOtpViaPasting() {
-        otpPage.setForPaste();
+    @And("User input otp via pasting with user id {string}")
+    public void userInputOtpViaPasting(String userId) throws InterruptedException {
+        Response response = otpController.getOtpNumber(userId);
+        String otp = response.path("code").toString();
+        //String otp = "1111";
+        otpPage.setForPaste(otp);
     }
-    @Then("User cant perform paste on the input")
-    public void userCantPerformPasteOnTheInput() {
+    @Then("User cant perform paste on the OTP input {string}")
+    public void userCantPerformPasteOnTheInput(String devicetype) {
+        Assert.assertFalse(otpPage.tryToPaste(devicetype));
+    }
 
+    @And("User input new pin via pasting {string}")
+    public void userInputNewPinViaPasting(String newpin) {
+        newPinPage.setForPaste(newpin);
+    }
+
+    @And("User input confirm pin via pasting")
+    public void userInputConfirmPinViaPasting() {
+        confirmPinPage.setForPaste(this.newPin);
+    }
+
+    @Then("User cant perform paste on the confirm input {string}")
+    public void userCantPerformPasteOnTheConfirmInput(String deviceType) {
+        confirmPinPage.tryToPaste(deviceType);
+    }
+
+    @Then("User cant perform paste on the new pin input {string}")
+    public void userCantPerformPasteOnTheNewPinInput(String deviceType) {
+        newPinPage.tryToPaste(deviceType);
+    }
+
+    @And("User turn internet on")
+    public void userTurnInternetOn() throws InterruptedException {
+        deviceButton.switchInternet();
     }
 }

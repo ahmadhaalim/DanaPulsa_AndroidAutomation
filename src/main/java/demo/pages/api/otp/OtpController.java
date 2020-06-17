@@ -13,7 +13,7 @@ public class OtpController {
                 .pathParam("userId", userId)
                 .log().all()
                 .contentType(ContentType.JSON)
-                .accept(ContentType.JSON).get("/api/otp/{userId}");
+                .accept(ContentType.JSON).get("/otp/{userId}");
         response.getBody().prettyPrint();
         return response;
     }

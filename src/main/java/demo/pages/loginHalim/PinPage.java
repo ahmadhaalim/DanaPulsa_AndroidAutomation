@@ -15,6 +15,13 @@ public class PinPage extends AndroidPageObject {
         clickOn(PinPageLocator.FORGOT_BUTTON_DUMMY);
     }
     public String getWarningMessage(){
+        //        ImageController imageController = new ImageController();
+//        try {
+//            return imageController.checkIfWarningDisplayed("tes.png");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return false;
+//        }
         return AndroidDriverInstance.androidDriver.findElement(PinPageLocator.DUMMY_PIN_WARNING).getText();
     }
 

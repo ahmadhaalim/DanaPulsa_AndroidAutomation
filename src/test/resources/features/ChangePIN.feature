@@ -1,6 +1,7 @@
 @Android @ChangePIN
 Feature: Check the Change PIN feature functionality
-
+#BEFORE YOU RUN THE TEST MAKE SURE TO CHANGE YOUR PHONE NUMBER, YOUR ACCOUNT USER ID, AND YOUR DEVICE TYPE ON SOME
+  #SCENARIO, SAME AS BEFORE
   Background:
     Given User in the sign in page
     When User input registered phone number "08126022339"
@@ -216,8 +217,16 @@ Feature: Check the Change PIN feature functionality
     And User turn internet off
     And User Click resend OTP
     Then User see display error "Connection error"
+    And User turn internet on
 
   #CP-OTP_009
+  @CP-OTP_009
+    Scenario: Pasted Valid OTP from clipboard
+    When User click the profile menu on the bottom bar
+    And User click the change pin menu
+    #CHANGE THIS MANUALLY
+    And User input otp via pasting with user id "1"
+    Then User cant perform paste on the OTP input "deviceType"
 
   @CP-OTP_010
   Scenario: Click next with valid OTP but can't connect to server
@@ -227,6 +236,7 @@ Feature: Check the Change PIN feature functionality
     And User turn internet off
     And User click next button on the otp page
     Then User see display error "Connection error"
+    And User turn internet on
 
   @CP-NP_001
   Scenario: Go back to Change PIN-OTP Screen Using the Arrow Icon Button
@@ -270,6 +280,15 @@ Feature: Check the Change PIN feature functionality
     Then User is in the new pin page
 
         #CP-NP_005
+  @CP-NP_005
+    Scenario: Pasted Valid PIN from clipboard into New PIN input
+    When User click the profile menu on the bottom bar
+    And User click the change pin menu
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User is in the new pin page
+    And User input new pin via pasting "505050"
+    Then User cant perform paste on the new pin input "deviceType"
 
   @CP-CPN_001
   Scenario: Go back to Change PIN-New PIN Screen Using the Arrow Icon Button
@@ -321,6 +340,17 @@ Feature: Check the Change PIN feature functionality
     Then User is in the confirmation page
 
     #CP-CPN_005
+  @CP-CPN_005
+    Scenario: Pasted Valid PIN from clipboard into New PIN input
+    When User click the profile menu on the bottom bar
+    And User click the change pin menu
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User input new PIN "505050"
+    And User click next button on the new pin page
+    And User is in the confirmation page
+    And User input confirm pin via pasting
+    Then User cant perform paste on the confirm input "deviceType"
 
   @CP-CPN_006
   Scenario: Input all valid OTP, new PIN, and confirm PIN, but can't connect to server when clicking finish button
@@ -333,6 +363,7 @@ Feature: Check the Change PIN feature functionality
     And User input the new pin on confirmation page
     And User turn internet off
     And User click finish button on the confirmation page
+    And User turn internet on
 
 
 

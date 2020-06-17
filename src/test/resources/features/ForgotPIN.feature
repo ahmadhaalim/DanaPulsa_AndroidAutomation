@@ -1,7 +1,9 @@
 @Android @ForgotPIN
 Feature: Check the Forgot PIN feature functionality
-  #BEFORE YOU RUN THE TEST MAKE SURE TO CHANGE YOUR PHONE NUMBER, YOUR ACCOUNT USER ID
+  #BEFORE YOU RUN THE TEST MAKE SURE TO CHANGE YOUR PHONE NUMBER, YOUR ACCOUNT USER ID, AND YOUR DEVICE TYPE ON SOME
+  #SCENARIO
   #RUN THIS EXACTLY BEFORE RUNNING CHANGE PIN !!!
+  #Device type name format example = pixel2api23, pixel2api26
   Background:
     Given User in the sign in page
 
@@ -272,6 +274,7 @@ Feature: Check the Forgot PIN feature functionality
     And User turn internet off
     And User Click resend OTP
     Then User see display error "Connection error"
+    And User turn internet on
 
     #@FP-OTP_009
   @FP-OTP_009
@@ -281,8 +284,8 @@ Feature: Check the Forgot PIN feature functionality
     And User click the sign in button
     And User click the forgot pin text
     #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
-    And User input otp via pasting
-    Then User cant perform paste on the input
+    And User input otp via pasting with user id "1"
+    Then User cant perform paste on the OTP input "deviceType"
 
 
   @FP-OTP_010
@@ -296,6 +299,7 @@ Feature: Check the Forgot PIN feature functionality
     And User turn internet off
     And User click next button on the otp page
     Then User see display error "Connection error"
+    And User turn internet on
 
   @FP-NP_001
   Scenario: Go back to Forgot PIN-OTP Screen Using the Arrow Icon Button
@@ -352,6 +356,18 @@ Feature: Check the Forgot PIN feature functionality
     Then User is in the new pin page
 
     #FP-NP_005
+  @FP-NP_005
+  Scenario: Pasted Valid PIN from clipboard into New PIN input
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User is in the new pin page
+    And User input new pin via pasting "909090"
+    Then User cant perform paste on the new pin input "devicetype"
 
   @FP-CP_001
   Scenario: Go back to Forgot PIN - New PIN Screen Using the Arrow Icon Button
@@ -415,6 +431,21 @@ Feature: Check the Forgot PIN feature functionality
     Then User is in the confirmation page
 
     #FP-CP_005
+  @FP-CP_005
+    Scenario: Pasted Valid PIN from clipboard into Confirm PIN input
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User input new PIN "919191"
+    And User click next button on the new pin page
+    And User is in the confirmation page
+    And User input confirm pin via pasting
+    Then User cant perform paste on the confirm input "devicetype"
+
 
   @FP-CP_006
   Scenario: Input all valid OTP, new PIN, and confirm PIN, but can't connect to server when clicking finish button
@@ -433,3 +464,4 @@ Feature: Check the Forgot PIN feature functionality
     And User turn internet off
     And User click finish button on the confirmation page
     Then User see display error "Connection error"
+    And User turn internet on
