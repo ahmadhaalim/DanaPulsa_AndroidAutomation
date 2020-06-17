@@ -22,9 +22,6 @@ public class PaymentByPromotionBanner {
     public void userChooseTopUpNominal() {
     }
 
-    @And("User pay the bill")
-    public void userPayTheBill() {
-    }
 
     @Then("User see payment success page")
     public void userSeePaymentSuccessPage() {
