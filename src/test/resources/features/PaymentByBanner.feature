@@ -1,8 +1,11 @@
-@Android
-Feature: Payment
+@Android @Promotion
+Feature: Mobile Recharge
+
+  Background:
+#    Given User is already login
   @MR028,MR029
   Scenario: Complete payment by Promotion Banner
-    Given User at main page
+    Given User is on homepage
     When User click Promotion Banner
     Then User click Buy Pulsa Now
     And User input phone number
@@ -10,5 +13,3 @@ Feature: Payment
     And User see payment detail page
     And User pay the bill
     Then User see payment success page
-    And User click Pay Now
-    Then User see Payment Success Page

@@ -1,4 +1,4 @@
-@Android @Recharge
+@Android @History
 Feature: Mobile Recharge
 
   Background:
