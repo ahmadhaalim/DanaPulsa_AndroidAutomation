@@ -10,13 +10,15 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
         return pageObject.checkIfDisplayed(CHECKOUT_PRODUCT);
     }
 
-    public void selectVoucher(String status){
-        if (status.equalsIgnoreCase("unavailable")){
+    public boolean voucherUnavailable(){
+        return pageObject.checkIfEnabled(SELECT_VOUCHER);
+    }
+    public boolean voucherAvailable(){
+        return pageObject.checkIfEnabled(SELECT_VOUCHER);
+    }
 
-        }
-        if (status.equalsIgnoreCase("available")){
-
-        }
+    public void pickVoucher(){
+        pageObject.clickOn(SELECT_VOUCHER);
     }
 
     public void payButton(){

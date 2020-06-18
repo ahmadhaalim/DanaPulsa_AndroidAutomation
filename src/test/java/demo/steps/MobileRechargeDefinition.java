@@ -38,7 +38,7 @@ public class MobileRechargeDefinition {
 
     @And("User see payment detail page")
     public void userSeePaymentDetailPage() {
-        detailPage.isOnPage();
+        Assert.assertTrue(detailPage.isOnPage());
     }
 
     @And("User pay the bill")
@@ -59,7 +59,14 @@ public class MobileRechargeDefinition {
 
     @And("User check status voucher availability {string}")
     public void userCheckStatusVoucherAvailability(String statusVoucher) {
-        detailPage.selectVoucher(statusVoucher);
+        if (statusVoucher.equals("unavailable")){
+            boolean status = detailPage.voucherUnavailable();
+            Assert.assertFalse(status);
+        }
+        if (statusVoucher.equals("available")){
+            boolean status = detailPage.voucherAvailable();
+            Assert.assertTrue(status);
+        }
     }
 
     @And("User choose voucher value {string}")
@@ -82,5 +89,43 @@ public class MobileRechargeDefinition {
     @And("User click back to home button")
     public void userClickBackToHomeButton() {
         statusPage.backToHome();
+    }
+
+    @And("User pick a voucher")
+    public void userPickAVoucher() {
+        detailPage.pickVoucher();
+    }
+
+    @And("if {string} is available, user choose no voucher")
+    public void ifIsAvailableUserChooseNoVoucher(String status) {
+        if (status.equals("available")){
+            detailPage.pickVoucher();
+            chooseVoucher.noVoucher();
+        }
+    }
+
+    @And("User open action menu")
+    public void userOpenActionMenu() {
+    }
+
+    @And("User cancel transaction")
+    public void userCancelTransaction() {
+    }
+
+    @And("User confirm to cancel transaction")
+    public void userConfirmToCancelTransaction() {
+    }
+
+    @And("User click history icon")
+    public void userClickHistoryIcon() {
+        homePage.chooseHistory();
+    }
+
+    @And("User choose completed tab")
+    public void userChooseCompletedTab() {
+    }
+
+    @Then("User see cancelled transaction")
+    public void userSeeCancelledTransaction() {
     }
 }

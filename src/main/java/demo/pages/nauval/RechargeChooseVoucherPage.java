@@ -15,7 +15,7 @@ public class RechargeChooseVoucherPage implements RechargeChooseVoucherPageLocat
     }
 
     public void chooseDiscount(String discount){
-
+        pageObject.multipleID(discount, VOUCHER_ITEM);
     }
 
     public void noVoucher(){

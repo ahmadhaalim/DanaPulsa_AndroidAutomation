@@ -4,7 +4,7 @@ import demo.locator.nauval.HomePageLocator;
 import pageobjects.AndroidPageObject;
 
 public class HomePage implements HomePageLocator {
-    AndroidPageObject pageObject = new AndroidPageObject();
+    AndroidPageObject pageObject;
 
     public boolean onHomePage(){
         return pageObject.checkIfDisplayed(Promotion_Banner);
@@ -12,5 +12,9 @@ public class HomePage implements HomePageLocator {
 
     public void chooseMobileRecharge(){
         pageObject.clickOn(MobileRecharge_Button);
+    }
+
+    public void chooseHistory(){
+        pageObject.clickOn(History_Button);
     }
 }
