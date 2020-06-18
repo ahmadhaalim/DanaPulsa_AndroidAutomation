@@ -13,6 +13,7 @@ public class PaymentByHistoryStepsDefinition {
     HomePage homePage;
     RechargeInputNumberPage inputNumber;
     RechargeChooseTopUpPage topUpPage;
+    RechargeChooseVoucherPage chooseVoucherPage;
     RechargePaymentDetailPage detailPage;
     RechargePaymentStatusPage statusPage;
     HistoryPage historyPage;
@@ -63,6 +64,36 @@ public class PaymentByHistoryStepsDefinition {
 
     @And("User click in progress payment")
     public void userClickInProgressPayment() {historyPage.clickInProgressTransaction();
+    }
+
+    @And("User check status voucher availability {string}")
+    public void userCheckStatusVoucherAvailability(String statusVoucher) {
+        if (statusVoucher.equals("unavailable")){
+            boolean status = detailPage.voucherUnavailable();
+            Assert.assertFalse(status);
+        }
+        if (statusVoucher.equals("available")){
+            boolean status = detailPage.voucherAvailable();
+            Assert.assertTrue(status);
+        }
+    }
+
+    @And("User pick a voucher")
+    public void userPickAVoucher() {
+        detailPage.pickVoucher();
+    }
+
+    @And("User choose voucher value {string}")
+    public void userChooseVoucherValueChooseVoucher(String voucherValue) {
+        if (voucherValue.contains("cashback")){
+            chooseVoucherPage.chooseCashback(voucherValue);
+        }
+        if (voucherValue.contains("discount")){
+            chooseVoucherPage.chooseDiscount(voucherValue);
+        }
+        else {
+            chooseVoucherPage.noVoucher();
+        }
     }
 
     @And("User pay the bill")

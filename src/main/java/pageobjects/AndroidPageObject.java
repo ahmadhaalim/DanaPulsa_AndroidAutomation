@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+
 import static demo.driver.AndroidDriverInstance.androidDriver;
 
 public class AndroidPageObject {
@@ -40,13 +42,13 @@ public class AndroidPageObject {
      * @param id locator of element
      */
     public void waitUntilDisplayed(By id) {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 5);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 10);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         element.isDisplayed();
     }
 
     /**
-     * Perform waiting condition untill the element is available.
+     * Perform waiting condition until the element is available.
      * @param id locator of element
      */
     public void waitUntilEnabled(By id) {
@@ -83,6 +85,21 @@ public class AndroidPageObject {
     public String checkToast(By id) {
         WebElement toast = androidDriver.findElement(id);
         return toast.getAttribute("name");
+    }
+
+    public void multipleID(String name, By locator){
+        List<AndroidElement> filters = androidDriver.findElements(locator);
+        for (AndroidElement filter : filters) {
+            if (filter.getText().equalsIgnoreCase(name)) {
+                filter.click();
+                break;
+            }
+        }
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
 //    public boolean checkIfToastDisplayed(By id) {
