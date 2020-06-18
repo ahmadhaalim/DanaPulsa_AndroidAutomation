@@ -4,7 +4,7 @@ Feature: Mobile Recharge
   Background:
 #    Given User is already login
   @MR026
-  Scenario Outline: Top up with voucher(13 digit phone number)
+  Scenario Outline: Top up with voucher via history in progress (13 digit phone number)
     Given User is on homepage
     When User click mobile recharge icon
     And User input "<phoneNumber>"
@@ -64,7 +64,7 @@ Feature: Mobile Recharge
       | 0859833333333  | 15K   | available     | cashback 1K   | success       |
 
   @MR027
-  Scenario Outline: Top up without voucher(13 digit phone number)
+  Scenario Outline: Top up without voucher via history in progress (13 digit phone number)
     Given User is on homepage
     When User click mobile recharge icon
     And User input "<phoneNumber>"

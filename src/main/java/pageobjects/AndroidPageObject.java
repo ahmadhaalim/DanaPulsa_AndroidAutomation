@@ -102,6 +102,16 @@ public class AndroidPageObject {
         }
     }
 
+    /**
+     * Perform getting text from pop up dialog box
+     * @param id locator of element
+     * @return return condition
+     */
+    public String getText(By id) {
+        WebElement text = androidDriver.findElement(id);
+        return text.getText();
+    }
+
 //    public boolean checkIfToastDisplayed(By id) {
 //        WebElement toast = androidDriver.findElement(id);
 //        return toast.isDisplayed();

@@ -18,4 +18,8 @@ public class HomePage {
     public void clickHistoryButton() {
         pageObject.clickOn(HomePageLocator.History_Button);
     }
+
+    public void clickPromotionItem() {
+        pageObject.clickOn(HomePageLocator.Promotion_Banner);
+    }
 }

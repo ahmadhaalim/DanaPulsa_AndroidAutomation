@@ -1,29 +1,23 @@
 package demo.steps;
 
+import demo.pages.HomePage;
+import demo.pages.PromotionDetailPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class PaymentByPromotionBanner {
+
+    HomePage homePage;
+    PromotionDetailPage detailPage;
+
     @When("User click Promotion Banner")
     public void userClickPromotionBanner() {
-
+        homePage.clickPromotionItem();
     }
 
     @Then("User click Buy Pulsa Now")
-    public void userClickBuyPulsaNow() {
+    public void userClickBuyPulsaNow() {detailPage.clickBuyPulsaNowButton();
     }
 
-    @And("User input phone number")
-    public void userInputPhoneNumber() {
-    }
-
-    @And("User choose top up nominal")
-    public void userChooseTopUpNominal() {
-    }
-
-
-    @Then("User see payment success page")
-    public void userSeePaymentSuccessPage() {
-    }
 }
