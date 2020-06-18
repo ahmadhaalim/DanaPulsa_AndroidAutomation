@@ -18,8 +18,7 @@ Feature: Mobile Recharge
     And User click in progress payment
     Then User see payment detail page
     And User pay the bill
-    And User see payment success page
-    And  User see payment status "<statusPayment>"
+    And User see payment status "<statusPayment>"
     And User click back to home button
     Then User is on homepage
     Examples:

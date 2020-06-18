@@ -13,3 +13,4 @@ Feature: Mobile Recharge
     And User see payment detail page
     And User pay the bill
     Then User see payment success page
+    Then User is on homepage
