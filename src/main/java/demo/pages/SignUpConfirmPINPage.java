@@ -19,18 +19,11 @@ public class SignUpConfirmPINPage extends AndroidPageObject implements SignUpCon
     }
 
     public void inputConfirmPIN(String confirmPIN) {
-        if (isOnPage()) {
-            typeON(EDIT_CONFIRM_PIN, confirmPIN);
-        }
+        typeON(EDIT_CONFIRM_PIN, confirmPIN);
     }
 
     public void tapFinishButton() {
-        if (isOnPage()) {
-            WebElement btnFinish = androidDriver.findElement(BUTTON_FINISH);
-            if (btnFinish.isEnabled()) {
-                btnFinish.click();
-            }
-        }
+        clickOn(BUTTON_FINISH);
     }
 
     public void tapBackButton() {
@@ -48,5 +41,11 @@ public class SignUpConfirmPINPage extends AndroidPageObject implements SignUpCon
 
     public String getWarningMessage() {
         return "PIN doesn't match";
+    }
+
+    public void pressAndHoldInputField() throws InterruptedException {
+        WebElement pinField = androidDriver.findElement(EDIT_CONFIRM_PIN);
+        pressHoldOnElement(pinField);
+        Thread.sleep(1000);
     }
 }

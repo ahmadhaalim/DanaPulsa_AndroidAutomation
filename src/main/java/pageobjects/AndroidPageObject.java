@@ -119,7 +119,7 @@ public class AndroidPageObject {
     public boolean checkElementByImage(String imageReference) {
         androidDriver.setSetting(Setting.IMAGE_MATCH_THRESHOLD, 0.95);
         boolean visible = false;
-        int count = 0, maxCount = 20;
+        int count = 0, maxCount = 3;
         while (!visible && count < maxCount) {
             count += 1;
             try {
@@ -164,6 +164,7 @@ public class AndroidPageObject {
 
     public void pasteToField(WebElement inputField) {
         TouchAction action = new TouchAction(androidDriver);
+//        action.press(PointOption.point((int) (inputField.getSize().getWidth() * 0.5 + 30), inputField.getLocation().y - 30));
         action.press(PointOption.point(inputField.getLocation().x + 30, inputField.getLocation().y - 30))
                 .waitAction(new WaitOptions().withDuration(Duration.ofMillis(500)))
                 .release()

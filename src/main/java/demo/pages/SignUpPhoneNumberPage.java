@@ -18,18 +18,11 @@ public class SignUpPhoneNumberPage extends AndroidPageObject implements SignUpPh
     }
 
     public void inputPhoneNumber(String phoneNumber) {
-        if (isOnPage()) {
-            typeON(EDIT_PHONE_NUMBER, phoneNumber);
-        }
+        typeON(EDIT_PHONE_NUMBER, phoneNumber);
     }
 
     public void tapNextButton() {
-        if (isOnPage()) {
-            WebElement btnNext = androidDriver.findElement(BUTTON_NEXT);
-            if (btnNext.isEnabled()) {
-                btnNext.click();
-            }
-        }
+        clickOn(BUTTON_NEXT);
     }
 
     public void tapBackButton() {

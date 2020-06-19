@@ -149,102 +149,33 @@ public class SignUpStepDefinition extends AndroidPageObject {
         }
     }
 
-    @Then("User maybe cannot proceed because Next button on {string} page is not clickable")
-    public void userMaybeCannotProceedBecauseNextButtonOnPageIsNotClickable(String page) {
+    @Then("User cannot proceed because Next button on {string} page is not clickable")
+    public void userCannotProceedBecauseNextButtonOnPageIsNotClickable(String page) {
         switch (page) {
             case "Full Name":
-                if (signUpFullNamePage.isOnPage()) {
-                    if (signUpFullNamePage.nextButtonDisabled()) {
-                        boolean btnNotClickable = signUpFullNamePage.nextButtonDisabled();
-                        Assert.assertTrue(btnNotClickable);
-                    }
-                }
+                boolean cantProceedName = signUpFullNamePage.nextButtonDisabled();
+                Assert.assertTrue(cantProceedName);
                 break;
             case "Email":
-                if (signUpEmailPage.isOnPage()) {
-                    if (signUpEmailPage.nextButtonDisabled()) {
-                        boolean btnNotClickable = signUpEmailPage.nextButtonDisabled();
-                        Assert.assertTrue(btnNotClickable);
-                    }
-                }
+                boolean cantProceedEmail = signUpEmailPage.nextButtonDisabled();
+                Assert.assertTrue(cantProceedEmail);
                 break;
             case "Phone Number":
-                if (signUpPhoneNumberPage.isOnPage()) {
-                    if (signUpPhoneNumberPage.nextButtonDisabled()) {
-                        boolean btnNotClickable = signUpPhoneNumberPage.nextButtonDisabled();
-                        Assert.assertTrue(btnNotClickable);
-                    }
-                }
+                boolean cantProceedPhone = signUpPhoneNumberPage.nextButtonDisabled();
+                Assert.assertTrue(cantProceedPhone);
                 break;
             case "Create PIN":
-                if (signUpCreatePINPage.isOnPage()) {
-                    if (signUpCreatePINPage.nextButtonDisabled()) {
-                        boolean btnNotClickable = signUpCreatePINPage.nextButtonDisabled();
-                        Assert.assertTrue(btnNotClickable);
-                    }
-                }
+                boolean cantProceedPIN = signUpCreatePINPage.nextButtonDisabled();
+                Assert.assertTrue(cantProceedPIN);
                 break;
             default: break;
         }
     }
 
-    @When("The Next button on {string} page is clickable, User tap Next button")
-    public void theNextButtonOnPageIsClickableUserTapNextButton(String page) {
-        switch (page) {
-            case "Full Name":
-                signUpFullNamePage.tapNextButton();
-                break;
-            case "Email":
-                signUpEmailPage.tapNextButton();
-                break;
-            case "Phone Number":
-                signUpPhoneNumberPage.tapNextButton();
-                break;
-            case "Create PIN":
-                signUpCreatePINPage.tapNextButton();
-                break;
-            default: break;
-        }
-    }
-
-    @Then("User maybe see warning message {string} on {string} page")
-    public void userMaybeSeeWarningMessageOnPage(String warningMsg, String page) throws IOException, URISyntaxException {
-        switch (page) {
-            case "Create PIN":
-                if (signUpCreatePINPage.isOnPage()) {
-                    if (signUpCreatePINPage.warningMessageShown()) {
-                        Assert.assertEquals(warningMsg, signUpCreatePINPage.getWarningMessage());
-                    }
-                }
-                break;
-            case "Confirm PIN":
-                if (signUpConfirmPINPage.isOnPage()) {
-                    if (signUpConfirmPINPage.warningMessageShown()) {
-                        Assert.assertEquals(warningMsg, signUpConfirmPINPage.getWarningMessage());
-                    }
-                }
-                break;
-            default: break;
-        }
-    }
-
-    @When("The warning message on Create PIN page is not shown")
-    public void theWarningMessageOnCreatePINIsNotShown() {
-    }
-
-    @Then("User maybe cannot proceed because Finish button on Confirm PIN page is not clickable")
-    public void userMaybeCannotProceedBecauseFinishButtonOnConfirmPINPageIsNotClickable() {
-        if (signUpConfirmPINPage.isOnPage()) {
-            if (signUpConfirmPINPage.finishButtonDisabled()) {
-                boolean btnNotClickable = signUpConfirmPINPage.finishButtonDisabled();
-                Assert.assertTrue(btnNotClickable);
-            }
-        }
-    }
-
-    @When("The Finish button on Confirm PIN page is clickable, User tap Finish button")
-    public void theFinishButtonOnConfirmPINPageIsClickableUserTapFinishButton() {
-        signUpConfirmPINPage.tapFinishButton();
+    @Then("User cannot proceed because Finish button on Confirm PIN page is not clickable")
+    public void userCannotProceedBecauseFinishButtonOnConfirmPINPageIsNotClickable() {
+        boolean cantFinish = signUpConfirmPINPage.finishButtonDisabled();
+        Assert.assertTrue(cantFinish);
     }
 
     @Given("User has copied {string} to the clipboard")
@@ -263,6 +194,12 @@ public class SignUpStepDefinition extends AndroidPageObject {
                 break;
             case "Phone Number":
                 signUpPhoneNumberPage.pressAndHoldInputField();
+                break;
+            case "Create PIN":
+                signUpCreatePINPage.pressAndHoldInputField();
+                break;
+            case "Confirm PIN":
+                signUpConfirmPINPage.pressAndHoldInputField();
                 break;
             default: break;
         }
@@ -415,6 +352,15 @@ public class SignUpStepDefinition extends AndroidPageObject {
                     Assert.assertEquals(warningMsg, signUpPhoneNumberPage.getWarningMessage());
                 }
                 break;
+            case "Create PIN":
+                if (signUpCreatePINPage.warningMessageShown()) {
+                    Assert.assertEquals(warningMsg, signUpCreatePINPage.getWarningMessage());
+                }
+                break;
+            case "Confirm PIN":
+                if (signUpConfirmPINPage.warningMessageShown()) {
+                    Assert.assertEquals(warningMsg, signUpConfirmPINPage.getWarningMessage());
+                }
             default: break;
         }
     }
@@ -435,5 +381,11 @@ public class SignUpStepDefinition extends AndroidPageObject {
         }
         androidDriver.toggleWifi();
         androidDriver.toggleData();
+    }
+
+    @Then("User cannot paste clipboard data because the Paste button is not shown")
+    public void userCannotPasteClipboardDataBecauseThePasteButtonIsNotShown() {
+        boolean btnPasteShown = checkElementByImage("paste-api29.png");
+        Assert.assertFalse(btnPasteShown);
     }
 }

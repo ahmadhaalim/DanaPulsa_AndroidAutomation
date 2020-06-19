@@ -18,18 +18,11 @@ public class SignUpEmailPage extends AndroidPageObject implements SignUpEmailPag
     }
 
     public void inputEmail(String email) {
-        if (isOnPage()) {
-            typeON(EDIT_EMAIL, email);
-        }
+        typeON(EDIT_EMAIL, email);
     }
 
     public void tapNextButton() {
-        if (isOnPage()) {
-            WebElement btnNext = androidDriver.findElement(BUTTON_NEXT);
-            if (btnNext.isEnabled()) {
-                btnNext.click();
-            }
-        }
+        clickOn(BUTTON_NEXT);
     }
 
     public void tapBackButton() {

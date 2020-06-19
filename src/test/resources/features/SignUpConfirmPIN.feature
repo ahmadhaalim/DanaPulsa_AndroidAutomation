@@ -14,36 +14,42 @@ Feature: Functionality on Sign up - Confirm PIN page
     And User tap Next button on "Create PIN" page
     And User is on "Confirm PIN" page
 
-  @SU-CP_001
+  @SUCP001
   Scenario: Back to the Create PIN page by tapping Back button on Confirm PIN page
     When User tap Back button on "Confirm PIN" page
     Then User is on "Create PIN" page
 
-  @SU-CP_002
+  @SUCP002
   Scenario: Back to the Create PIN page by tapping the device's Back button
     When User tap the device's "Back" button
     Then User is on "Create PIN" page
 
-  @SU-CP_003
+  @SUCP003
   Scenario: Display the Confirm PIN page again by reopening the app after the device's Home button is tapped
     When User tap the device's "Home" button
     And User tap the device's "Overview" button
     And User tap the app on the device's overview
     Then User is on "Confirm PIN" page
 
-  @SU-CP_004
+  @SUCP004
   Scenario: Display the Confirm PIN page again by unlocking the device after it's been locked before
     When User lock the device
     And User unlock the device by swiping up the screen
     Then User is on "Confirm PIN" page
 
-  @SU-CP_005
+  @SUCP005
   Scenario: Relaunch the app after it's been closed before when User is on Confirm PIN page
     When User close the app
     And User open the app
     Then User is on "Sign In" page
 
-  @SU-CP_007
+  @SUCP006
+  Scenario: Use data from clipboard to fill Confirm PIN field
+    When User has copied "500505" to the clipboard
+    And User press and hold on "Confirm PIN" input field
+    Then User cannot paste clipboard data because the Paste button is not shown
+
+  @SUCP007
   Scenario: Finish the registration by tapping Finish button but the internet connection is lost
     When The device's internet connection is turned off
     And User input "500505" on "Confirm PIN" page

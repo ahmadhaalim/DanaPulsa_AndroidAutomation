@@ -19,18 +19,11 @@ public class SignUpCreatePINPage extends AndroidPageObject implements SignUpCrea
     }
 
     public void inputPIN(String pin) {
-        if (isOnPage()) {
-            typeON(EDIT_CREATE_PIN, pin);
-        }
+        typeON(EDIT_CREATE_PIN, pin);
     }
 
     public void tapNextButton() {
-        if (isOnPage()) {
-            WebElement btnNext = androidDriver.findElement(BUTTON_NEXT);
-            if (btnNext.isEnabled()) {
-                btnNext.click();
-            }
-        }
+        clickOn(BUTTON_NEXT);
     }
 
     public void tapBackButton() {
@@ -52,5 +45,11 @@ public class SignUpCreatePINPage extends AndroidPageObject implements SignUpCrea
 
     public String getWarningMessage() {
         return "PIN format is invalid";
+    }
+
+    public void pressAndHoldInputField() throws InterruptedException {
+        WebElement pinField = androidDriver.findElement(EDIT_CREATE_PIN);
+        pressHoldOnElement(pinField);
+        Thread.sleep(1000);
     }
 }

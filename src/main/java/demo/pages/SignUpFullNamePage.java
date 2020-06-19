@@ -18,18 +18,11 @@ public class SignUpFullNamePage extends AndroidPageObject implements SignUpFullN
     }
 
     public void inputFullName(String fullName) {
-        if (isOnPage()) {
-            typeON(EDIT_FULL_NAME, fullName);
-        }
+        typeON(EDIT_FULL_NAME, fullName);
     }
 
     public void tapNextButton() {
-        if (isOnPage()) {
-            WebElement btnNext = androidDriver.findElement(BUTTON_NEXT);
-            if (btnNext.isEnabled()) {
-                btnNext.click();
-            }
-        }
+        clickOn(BUTTON_NEXT);
     }
 
     public void tapBackButton() {
