@@ -19,4 +19,5 @@ public class PromotionListPage extends AndroidPageObject {
     public String getWarningMessage() {
         return getText(PromotionListPageLocator.Warning_Message);
     }
+
 }

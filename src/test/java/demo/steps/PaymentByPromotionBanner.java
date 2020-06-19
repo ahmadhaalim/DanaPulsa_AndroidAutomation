@@ -16,7 +16,7 @@ public class PaymentByPromotionBanner {
         homePage.clickPromotionItem();
     }
 
-    @Then("User click Buy Pulsa Now")
+    @And("User click Buy Pulsa Now")
     public void userClickBuyPulsaNow() {detailPage.clickBuyPulsaNowButton();
     }
 

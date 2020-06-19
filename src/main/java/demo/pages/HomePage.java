@@ -22,4 +22,8 @@ public class HomePage {
     public void clickPromotionItem() {
         pageObject.clickOn(HomePageLocator.Promotion_Banner);
     }
+
+    public void clickViewAll(){
+        pageObject.clickOn(HomePageLocator.ViewAll_Button);
+    }
 }
