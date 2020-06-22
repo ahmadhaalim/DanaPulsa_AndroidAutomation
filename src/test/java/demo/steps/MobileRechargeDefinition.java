@@ -82,8 +82,8 @@ public class MobileRechargeDefinition {
         }
     }
 
-    @Then("User see top up page")
-    public void userSeeTopUpPage() {
+    @Then("User see top up catalog")
+    public void userSeeTopUpCatalog() {
     }
 
     @And("User click back to home button")
@@ -127,5 +127,10 @@ public class MobileRechargeDefinition {
 
     @Then("User see cancelled transaction")
     public void userSeeCancelledTransaction() {
+    }
+
+    @And("User choose from recent number")
+    public void userChooseFromRecentNumber() {
+        inputNumber.recentNumber();
     }
 }

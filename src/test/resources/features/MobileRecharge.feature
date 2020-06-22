@@ -3,14 +3,16 @@
 Feature: Mobile Recharge
 
   Background:
-#    Given User is already login
-  # Gunakan username dan PIN masing-masing!!
+    Given User is on sign in page
+    When User input phone number "081244748921"
+    And User input pin number "123456"
+#  Gunakan username dan PIN masing-masing!!
   @MR001-MR006
   Scenario Outline: Checking provider logo and top up nominal
     Given User is on homepage
     When User click mobile recharge icon
     And User input "<phoneNumber>"
-    Then User see top up page
+    Then User see top up catalog
     Examples:
       | phoneNumber |
 
@@ -231,16 +233,23 @@ Feature: Mobile Recharge
       | 085902222222 | 1M    | available     | discount 40%  | success       |
       | 085902222222 | 1M    | available     | discount 45%  | success       |
 
-    Scenario: Cancel a transaction
-      Given User is on homepage
-      When User click mobile recharge icon
-      And User input "085902222222"
-      And User choose "5K" nominal
-      And User see payment detail page
-      And User open action menu
-      And User cancel transaction
-      And User confirm to cancel transaction
-      And User is on homepage
-      And User click history icon
-      And User choose completed tab
-      Then User see cancelled transaction
+  Scenario: Cancel a transaction
+    Given User is on homepage
+    When User click mobile recharge icon
+    And User input "085902222222"
+    And User choose "5K" nominal
+    And User see payment detail page
+    And User open action menu
+    And User cancel transaction
+    And User confirm to cancel transaction
+    And User is on homepage
+    And User click history icon
+    And User choose completed tab
+    Then User see cancelled transaction
+
+  Scenario: Top Up Recent Number
+    Given User is on homepage
+    When User click mobile recharge icon
+    And User choose from recent number
+    And User choose "5K" nominal
+    Then User see payment detail page
