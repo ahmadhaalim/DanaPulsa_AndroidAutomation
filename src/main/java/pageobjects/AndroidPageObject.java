@@ -50,7 +50,7 @@ public class AndroidPageObject {
      * @param id locator of element
      */
     public void waitUntilEnabled(By id) {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 8);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 10);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         element.isEnabled();
     }
@@ -61,7 +61,8 @@ public class AndroidPageObject {
      * @return return condition
      */
     public boolean checkIfDisplayed(By id) {
-        WebElement element = androidDriver.findElement(id);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 8);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         return element.isDisplayed();
     }
 
@@ -71,7 +72,8 @@ public class AndroidPageObject {
      * @return return condition
      */
     public boolean checkIfEnabled(By id) {
-        WebElement element = androidDriver.findElement(id);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 8);
+        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         return element.isEnabled();
     }
 

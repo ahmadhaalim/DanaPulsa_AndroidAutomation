@@ -9,7 +9,5 @@ public interface SignInPageLocator {
     By Input_PhoneNumber_Field = MobileBy.id("edtLoginPhone");
     By SignIn_Button = MobileBy.id("btnLoginSignIn");
     By SignUp_Button = MobileBy.id("btnLoginSignUp");
-    By ErrorDialog_Text = MobileBy.id("tvDialogContent");
-    By ErrorDialog_OK_Button = MobileBy.id("btnDialogPositive");
-
+    By ErrorMessage_Text = MobileBy.id("textinput_error");
 }

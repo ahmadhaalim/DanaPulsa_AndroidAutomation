@@ -10,5 +10,5 @@ public interface VoucherPageLocator {
     By All_Button = MobileBy.id("chipAllVoucher");
     By Discount_Button = MobileBy.id("chipDiscountVoucher");
     By Cashback_Button = MobileBy.id("chipCashbackVoucher");
-    By Warning_Message = MobileBy.id();
+    By Warning_Message = MobileBy.id("");
 }

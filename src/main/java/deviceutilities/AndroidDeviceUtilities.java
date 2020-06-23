@@ -20,10 +20,9 @@ public class AndroidDeviceUtilities {
     public void pressDeviceBackButton(){
         AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
-    public void lockDevice(){
+    public void unlockDevice() throws InterruptedException {
         AndroidDriverInstance.androidDriver.lockDevice();
-    }
-    public void unlockDevice(){
+        Thread.sleep(3000);
         AndroidDriverInstance.androidDriver.unlockDevice();
     }
     public void runAppInBackground() throws InterruptedException {
@@ -34,11 +33,8 @@ public class AndroidDeviceUtilities {
         }
         Thread.sleep(5000);
     }
-    public void setClipboardText(String text){
+    public String setAndGetClipboardData(String text){
         AndroidDriverInstance.androidDriver.setClipboardText(text);
-    }
-    public String getClipboardText(){
         return AndroidDriverInstance.androidDriver.getClipboardText();
     }
-
 }

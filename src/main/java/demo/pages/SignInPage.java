@@ -1,5 +1,6 @@
 package demo.pages;
 
+import demo.locator.GeneralLocator;
 import demo.locator.SignInPageLocator;
 import pageobjects.AndroidPageObject;
 
@@ -18,13 +19,22 @@ public class SignInPage extends AndroidPageObject {
         clickOn(SignInPageLocator.SignUp_Button);
     }
     public void checkErrorDialog() {
-        waitUntilDisplayed(SignInPageLocator.ErrorDialog_Text);
+        waitUntilDisplayed(GeneralLocator.ErrorDialog_Text);
     }
     public void clickErrorDialogOkButton() {
-        clickOn(SignInPageLocator.ErrorDialog_OK_Button);
+        clickOn(GeneralLocator.ErrorDialog_OK_Button);
     }
     public String getErrorDialogText() {
-        return getText(SignInPageLocator.ErrorDialog_Text);
+        return getText(GeneralLocator.ErrorDialog_Text);
     }
-
+    public String getToastMessage() { return checkToast(GeneralLocator.TOAST_POPUP); }
+    public String getErrorMessageText() {
+        return getText(SignInPageLocator.ErrorMessage_Text);
+    }
+    public boolean checkSignButton() {
+        return checkIfEnabled(SignInPageLocator.SignIn_Button);
+    }
+    public String getInputPhoneNumberData(){
+        return getText(SignInPageLocator.Input_PhoneNumber_Field);
+    }
 }

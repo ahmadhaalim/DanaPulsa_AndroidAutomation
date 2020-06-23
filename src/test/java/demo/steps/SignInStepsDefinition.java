@@ -1,102 +1,129 @@
 package demo.steps;
 
+import demo.driver.AndroidDriverInstance;
 import demo.pages.*;
 import deviceutilities.AndroidDeviceUtilities;
+import io.appium.java_client.appmanagement.ApplicationState;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class SignInStepsDefinition extends AndroidDeviceUtilities {
+public class SignInStepsDefinition {
 
+    AndroidDeviceUtilities androidDeviceUtilities = new AndroidDeviceUtilities();
     SignInPage signInPage = new SignInPage();
     SignInInputPinPage signInInputPinPage = new SignInInputPinPage();
     ForgotPinPage forgotPinPage = new ForgotPinPage();
-
-    @Then("User directed to sign in screen")
-    public void userDirectedToSignInScreen() {
-        Assert.assertTrue(signInPage.isOnPage());
-    }
-
-    @Given("User is on sign in page")
-    public void userIsOnSignInPage() {
-        Assert.assertTrue(signInPage.isOnPage());
-    }
+    SignUpPage signUpPage = new SignUpPage();
+    HomePage homePage = new HomePage();
 
     @When("User input phone number {string}")
     public void userInputPhoneNumber(String phoneNumber) {
         signInPage.inputPhoneNumber(phoneNumber);
     }
 
-    @And("User click sign in button")
-    public void userClickSignInButton() {
-        signInPage.clickSignInButton();
-    }
-
-    @Then("User directed to input pin screen")
-    public void userDirectedToInputPinScreen() {
-        Assert.assertTrue(signInInputPinPage.isOnPage());
-    }
-
-    @When("User input pin {string}")
-    public void userInputPin(String pin) {
-        signInInputPinPage.inputPin(pin);
-    }
-
-    @Then("User see warning message {string} on input pin screen")
-    public void userSeeWarningMessageOnInputPinScreen(String errorMessageExpectation) {
-        signInInputPinPage.checkErrorDialog();
-        String errorMessage = signInInputPinPage.getErrorDialogText();
-        Assert.assertEquals(errorMessageExpectation, errorMessage);
-        signInInputPinPage.clickErrorDialogOkButton();
-    }
-
-    @Then("User see warning message {string} on sign in page")
-    public void userSeeWarningMessageOnSignInPage(String expected) {
-        signInPage.checkErrorDialog();
-        String actual = signInPage.getErrorDialogText();
-        Assert.assertEquals(expected, actual);
-        signInPage.clickErrorDialogOkButton();
-        toggleWifi();
-        toggleData();
-    }
-
-    @When("User click sign up button")
-    public void userClickSignUpButton() {
+    @When("User tap sign up button")
+    public void userTapSignUpButton() {
         signInPage.clickSignUpButton();
     }
 
-    @When("User click forgot pin text")
-    public void userClickForgotPinText() {
+    @When("User tap forgot pin text")
+    public void userTapForgotPinText() {
         signInInputPinPage.clickForgotPinButton();
     }
 
-    @Then("User directed to forgot pin screen")
-    public void userDirectedToForgotPinScreen() {
-        forgotPinPage.isOnPage();
+
+    @When("User input pin {string} while internet is {string}")
+    public void userInputPinWhileInternetIs(String pin, String state) throws InterruptedException {
+        if(state.equalsIgnoreCase("on")){
+            signInInputPinPage.inputPin(pin);
+        }
+        else if(state.equalsIgnoreCase("off")){
+            androidDeviceUtilities.toggleData();
+            androidDeviceUtilities.toggleWifi();
+            Thread.sleep(3000);
+            signInInputPinPage.inputPin(pin);
+        }
     }
 
-    @When("User click back button on forgot pin screen")
-    public void userClickBackButtonOnForgotPinScreen() {
-        forgotPinPage.clickBackButton();
+    @Then("User see toast message pop up {string} on sign in screen")
+    public void userSeeToastMessagePopUpOnSignInScreen(String expected) {
+        String actual = signInPage.getToastMessage();
+        Assert.assertEquals(expected, actual);
+        if(expected.equalsIgnoreCase("Connection Error")) {
+            androidDeviceUtilities.toggleWifi();
+            androidDeviceUtilities.toggleData();
+        }
     }
 
-    @When("User click back button on input pin screen")
-    public void userClickBackButtonOnInputPinScreen() {
-        signInInputPinPage.clickBackButton();
+    @Then("User see warning message pop up {string} on input pin screen")
+    public void userSeeWarningMessagePopUpOnInputPinScreen(String expected) {
+        String actual = signInInputPinPage.getWarningMessagePopUpText();
+        Assert.assertEquals(expected, actual);
+        signInInputPinPage.clickWarningMessagePopUpOkButton();
+        if(expected.equalsIgnoreCase("Connection Error")) {
+            androidDeviceUtilities.toggleWifi();
+            androidDeviceUtilities.toggleData();
+        }
     }
 
-    @When("User input pin {string} while internet is off")
-    public void userInputPinWhileInternetIsOff(String pin) throws InterruptedException {
-        toggleData();
-        toggleWifi();
-        Thread.sleep(3000);
-        signInInputPinPage.inputPin(pin);
+    @Then("User see error message text {string} on sign in screen")
+    public void userSeeErrorMessageTextOnSignInScreen(String expected) {
+        String actual = signInPage.getErrorMessageText();
+        Assert.assertEquals(expected, actual);
     }
 
-    @Then("User directed to device home from sign in screen")
-    public void userDirectedToDeviceHomeFromSignInScreen() {
-        Assert.assertFalse(signInPage.isOnPage());
+    @And("User see sign button disabled")
+    public void userSeeSignSignButtonDisabled() {
+        Assert.assertFalse(signInPage.checkSignButton());
+    }
+
+    @And("User tap sign in button while internet is {string}")
+    public void userTapSignInButtonWhileInternetIs(String keyword) throws InterruptedException {
+        if (keyword.equalsIgnoreCase("on")){
+            signInPage.clickSignInButton();
+        } else if (keyword.equalsIgnoreCase("off")){
+            androidDeviceUtilities.toggleWifi();
+            androidDeviceUtilities.toggleData();
+            Thread.sleep(3000);
+            signInPage.clickSignInButton();
+        }
+    }
+
+    @Then("User directed to {string} screen")
+    public void userDirectedToScreen(String screenName) throws InterruptedException {
+        if(screenName.equalsIgnoreCase("sign in")){
+            Assert.assertTrue(signInPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("input pin")){
+            Assert.assertTrue(signInInputPinPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("forgot pin")) {
+            Assert.assertTrue(forgotPinPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("home")){
+            Assert.assertTrue(homePage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("device home")){
+            String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
+            Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
+        }
+        Thread.sleep(5000);
+    }
+
+    @When("User perform action {string} while on {string} screen")
+    public void userPerformActionWhileOnScreen(String action, String screeName) throws InterruptedException {
+        if(action.equalsIgnoreCase("tap back button")){
+            if (screeName.equalsIgnoreCase("input pin")){
+                signInInputPinPage.clickBackButton();
+            } else if (screeName.equalsIgnoreCase("forgot pin")) {
+                forgotPinPage.clickBackButton();
+            } else if(screeName.equalsIgnoreCase("sign up")){
+                signUpPage.clickBackButton();
+            }
+        } else if(action.equalsIgnoreCase("tap device back button")) {
+            androidDeviceUtilities.pressDeviceBackButton();
+        } else if(action.equalsIgnoreCase("reopen app after in the background")) {
+            androidDeviceUtilities.runAppInBackground();
+        } else if(action.equalsIgnoreCase("unlock the device after being unlocked")) {
+            androidDeviceUtilities.unlockDevice();
+        }
     }
 }

@@ -1,134 +1,133 @@
 @Android @SignIn
 
-#Tap/Tapping = Click/Clicking
+#Tap/Tapping = tap/taping
 Feature: Sign In Feature Functionality Check
 
   Background:
-    Given User is on sign in page
+    Given User directed to "sign in" screen
 
   @SI001
   Scenario: Successfully sign in using registered phone number
     #Change the phone number according your data table
     When User input phone number "08555333444"
-    And User click sign in button
-    Then User directed to input pin screen
-    When User input pin "123456"
-    Then User directed to home screen
-    When User click profile button
-    Then User directed to profile screen
-    And User see phone number  "08555333444" used to signing in on profile screen
+    And User tap sign in button while internet is "on"
+    Then User directed to "input pin" screen
+    When User input pin "123456" while internet is "on"
+    Then User directed to "home" screen
+    #When User tap profile button
+    #Then User directed to profile screen
+    #And User see phone number  "08555333444" used to signing in on profile screen
 
-  @SI002
-  Scenario: Failed to sign in using registered phone number because internet connection isn't available
-    When User input phone number "08555333444"
-    And User click sign in button
-    Then User directed to input pin screen
-    When User input pin "123456" while internet is off
-    Then User see warning message "Connection error" on sign in page
-
-
-  @SI003-006
-  Scenario Outline: User failed to sign in because invalid data input
+  @SI002 @SI005
+  Scenario Outline: Failed to sign in because internet problem at Sign In screen /
+  Using unregistered phone number
     When User input phone number "<phone>"
-    And User click sign in button
-    Then User directed to input pin screen
-    When User input pin "<pin>"
-    Then User see warning message "<error>" on input pin screen
+    And User tap sign in button while internet is "<state>"
+    Then User see toast message pop up "<message>" on sign in screen
     Examples:
-    #Change the registered phone number according your data table
-      | phone         | pin    | error                |
-      #Registered phone number but using invalid PIN
-      | 08555333444   | 987654 | Invalid PIN          |
-      #Unregistered phone number
-      | 081223232323  | 987654 | Invalid phone number |
-      #Registered phone number but invalid format (Start with +62)
-      | +628555333444 | 123456 | Invalid phone number |
-      #Registered phone number but invalid format (Start with 62)
-      | 628555333444  | 123456 | Invalid phone number |
+      | phone        | state | message                |
+      # [@SI002] Sign In using registered phone number but internet problem at Sign In screen
+      | 08555333444  | off   | Connection Error       |
+      # [@SI005] Sign In using unregistered phone number
+      | 081223232323 | on    | incorrect phone number |
 
-  @SI007
-  Scenario: Go to input pin screen without filling the phone number field
-    When User click sign in button
-    Then User see warning message "Invalid phone number" on sign in page
+  @SI003 @SI004
+  Scenario Outline: Failed to sign in because invalid PIN /
+  Internet problem while on Input PIN Screen
+    When User input phone number "<phone>"
+    And User tap sign in button while internet is "on"
+    Then User directed to "input pin" screen
+    When User input pin "<pin>" while internet is "<state>"
+    Then User see warning message pop up "<message>" on input pin screen
+    Examples:
+      | phone       | pin    | state | message          |
+      #[@SI003] Sign In using registered phone number but using invalid PIN
+      | 08555333444 | 987654 | on    | incorrect pin    |
+      #[@SI004] Sign In using registered phone number but internet problem at Input Pin screen
+      | 08555333444 | 123456 | off   | Connection Error |
 
-  @SI-IPN001 @SI-IPN005
-  Scenario: Go to sign up screen by tapping sign up text and click back button
-    When User click sign up button
+  @SI006 @SI007 @SI008 @SI009
+  Scenario Outline: User failed to sign in because invalid phone number format
+    When User input phone number "<phone>"
+    Then User see error message text "<errorMessage>" on sign in screen
+    And User see sign button disabled
+    Examples:
+    # [Warning!] Change the registered phone number according your data table
+      | phone         | errorMessage              |
+      # [@SI006] Registered phone number but invalid format (Start with +62)
+      | +628555333444 | Invalid phone number      |
+      # [@SI007] Registered phone number but invalid format (Start with 62)
+      | 628555333444  | Invalid phone number      |
+      # [@SI008] Empty phone number field
+      |               | Please input phone number |
+      # [@SI009] Invalid phone number format (less than 10, only 9 digits)
+      | 081111111     | Invalid phone number      |
+
+  @SI-IPN001 @SI-IPN005 @SI-IPN006
+  Scenario Outline: Go to sign up screen by tapping sign up text
+  and tap back button / device back button
+    When User tap sign up button
     Then User directed to sign up screen
-    When User click back button on sign up screen
-    Then User directed to sign in screen
+    When User perform action "<action>" while on "sign up" screen
+    Then User directed to "sign in" screen
+    Examples:
+      | action                 |
+      # [@SI-IPN001 @SI-IPN005] Go to sign up screen by tapping sign up text and tap back button
+      | tap back button        |
+      # [@SI-IPN006] Go to sign up screen by tapping sign up text and tap device back button
+      | tap device back button |
 
-  @SI-IP001
-  Scenario: Back to sign in screen by tapping back button while in input pin screen
+  @SI-IPN002 @SI-IPN003 @SI-IPN004
+  Scenario Outline: Perform action while on sign in screen
+    When User perform action "<action>" while on "sign in" screen
+    Then User directed to "<screen>" screen
+    Examples:
+      | action                                 | screen      |
+      # [@SI-IPN003] Proceed to Device Home by tapping device back button
+      | tap device home button                 | device home |
+      # [@SI-IPN003] Back to sign in Screen by opening the app after running in the background for a moment
+      | reopen app after in the background     | sign in     |
+      # [@SI-IPN004] Still on sign in Screen when unlocking device
+      | unlock the device after being unlocked | sign in     |
+
+  #@SI-IPN007
+  #Scenario: Filling phone number field with clipboard data
+    #When User copy and paste clipboard data "08555333444" on "Sign In Screen"
+    #Then User see input field is not empty on "Input Phone Number at Sign Screen"
+
+
+  @SI-IP001 @SI-IP002 @SI-IP003 @SI-IP004
+  Scenario Outline: Perform action while on input pin screen
+    When User input phone number "<phone>"
+    And User tap sign in button while internet is "on"
+    Then User directed to "input pin" screen
+    When User perform action "<action>" while on "input pin" screen
+    Then User directed to "<screen>" screen
+    Examples:
+      | phone       | action                                 | screen    |
+      # [@SI-IP001] Back to sign in screen by tapping back button while in input pin screen
+      | 08555333444 | tap back button                        | sign in   |
+      # [@SI-IP002] Back to sign in screen by tapping device back button while in input pin screen
+      | 08555333444 | tap device back button                 | sign in   |
+      # [@SI-IP003] Back to input pin screen by opening the app after running in the background for a moment
+      | 08555333444 | reopen app after in the background     | input pin |
+      # [@SI-IP004S] Still on input pin screen when unlocking device
+      | 08555333444 | unlock the device after being unlocked | input pin |
+
+  @SI-IP005 @SI-IP006 @SI-IP007
+  Scenario Outline: Go to forgot pin screen by tapping forgot pin text
+  and tap back button / device back button
     When User input phone number "08555333444"
-    And User click sign in button
-    When User click back button on input pin screen
-    Then User directed to sign in screen
-
-  @SI-IP005 @SI-IP006
-  Scenario: Go to forgot pin screen by tapping forgot pin text and click back button
-    When User input phone number "08555333444"
-    And User click sign in button
-    Then User directed to input pin screen
-    When User click forgot pin text
-    Then User directed to forgot pin screen
-    When User click back button on forgot pin screen
-    Then User directed to input pin screen
-
-
-  #---Activity outside app scenarios---#
-
-  @OutsideAppSignIn @SI-IPN002
-  Scenario: Proceed to Device Home by tapping "Device Back" Button
-    When User click device home button
-    Then User directed to device home from sign in screen
-
-  @OutsideAppSignIn @SI-IPN003
-  Scenario: Back to sign in Screen by opening the app after running in the background
-    When User open the app after running in the background for a moment
-    Then User directed to sign in screen
-
-  @OutsideAppSignIn @SI-IPN004
-  Scenario: Still on sign in Screen when unlocking device
-    When User lock the device
-    And User unlock the device
-    Then User directed to sign in screen
-
-  @OutsideAppSignIn @SI-IPN006
-  Scenario: Back to sign in screen by tapping device back button while in sign up screen
-    When User click sign up button
-    Then User directed to sign up screen
-    When User click device back button
-    Then User directed to sign in screen
-
-  @OutsideAppSignIn @SI-IP002
-  Scenario: Back to sign in screen by tapping device back button
-    When User input phone number "08555333444"
-    Then User directed to input pin screen
-    When User click device back button
-    Then User directed to sign in screen
-
-  @OutsideAppSignIn @SI-IP003
-  Scenario: Back to input pin screen by opening the app after running in the background
-    When User input phone number "08555333444"
-    Then User directed to input pin screen
-    When User open the app after running in the background for a moment
-    Then User directed to input pin screen
-
-  @OutsideAppSignIn @SI-IP004
-  Scenario: Still on input pin screen when unlocking device
-    When User input phone number "08555333444"
-    Then User directed to input pin screen
-    When User lock the device
-    And User unlock the device
-    Then User directed to input pin screen
-
-  @OutsideAppSignIn @SI-IP007
-  Scenario: Back to input pin screen by tapping device back button while in forgot pin screen
-    When User input phone number "08555333444"
-    Then User directed to input pin screen
-    When User click forgot pin text
-    Then User directed to forgot pin screen
-    When User click device back button
-    Then User directed to input pin screen
+    And User tap sign in button while internet is "on"
+    Then User directed to "input pin" screen
+    When User tap forgot pin text
+    Then User directed to "forgot pin" screen
+    When User perform action "<action>" while on "forgot pin" screen
+    Then User directed to "input pin" screen
+    Examples:
+      | action                 |
+      # [@SI-IP005 @SI-IP006] Go to forgot pin screen and back to input pin screen by tapping back button
+      | tap back button        |
+      # [SI-IP007] Go to forgot pin screen and back to input pin screen by tapping device back button
+      | tap device back button |
 

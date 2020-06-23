@@ -10,5 +10,5 @@ public interface ProfilePageLocator {
     By Email_Text = MobileBy.id("tvUserEmail");
     By ChangePin_Button = MobileBy.id("btnUserChangePin");
     By SignOut_Button = MobileBy.id("btnUserSignOut");
-    By Warning_Message = MobileBy.id();
+    By Warning_Message = MobileBy.id("");
 }

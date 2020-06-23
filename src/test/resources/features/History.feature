@@ -5,7 +5,6 @@ Feature: Home Feature Functionality Check
 
 #[Warning] Please use a new fresh account, which no transaction has been made before!!!
 
-  @HISC001
   Background:
     Given User is on sign in page
     #Change the phone number according your account
@@ -17,7 +16,7 @@ Feature: Home Feature Functionality Check
 
 
   #[WARNING] Run this scenario first before other scenarios!
-  @HISC010 @HISC011
+  @HISC001 @HISC010 @HISC011
   Scenario Outline: User doesn't have in progress or completed transaction
     When User click history button
     Then User directed to history screen

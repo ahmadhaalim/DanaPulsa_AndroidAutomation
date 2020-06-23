@@ -7,7 +7,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class HistoryStepsDefinition extends MobileRechargeStepsDefinition {
+public class HistoryStepsDefinition {
+
+    MobileRechargeStepsDefinition mobileRechargeStepsDefinition = new MobileRechargeStepsDefinition();
 
     HomePage homePage = new HomePage();
     HistoryPage historyPage = new HistoryPage();
@@ -124,15 +126,15 @@ public class HistoryStepsDefinition extends MobileRechargeStepsDefinition {
         String actualProduct = transactionDetailPage.getTransactionProduct();
         String actualPrice = transactionDetailPage.getTransactionPrice();
         Assert.assertEquals(expected, actualPrice);
-        Assert.assertEquals(transactionStatus, actualStatus);
-        Assert.assertEquals(transactionPhone, actualPhone);
-        Assert.assertEquals(transactionProduct, actualProduct);
-        Assert.assertEquals(transactionID,actualId);
+        Assert.assertEquals(mobileRechargeStepsDefinition.transactionStatus, actualStatus);
+        Assert.assertEquals(mobileRechargeStepsDefinition.transactionPhone, actualPhone);
+        Assert.assertEquals(mobileRechargeStepsDefinition.transactionProduct, actualProduct);
+        Assert.assertEquals(mobileRechargeStepsDefinition.transactionID,actualId);
     }
 
     @And("User click completed transaction summary")
     public void userClickCompletedTransactionSummary() {
-        historyPage.clickCompletedTransaction(transactionDate);
+        historyPage.clickCompletedTransaction(mobileRechargeStepsDefinition.transactionDate);
     }
 
     @When("User click {string} tab")

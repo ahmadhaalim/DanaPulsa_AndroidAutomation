@@ -10,8 +10,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-public class HomeStepsDefinition extends AndroidDeviceUtilities {
+public class HomeStepsDefinition{
 
+    AndroidDeviceUtilities androidDeviceUtilities = new AndroidDeviceUtilities();
     HomePage homePage = new HomePage();
     MobileRechargePage mobileRechargePage = new MobileRechargePage();
     PromotionDetailPage promotionDetailPage = new PromotionDetailPage();
@@ -89,14 +90,14 @@ public class HomeStepsDefinition extends AndroidDeviceUtilities {
     public void userSeeWarningMessageOnPromotionArea(String expected) {
         String actual = homePage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
     }
 
     @When("User click promotion banner on home screen while internet is off")
     public void userClickPromotionBannerOnHomeScreenWhileInternetIsOff() {
-          toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
         homePage.clickPromotionBanner();
     }
 
@@ -104,14 +105,14 @@ public class HomeStepsDefinition extends AndroidDeviceUtilities {
     public void userSeeWarningMessageOnPromotionDetailScreen(String expected) {
         String actual = promotionDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
     }
 
     @When("User click view all on home screen while internet is off")
     public void userClickViewAllOnHomeScreenWhileInternetIsOff() {
-        toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
         homePage.clickViewAllButton();
     }
 
@@ -119,21 +120,21 @@ public class HomeStepsDefinition extends AndroidDeviceUtilities {
     public void userSeeWarningMessageOnPromotionListScreen(String expected) {
         String actual = promotionListPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
     }
 
     @When("User click voucher button while internet is off")
     public void userClickVoucherButtonWhileInternetIsOff() {
-        toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
         homePage.clickVoucherButton();
     }
 
     @When("User click home button while internet is off")
     public void userClickHomeButtonWhileInternetIsOff() {
-        toggleWifi();
-        toggleData();
+        androidDeviceUtilities.toggleWifi();
+        androidDeviceUtilities.toggleData();
         homePage.clickHomeButton();
     }
 

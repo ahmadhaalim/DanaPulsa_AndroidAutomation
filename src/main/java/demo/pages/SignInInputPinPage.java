@@ -1,5 +1,6 @@
 package demo.pages;
 
+import demo.locator.GeneralLocator;
 import demo.locator.SignInInputPinPageLocator;
 import pageobjects.AndroidPageObject;
 
@@ -12,16 +13,16 @@ public class SignInInputPinPage extends AndroidPageObject {
         typeON(SignInInputPinPageLocator.Input_Pin_Field, pin);
     }
     public void checkErrorDialog() {
-        waitUntilDisplayed(SignInInputPinPageLocator.ErrorDialog_Text);
+        waitUntilDisplayed(GeneralLocator.ErrorDialog_Text);
     }
-    public String getErrorDialogText() {
-        return getText(SignInInputPinPageLocator.ErrorDialog_Text);
+    public String getWarningMessagePopUpText() {
+        return getText(GeneralLocator.ErrorDialog_Text);
     }
-    public void clickErrorDialogOkButton() {
-        clickOn(SignInInputPinPageLocator.ErrorDialog_OK_Button);
+    public void clickWarningMessagePopUpOkButton() {
+        clickOn(GeneralLocator.ErrorDialog_OK_Button);
     }
     public void clickBackButton() {
-        clickOn(SignInInputPinPageLocator.Back_Button);
+        clickOn(GeneralLocator.Back_Button);
     }
     public void clickForgotPinButton() {
         clickOn(SignInInputPinPageLocator.ForgotPin_Button);

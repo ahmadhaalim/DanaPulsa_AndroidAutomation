@@ -1,5 +1,6 @@
 package demo.pages;
 
+import demo.locator.GeneralLocator;
 import demo.locator.SignUpPageLocator;
 import pageobjects.AndroidPageObject;
 
@@ -9,6 +10,6 @@ public class SignUpPage extends AndroidPageObject {
         return checkIfDisplayed(SignUpPageLocator.InputName_Field);
     }
     public void clickBackButton() {
-        clickOn(SignUpPageLocator.Back_Button);
+        clickOn(GeneralLocator.Back_Button);
     }
 }
