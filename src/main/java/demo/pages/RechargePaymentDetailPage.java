@@ -34,5 +34,9 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
     public void payButton() {
         pageObject.clickOn(PAY_BUTTON);
     }
+
+    public boolean checkPayButton(){
+        return pageObject.checkIfDisplayed(RechargePaymentDetailPageLocator.PAY_BUTTON);
+    }
 }
 
