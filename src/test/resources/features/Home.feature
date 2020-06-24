@@ -4,7 +4,7 @@
 Feature: Home Feature Functionality Check
 
   Background:
-    Given User is on sign in page
+    Given User directed to "sign in" screen
     #Change the phone number according your data table
     When User input phone number "08555333444"
     And User click sign in button

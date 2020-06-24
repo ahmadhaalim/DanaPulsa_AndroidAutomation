@@ -14,8 +14,4 @@ public class SignUpStepsDefinition {
         Assert.assertTrue(signUpPage.isOnPage());
     }
 
-    @When("User click back button on sign up screen")
-    public void userClickBackButtonOnSignUpScreen() {
-        signUpPage.clickBackButton();
-    }
 }

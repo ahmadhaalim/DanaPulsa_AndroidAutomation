@@ -18,19 +18,6 @@ public class SignInPage extends AndroidPageObject {
     public void clickSignUpButton() {
         clickOn(SignInPageLocator.SignUp_Button);
     }
-    public void checkErrorDialog() {
-        waitUntilDisplayed(GeneralLocator.ErrorDialog_Text);
-    }
-    public void clickErrorDialogOkButton() {
-        clickOn(GeneralLocator.ErrorDialog_OK_Button);
-    }
-    public String getErrorDialogText() {
-        return getText(GeneralLocator.ErrorDialog_Text);
-    }
-    public String getToastMessage() { return checkToast(GeneralLocator.TOAST_POPUP); }
-    public String getErrorMessageText() {
-        return getText(SignInPageLocator.ErrorMessage_Text);
-    }
     public boolean checkSignButton() {
         return checkIfEnabled(SignInPageLocator.SignIn_Button);
     }

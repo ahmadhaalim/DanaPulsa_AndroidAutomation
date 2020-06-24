@@ -1,6 +1,7 @@
 package demo.steps;
 
 import demo.driver.AndroidDriverInstance;
+import demo.pages.GeneralPage;
 import demo.pages.SignInPage;
 import deviceutilities.AndroidDeviceUtilities;
 import io.appium.java_client.appmanagement.ApplicationState;
@@ -12,6 +13,7 @@ import org.junit.Assert;
 public class GeneralStepsDefinition{
 
     AndroidDeviceUtilities androidDeviceUtilities = new AndroidDeviceUtilities();
+    GeneralPage generalPage = new GeneralPage();
     SignInPage signInPage = new SignInPage();
 
     @When("User click device home button")
@@ -27,19 +29,33 @@ public class GeneralStepsDefinition{
         androidDeviceUtilities.runAppInBackground();
     }
 
-    //@When("User copy and paste clipboard data {string} on {string}")
-    public void userCopyAndPasteClipboardDataOn(String clipData, String screen){
-        String clipboardData = androidDeviceUtilities.setAndGetClipboardData(clipData);
-        if(screen.equalsIgnoreCase("Sign In Screen")) {
-            signInPage.inputPhoneNumber(clipboardData);
+    @When("User tap {string} menu button while internet is {string}")
+    public void userTapMenuButton(String menu, String state) {
+        if(state.equalsIgnoreCase("off")){
+            AndroidDriverInstance.androidDriver.toggleData();
+            AndroidDriverInstance.androidDriver.toggleWifi();
+        }
+        if(menu.equalsIgnoreCase("home")){
+            generalPage.clickHomeButton();
+        } else if(menu.equalsIgnoreCase("history")){
+            generalPage.clickHistoryButton();
+        } else if(menu.equalsIgnoreCase("voucher")) {
+            generalPage.clickVoucherButton();
+        } else if(menu.equalsIgnoreCase("profile")) {
+            generalPage.clickProfileButton();
         }
     }
 
-    //@Then("User see input field is not empty on {string}")
-    public void userSeeInputFieldIsNotEmptyOn(String field) {
-        if(field.equalsIgnoreCase("Input Phone Number at Sign Screen")){
-            String actual = signInPage.getInputPhoneNumberData();
-            Assert.assertEquals("HALO", actual);
+    @When("User perform action {string} while on {string} screen")
+    public void userPerformActionWhileOnScreen(String action, String screeName) throws InterruptedException {
+        if(action.equalsIgnoreCase("tap back button")){
+            generalPage.clickBackButton();
+        } else if(action.equalsIgnoreCase("tap device back button")) {
+            androidDeviceUtilities.pressDeviceBackButton();
+        } else if(action.equalsIgnoreCase("reopen app after in the background")) {
+            androidDeviceUtilities.runAppInBackground();
+        } else if(action.equalsIgnoreCase("unlock the device after being unlocked")) {
+            androidDeviceUtilities.unlockDevice();
         }
     }
 }

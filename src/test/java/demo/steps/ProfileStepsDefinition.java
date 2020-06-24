@@ -13,7 +13,6 @@ public class ProfileStepsDefinition {
 
     ProfilePage profilePage = new ProfilePage();
     ChangePinPage changePinPage = new ChangePinPage();
-    HomePage homePage = new HomePage();
 
     @Then("User directed to profile screen")
     public void userDirectedToProfileScreen() {
@@ -24,11 +23,6 @@ public class ProfileStepsDefinition {
     public void userSeePhoneNumberUsedToSigningInOnProfileScreen(String expected) {
         String actual = profilePage.getPhoneNumber();
         Assert.assertEquals(expected, actual);
-    }
-
-    @When("User click sign out button on profile screen")
-    public void userClickSignOutButtonOnProfileScreen() {
-        profilePage.clickSignOutButton();
     }
 
     @When("User click change pin menu")
@@ -46,13 +40,6 @@ public class ProfileStepsDefinition {
         changePinPage.clickBackButton();
     }
 
-    @When("User click profile button while internet is off")
-    public void userClickProfileButtonWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-        homePage.clickProfileButton();
-    }
-
     @And("User see warning {string} on user data display")
     public void userSeeWarningOnUserDataDisplay(String expected) {
         String actualName = profilePage.getName();
@@ -67,12 +54,23 @@ public class ProfileStepsDefinition {
 
     @Then("User see warning pop up {string}")
     public void userSeeWarningPopUp(String expected) {
-        String actual = profilePage.getWarningMessage();
+        String actual = profilePage.getSignOutWarningMessage();
         Assert.assertEquals(expected, actual);
     }
 
-    @Then("User directed to device home from profile screen")
-    public void userDirectedToDeviceHomeFromProfileScreen() {
-        Assert.assertFalse(profilePage.isOnPage());
+
+    @When("User click {string} button on profile screen")
+    public void userClickButtonOnProfileScreen(String button) {
+        if(button.equalsIgnoreCase("change pin")) {
+            profilePage.clickChangePinButton();
+        } else if(button.equalsIgnoreCase("sign out")){
+            profilePage.clickSignOutButton();
+        } else if(button.equalsIgnoreCase("yes")) {
+            Assert.assertTrue(profilePage.waitUntilSignOutPopUpMessageIsShown());
+            profilePage.clickYesButton();
+        } else if(button.equalsIgnoreCase("no")) {
+            Assert.assertTrue(profilePage.waitUntilSignOutPopUpMessageIsShown());
+            profilePage.clickNoButton();
+        }
     }
 }

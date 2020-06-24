@@ -22,7 +22,17 @@ public class ProfilePage extends AndroidPageObject {
     public void clickSignOutButton() {
         clickOn(ProfilePageLocator.SignOut_Button);
     }
-    public String getWarningMessage() {
-        return getText(ProfilePageLocator.Warning_Message);
+    public String getSignOutWarningMessage() {
+        return getText(ProfilePageLocator.SignOut_Message);
     }
+    public boolean waitUntilSignOutPopUpMessageIsShown() {
+        return checkIfDisplayed(ProfilePageLocator.SignOut_Message);
+    }
+    public void clickYesButton(){
+        clickOn(ProfilePageLocator.SignOut_Yes_Button);
+    }
+    public void clickNoButton(){
+        clickOn(ProfilePageLocator.SignOut_No_Button);
+    }
+
 }

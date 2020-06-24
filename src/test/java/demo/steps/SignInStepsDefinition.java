@@ -17,6 +17,7 @@ public class SignInStepsDefinition {
     ForgotPinPage forgotPinPage = new ForgotPinPage();
     SignUpPage signUpPage = new SignUpPage();
     HomePage homePage = new HomePage();
+    GeneralPage generalPage = new GeneralPage();
 
     @When("User input phone number {string}")
     public void userInputPhoneNumber(String phoneNumber) {
@@ -33,7 +34,6 @@ public class SignInStepsDefinition {
         signInInputPinPage.clickForgotPinButton();
     }
 
-
     @When("User input pin {string} while internet is {string}")
     public void userInputPinWhileInternetIs(String pin, String state) throws InterruptedException {
         if(state.equalsIgnoreCase("on")){
@@ -47,30 +47,9 @@ public class SignInStepsDefinition {
         }
     }
 
-    @Then("User see toast message pop up {string} on sign in screen")
-    public void userSeeToastMessagePopUpOnSignInScreen(String expected) {
-        String actual = signInPage.getToastMessage();
-        Assert.assertEquals(expected, actual);
-        if(expected.equalsIgnoreCase("Connection Error")) {
-            androidDeviceUtilities.toggleWifi();
-            androidDeviceUtilities.toggleData();
-        }
-    }
-
-    @Then("User see warning message pop up {string} on input pin screen")
-    public void userSeeWarningMessagePopUpOnInputPinScreen(String expected) {
-        String actual = signInInputPinPage.getWarningMessagePopUpText();
-        Assert.assertEquals(expected, actual);
-        signInInputPinPage.clickWarningMessagePopUpOkButton();
-        if(expected.equalsIgnoreCase("Connection Error")) {
-            androidDeviceUtilities.toggleWifi();
-            androidDeviceUtilities.toggleData();
-        }
-    }
-
     @Then("User see error message text {string} on sign in screen")
     public void userSeeErrorMessageTextOnSignInScreen(String expected) {
-        String actual = signInPage.getErrorMessageText();
+        String actual = generalPage.getErrorMessageText();
         Assert.assertEquals(expected, actual);
     }
 
@@ -108,22 +87,16 @@ public class SignInStepsDefinition {
         Thread.sleep(5000);
     }
 
-    @When("User perform action {string} while on {string} screen")
-    public void userPerformActionWhileOnScreen(String action, String screeName) throws InterruptedException {
-        if(action.equalsIgnoreCase("tap back button")){
-            if (screeName.equalsIgnoreCase("input pin")){
-                signInInputPinPage.clickBackButton();
-            } else if (screeName.equalsIgnoreCase("forgot pin")) {
-                forgotPinPage.clickBackButton();
-            } else if(screeName.equalsIgnoreCase("sign up")){
-                signUpPage.clickBackButton();
-            }
-        } else if(action.equalsIgnoreCase("tap device back button")) {
-            androidDeviceUtilities.pressDeviceBackButton();
-        } else if(action.equalsIgnoreCase("reopen app after in the background")) {
-            androidDeviceUtilities.runAppInBackground();
-        } else if(action.equalsIgnoreCase("unlock the device after being unlocked")) {
-            androidDeviceUtilities.unlockDevice();
+
+
+    @Then("User see warning message pop up {string} on {string} screen")
+    public void userSeeWarningMessagePopUpOnScreen(String expected, String screen) {
+        String actual = generalPage.getWarningMessagePopUpText();
+        Assert.assertEquals(expected, actual);
+        generalPage.clickWarningMessagePopUpOkButton();
+        if(expected.equalsIgnoreCase("Connection Error")) {
+            androidDeviceUtilities.toggleWifi();
+            androidDeviceUtilities.toggleData();
         }
     }
 }

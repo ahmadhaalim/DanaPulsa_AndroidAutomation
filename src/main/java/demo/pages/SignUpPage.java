@@ -9,7 +9,4 @@ public class SignUpPage extends AndroidPageObject {
     public boolean isOnPage(){
         return checkIfDisplayed(SignUpPageLocator.InputName_Field);
     }
-    public void clickBackButton() {
-        clickOn(GeneralLocator.Back_Button);
-    }
 }

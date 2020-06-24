@@ -15,15 +15,6 @@ public class SignInInputPinPage extends AndroidPageObject {
     public void checkErrorDialog() {
         waitUntilDisplayed(GeneralLocator.ErrorDialog_Text);
     }
-    public String getWarningMessagePopUpText() {
-        return getText(GeneralLocator.ErrorDialog_Text);
-    }
-    public void clickWarningMessagePopUpOkButton() {
-        clickOn(GeneralLocator.ErrorDialog_OK_Button);
-    }
-    public void clickBackButton() {
-        clickOn(GeneralLocator.Back_Button);
-    }
     public void clickForgotPinButton() {
         clickOn(SignInInputPinPageLocator.ForgotPin_Button);
     }

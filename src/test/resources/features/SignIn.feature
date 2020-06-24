@@ -14,53 +14,53 @@ Feature: Sign In Feature Functionality Check
     Then User directed to "input pin" screen
     When User input pin "123456" while internet is "on"
     Then User directed to "home" screen
-    #When User tap profile button
-    #Then User directed to profile screen
-    #And User see phone number  "08555333444" used to signing in on profile screen
+    When User tap "profile" menu button while internet is "on"
+    Then User directed to profile screen
+    And User see phone number  "08555333444" used to signing in on profile screen
 
   @SI002 @SI005
   Scenario Outline: Failed to sign in because internet problem at Sign In screen /
   Using unregistered phone number
     When User input phone number "<phone>"
     And User tap sign in button while internet is "<state>"
-    Then User see toast message pop up "<message>" on sign in screen
+    Then User see warning message pop up "<message>" on "sign in" screen
     Examples:
       | phone        | state | message                |
-      # [@SI002] Sign In using registered phone number but internet problem at Sign In screen
+      # [@SI002] Failed to sign in because internet problem at Sign In screen
       | 08555333444  | off   | Connection Error       |
-      # [@SI005] Sign In using unregistered phone number
+      # [@SI005] Failed to sign in because using unregistered phone number
       | 081223232323 | on    | incorrect phone number |
 
   @SI003 @SI004
-  Scenario Outline: Failed to sign in because invalid PIN /
+  Scenario Outline: Failed to sign in because using invalid PIN /
   Internet problem while on Input PIN Screen
     When User input phone number "<phone>"
     And User tap sign in button while internet is "on"
     Then User directed to "input pin" screen
     When User input pin "<pin>" while internet is "<state>"
-    Then User see warning message pop up "<message>" on input pin screen
+    Then User see warning message pop up "<message>" on "input pin" screen
     Examples:
       | phone       | pin    | state | message          |
-      #[@SI003] Sign In using registered phone number but using invalid PIN
+      # [@SI003] Failed to sign in because using invalid PIN
       | 08555333444 | 987654 | on    | incorrect pin    |
-      #[@SI004] Sign In using registered phone number but internet problem at Input Pin screen
+      # [@SI004] Failed to sign in because internet problem at Input Pin screen
       | 08555333444 | 123456 | off   | Connection Error |
 
   @SI006 @SI007 @SI008 @SI009
-  Scenario Outline: User failed to sign in because invalid phone number format
+  Scenario Outline: Failed to sign in because invalid phone number format
     When User input phone number "<phone>"
     Then User see error message text "<errorMessage>" on sign in screen
     And User see sign button disabled
     Examples:
     # [Warning!] Change the registered phone number according your data table
       | phone         | errorMessage              |
-      # [@SI006] Registered phone number but invalid format (Start with +62)
+      # [@SI006] Failed to sign in because using registered phone number but invalid format (Start with +62)
       | +628555333444 | Invalid phone number      |
-      # [@SI007] Registered phone number but invalid format (Start with 62)
+      # [@SI007] Failed to sign in because using registered phone number but invalid format (Start with 62)
       | 628555333444  | Invalid phone number      |
-      # [@SI008] Empty phone number field
+      # [@SI008] Failed to sign in because empty phone number field
       |               | Please input phone number |
-      # [@SI009] Invalid phone number format (less than 10, only 9 digits)
+      # [@SI009] Failed to sign in because using invalid phone number format (less than 10, only 9 digits)
       | 081111111     | Invalid phone number      |
 
   @SI-IPN001 @SI-IPN005 @SI-IPN006
@@ -85,16 +85,15 @@ Feature: Sign In Feature Functionality Check
       | action                                 | screen      |
       # [@SI-IPN003] Proceed to Device Home by tapping device back button
       | tap device home button                 | device home |
-      # [@SI-IPN003] Back to sign in Screen by opening the app after running in the background for a moment
+      # [@SI-IPN003] Back to sign in screen by opening the app after running in the background for a moment
       | reopen app after in the background     | sign in     |
-      # [@SI-IPN004] Still on sign in Screen when unlocking device
+      # [@SI-IPN004] Still on sign in screen when unlocking device
       | unlock the device after being unlocked | sign in     |
 
   #@SI-IPN007
   #Scenario: Filling phone number field with clipboard data
-    #When User copy and paste clipboard data "08555333444" on "Sign In Screen"
+   # When User copy and paste clipboard data "08555333444" on "Sign In" screen
     #Then User see input field is not empty on "Input Phone Number at Sign Screen"
-
 
   @SI-IP001 @SI-IP002 @SI-IP003 @SI-IP004
   Scenario Outline: Perform action while on input pin screen
@@ -126,8 +125,8 @@ Feature: Sign In Feature Functionality Check
     Then User directed to "input pin" screen
     Examples:
       | action                 |
-      # [@SI-IP005 @SI-IP006] Go to forgot pin screen and back to input pin screen by tapping back button
+      # [@SI-IP005 @SI-IP006] Go to forgot pin screen and tap back button
       | tap back button        |
-      # [SI-IP007] Go to forgot pin screen and back to input pin screen by tapping device back button
+      # [SI-IP007] Go to forgot pin screen and tap device back button
       | tap device back button |
 
