@@ -7,8 +7,13 @@ public class GeneralPage extends AndroidPageObject {
     public String getErrorMessageText() {
         return getText(GeneralLocator.ErrorMessage_Text);
     }
+
     public String getWarningMessagePopUpText() {
         return getText(GeneralLocator.ErrorDialog_Text);
+    }
+
+    public String getToastMessage() {
+        return checkToast(GeneralLocator.TOAST_POPUP);
     }
     public void clickWarningMessagePopUpOkButton() {
         clickOn(GeneralLocator.ErrorDialog_OK_Button);

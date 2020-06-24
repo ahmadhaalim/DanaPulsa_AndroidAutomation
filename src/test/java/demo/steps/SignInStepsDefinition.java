@@ -14,9 +14,6 @@ public class SignInStepsDefinition {
     AndroidDeviceUtilities androidDeviceUtilities = new AndroidDeviceUtilities();
     SignInPage signInPage = new SignInPage();
     SignInInputPinPage signInInputPinPage = new SignInInputPinPage();
-    ForgotPinPage forgotPinPage = new ForgotPinPage();
-    SignUpPage signUpPage = new SignUpPage();
-    HomePage homePage = new HomePage();
     GeneralPage generalPage = new GeneralPage();
 
     @When("User input phone number {string}")
@@ -69,25 +66,6 @@ public class SignInStepsDefinition {
             signInPage.clickSignInButton();
         }
     }
-
-    @Then("User directed to {string} screen")
-    public void userDirectedToScreen(String screenName) throws InterruptedException {
-        if(screenName.equalsIgnoreCase("sign in")){
-            Assert.assertTrue(signInPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("input pin")){
-            Assert.assertTrue(signInInputPinPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("forgot pin")) {
-            Assert.assertTrue(forgotPinPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("home")){
-            Assert.assertTrue(homePage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("device home")){
-            String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
-            Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
-        }
-        Thread.sleep(5000);
-    }
-
-
 
     @Then("User see warning message pop up {string} on {string} screen")
     public void userSeeWarningMessagePopUpOnScreen(String expected, String screen) {

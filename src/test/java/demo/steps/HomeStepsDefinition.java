@@ -23,10 +23,6 @@ public class HomeStepsDefinition{
         Assert.assertTrue(homePage.isOnPage());
     }
 
-    @When("User click profile button")
-    public void userClickProfileButton() {
-        homePage.clickProfileButton();
-    }
 
     @When("User click {string} on home screen")
     public void userClickOnHomeScreen(String elementKeyword){

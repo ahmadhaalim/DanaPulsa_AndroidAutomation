@@ -14,11 +14,6 @@ public class ProfileStepsDefinition {
     ProfilePage profilePage = new ProfilePage();
     ChangePinPage changePinPage = new ChangePinPage();
 
-    @Then("User directed to profile screen")
-    public void userDirectedToProfileScreen() {
-        Assert.assertTrue(profilePage.isOnPage());
-    }
-
     @And("User see phone number  {string} used to signing in on profile screen")
     public void userSeePhoneNumberUsedToSigningInOnProfileScreen(String expected) {
         String actual = profilePage.getPhoneNumber();
@@ -52,15 +47,9 @@ public class ProfileStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
-    @Then("User see warning pop up {string}")
-    public void userSeeWarningPopUp(String expected) {
-        String actual = profilePage.getSignOutWarningMessage();
-        Assert.assertEquals(expected, actual);
-    }
 
-
-    @When("User click {string} button on profile screen")
-    public void userClickButtonOnProfileScreen(String button) {
+    @When("User tap {string} button on profile screen")
+    public void userTapButtonOnProfileScreen(String button) {
         if(button.equalsIgnoreCase("change pin")) {
             profilePage.clickChangePinButton();
         } else if(button.equalsIgnoreCase("sign out")){

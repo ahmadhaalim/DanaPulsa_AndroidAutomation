@@ -1,6 +1,5 @@
 @Android @SignIn
 
-#Tap/Tapping = tap/taping
 Feature: Sign In Feature Functionality Check
 
   Background:
@@ -15,7 +14,7 @@ Feature: Sign In Feature Functionality Check
     When User input pin "123456" while internet is "on"
     Then User directed to "home" screen
     When User tap "profile" menu button while internet is "on"
-    Then User directed to profile screen
+    Then User directed to "profile" screen
     And User see phone number  "08555333444" used to signing in on profile screen
 
   @SI002 @SI005
