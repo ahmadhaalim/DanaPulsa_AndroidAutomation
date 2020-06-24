@@ -7,5 +7,5 @@ public interface SignInPageLocator {
     By DANA_LOGO = MobileBy.id("ivLoginLogo");
     By INPUT_NUMBER = MobileBy.id("edtLoginPhone");
     By SIGN_IN_BUTTON = MobileBy.id("btnLoginSignIn");
-    By INPUT_PIN = MobileBy.id("pinLogin");
+    By INPUT_PIN = MobileBy.id("pinEntryLogin");
 }
