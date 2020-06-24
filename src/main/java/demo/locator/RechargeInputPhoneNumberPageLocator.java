@@ -20,4 +20,7 @@ public interface RechargeInputPhoneNumberPageLocator {
 
     // Recycle View
     By RECENT_NUMBER_ITEMS = MobileBy.id("rvRecentNumber");
+
+    //Error Message
+    By NUMBER_ERROR = MobileBy.id("textError");
 }

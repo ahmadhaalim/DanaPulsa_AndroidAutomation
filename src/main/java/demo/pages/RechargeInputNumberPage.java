@@ -27,4 +27,7 @@ public class RechargeInputNumberPage implements RechargeInputPhoneNumberPageLoca
         return pageObject.checkIfDisplayed(RechargeInputPhoneNumberPageLocator.RECENT_PROVIDER_ICON);
     }
 
+    public boolean checkErrorMessage(){
+        return pageObject.checkIfDisplayed(RechargeInputPhoneNumberPageLocator.NUMBER_ERROR);
+    }
 }

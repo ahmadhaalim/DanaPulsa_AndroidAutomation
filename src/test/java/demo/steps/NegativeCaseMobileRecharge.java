@@ -21,4 +21,7 @@ public class NegativeCaseMobileRecharge {
     }
 
 
+    @Then("User see invalid format message")
+    public void userSeeInvalidFormatMessage() { Assert.assertTrue(inputNumberPage.checkErrorMessage());
+    }
 }
