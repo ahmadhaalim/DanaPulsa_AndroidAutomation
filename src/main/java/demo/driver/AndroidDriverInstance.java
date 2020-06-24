@@ -24,6 +24,8 @@ public class AndroidDriverInstance {
         caps.setCapability("app",
                 System.getProperty("user.dir") + File.separator + "APP" + File.separator + "TodoApp.apk");
         caps.setCapability("automationName", "UiAutomator2");
+//        caps.setCapability("appWaitActivity", "id.dana.apprentech.danapulsa.ui.login." +
+//                "LoginActivity");
         try {
             androidDriver = new AndroidDriver<>(new URL(appiumUrl), caps);
             androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

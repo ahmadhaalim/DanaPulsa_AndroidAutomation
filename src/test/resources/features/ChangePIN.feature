@@ -226,7 +226,7 @@ Feature: Check the Change PIN feature functionality
     And User click the change pin menu
     #CHANGE THIS MANUALLY
     And User input otp via pasting with user id "1"
-    Then User cant perform paste on the OTP input "deviceType"
+    Then User cant perform paste on the OTP input "6.0"
 
   @CP-OTP_010
   Scenario: Click next with valid OTP but can't connect to server

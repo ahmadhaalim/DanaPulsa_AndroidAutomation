@@ -1,9 +1,9 @@
 @Android @ForgotPIN
 Feature: Check the Forgot PIN feature functionality
-  #BEFORE YOU RUN THE TEST MAKE SURE TO CHANGE YOUR PHONE NUMBER, YOUR ACCOUNT USER ID, AND YOUR DEVICE TYPE ON SOME
+  #BEFORE YOU RUN THE TEST MAKE SURE TO CHANGE YOUR PHONE NUMBER, YOUR ACCOUNT USER ID, AND YOUR DEVICE TYPE ON PASTE
   #SCENARIO
   #RUN THIS EXACTLY BEFORE RUNNING CHANGE PIN !!!
-  #Device type name format example = pixel2api23, pixel2api26
+  #Device type name format example = 6.0 , 8.0 , 10.0
   Background:
     Given User in the sign in page
 
@@ -285,7 +285,7 @@ Feature: Check the Forgot PIN feature functionality
     And User click the forgot pin text
     #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
     And User input otp via pasting with user id "1"
-    Then User cant perform paste on the OTP input "deviceType"
+    Then User cant perform paste on the OTP input "6.0"
 
 
   @FP-OTP_010
