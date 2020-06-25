@@ -9,4 +9,8 @@ public class RechargeChooseTopUpPage implements RechargeChooseTopUpPageLocator {
     public void chooseTopUpNominal(String nominal){
        pageObject.multipleID(nominal,PULSA_CATALOG);
     }
+
+    public boolean displayTopUp(){
+        return pageObject.checkIfDisplayed(PULSA_CATALOG);
+    }
 }

@@ -84,6 +84,7 @@ public class MobileRechargeDefinition {
 
     @Then("User see top up catalog")
     public void userSeeTopUpCatalog() {
+        Assert.assertTrue(topUpPage.displayTopUp());
     }
 
     @And("User click back to home button")
