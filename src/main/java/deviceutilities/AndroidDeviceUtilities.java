@@ -1,10 +1,16 @@
 package deviceutilities;
 
 import demo.driver.AndroidDriverInstance;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.clipboard.HasClipboard;
+import io.appium.java_client.touch.WaitOptions;
+import io.appium.java_client.touch.offset.PointOption;
 
 import java.time.Duration;
+
+import static demo.driver.AndroidDriverInstance.androidDriver;
 
 public class AndroidDeviceUtilities {
 
@@ -33,8 +39,18 @@ public class AndroidDeviceUtilities {
         }
         Thread.sleep(5000);
     }
+
+    public void reloadScreen() throws InterruptedException {
+        Thread.sleep(3000);
+        TouchAction touch = new TouchAction(androidDriver);
+        touch.press(PointOption.point(200,200))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+                .moveTo(PointOption.point(200,500)).release().perform();
+    }
+
     public String setAndGetClipboardData(String text){
-        AndroidDriverInstance.androidDriver.setClipboardText(text);
+        ((HasClipboard)AndroidDriverInstance.androidDriver).setClipboardText(text);
         return AndroidDriverInstance.androidDriver.getClipboardText();
     }
+
 }
