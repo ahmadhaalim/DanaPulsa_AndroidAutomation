@@ -21,6 +21,8 @@ public class AndroidDriverInstance {
         caps.setCapability("udid", "emulator-5554");
 //        caps.setCapability("appWaitActivity", "id.dana.apprentech.danapulsa.ui.login.LoginActivity");
         caps.setCapability("autoGrantPermissions", true);
+        caps.setCapability("wdaStartupRetries", "4");
+        caps.setCapability("wdaStartupRetryInterval", "20000");
         caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",
                 System.getProperty("user.dir") + File.separator + "APP" + File.separator
