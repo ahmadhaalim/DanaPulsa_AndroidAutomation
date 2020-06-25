@@ -21,11 +21,11 @@ public class AndroidDriverInstance {
         caps.setCapability("udid", "emulator-5554");
         caps.setCapability("autoGrantPermissions", true);
         caps.setCapability("newCommandTimeout", 120);
-    //    caps.setCapability("app",
-    //            System.getProperty("user.dir") + File.separator + "APP" + File.separator + "DANA-Pulsa-1.0.2-develop-debug.apk");
+        caps.setCapability("app",
+                System.getProperty("user.dir") + File.separator + "APP" + File.separator + "DANA-Pulsa-1.0.2-develop-debug.apk");
         caps.setCapability("automationName", "UiAutomator2");
-        caps.setCapability("appPackage", "id.dana.apprentech.danapulsa.develop");
-        caps.setCapability("appActivity", "id.dana.apprentech.danapulsa.ui.splash.SplashActivity");
+    //    caps.setCapability("appPackage", "id.dana.apprentech.danapulsa.develop");
+    //    caps.setCapability("appActivity", "id.dana.apprentech.danapulsa.ui.splash.SplashActivity");
         caps.setCapability("skipDeviceInitialization", true);
         caps.setCapability("skipServerInstallation", true);
         try {
