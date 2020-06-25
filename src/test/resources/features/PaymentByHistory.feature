@@ -2,7 +2,10 @@
 Feature: Mobile Recharge
 
   Background:
-#    Given User is already login
+    Given User is on sign in page
+    When User input phone number "088245593542"
+    And User input pin number "123456"
+
   @MR026
   Scenario Outline: Top up with voucher via history in progress (13 digit phone number)
     Given User is on homepage

@@ -2,7 +2,9 @@
 Feature: Mobile Recharge
 
   Background:
-#    Given User is already login
+    Given User is on sign in page
+    When User input phone number "088245593542"
+    And User input pin number "123456"
 
   @MRN001
   Scenario Outline: Top up any valid provider number without voucher and the balance is not sufficient
