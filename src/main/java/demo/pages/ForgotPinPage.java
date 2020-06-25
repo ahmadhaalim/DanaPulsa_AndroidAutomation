@@ -9,7 +9,4 @@ public class ForgotPinPage extends AndroidPageObject {
     public boolean isOnPage() {
         return checkIfDisplayed(ForgotPinPageLocator.InputOTP_Field);
     }
-    public void clickBackButton() {
-        clickOn(ForgotPinPageLocator.Back_Button);
-    }
 }

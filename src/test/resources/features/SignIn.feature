@@ -62,70 +62,72 @@ Feature: Sign In Feature Functionality Check
       # [@SI009] Failed to sign in because using invalid phone number format (less than 10, only 9 digits)
       | 081111111     | Invalid phone number      |
 
-  @SI-IPN001 @SI-IPN005 @SI-IPN006
-  Scenario Outline: Go to sign up screen by tapping sign up text
-  and tap back button / device back button
+  @SI-IPN001 @SI-IPN005 @SI-IPN006 @SI-IPN007 @SI-IPN008
+  Scenario Outline: Perform action while on sign up screen
     When User tap sign up button
     Then User directed to sign up screen
-    When User perform action "<action>" while on "sign up" screen
-    Then User directed to "sign in" screen
+    When User perform action "<action>"
+    Then User directed to "<screen>" screen
     Examples:
-      | action                 |
+      | action                                 | screen |
       # [@SI-IPN001 @SI-IPN005] Go to sign up screen by tapping sign up text and tap back button
-      | tap back button        |
+      | tap back button                        | sign in |
       # [@SI-IPN006] Go to sign up screen by tapping sign up text and tap device back button
-      | tap device back button |
+      | tap device back button                 | sign in |
+      # [@SI-IPN007] Back to sign in screen by opening the app after running in the background for a moment
+      | reopen app after in the background     | sign in |
+      # [@SI-IPN008] Still on sign in screen when unlocking device
+      | unlock the device after being unlocked | sign up |
 
   @SI-IPN002 @SI-IPN003 @SI-IPN004
   Scenario Outline: Perform action while on sign in screen
-    When User perform action "<action>" while on "sign in" screen
+    When User perform action "<action>"
     Then User directed to "<screen>" screen
     Examples:
       | action                                 | screen      |
-      # [@SI-IPN003] Proceed to Device Home by tapping device back button
+      # [@SI-IPN002] Proceed to Device Home by tapping device back button
       | tap device home button                 | device home |
       # [@SI-IPN003] Back to sign in screen by opening the app after running in the background for a moment
       | reopen app after in the background     | sign in     |
       # [@SI-IPN004] Still on sign in screen when unlocking device
       | unlock the device after being unlocked | sign in     |
 
-  #@SI-IPN007
-  #Scenario: Filling phone number field with clipboard data
-   # When User copy and paste clipboard data "08555333444" on "Sign In" screen
-    #Then User see input field is not empty on "Input Phone Number at Sign Screen"
-
   @SI-IP001 @SI-IP002 @SI-IP003 @SI-IP004
   Scenario Outline: Perform action while on input pin screen
-    When User input phone number "<phone>"
+    When User input phone number "08555333444"
     And User tap sign in button while internet is "on"
     Then User directed to "input pin" screen
-    When User perform action "<action>" while on "input pin" screen
+    When User perform action "<action>"
     Then User directed to "<screen>" screen
     Examples:
-      | phone       | action                                 | screen    |
+      | action                                 | screen    |
       # [@SI-IP001] Back to sign in screen by tapping back button while in input pin screen
-      | 08555333444 | tap back button                        | sign in   |
+      | tap back button                        | sign in   |
       # [@SI-IP002] Back to sign in screen by tapping device back button while in input pin screen
-      | 08555333444 | tap device back button                 | sign in   |
+      | tap device back button                 | sign in   |
       # [@SI-IP003] Back to input pin screen by opening the app after running in the background for a moment
-      | 08555333444 | reopen app after in the background     | input pin |
+      | reopen app after in the background     | input pin |
       # [@SI-IP004S] Still on input pin screen when unlocking device
-      | 08555333444 | unlock the device after being unlocked | input pin |
+      | unlock the device after being unlocked | input pin |
 
-  @SI-IP005 @SI-IP006 @SI-IP007
-  Scenario Outline: Go to forgot pin screen by tapping forgot pin text
-  and tap back button / device back button
+  @SI-IP005 @SI-IP006 @SI-IP007  @SI-IP008 @ @SI-IP009
+  Scenario Outline: Perform action while on forgot pin screen
     When User input phone number "08555333444"
     And User tap sign in button while internet is "on"
     Then User directed to "input pin" screen
     When User tap forgot pin text
     Then User directed to "forgot pin" screen
-    When User perform action "<action>" while on "forgot pin" screen
-    Then User directed to "input pin" screen
+    And User tap ok button on warning dialog box
+    And User perform action "<action>"
+    Then User directed to "<screen>" screen
     Examples:
-      | action                 |
+      | action                                 | screen     |
       # [@SI-IP005 @SI-IP006] Go to forgot pin screen and tap back button
-      | tap back button        |
+      | tap back button                        | input pin  |
       # [SI-IP007] Go to forgot pin screen and tap device back button
-      | tap device back button |
+      | tap device back button                 | input pin  |
+      # [@SI-IP008] Back to forgot pin screen by opening the app after running in the background for a moment
+      | reopen app after in the background     | input pin  |
+      # [@SI-IP009] Still on forgot pin screen when unlocking device
+      | unlock the device after being unlocked | forgot pin |
 

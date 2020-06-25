@@ -1,13 +1,14 @@
 package demo.pages;
 
 import demo.locator.ChangePinPageLocator;
+import demo.locator.GeneralLocator;
 import pageobjects.AndroidPageObject;
 
 public class ChangePinPage extends AndroidPageObject {
     public boolean isOnPage(){
-        return checkIfDisplayed(ChangePinPageLocator.ChangePin_Title);
+        return checkIfDisplayed(GeneralLocator.Back_Button);
     }
     public void clickBackButton(){
-        clickOn(ChangePinPageLocator.Back_Button);
+        clickOn(GeneralLocator.Back_Button);
     }
 }

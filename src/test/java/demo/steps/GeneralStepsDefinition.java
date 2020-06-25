@@ -16,16 +16,11 @@ public class GeneralStepsDefinition{
     HomePage homePage = new HomePage();
     ProfilePage profilePage = new ProfilePage();
     SignInPage signInPage = new SignInPage();
+    SignUpPage signUpPage = new SignUpPage();
     SignInInputPinPage signInInputPinPage = new SignInInputPinPage();
-
-    @When("User click device home button")
-    public void userClickDeviceHomeButton() {
-        androidDeviceUtilities.pressDeviceHomeButton();
-    }
-    @When("User click device back button")
-    public void userClickDeviceBackButton() {
-        androidDeviceUtilities.pressDeviceBackButton();
-    }
+    MobileRechargePage mobileRechargePage = new MobileRechargePage();
+    PromotionListPage promotionListPage = new PromotionListPage();
+    PromotionDetailPage promotionDetailPage = new PromotionDetailPage();
 
     @When("User tap {string} menu button while internet is {string}")
     public void userTapMenuButton(String menu, String state) {
@@ -44,8 +39,8 @@ public class GeneralStepsDefinition{
         }
     }
 
-    @When("User perform action {string} while on {string} screen")
-    public void userPerformActionWhileOnScreen(String action, String screeName) throws InterruptedException {
+    @When("User perform action {string}")
+    public void userPerformActionWhileOnScreen(String action) throws InterruptedException {
         if(action.equalsIgnoreCase("tap back button")){
             generalPage.clickBackButton();
         } else if(action.equalsIgnoreCase("tap device back button")) {
@@ -54,6 +49,8 @@ public class GeneralStepsDefinition{
             androidDeviceUtilities.runAppInBackground();
         } else if(action.equalsIgnoreCase("unlock the device after being unlocked")) {
             androidDeviceUtilities.unlockDevice();
+        } else if(action.equalsIgnoreCase("hold down and release")) {
+            androidDeviceUtilities.reloadScreen();
         }
     }
 
@@ -77,10 +74,29 @@ public class GeneralStepsDefinition{
             Assert.assertTrue(homePage.isOnPage());
         } else if(screenName.equalsIgnoreCase("profile")) {
             Assert.assertTrue(profilePage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("sign up")) {
+            Assert.assertTrue(signUpPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("mobile recharge")) {
+            Assert.assertTrue(mobileRechargePage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("promotion list")) {
+            Assert.assertTrue(promotionListPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("promotion detail")) {
+            Assert.assertTrue(promotionDetailPage.isOnPage());
         } else if(screenName.equalsIgnoreCase("device home")){
             String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
             Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
         }
         Thread.sleep(5000);
+    }
+
+    @When("User tap ok button on warning dialog box")
+    public void userTapOkButtonOnWarningDialogBox() {
+        try {
+            Thread.sleep(8000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Assert.assertTrue(generalPage.waitUntillErrorDialogBoxDisplayed());
+        generalPage.clickOkButton();
     }
 }

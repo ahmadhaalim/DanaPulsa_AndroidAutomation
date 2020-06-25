@@ -20,33 +20,10 @@ public class ProfileStepsDefinition {
         Assert.assertEquals(expected, actual);
     }
 
-    @When("User click change pin menu")
-    public void userClickChangePinMenu() {
-        profilePage.clickChangePinButton();
-    }
-
     @Then("User directed to change pin screen")
     public void userDirectedToChangePinScreen() {
         Assert.assertTrue(changePinPage.isOnPage());
     }
-
-    @When("User click back button at change pin screen")
-    public void userClickBackButtonAtChangePinScreen() {
-        changePinPage.clickBackButton();
-    }
-
-    @And("User see warning {string} on user data display")
-    public void userSeeWarningOnUserDataDisplay(String expected) {
-        String actualName = profilePage.getName();
-        String actualPhone = profilePage.getPhoneNumber();
-        String actualEmail = profilePage.getEmail();
-        Assert.assertEquals(actualName, expected);
-        Assert.assertEquals(actualPhone, expected);
-        Assert.assertEquals(actualEmail, expected);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-    }
-
 
     @When("User tap {string} button on profile screen")
     public void userTapButtonOnProfileScreen(String button) {
@@ -62,4 +39,12 @@ public class ProfileStepsDefinition {
             profilePage.clickNoButton();
         }
     }
+
+    @Then("User see profile data is displayed")
+    public void userSeeProfileDataIsDisplayed() {
+        Assert.assertNotNull(profilePage.getName());
+        Assert.assertNotNull(profilePage.getEmail());
+        Assert.assertNotNull(profilePage.getPhoneNumber());
+    }
+
 }

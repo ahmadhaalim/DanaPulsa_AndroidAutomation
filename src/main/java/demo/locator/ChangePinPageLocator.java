@@ -5,6 +5,5 @@ import org.openqa.selenium.By;
 
 public interface ChangePinPageLocator {
 
-    By ChangePin_Title = MobileBy.id("tvActivityTitle");
-    By Back_Button = MobileBy.id("btnPinBack");
+
 }

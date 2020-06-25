@@ -5,5 +5,4 @@ import org.openqa.selenium.By;
 
 public interface ForgotPinPageLocator {
     By InputOTP_Field = MobileBy.id("otpPIN");
-    By Back_Button = MobileBy.id("btnPinBack");
 }

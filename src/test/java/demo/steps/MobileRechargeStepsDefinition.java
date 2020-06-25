@@ -22,11 +22,6 @@ public class MobileRechargeStepsDefinition {
     public String transactionPhone = "";
     public String transactionProduct = "";
 
-    @Then("User directed to mobile recharge screen")
-    public void userDirectedToMobileRechargeScreen() {
-        Assert.assertTrue(mobileRechargePage.isOnPage());
-    }
-
     @When("User input phone number {string} on mobile recharge screen")
     public void userInputPhoneNumberOnMobileRechargeScreen(String phoneNumber) {
         mobileRechargePage.inputPhoneNumber(phoneNumber);

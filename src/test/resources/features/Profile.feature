@@ -17,7 +17,8 @@ Feature: Profile Feature Functionality Check
     Then User directed to "profile" screen
     When User tap "change pin" button on profile screen
     Then User directed to change pin screen
-    When User perform action "tap back button" while on "change pin" screen
+    When User tap ok button on warning dialog box
+    And User perform action "tap back button"
     Then User directed to "profile" screen
 
   @PRSC004 @PRSC005
@@ -34,19 +35,11 @@ Feature: Profile Feature Functionality Check
       # [@PRSC005] Cancel to  sign out from the app
       | no     | profile |
 
-  @PRSC010
-  Scenario: User can't sign out because internet problem
-    When User tap "profile" menu button while internet is "off"
-    Then User directed to "profile" screen
-    When User tap "sign out" button on profile screen
-    And User tap "yes" button on profile screen
-    Then User see toast message "Connection Error"
-
   @PRSC006 @PRSC007 @PRSC008
   Scenario Outline: Perform outside app action while on profile screen
     When User tap "profile" menu button while internet is "on"
     Then User directed to "profile" screen
-    When User perform action "<action>" while on "forgot pin" screen
+    When User perform action "<action>"
     Then User directed to "<screen>" screen
     Examples:
       | action                                 | screen  |
@@ -64,5 +57,21 @@ Feature: Profile Feature Functionality Check
     When User tap "sign out" button on profile screen
     And User tap "yes" button on profile screen
     Then User directed to "sign in" screen
-    When User perform action "tap device back button" while on "sign in" screen
+    When User perform action "tap device back button"
     Then User directed to "device home" screen
+
+  @PRSC010
+  Scenario: Reload user profile data by press down and release the screen
+    When User tap "profile" menu button while internet is "on"
+    Then User directed to "profile" screen
+    #change the coordinate of point according size screen
+    And User perform action "hold down and release"
+    Then User see profile data is displayed
+
+  @PRSC011
+  Scenario: User can't sign out because internet problem
+    When User tap "profile" menu button while internet is "off"
+    Then User directed to "profile" screen
+    When User tap "sign out" button on profile screen
+    And User tap "yes" button on profile screen
+    Then User see toast message "Connection Error"

@@ -20,12 +20,12 @@ public class AndroidDriverInstance {
         caps.setCapability("deviceName", "device");
         caps.setCapability("udid", "emulator-5554");
         caps.setCapability("autoGrantPermissions", true);
-        caps.setCapability("wdaStartupRetries", "4");
-        caps.setCapability("wdaStartupRetryInterval", "20000");
-        caps.setCapability("newCommandTimeout", 120);
+        //caps.setCapability("wdaStartupRetries", "4");
+        //caps.setCapability("wdaStartupRetryInterval", "20000");
+        //caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",
                 System.getProperty("user.dir") + File.separator + "APK" + File.separator
-                        + "DANA-Pulsa-1.0.0-develop-debug.apk");
+                        + "DANA-Pulsa1.0.2-develop-debug.apk");
         caps.setCapability("automationName", "UiAutomator2");
         try {
             androidDriver = new AndroidDriver<>(new URL(appiumUrl), caps);

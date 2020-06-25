@@ -33,4 +33,10 @@ public class GeneralPage extends AndroidPageObject {
     public void clickProfileButton() {
         clickOn(GeneralLocator.ProfileMenu_Button);
     }
+    public void clickOkButton(){
+        clickOn(GeneralLocator.ErrorDialog_OK_Button);
+    }
+    public boolean waitUntillErrorDialogBoxDisplayed(){
+        return checkIfDisplayed(GeneralLocator.ErrorDialog_Text);
+    }
 }
