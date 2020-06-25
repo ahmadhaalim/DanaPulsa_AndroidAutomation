@@ -19,6 +19,7 @@ public class AndroidDriverInstance {
 //        caps.setCapability("platformVersion", "8.0");
         caps.setCapability("deviceName", "device");
         caps.setCapability("udid", "emulator-5554");
+//        caps.setCapability("appWaitActivity", "id.dana.apprentech.danapulsa.ui.login.LoginActivity");
         caps.setCapability("autoGrantPermissions", true);
         caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",

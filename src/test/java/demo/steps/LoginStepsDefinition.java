@@ -11,8 +11,10 @@ public class LoginStepsDefinition {
 
     @Given("User is on sign in page")
     public void userIsOnSignInPage() {
-        boolean status = signIn.isOnPage();
+        boolean status = signIn.splashScreen();
         Assert.assertTrue(status);
+        boolean status_1 = signIn.isOnPage();
+        Assert.assertTrue(status_1);
     }
 
     @When("User input phone number {string}")

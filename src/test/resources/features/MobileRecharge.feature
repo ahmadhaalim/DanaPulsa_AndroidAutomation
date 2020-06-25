@@ -2,7 +2,8 @@
 
 Feature: Mobile Recharge
 
-  Background:
+  @Belakang
+  Scenario:
     Given User is on sign in page
     When User input phone number "081244748921"
     And User input pin number "123456"

@@ -1,13 +1,18 @@
 package demo.pages.nauval;
 
 import demo.locator.nauval.SignInPageLocator;
+import org.openqa.selenium.By;
 import pageobjects.AndroidPageObject;
 
 public class SignInPage implements SignInPageLocator {
     AndroidPageObject pageObject;
 
+    public boolean splashScreen(){
+        return pageObject.waitUntilDisplayed(By.id("ivSplashLogo"));
+    }
+
     public boolean isOnPage(){
-        return pageObject.checkIfDisplayed(DANA_LOGO);
+        return pageObject.waitUntilDisplayed(LOGIN_LABEL);
     }
 
     public void inputNumber(String number){

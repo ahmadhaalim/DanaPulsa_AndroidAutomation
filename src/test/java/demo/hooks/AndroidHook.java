@@ -8,12 +8,12 @@ import org.openqa.selenium.TakesScreenshot;
 
 public class AndroidHook {
 
-    @Before(value = "@MR001 and @MR006")
+    @Before(value = "@Belakang")
     public void initializeWebDriver() {
         AndroidDriverInstance.initialize();
     }
 
-    @After(value = "@MR001 and @MR006")
+    @After(value = "@Belakang")
     public void quitWebDriver(Scenario scenario) {
         if (scenario.isFailed()) {
             scenario
