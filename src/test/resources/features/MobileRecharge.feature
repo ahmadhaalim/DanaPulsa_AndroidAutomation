@@ -2,12 +2,13 @@
 
 Feature: Mobile Recharge
 
-  @Belakang
-  Scenario:
+
+  Background:
     Given User is on sign in page
-    When User input phone number "081244748921"
+    When User input phone number "08555777888"
     And User input pin number "123456"
 #  Gunakan username dan PIN masing-masing!!
+
   @MR001 @MR006
   Scenario Outline: Checking provider logo and top up nominal
     Given User is on homepage

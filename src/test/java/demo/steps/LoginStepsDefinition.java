@@ -7,14 +7,13 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class LoginStepsDefinition {
-    SignInPage signIn;
+    SignInPage signIn = new SignInPage();
 
     @Given("User is on sign in page")
-    public void userIsOnSignInPage() {
-        boolean status = signIn.splashScreen();
-        Assert.assertTrue(status);
+    public void userIsOnSignInPage() throws InterruptedException {
         boolean status_1 = signIn.isOnPage();
         Assert.assertTrue(status_1);
+        Thread.sleep(5000);
     }
 
     @When("User input phone number {string}")

@@ -16,4 +16,7 @@ public interface RechargeChooseTopUpPageLocator {
 
     // Recycle View
     By PULSA_CATALOG = MobileBy.id("rvPulsaCatalog");
+
+    // Image View
+    By PROVIDER_ICON = MobileBy.id("ivProviderIcon");
 }

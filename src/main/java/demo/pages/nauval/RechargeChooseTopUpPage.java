@@ -11,6 +11,6 @@ public class RechargeChooseTopUpPage implements RechargeChooseTopUpPageLocator {
     }
 
     public boolean displayTopUp(){
-        return pageObject.checkIfDisplayed(PULSA_CATALOG);
+        return pageObject.checkIfDisplayed(PROVIDER_ICON);
     }
 }

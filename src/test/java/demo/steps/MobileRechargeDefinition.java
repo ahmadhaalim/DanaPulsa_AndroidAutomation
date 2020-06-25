@@ -8,12 +8,12 @@ import io.cucumber.java.en.When;
 import org.junit.Assert;
 
 public class MobileRechargeDefinition {
-    HomePage homePage;
-    RechargeInputNumberPage inputNumber;
-    RechargeChooseTopUpPage topUpPage;
-    RechargePaymentDetailPage detailPage;
-    RechargePaymentStatusPage statusPage;
-    RechargeChooseVoucherPage chooseVoucher;
+    HomePage homePage = new HomePage();
+    RechargeInputNumberPage inputNumber = new RechargeInputNumberPage();
+    RechargeChooseTopUpPage topUpPage = new RechargeChooseTopUpPage();
+    RechargePaymentDetailPage detailPage = new RechargePaymentDetailPage();
+    RechargePaymentStatusPage statusPage = new RechargePaymentStatusPage();
+    RechargeChooseVoucherPage chooseVoucher = new RechargeChooseVoucherPage();
 
     @Given("User is on homepage")
     public void userIsOnHomepage() {
@@ -29,6 +29,11 @@ public class MobileRechargeDefinition {
     @And("User input {string}")
     public void userInputPhoneNumber(String phoneNumber) {
         inputNumber.inputNumber(phoneNumber);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @And("User choose {string} nominal")
