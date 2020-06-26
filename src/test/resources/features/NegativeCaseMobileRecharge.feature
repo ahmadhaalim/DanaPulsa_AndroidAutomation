@@ -5,8 +5,10 @@ Feature: Mobile Recharge
     Given User is on sign in page
     When User input phone number "088245593542"
     And User input pin number "123456"
+    Then User is on homepage
 
   @MRN001
+    #ubah dulu di database
   Scenario Outline: Top up any valid provider number without voucher and the balance is not sufficient
     Given User is on homepage
     When User click mobile recharge icon
@@ -65,7 +67,6 @@ Feature: Mobile Recharge
 
   @MRN007
   Scenario: Input mobile phone number but in incorrect format (did not start with 0)
-    Given User is on homepage
     When User click mobile recharge icon
     And User input "<phoneNumber>"
     Then User didn't see provider icon

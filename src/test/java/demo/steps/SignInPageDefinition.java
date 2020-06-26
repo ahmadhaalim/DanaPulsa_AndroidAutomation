@@ -11,10 +11,10 @@ public class SignInPageDefinition {
     SignInPage signIn = new SignInPage();
 
     @Given("User is on sign in page")
-    public void userIsOnSignInPage() throws InterruptedException {
+    public void userIsOnSignInPage() {
         boolean status_1 = signIn.isOnPage();
         Assert.assertTrue(status_1);
-        Thread.sleep(5000);
+
     }
 
     @When("User input phone number {string}")

@@ -7,8 +7,9 @@ public class HomePage {
 
     AndroidPageObject pageObject = new AndroidPageObject();
 
-    public boolean onHomePage() {
-        return pageObject.checkIfDisplayed(HomePageLocator.Promotion_Banner);
+    public boolean onHomePage(){
+        pageObject.waitUntilDisplayed(HomePageLocator.Home_Button);
+        return pageObject.checkIfDisplayed(HomePageLocator.Home_Button);
     }
 
     public void chooseMobileRecharge() {

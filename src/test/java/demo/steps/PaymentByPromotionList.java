@@ -7,8 +7,8 @@ import io.cucumber.java.en.When;
 
 public class PaymentByPromotionList {
 
-    HomePage homePage;
-    PromotionListPage listPage;
+    HomePage homePage = new HomePage();
+    PromotionListPage listPage = new PromotionListPage();
 
     @When("User click view all")
     public void userClickViewAll() {

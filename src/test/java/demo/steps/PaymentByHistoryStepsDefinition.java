@@ -1,6 +1,5 @@
 package demo.steps;
 
-import demo.locator.RechargeInputPhoneNumberPageLocator;
 import demo.pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,16 +9,16 @@ import org.junit.Assert;
 
 public class PaymentByHistoryStepsDefinition {
 
-    HomePage homePage;
-    RechargeInputNumberPage inputNumber;
-    RechargeChooseTopUpPage topUpPage;
-    RechargeChooseVoucherPage chooseVoucherPage;
-    RechargePaymentDetailPage detailPage;
-    RechargePaymentStatusPage statusPage;
-    HistoryPage historyPage;
+    HomePage homePage = new HomePage();
+    RechargeInputNumberPage inputNumber = new RechargeInputNumberPage();
+    RechargeChooseTopUpPage topUpPage = new RechargeChooseTopUpPage();
+    RechargeChooseVoucherPage chooseVoucherPage = new RechargeChooseVoucherPage();
+    RechargePaymentDetailPage detailPage = new RechargePaymentDetailPage();
+    RechargePaymentStatusPage statusPage = new RechargePaymentStatusPage();
+    HistoryPage historyPage = new HistoryPage();
 
     @Given("User is on homepage")
-    public void userIsOnHomepage() {
+    public void userIsOnHomepage() throws InterruptedException {
         Assert.assertTrue(homePage.onHomePage());
     }
 
@@ -50,7 +49,7 @@ public class PaymentByHistoryStepsDefinition {
     }
 
     @Then("User directed to home screen")
-    public void userDirectedToHomeScreen() {
+    public void userDirectedToHomeScreen() throws InterruptedException {
         Assert.assertTrue(homePage.onHomePage());
     }
 

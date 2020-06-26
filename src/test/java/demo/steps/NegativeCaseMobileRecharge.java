@@ -7,8 +7,8 @@ import org.junit.Assert;
 
 public class NegativeCaseMobileRecharge {
 
-    RechargePaymentDetailPage detailPage;
-    RechargeInputNumberPage inputNumberPage;
+    RechargePaymentDetailPage detailPage = new RechargePaymentDetailPage();
+    RechargeInputNumberPage inputNumberPage = new RechargeInputNumberPage();
 
     @Then("User cannot pay the bill")
     public void userCannotPayTheBill() {

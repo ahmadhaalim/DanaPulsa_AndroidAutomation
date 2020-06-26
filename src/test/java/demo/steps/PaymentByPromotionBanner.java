@@ -8,8 +8,8 @@ import io.cucumber.java.en.When;
 
 public class PaymentByPromotionBanner {
 
-    HomePage homePage;
-    PromotionDetailPage detailPage;
+    HomePage homePage = new HomePage();
+    PromotionDetailPage detailPage = new PromotionDetailPage();
 
     @When("User click Promotion Banner")
     public void userClickPromotionBanner() {
