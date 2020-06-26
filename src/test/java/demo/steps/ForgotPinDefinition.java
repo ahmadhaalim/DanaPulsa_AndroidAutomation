@@ -59,16 +59,18 @@ public class ForgotPinDefinition {
 
 
     @And("User input valid otp number with user id {string}")
-    public void userInputValidOtpNumber(String userId) throws InterruptedException {
+    public void userInputValidOtpNumber(String userId) {
+
         Response response = otpController.getOtpNumber(userId);
         String otp = response.path("code").toString();
-        //String otp = "1111";
+
         otpPage.inputOTP(otp);
     }
 
     @And("User click next button on the otp page")
-    public void userClickNextButtonOnTheOtpPage() {
+    public void userClickNextButtonOnTheOtpPage() throws InterruptedException {
         otpPage.clickNextOtp();
+        Thread.sleep(5000);
     }
 
     @And("User input new PIN {string}")
@@ -104,7 +106,7 @@ public class ForgotPinDefinition {
     }
 
     @And("User click the profile menu on the bottom bar")
-    public void userClickTheProfileMenuOnTheBottomBar() {
+    public void userClickTheProfileMenuOnTheBottomBar() throws InterruptedException {
         mainPage.clickProfileMenu();
     }
 
@@ -128,9 +130,9 @@ public class ForgotPinDefinition {
         otpPage.clickResendOtp();
     }
 
-    @And("User input invalid otp number")
-    public void userInputInvalidOtpNumber() {
-        otpPage.inputOTP("1234");
+    @And("User input invalid otp number {string}")
+    public void userInputInvalidOtpNumber(String otp) {
+        otpPage.inputOTP(otp);
     }
 
     @Then("User see display error {string}")
@@ -299,5 +301,10 @@ public class ForgotPinDefinition {
     @And("User turn internet on")
     public void userTurnInternetOn() throws InterruptedException {
         deviceButton.switchInternet();
+    }
+
+    @And("User click yes on the dialog box")
+    public void userClickYesOnTheDialogBox() {
+        displayErrorPage.clickPositive();
     }
 }

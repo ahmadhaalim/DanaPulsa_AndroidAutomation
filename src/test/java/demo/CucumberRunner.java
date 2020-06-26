@@ -8,7 +8,7 @@ import org.junit.runner.RunWith;
         stepNotifications = true,
         plugin = {"json:build/cucumber.json", "pretty", "html:build/result"},
         features = {"src/test/resources/features"},
-        tags = {"@tesuto"}
+        tags = {"@FP-OTP_004"}
 )
 public class CucumberRunner {
 }

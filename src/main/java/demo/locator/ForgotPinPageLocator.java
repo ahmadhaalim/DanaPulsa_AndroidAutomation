@@ -9,13 +9,13 @@ public interface ForgotPinPageLocator {
     By OTP_INPUT = MobileBy.id("otpPIN"); //INPUT OTP
     By RESEND_LABEL = MobileBy.id("tvResendOtpLabel");
     By RESEND_BUTTON = MobileBy.id("btnResendOtp");
-    By NEXT_BUTTON = MobileBy.id("btnPinNext");
+    By NEXT_BUTTON = MobileBy.id("btnChangePinNext");
     By PIN_TITLE = MobileBy.id("tvActivityTitle");
 
 
     By NEW_PIN_LABEL = MobileBy.id("tvPinLabel");
     By NEW_PIN_INPUT = MobileBy.id("pinEntryNewPin"); //INPUT NEW PIN
-    By BACK_BUTTON = MobileBy.id("btnPinBack");
+    By BACK_BUTTON = MobileBy.AccessibilityId("Navigate up");
     By NEW_PIN_WARNING = MobileBy.id(""); //KOSONG
 
     By CONFIRM_PIN_LABEL = MobileBy.id("tvPinConfirmLabel");

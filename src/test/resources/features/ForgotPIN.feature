@@ -28,6 +28,7 @@ Feature: Check the Forgot PIN feature functionality
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the sign out menu
+    And User click yes on the dialog box
     Then User is back at the sign in page
 
 
@@ -54,6 +55,7 @@ Feature: Check the Forgot PIN feature functionality
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the sign out menu
+    And User click yes on the dialog box
     Then User is back at the sign in page
 
   @FP_003
@@ -62,19 +64,44 @@ Feature: Check the Forgot PIN feature functionality
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
-    And User input invalid otp number
-    Then User see display error "Invalid OTP"
+    #DELETE
+    And User click yes on the dialog box
+    And User input invalid otp number "1234"
+    And User click next button on the otp page
+    Then User see display error "incorrect OTP"
+
+  @FP_004-009
+  Scenario Outline: Forgot PIN with invalid OTP (symbols and alphabets)
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #DELETE
+    And User click yes on the dialog box
+    And User input invalid otp number "<OTP>"
+    And User click next button on the otp page
+    Then User see display error "invalid OTP"
+    Examples:
+      | OTP  |
+      | 90*9 |
+      | #909 |
+      | 909+ |
+      | 9.09 |
+      | 9-90 |
+      | P90A |
 
 
-  @FP_004
+  @FP_010
   Scenario: Forgot PIN with empty OTP
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #DELETE
+    And User click yes on the dialog box
     Then User cannot click next the button is disabled
 
-  @FP_005
+  @FP_011
   Scenario: Forgot PIN but inputting with only 2 digits of OTP number
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -84,7 +111,7 @@ Feature: Check the Forgot PIN feature functionality
     And User input two digits otp number with user id "1"
     Then User cannot click next the button is disabled
 
-  @FP_006
+  @FP_012
   Scenario: Forgot PIN but with expired OTP
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -97,7 +124,7 @@ Feature: Check the Forgot PIN feature functionality
     And User click next button on the otp page
     Then User see display error "Code is expired. Please tap Resend button"
 
-  @FP_007
+  @FP_013
   Scenario: Forgot PIN with valid OTP but empty new PIN
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -108,7 +135,7 @@ Feature: Check the Forgot PIN feature functionality
     And User click next button on the otp page
     Then User cannot click next the button is disabled
 
-  @FP_008
+  @FP_014
   Scenario: Forgot PIN with valid OTP but invalid new PIN
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -120,7 +147,7 @@ Feature: Check the Forgot PIN feature functionality
     And User input new PIN "91919"
     Then User cannot click next the button is disabled
 
-  @FP_009-014
+  @FP_015-020
   Scenario Outline: Forgot PIN with valid OTP but invalid new PIN (symbols and alphabets)
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -142,7 +169,7 @@ Feature: Check the Forgot PIN feature functionality
       | 909-09 |
       | P90A9S |
 
-  @FP_015
+  @FP_021
   Scenario: Forgot PIN with valid OTP but empty confirmation PIN
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -155,7 +182,7 @@ Feature: Check the Forgot PIN feature functionality
     And User click next button on the new pin page
     Then User cannot click finish button the button is disabled
 
-  @FP_016
+  @FP_022
   Scenario: Forgot PIN with valid OTP but with incorrect confirmation PIN
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -170,7 +197,30 @@ Feature: Check the Forgot PIN feature functionality
     And User click finish button on the confirmation page
     Then User see warning message on the confirmation page "PIN doesn't match"
 
-  @FP_017
+  @FP_023-028
+  Scenario Outline: Forgot PIN with valid OTP but with incorrect confirmation PIN (symbols and alphabets)
+     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08126022339"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User input new PIN "898989"
+    And User click next button on the new pin page
+    And User input incorrect pin on the confirmation page "<PIN>"
+    And User click finish button on the confirmation page
+    Then User see warning message on the confirmation page "PIN doesn't match"
+    Examples:
+      | PIN    |
+      | 90*909 |
+      | #90909 |
+      | 90909+ |
+      | 9.0909 |
+      | 909-09 |
+      | P90A9S |
+
+  @FP_029
   Scenario: Successfully do Forgot PIN with valid otp and PIN, but Login with Old PIN
     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input registered phone number "08126022339"
@@ -188,7 +238,8 @@ Feature: Check the Forgot PIN feature functionality
     And User input registered phone number "08126022339"
     And User click the sign in button
     And User input old pin number on the page "919191"
-    Then User see warning message on pin page "Invalid PIN"
+#    Then User see warning message on pin page "incorrect PIN"
+    Then User see display error "incorrect PIN"
 
   @FP-OTP_001
   Scenario: Resend button tapped after waiting for 3 minutes
@@ -209,6 +260,8 @@ Feature: Check the Forgot PIN feature functionality
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #DELETE
+    And User click yes on the dialog box
     And User is in otp page
     And User click the back arrow icon on top bar
     Then User is in the pin page
@@ -219,6 +272,8 @@ Feature: Check the Forgot PIN feature functionality
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #DELETE
+    And User click yes on the dialog box
     And User is in otp page
     And User click device back button
     Then User is in the pin page
@@ -229,6 +284,8 @@ Feature: Check the Forgot PIN feature functionality
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #DELETE
+    And User click yes on the dialog box
     And User is in otp page
     And User click home button and reopen the app
     Then User is in otp page
@@ -240,6 +297,8 @@ Feature: Check the Forgot PIN feature functionality
     When User input registered phone number "08126022339"
     And User click the sign in button
     And User click the forgot pin text
+    #DELETE
+    And User click yes on the dialog box
     And User is in otp page
     And User lock the device
     And User unlock the device

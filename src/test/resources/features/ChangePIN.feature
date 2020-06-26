@@ -6,26 +6,29 @@ Feature: Check the Change PIN feature functionality
     Given User in the sign in page
     When User input registered phone number "08126022339"
     And User click the sign in button
-    And User input their pin on the pin page "919191"
+    And User input their pin on the pin page "123456"
     And User is in the main page
 
   @CP_001
   Scenario: Change Pin with valid otp and PIN
     When User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "1"
+    #DELETE
+    And User click yes on the dialog box
+    And User input valid otp number with user id "2048"
     And User click next button on the otp page
-    And User input new PIN "505050"
-    And User click next button on the new pin page
-    And User input the new pin on confirmation page
-    And User click finish button on the confirmation page
-    And User is in the profile page
-    And User click the sign out menu
-    And User in the sign in page
-    And User input registered phone number "08126022339"
-    And User click the sign in button
-    And User input new pin number on the pin page
-    Then User is in the main page
+#    And User input new PIN "505050"
+#    And User click next button on the new pin page
+#    And User input the new pin on confirmation page
+#    And User click finish button on the confirmation page
+#    And User is in the profile page
+#    And User click the sign out menu
+#    And User click yes on the dialog box
+#    And User in the sign in page
+#    And User input registered phone number "08126022339"
+#    And User click the sign in button
+#    And User input new pin number on the pin page
+#    Then User is in the main page
 
   @CP_002
   Scenario: Change Pin using Resend OTP with valid OTP and PIN
@@ -41,6 +44,7 @@ Feature: Check the Change PIN feature functionality
     And User click finish button on the confirmation page
     And User is in the profile page
     And User click the sign out menu
+    And User click yes on the dialog box
     And User in the sign in page
     And User input registered phone number "08126022339"
     And User click the sign in button
@@ -51,24 +55,47 @@ Feature: Check the Change PIN feature functionality
   Scenario: Change PIN with invalid OTP
     When User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input invalid otp number
+    #DELETE
+    And User click yes on the dialog box
+    And User input invalid otp number "1111"
     And User click next button on the otp page
-    Then User see display error "Invalid OTP"
+    Then User see display error "incorrect OTP"
 
-  @CP_004
+  @CP_004-009
+  Scenario Outline: Change PIN with invalid OTP (symbols and alphabets)
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User click the profile menu on the bottom bar
+    And User click the change pin menu
+    #DELETE
+    And User click yes on the dialog box
+    And User input invalid otp number "<OTP>"
+    And User click next button on the otp page
+    Then User see display error "invalid OTP"
+    Examples:
+      | OTP  |
+      | 90*9 |
+      | #909 |
+      | 909+ |
+      | 9.09 |
+      | 9-90 |
+      | P90A |
+
+  @CP_010
   Scenario: Change PIN with empty OTP
     When User click the profile menu on the bottom bar
     And User click the change pin menu
+    #DELETE
+    And User click yes on the dialog box
     Then User cannot click next the button is disabled
 
-  @CP_005
+  @CP_011
   Scenario: Change PIN but inputting with only 2 digits of OTP number
     When User click the profile menu on the bottom bar
     And User click the change pin menu
     And User input two digits otp number with user id "1"
     Then User cannot click next the button is disabled
 
-  @CP_006
+  @CP_012
   Scenario: Change PIN but with expired OTP
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -78,7 +105,7 @@ Feature: Check the Change PIN feature functionality
     And User click next button on the otp page
     Then User see display error "Code is expired. Please tap Resend button"
 
-  @CP_007
+  @CP_013
   Scenario: Change PIN with valid OTP but empty new PIN
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -86,7 +113,7 @@ Feature: Check the Change PIN feature functionality
     And User click next button on the otp page
     Then User cannot click next the button is disabled
 
-  @CP_008
+  @CP_014
   Scenario: Change PIN with valid OTP but invalid new PIN
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -96,7 +123,7 @@ Feature: Check the Change PIN feature functionality
     Then User cannot click next the button is disabled
 
   #probably not working
-  @CP_009-014
+  @CP_015-020
   Scenario Outline: Change PIN with valid OTP but invalid new PIN (symbols and alphabets)
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -114,7 +141,7 @@ Feature: Check the Change PIN feature functionality
       | 515-15 |
       | P51A5S |
 
-  @CP_015
+  @CP_021
   Scenario: Change PIN with valid OTP but empty confirmation PIN
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -124,7 +151,7 @@ Feature: Check the Change PIN feature functionality
     And User click next button on the new pin page
     Then User cannot click finish button the button is disabled
 
-  @CP_016
+  @CP_022
   Scenario: Change PIN with valid OTP but with incorrect confirmation PIN
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -136,7 +163,27 @@ Feature: Check the Change PIN feature functionality
     And User click finish button on the confirmation page
     Then User see warning message on the confirmation page "PIN doesn’t match"
 
-  @CP_017
+  @CP_023-028
+  Scenario Outline: Change PIN with valid OTP but with incorrect confirmation PIN (symbols and alphabets)
+    When User click the profile menu on the bottom bar
+    And User click the change pin menu
+    And User input valid otp number with user id "1"
+    And User click next button on the otp page
+    And User input new PIN "404040"
+    And User click next button on the new pin page
+    And User input incorrect pin on the confirmation page "<PIN>"
+    And User click finish button on the confirmation page
+    Then User see warning message on the confirmation page "PIN doesn’t match"
+    Examples:
+      | PIN    |
+      | 51*515 |
+      | #51515 |
+      | 50505+ |
+      | 5.1515 |
+      | 515-15 |
+      | P51A5S |
+
+  @CP_029
   Scenario: Successfully Change PIN with valid otp and PIN, but Login with Old PIN
     When User click the profile menu on the bottom bar
     And User click the change pin menu
@@ -148,11 +195,12 @@ Feature: Check the Change PIN feature functionality
     And User click finish button on the confirmation page
     And User is in the profile page
     And User click the sign out menu
+    And User click yes on the dialog box
     And User in the sign in page
     And User input registered phone number "08126022339"
     And User click the sign in button
     And User input old pin number on the page "515151"
-    Then User see display error "Invalid PIN"
+    Then User see display error "incorrect PIN"
 
   @CP-OTP_001
   Scenario: Resend button tapped after waiting for 3 minutes

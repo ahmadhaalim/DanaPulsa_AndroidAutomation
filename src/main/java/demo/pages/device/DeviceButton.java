@@ -1,6 +1,7 @@
 package demo.pages.device;
 
 import demo.driver.AndroidDriverInstance;
+import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.connection.ConnectionState;
 import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -13,6 +14,19 @@ public class DeviceButton {
         AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
 
+    public void pressDeviceHome(){
+        AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.HOME));
+    }
+
+    public void pressDeviceRecent(){
+        AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
+    }
+
+    public void tapCenter(){
+        TouchAction touch = new TouchAction(AndroidDriverInstance.androidDriver);
+
+    }
+
     public void pressLockDevice() {
         AndroidDriverInstance.androidDriver.lockDevice();
     }
@@ -21,13 +35,13 @@ public class DeviceButton {
         AndroidDriverInstance.androidDriver.unlockDevice();
     }
 
-    public void pressHomeButton() throws InterruptedException {
+    public void pressHomeButton(){
         try {
             AndroidDriverInstance.androidDriver.runAppInBackground(Duration.ofSeconds(5));
         }catch (Exception e){
             System.out.println(e);
         }
-        Thread.sleep(5000);
+
     }
 
 

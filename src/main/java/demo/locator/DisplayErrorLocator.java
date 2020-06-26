@@ -7,4 +7,5 @@ public interface DisplayErrorLocator {
     By DISPLAY_TITLE = MobileBy.id("tvDialogTitle");
     By DISPLAY_TEXT = MobileBy.id("tvDialogContent");
     By BUTTON_OK = MobileBy.id("btnDialogPositive");
+    By BUTTON_NO = MobileBy.id("btnDialogNegative");
 }

@@ -5,5 +5,5 @@ import org.openqa.selenium.By;
 
 public interface MainPageLocator {
     By MOBILE_CHARGE_BUTTON = MobileBy.id("btnMobileRecharge");
-    By PROFILE_MENU = MobileBy.id("menuProfile");
+    By PROFILE_MENU = MobileBy.id("navigation_profile");
 }

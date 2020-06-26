@@ -22,10 +22,10 @@ public class AndroidDriverInstance {
         caps.setCapability("autoGrantPermissions", true);
         caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",
-                System.getProperty("user.dir") + File.separator + "APP" + File.separator + "TodoApp.apk");
+                System.getProperty("user.dir") + File.separator + "APK" + File.separator + "DANA-Pulsa-1.0.2-develop-debug.apk");
         caps.setCapability("automationName", "UiAutomator2");
-//        caps.setCapability("appWaitActivity", "id.dana.apprentech.danapulsa.ui.login." +
-//                "LoginActivity");
+        caps.setCapability("appWaitActivity", "id.dana.apprentech.danapulsa.ui.login." +
+                "LoginActivity");
         try {
             androidDriver = new AndroidDriver<>(new URL(appiumUrl), caps);
             androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

@@ -12,4 +12,11 @@ public class DisplayErrorPage extends AndroidPageObject {
     public String getErrorText(){
         return AndroidDriverInstance.androidDriver.findElement(DisplayErrorLocator.DISPLAY_TEXT).getText();
     }
+
+    public void clickPositive(){
+        clickOn(DisplayErrorLocator.BUTTON_OK);
+    }
+    public void clickNegative(){
+        clickOn(DisplayErrorLocator.BUTTON_NO);
+    }
 }

@@ -8,7 +8,8 @@ public class MainPage extends AndroidPageObject {
         return checkIfDisplayed(MainPageLocator.MOBILE_CHARGE_BUTTON);
     }
 
-    public void clickProfileMenu(){
+    public void clickProfileMenu() throws InterruptedException {
+        Thread.sleep(8000);
         clickOn(MainPageLocator.PROFILE_MENU);
     }
 
