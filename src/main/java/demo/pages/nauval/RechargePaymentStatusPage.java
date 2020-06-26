@@ -8,7 +8,7 @@ public class RechargePaymentStatusPage implements RechargePaymentStatusPageLocat
     AndroidPageObject pageObject = new AndroidPageObject();
 
     public boolean isOnPage(){
-        return pageObject.checkIfDisplayed(TRANSACTION_STATUS_ICON);
+        return pageObject.waitUntilDisplayed(TRANSACTION_STATUS_ICON);
     }
 
     public String statusPayment(){

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static demo.driver.AndroidDriverInstance.androidDriver;
 
@@ -51,10 +52,10 @@ public class AndroidPageObject {
      * Perform waiting condition until the element is available.
      * @param id locator of element
      */
-    public void waitUntilEnabled(By id) {
+    public boolean waitUntilEnabled(By id) {
         WebDriverWait wait = new WebDriverWait(androidDriver, 5);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
-        element.isEnabled();
+        return element.isEnabled();
     }
 
     /**
@@ -100,6 +101,11 @@ public class AndroidPageObject {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkElement(By locator){
+        List<AndroidElement> createPINText = androidDriver. findElements (locator);
+        return createPINText.size()> 0;
     }
 
 //    public boolean checkIfToastDisplayed(By id) {

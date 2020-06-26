@@ -102,9 +102,9 @@ public class MobileRechargeDefinition {
         detailPage.pickVoucher();
     }
 
-    @And("if {string} is available, user choose no voucher")
-    public void ifIsAvailableUserChooseNoVoucher(String status) {
-        if (status.equals("available")){
+    @And("if {string} is {string}, user choose no voucher")
+    public void ifIsAvailableUserChooseNoVoucher(String status, String actual) {
+        if (status.equals(actual)){
             detailPage.pickVoucher();
             chooseVoucher.noVoucher();
         }

@@ -4,18 +4,18 @@ import demo.locator.nauval.RechargePaymentDetailPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocator {
-    AndroidPageObject pageObject;
+    AndroidPageObject pageObject = new AndroidPageObject();
 
     public boolean isOnPage(){
         return pageObject.checkIfDisplayed(CHECKOUT_PRODUCT);
     }
 
     public boolean voucherUnavailable(){
-        return pageObject.checkIfEnabled(SELECT_VOUCHER);
+        return pageObject.checkElement(SELECT_VOUCHER);
     }
 
     public boolean voucherAvailable(){
-        return pageObject.checkIfEnabled(SELECT_VOUCHER);
+        return pageObject.checkElement(SELECT_VOUCHER);
     }
 
     public void pickVoucher(){

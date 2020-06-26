@@ -26,7 +26,7 @@ public interface RechargePaymentDetailPageLocator {
     By TOOLBAR_MENU = MobileBy.xpath("//android.widget.ImageView[@content-desc='More options']");
     By BACK_BUTTON = MobileBy.AccessibilityId("Navigate up");
     By SELECT_VOUCHER = MobileBy.id("cvVoucher");
-    By PAY_BUTTON = MobileBy.id("btnCheckoutPay");
+    By PAY_BUTTON = MobileBy.id("btnPay");
     By CANCEL_BUTTON = MobileBy.id("content");
 
     By CANCEL_YES_BUTTON = MobileBy.id("btnDialogPositive");

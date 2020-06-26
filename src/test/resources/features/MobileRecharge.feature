@@ -33,7 +33,7 @@ Feature: Mobile Recharge
     And User choose "<topUp>" nominal
     And User see payment detail page
     And User check status voucher availability "<statusVoucher>"
-    And if "<statusVoucher>" is available, user choose no voucher
+    And if "<statusVoucher>" is "available", user choose no voucher
     And User pay the bill
     And User see payment success page
     And User see payment status "<statusPayment>"
@@ -261,3 +261,22 @@ Feature: Mobile Recharge
     And User choose from recent number
     And User choose "5K" nominal
     Then User see payment detail page
+
+  @Trial-1
+  Scenario Outline: Top up (10 digit and 13 digit phone number) without voucher
+    Given User is on homepage
+    When User click mobile recharge icon
+    And User input "<phoneNumber>"
+    And User choose "<topUp>" nominal
+    And User see payment detail page
+    And User check status voucher availability "<statusVoucher>"
+    And if "<statusVoucher>" is "available", user choose no voucher
+    And User pay the bill
+    And User see payment success page
+    And User see payment status "<statusPayment>"
+    And User click back to home button
+    Then User is on homepage
+    Examples:
+      | phoneNumber | topUp | statusVoucher | statusPayment |
+      | 0895200000  | 5.000 | unavailable   | Completed     |
+#      | 0851000000  | 15.000 | available     | success       |
