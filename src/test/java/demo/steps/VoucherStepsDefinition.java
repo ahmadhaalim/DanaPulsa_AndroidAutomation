@@ -19,11 +19,6 @@ public class VoucherStepsDefinition {
 
     String expectedValue = "";
 
-    @When("User click voucher button")
-    public void userClickVoucherButton() {
-        homePage.clickVoucherButton();
-    }
-
     @Then("User directed to voucher screen")
     public void userDirectedToVoucherScreen() {
         Assert.assertTrue(voucherPage.isOnPage());

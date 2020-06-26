@@ -6,20 +6,19 @@ Feature: Home Feature Functionality Check
 #[Warning] Please use a new fresh account, which no transaction has been made before!!!
 
   Background:
-    Given User is on sign in page
-    #Change the phone number according your account
+    Given User directed to "sign in" screen
+    #Change the phone number according your data table
     When User input phone number "08555333444"
-    And User click sign in button
-    Then User directed to input pin screen
-    When User input pin "123456"
-    Then User directed to home screen
-
+    And User tap sign in button while internet is "on"
+    Then User directed to "input pin" screen
+    When User input pin "123456" while internet is "on"
+    Then User directed to "home" screen
 
   #[WARNING] Run this scenario first before other scenarios!
   @HISC001 @HISC010 @HISC011
   Scenario Outline: User doesn't have in progress or completed transaction
-    When User click history button
-    Then User directed to history screen
+    When User tap "history" menu button while internet is "on"
+    Then User will directed to "history" screen
     When User click "<tab>" tab on history screen
     Then User see "<message>" on history screen
     Examples:

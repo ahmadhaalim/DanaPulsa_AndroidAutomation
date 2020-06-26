@@ -43,9 +43,10 @@ public class AndroidDeviceUtilities {
     public void reloadScreen() throws InterruptedException {
         Thread.sleep(3000);
         TouchAction touch = new TouchAction(androidDriver);
-        touch.press(PointOption.point(200,200))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(PointOption.point(200,500)).release().perform();
+        //Change the coordinate according your screen resolution (center of it)
+        touch.press(PointOption.point(500,500))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(5000)))
+                .moveTo(PointOption.point(500,1000)).release().perform();
     }
 
     public String setAndGetClipboardData(String text){

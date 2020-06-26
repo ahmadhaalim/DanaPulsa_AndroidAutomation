@@ -62,32 +62,6 @@ public class GeneralStepsDefinition{
         androidDeviceUtilities.toggleData();
     }
 
-    @Then("User directed to {string} screen")
-    public void userDirectedToScreen(String screenName) throws InterruptedException {
-        if(screenName.equalsIgnoreCase("sign in")){
-            Assert.assertTrue(signInPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("input pin")){
-            Assert.assertTrue(signInInputPinPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("forgot pin")) {
-            Assert.assertTrue(forgotPinPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("home")) {
-            Assert.assertTrue(homePage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("profile")) {
-            Assert.assertTrue(profilePage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("sign up")) {
-            Assert.assertTrue(signUpPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("mobile recharge")) {
-            Assert.assertTrue(mobileRechargePage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("promotion list")) {
-            Assert.assertTrue(promotionListPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("promotion detail")) {
-            Assert.assertTrue(promotionDetailPage.isOnPage());
-        } else if(screenName.equalsIgnoreCase("device home")){
-            String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
-            Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
-        }
-        Thread.sleep(5000);
-    }
 
     @When("User tap ok button on warning dialog box")
     public void userTapOkButtonOnWarningDialogBox() {

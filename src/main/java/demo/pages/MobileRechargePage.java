@@ -21,6 +21,7 @@ public class MobileRechargePage extends AndroidPageObject {
     public void checkPulsaNominal() {
         waitUntilDisplayed(MobileRechargePageLocator.Pulsa_Choices);
     }
+
     public void choosePulsaNominal(String pulsaNominal) {
         List<AndroidElement> value = AndroidDriverInstance.androidDriver
                 .findElements(MobileRechargePageLocator.Pulsa_Value);

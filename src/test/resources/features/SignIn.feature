@@ -22,7 +22,7 @@ Feature: Sign In Feature Functionality Check
   Using unregistered phone number
     When User input phone number "<phone>"
     And User tap sign in button while internet is "<state>"
-    Then User see warning message pop up "<message>" on "sign in" screen
+    Then User see warning message pop up "<message>"
     Examples:
       | phone        | state | message                |
       # [@SI002] Failed to sign in because internet problem at Sign In screen
@@ -37,7 +37,7 @@ Feature: Sign In Feature Functionality Check
     And User tap sign in button while internet is "on"
     Then User directed to "input pin" screen
     When User input pin "<pin>" while internet is "<state>"
-    Then User see warning message pop up "<message>" on "input pin" screen
+    Then User see warning message pop up "<message>"
     Examples:
       | phone       | pin    | state | message          |
       # [@SI003] Failed to sign in because using invalid PIN

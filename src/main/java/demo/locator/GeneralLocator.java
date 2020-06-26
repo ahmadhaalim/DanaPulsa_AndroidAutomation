@@ -7,7 +7,7 @@ public interface GeneralLocator {
     By ErrorDialog_Text = MobileBy.id("tvDialogContent");
     By ErrorDialog_OK_Button = MobileBy.id("btnDialogPositive");
     By TOAST_POPUP = MobileBy.xpath("/hierarchy/android.widget.Toast");
-    By Back_Button = MobileBy.xpath("//android.widget.ImageButton[@content-desc=\"Navigate up\"]");
+    By Back_Button = MobileBy.AccessibilityId("Navigate up");
     By ErrorMessage_Text = MobileBy.id("textinput_error");
     By ProfileMenu_Button = MobileBy.id("navigation_profile");
     By VoucherMenu_Button = MobileBy.id("navigation_voucher");

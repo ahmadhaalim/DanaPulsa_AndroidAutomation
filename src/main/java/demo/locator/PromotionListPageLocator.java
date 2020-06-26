@@ -5,8 +5,7 @@ import org.openqa.selenium.By;
 
 public interface PromotionListPageLocator {
 
-    By Promotion_Banner = MobileBy.id("rvPromotion");
-    By PromotionList_Title = MobileBy.id("tvActivityTitle");
-    By Back_Button = MobileBy.id("btnBack");
-    By Warning_Message = MobileBy.id("");
+    By PromotionBanner_Image = MobileBy.xpath("(//android.widget.ImageView[@content-desc=\"image promotion\"])[1]");
+    By PromotionBanner_Title = MobileBy.id("tvPromotionItemTitle");
+    By ErrorMessage_Text = MobileBy.id("tvErrorMessage");
 }

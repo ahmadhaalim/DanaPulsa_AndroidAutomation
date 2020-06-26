@@ -15,15 +15,9 @@ public class HistoryStepsDefinition {
     HistoryPage historyPage = new HistoryPage();
     TransactionDetailPage transactionDetailPage = new TransactionDetailPage();
 
+    @Then("User will directed to {string} screen")
+    public void userWillDirectedToHistoryScreen() {
 
-    @When("User click history button")
-    public void userClickHistoryButton() {
-        homePage.clickHistoryButton();
-    }
-
-    @Then("User directed to history screen")
-    public void userDirectedToHistoryScreen() {
-        Assert.assertTrue(historyPage.isOnPage());
     }
 
     @And("User see {string} info")
@@ -153,4 +147,6 @@ public class HistoryStepsDefinition {
     public void userClickOneOfCompletedTransactionSummary() {
         historyPage.clickOneCompletedTransaction();
     }
+
+
 }

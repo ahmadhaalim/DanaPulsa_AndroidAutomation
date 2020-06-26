@@ -15,6 +15,7 @@ public class SignInStepsDefinition {
     SignInPage signInPage = new SignInPage();
     SignInInputPinPage signInInputPinPage = new SignInInputPinPage();
     ForgotPinPage forgotPinPage = new ForgotPinPage();
+    HomePage homePage = new HomePage();
     GeneralPage generalPage = new GeneralPage();
 
     @Then("User directed to {string} screen")
@@ -25,6 +26,8 @@ public class SignInStepsDefinition {
             Assert.assertTrue(signInInputPinPage.isOnPage());
         } else if(screenName.equalsIgnoreCase("forgot pin")) {
             Assert.assertTrue(forgotPinPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("home")) {
+            Assert.assertTrue(homePage.isOnPage());
         } else if(screenName.equalsIgnoreCase("device home")){
             String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
             Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
@@ -83,8 +86,8 @@ public class SignInStepsDefinition {
         }
     }
 
-    @Then("User see warning message pop up {string} on {string} screen")
-    public void userSeeWarningMessagePopUpOnScreen(String expected, String screen) {
+    @Then("User see warning message pop up {string}")
+    public void userSeeWarningMessagePopUpOnScreen(String expected) {
         String actual = generalPage.getWarningMessagePopUpText();
         Assert.assertEquals(expected, actual);
         generalPage.clickWarningMessagePopUpOkButton();
