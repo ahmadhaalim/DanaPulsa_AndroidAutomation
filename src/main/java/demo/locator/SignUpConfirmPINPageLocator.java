@@ -9,9 +9,9 @@ public interface SignUpConfirmPINPageLocator {
     By TEXT_CONFIRM_PIN = MobileBy.id("tvRegisterLabelConfirmPin");
 
     // Custom View
-    By EDIT_CONFIRM_PIN = MobileBy.id("pinRegisterConfirm");
+    By EDIT_CONFIRM_PIN = MobileBy.id("pinEntryConfirmRegister");
 
     // Button
-    By BUTTON_BACK = MobileBy.id("btnRegisterBack");
-    By BUTTON_FINISH = MobileBy.id("btnRegisterFinish");
+    By BUTTON_BACK = MobileBy.AccessibilityId("Navigate up");
+    By BUTTON_FINISH = MobileBy.id("btnRegisterNext");
 }

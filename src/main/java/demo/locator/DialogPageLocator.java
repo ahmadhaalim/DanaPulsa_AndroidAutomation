@@ -11,4 +11,5 @@ public interface DialogPageLocator {
 
     // Button
     By BUTTON_DIALOG_OK = MobileBy.id("btnDialogPositive");
+    By BUTTON_DIALOG_NO = MobileBy.id("btnDialogNegative");
 }

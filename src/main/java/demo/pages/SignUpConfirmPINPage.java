@@ -7,8 +7,6 @@ import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebElement;
 import pageobjects.AndroidPageObject;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class SignUpConfirmPINPage extends AndroidPageObject implements SignUpConfirmPINPageLocator {
@@ -32,15 +30,6 @@ public class SignUpConfirmPINPage extends AndroidPageObject implements SignUpCon
 
     public boolean finishButtonDisabled() {
         return !checkIfEnabled(BUTTON_FINISH);
-    }
-
-    public boolean warningMessageShown() throws IOException, URISyntaxException {
-        String edTextWarning = getReferenceImageB64("confirm-pin-warning.png");
-        return checkElementByImage(edTextWarning);
-    }
-
-    public String getWarningMessage() {
-        return "PIN doesn't match";
     }
 
     public void pressAndHoldInputField() throws InterruptedException {

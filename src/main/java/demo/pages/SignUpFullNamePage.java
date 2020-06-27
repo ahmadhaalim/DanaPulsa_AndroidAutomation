@@ -6,8 +6,6 @@ import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebElement;
 import pageobjects.AndroidPageObject;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class SignUpFullNamePage extends AndroidPageObject implements SignUpFullNamePageLocator {
@@ -39,22 +37,15 @@ public class SignUpFullNamePage extends AndroidPageObject implements SignUpFullN
         Thread.sleep(1000);
     }
 
-    public void tapPaste() throws InterruptedException {
-        WebElement fullNameField = androidDriver.findElement(EDIT_FULL_NAME);
-        pasteToField(fullNameField);
-        Thread.sleep(1000);
-    }
-
     public String getFieldText() {
         return androidDriver.findElement(EDIT_FULL_NAME).getText();
     }
 
-    public boolean warningMessageShown() throws IOException, URISyntaxException {
-        String edTextWarning = getReferenceImageB64("full-name-warning.png");
-        return checkElementByImage(edTextWarning);
+    public boolean warningIconShown() {
+        return waitUntilDisplayed(ICON_WARNING);
     }
 
     public String getWarningMessage() {
-        return "3-20 characters and alphabet only";
+        return androidDriver.findElement(TEXT_WARNING).getText();
     }
 }

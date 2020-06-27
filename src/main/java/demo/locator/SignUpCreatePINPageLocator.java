@@ -9,9 +9,9 @@ public interface SignUpCreatePINPageLocator {
     By TEXT_CREATE_PIN = MobileBy.id("tvRegisterLabelPin");
 
     // Custom View
-    By EDIT_CREATE_PIN = MobileBy.id("pinRegister");
+    By EDIT_CREATE_PIN = MobileBy.id("pinEntryRegister");
 
     // Button
-    By BUTTON_BACK = MobileBy.id("btnRegisterBack");
+    By BUTTON_BACK = MobileBy.AccessibilityId("Navigate up");
     By BUTTON_NEXT = MobileBy.id("btnRegisterNext");
 }

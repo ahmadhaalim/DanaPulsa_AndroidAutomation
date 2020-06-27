@@ -7,8 +7,6 @@ import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.WebElement;
 import pageobjects.AndroidPageObject;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 
 public class SignUpCreatePINPage extends AndroidPageObject implements SignUpCreatePINPageLocator {
@@ -36,15 +34,6 @@ public class SignUpCreatePINPage extends AndroidPageObject implements SignUpCrea
 
     public String getCustomViewText() {
         return androidDriver.findElement(EDIT_CREATE_PIN).getText();
-    }
-
-    public boolean warningMessageShown() throws IOException, URISyntaxException {
-        String edTextWarning = getReferenceImageB64("create-pin-warning.png");
-        return checkElementByImage(edTextWarning);
-    }
-
-    public String getWarningMessage() {
-        return "PIN format is invalid";
     }
 
     public void pressAndHoldInputField() throws InterruptedException {

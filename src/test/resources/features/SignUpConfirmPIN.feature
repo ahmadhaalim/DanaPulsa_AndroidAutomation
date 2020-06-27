@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# PLEASE TURN ON YOUR DEVICE SCREEN LOCK TO SWIPE BEFORE EXECUTE THIS FEATURE
+# by go to Settings > Security > Screen Lock > Swipe
+# -----------------------------------------------------------------------------
+
 @Android @SignUpConfirmPIN
 Feature: Functionality on Sign up - Confirm PIN page
 
@@ -47,11 +52,5 @@ Feature: Functionality on Sign up - Confirm PIN page
   Scenario: Use data from clipboard to fill Confirm PIN field
     When User has copied "500505" to the clipboard
     And User press and hold on "Confirm PIN" input field
-    Then User cannot paste clipboard data because the Paste button is not shown
-
-  @SUCP007
-  Scenario: Finish the registration by tapping Finish button but the internet connection is lost
-    When The device's internet connection is turned off
-    And User input "500505" on "Confirm PIN" page
-    And User tap Finish button on Confirm PIN page
-    Then User see error message "Connection error" because connection issue
+    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
+    Then User cannot paste clipboard data because the "Android 10.0" Paste button is not shown

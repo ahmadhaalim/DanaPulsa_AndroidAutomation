@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# PLEASE TURN ON YOUR DEVICE SCREEN LOCK TO SWIPE BEFORE EXECUTE THIS FEATURE
+# by go to Settings > Security > Screen Lock > Swipe
+# -----------------------------------------------------------------------------
+
 @Android @SignUpEmail
 Feature: Functionality on Sign up - Email page
 
@@ -12,7 +17,7 @@ Feature: Functionality on Sign up - Email page
   Scenario: Use data from clipboard to fill Email input field
     Given User has copied "morgenstein@co.uk" to the clipboard
     When User press and hold on "Email" input field
-    And User paste clipboard data to "Email" input field by tapping Paste
+    And User paste clipboard data by tapping "Android 10.0" Paste button
     Then User see "morgenstein@co.uk" is shown in "Email" input field
 
   @SUE002
@@ -47,21 +52,21 @@ Feature: Functionality on Sign up - Email page
   @SUE007-SUE021
   Scenario Outline: Showing the warning message by inputting invalid Email
     When User input "<email>" on "Email" page
-    Then User see warning message "Email format is invalid" on "Email" page
+    Then User see warning message "<warning_message>" on "Email" page
     Examples:
-      | email                      |
-      |                            |
-      | zakiakhmad                 |
-      | zakifaridzan.@gmail.com    |
-      | zaki akhmad@gmail.com      |
-      | zaki!$#akhmadf20@gmail.com |
-      | .zakiakhmad@gmail.com      |
-      | zakiakhmadgmail.com        |
-      | zakiakhmad@                |
-      | zakiakhmad@gmail           |
-      | zakiakhmad@.gmail.com      |
-      | zakiakhmad@@gmail.com      |
-      | zaki..akhmad@gmail.com     |
-      | zaki.akhmad@gmail..com     |
-      | zakifaridzan@gmail.com.    |
-      | zakiakhmad@gmail.c         |
+      | email                      | warning_message         |
+      |                            | Field must be filled    |
+      | zakiakhmad                 | Email format is invalid |
+#      | zakifaridzan.@gmail.com    | Email format is invalid |
+      | zaki akhmad@gmail.com      | Email format is invalid |
+      | zaki!$#akhmadf20@gmail.com | Email format is invalid |
+#      | .zakiakhmad@gmail.com      | Email format is invalid |
+      | zakiakhmadgmail.com        | Email format is invalid |
+      | zakiakhmad@                | Email format is invalid |
+      | zakiakhmad@gmail           | Email format is invalid |
+      | zakiakhmad@.gmail.com      | Email format is invalid |
+      | zakiakhmad@@gmail.com      | Email format is invalid |
+#      | zaki..akhmad@gmail.com     | Email format is invalid |
+      | zaki.akhmad@gmail..com     | Email format is invalid |
+      | zakifaridzan@gmail.com.    | Email format is invalid |
+      | zakiakhmad@gmail.c         | Email format is invalid |

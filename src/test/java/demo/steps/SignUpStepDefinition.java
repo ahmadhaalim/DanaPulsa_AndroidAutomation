@@ -3,11 +3,13 @@ package demo.steps;
 import demo.pages.*;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import pageobjects.AndroidPageObject;
+
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -70,7 +72,13 @@ public class SignUpStepDefinition extends AndroidPageObject {
     public void userInputOnPage(String input, String page) {
         switch (page) {
             case "Full Name":
-                signUpFullNamePage.inputFullName(input);
+                if (input.equals("(threeSpaces)")) {
+                    signUpFullNamePage.inputFullName("   ");
+                } else if (input.equals("(space)Z(space)")) {
+                    signUpFullNamePage.inputFullName(" Z ");
+                } else {
+                    signUpFullNamePage.inputFullName(input);
+                }
                 break;
             case "Email":
                 signUpEmailPage.inputEmail(input);
@@ -146,7 +154,8 @@ public class SignUpStepDefinition extends AndroidPageObject {
         if (dialogPage.dialogIsShown()) {
             String actualErrorMsg = dialogPage.getErrorMessage();
             Assert.assertEquals(errorMsg, actualErrorMsg);
-        }
+            dialogPage.tapOKButton();
+        } else { Assert.fail("The dialog box didn't show up"); }
     }
 
     @Then("User cannot proceed because Next button on {string} page is not clickable")
@@ -205,24 +214,25 @@ public class SignUpStepDefinition extends AndroidPageObject {
         }
     }
 
-    @When("User paste clipboard data to {string} input field by tapping Paste")
-    public void userPasteClipboardDataToInputFieldByTappingPaste(String field) throws InterruptedException {
-        switch (field) {
-            case "Full Name":
-                signUpFullNamePage.tapPaste();
+    @When("User paste clipboard data by tapping {string} Paste button")
+    public void userPasteClipboardDataToInputFieldByTappingPaste(String androidVersion) throws IOException, URISyntaxException {
+        switch (androidVersion) {
+            case "Android 10.0":
+                tapOnImage("paste-10.0.png");
                 break;
-            case "Email":
-                signUpEmailPage.tapPaste();
+            case "Android 8.0":
+                tapOnImage("paste-8.0.png");
                 break;
-            case "Phone Number":
-                signUpPhoneNumberPage.tapPaste();
+            case "Android 6.0":
+                tapOnImage("paste-6.0.png");
                 break;
             default: break;
         }
     }
 
     @Then("User see {string} is shown in {string} input field")
-    public void userSeeIsShownInInputField(String clipboardData, String field) {
+    public void userSeeIsShownInInputField(String clipboardData, String field) throws InterruptedException {
+        Thread.sleep(2000);
         switch (field) {
             case "Full Name":
                 String textInFullNameField = signUpFullNamePage.getFieldText();
@@ -241,7 +251,8 @@ public class SignUpStepDefinition extends AndroidPageObject {
     }
 
     @When("User tap Back button on {string} page")
-    public void userTapBackButtonOnPage(String page) {
+    public void userTapBackButtonOnPage(String page) throws InterruptedException {
+        Thread.sleep(1000);
         switch (page) {
             case "Full Name":
                 signUpFullNamePage.tapBackButton();
@@ -289,13 +300,14 @@ public class SignUpStepDefinition extends AndroidPageObject {
     public void userTapTheDeviceSButton(String deviceButton) throws InterruptedException {
         switch (deviceButton) {
             case "Back":
+                Thread.sleep(2000);
                 androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
                 break;
             case "Home":
                 androidDriver.pressKey(new KeyEvent(AndroidKey.HOME));
-                Thread.sleep(3000);
                 break;
             case "Overview":
+                Thread.sleep(3000);
                 androidDriver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
                 break;
             default: break;
@@ -304,63 +316,57 @@ public class SignUpStepDefinition extends AndroidPageObject {
 
     @When("User tap the app on the device's overview")
     public void userTapTheAppOnTheDeviceSOverview() throws InterruptedException {
+        Thread.sleep(1000);
         tapOnCenter();
         Thread.sleep(2000);
     }
 
     @When("User lock the device")
-    public void userLockTheDevice() throws InterruptedException {
+    public void userLockTheDevice() {
         androidDriver.pressKey(new KeyEvent(AndroidKey.POWER));
-        Thread.sleep(5000);
     }
 
     @When("User unlock the device by swiping up the screen")
     public void userUnlockTheDeviceBySwipingUpTheScreen() throws InterruptedException {
+        Thread.sleep(5000);
         androidDriver.pressKey(new KeyEvent(AndroidKey.POWER));
         swipeUp();
         Thread.sleep(2000);
     }
 
     @When("User close the app")
-    public void userCloseTheApp() throws InterruptedException {
+    public void userCloseTheApp() {
         String appPackage = androidDriver.getCurrentPackage();
         androidDriver.terminateApp(appPackage);
-        Thread.sleep(3000);
     }
 
     @When("User open the app")
-    public void userOpenTheApp() {
-        String appPackage = androidDriver.getCurrentPackage();
-        androidDriver.activateApp(appPackage);
+    public void userOpenTheApp() throws InterruptedException {
+        Thread.sleep(3000);
+        androidDriver.activateApp("id.dana.apprentech.danapulsa.develop");
     }
 
     @Then("User see warning message {string} on {string} page")
-    public void userSeeWarningMessageOnPage(String warningMsg, String page) throws IOException, URISyntaxException {
+    public void userSeeWarningMessageOnPage(String warningMsg, String page) {
         switch (page) {
             case "Full Name":
-                if (signUpFullNamePage.warningMessageShown()) {
-                    Assert.assertEquals(warningMsg, signUpFullNamePage.getWarningMessage());
-                }
+                if (signUpFullNamePage.warningIconShown()) {
+                    String actualWarningMsg = signUpFullNamePage.getWarningMessage();
+                    Assert.assertEquals(warningMsg, actualWarningMsg);
+                } else { Assert.fail("Warning icon didn't show up"); }
                 break;
             case "Email":
-                if (signUpEmailPage.warningMessageShown()) {
-                    Assert.assertEquals(warningMsg, signUpEmailPage.getWarningMessage());
-                }
+                if (signUpEmailPage.warningIconShown()) {
+                    String actualWarningMsg = signUpEmailPage.getWarningMessage();
+                    Assert.assertEquals(warningMsg, actualWarningMsg);
+                } else { Assert.fail("Warning icon didn't show up"); }
                 break;
             case "Phone Number":
-                if (signUpPhoneNumberPage.warningMessageShown()) {
-                    Assert.assertEquals(warningMsg, signUpPhoneNumberPage.getWarningMessage());
-                }
+                if (signUpPhoneNumberPage.warningIconShown()) {
+                    String actualWarningMsg = signUpPhoneNumberPage.getWarningMessage();
+                    Assert.assertEquals(warningMsg, actualWarningMsg);
+                } else { Assert.fail("Warning icon didn't show up"); }
                 break;
-            case "Create PIN":
-                if (signUpCreatePINPage.warningMessageShown()) {
-                    Assert.assertEquals(warningMsg, signUpCreatePINPage.getWarningMessage());
-                }
-                break;
-            case "Confirm PIN":
-                if (signUpConfirmPINPage.warningMessageShown()) {
-                    Assert.assertEquals(warningMsg, signUpConfirmPINPage.getWarningMessage());
-                }
             default: break;
         }
     }
@@ -378,14 +384,52 @@ public class SignUpStepDefinition extends AndroidPageObject {
         if (dialogPage.dialogIsShown()) {
             String actualErrorMsg = dialogPage.getErrorMessage();
             Assert.assertEquals(errorMsg, actualErrorMsg);
-        }
+        } else { Assert.fail("The dialog box didn't show up"); }
+        dialogPage.tapOKButton();
+        // Turning on the device's internet connection
         androidDriver.toggleWifi();
         androidDriver.toggleData();
+        Thread.sleep(15000);
     }
 
-    @Then("User cannot paste clipboard data because the Paste button is not shown")
-    public void userCannotPasteClipboardDataBecauseThePasteButtonIsNotShown() {
-        boolean btnPasteShown = checkElementByImage("paste-api29.png");
-        Assert.assertFalse(btnPasteShown);
+    @Then("User cannot paste clipboard data because the {string} Paste button is not shown")
+    public void userCannotPasteClipboardDataBecauseThePasteButtonIsNotShown(String androidVersion) throws IOException, URISyntaxException {
+        switch (androidVersion) {
+            case "Android 10.0":
+                boolean btnPasteAPI29Shown = checkElementByImage("paste-10.0.png");
+                Assert.assertFalse(btnPasteAPI29Shown);
+                break;
+            case "Android 8.0":
+                boolean btnPasteAPI26Shown = checkElementByImage("paste-8.0.png");
+                Assert.assertFalse(btnPasteAPI26Shown);
+                break;
+            case "Android 6.0":
+                boolean btnPasteAPI23Shown = checkElementByImage("paste-6.0.png");
+                Assert.assertFalse(btnPasteAPI23Shown);
+                break;
+        }
+    }
+
+    @And("User tap YES button on dialog box")
+    public void userTapYESButtonOnDialogBox() {
+        dialogPage.tapOKButton();
+    }
+
+    @Then("User see on {string} field is not {string} because input length can't be more than {int}")
+    public void userSeeOnFieldIsNotBecauseCannotInputMoreThan(String field, String input, int boundaryValue) {
+        switch (field) {
+            case "Full Name":
+                String fullNameOnField = signUpFullNamePage.getFieldText();
+                int lengthOfCharactersOnField = fullNameOnField.length();
+                Assert.assertNotEquals(input.length(), lengthOfCharactersOnField);
+                Assert.assertEquals(input.substring(0, boundaryValue), fullNameOnField);
+                break;
+            case "Phone Number":
+                String phoneNumberOnField = signUpPhoneNumberPage.getFieldText();
+                int lengthOfDigitsOnField = phoneNumberOnField.length();
+                Assert.assertNotEquals(input.length(), lengthOfDigitsOnField);
+                Assert.assertEquals(input.substring(0, boundaryValue), phoneNumberOnField);
+                break;
+        }
     }
 }

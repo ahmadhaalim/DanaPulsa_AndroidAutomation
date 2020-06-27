@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# PLEASE TURN ON YOUR DEVICE SCREEN LOCK TO SWIPE BEFORE EXECUTE THIS FEATURE
+# by go to Settings > Security > Screen Lock > Swipe
+# -----------------------------------------------------------------------------
+
 @Android @SignUpPhoneNumber
 Feature: Functionality on Sign up - Phone Number page
 
@@ -14,7 +19,7 @@ Feature: Functionality on Sign up - Phone Number page
   Scenario: Use data from clipboard to fill Phone Number input field
     Given User has copied "081120203030" to the clipboard
     When User press and hold on "Phone Number" input field
-    And User paste clipboard data to "Phone Number" input field by tapping Paste
+    And User paste clipboard data by tapping "Android 10.0" Paste button
     Then User see "081120203030" is shown in "Phone Number" input field
 
   @SUPN002
@@ -46,20 +51,24 @@ Feature: Functionality on Sign up - Phone Number page
     And User open the app
     Then User is on "Sign In" page
 
-  @SUPN007-SUPN017
+  @SUPN007
+  Scenario: Validate the Phone Number when user input 14 digits on Phone Number field
+    When User input "08122317661700" on "Phone Number" page
+    Then User see on "Phone Number" field is not "08122317661700" because input length can't be more than 13
+
+  @SUPN008-SUPN017
   Scenario Outline: Showing the warning message by inputting invalid Phone Number
     When User input "<phone_number>" on "Phone Number" page
-    Then User see warning message "10-13 digits and start with 0" on "Phone Number" page
+    Then User see warning message "<warning_message>" on "Phone Number" page
     Examples:
-      | phone_number   |
-      |                |
-      | +628122317663  |
-      | 628122317663   |
-      | 081223176      |
-      | 08122317661700 |
-#      | nomortelepon   |
-#      | A812231766B    |
-      | ._,--,_._-.    |
-      | 0812231766-.   |
-      | -08122317664   |
-      | 0812-2317-661  |
+      | phone_number   | warning_message               |
+      |                | Field must be filled          |
+      | +628122317663  | 10–13 digits and start with 0 |
+      | 628122317663   | 10–13 digits and start with 0 |
+      | 081223176      | 10–13 digits and start with 0 |
+      | nomortelepon   | 10–13 digits and start with 0 |
+      | A812231766B    | 10–13 digits and start with 0 |
+      | ._,--,_._-.    | 10–13 digits and start with 0 |
+      | 0812231766-.   | 10–13 digits and start with 0 |
+      | -08122317664   | 10–13 digits and start with 0 |
+      | 0812-2317-661  | 10–13 digits and start with 0 |

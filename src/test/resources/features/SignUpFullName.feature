@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# PLEASE TURN ON YOUR DEVICE SCREEN LOCK TO SWIPE BEFORE EXECUTE THIS FEATURE
+# by go to Settings > Security > Screen Lock > Swipe
+# -----------------------------------------------------------------------------
+
 @Android @SignUpFullName
 Feature: Functionality on Sign up - Full Name page
 
@@ -10,7 +15,7 @@ Feature: Functionality on Sign up - Full Name page
   Scenario: Use data from clipboard to fill Full Name input field
     Given User has copied "Morgenstein" to the clipboard
     When User press and hold on "Full Name" input field
-    And User paste clipboard data to "Full Name" input field by tapping Paste
+    And User paste clipboard data by tapping "Android 10.0" Paste button
     Then User see "Morgenstein" is shown in "Full Name" input field
 
   @SUFN002
@@ -61,16 +66,22 @@ Feature: Functionality on Sign up - Full Name page
     And User open the app
     Then User is on "Sign In" page
 
-  @SUFN008-SUFN014
+  @SUFN008
+  Scenario: Validate the Full Name when user input 21 characters on Full Name field
+    When User input "Zaki Akhmad Faridzann" on "Full Name" page
+    Then User see on "Full Name" field is not "Zaki Akhmad Faridzann" because input length can't be more than 20
+
+  @SUFN009-SUFN014
   Scenario Outline: Showing the warning message by inputting invalid Full Name
     When User input "<full_name>" on "Full Name" page
-    Then User see warning message "3-20 characters and alphabet only" on "Full Name" page
+    Then User see warning message "<warning_message>" on "Full Name" page
     Examples:
-      | full_name             |
-      |                       |
-      | Za                    |
-      | Zaki Akhmad Faridzann |
-      | Zaki123               |
-      | 123456                |
-      | Zaki!@                |
-      | Zaki🙃                |
+      | full_name             | warning_message                   |
+      |                       | Field must be filled              |
+      | (threeSpaces)         | 3–20 characters and alphabet only |
+      | (space)Z(space)       | 3–20 characters and alphabet only |
+      | Za                    | 3–20 characters and alphabet only |
+      | Zaki123               | 3–20 characters and alphabet only |
+      | 123456                | 3–20 characters and alphabet only |
+      | Zaki!@                | 3–20 characters and alphabet only |
+      | Zaki🙃                | 3–20 characters and alphabet only |

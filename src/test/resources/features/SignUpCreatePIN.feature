@@ -1,3 +1,8 @@
+# -----------------------------------------------------------------------------
+# PLEASE TURN ON YOUR DEVICE SCREEN LOCK TO SWIPE BEFORE EXECUTE THIS FEATURE
+# by go to Settings > Security > Screen Lock > Swipe
+# -----------------------------------------------------------------------------
+
 @Android @SignUpCreatePIN
 Feature: Functionality on Sign up - Create PIN page
   
@@ -45,4 +50,5 @@ Feature: Functionality on Sign up - Create PIN page
   Scenario: Use data from clipboard to fill PIN field
     When User has copied "500505" to the clipboard
     And User press and hold on "Create PIN" input field
-    Then User cannot paste clipboard data because the Paste button is not shown
+    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
+    Then User cannot paste clipboard data because the "Android 10.0" Paste button is not shown
