@@ -12,6 +12,11 @@ public class HomePage implements HomePageLocator {
 
     public void chooseMobileRecharge(){
         pageObject.clickOn(MobileRecharge_Button);
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void chooseHistory(){

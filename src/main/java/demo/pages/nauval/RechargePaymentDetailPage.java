@@ -26,4 +26,20 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
         pageObject.clickOn(PAY_BUTTON);
     }
 
+    public void actionMenu(){
+        pageObject.clickOn(TOOLBAR_MENU);
+    }
+
+    public void cancelButton(){
+        pageObject.clickOn(CANCEL_BUTTON);
+    }
+
+    public void cancelDialog(){
+        pageObject.waitUntilDisplayed(CANCEL_TRANSACTION_TITLE_DIALOG);
+    }
+
+    public void cancelPositive(){
+        pageObject.clickOn(CANCEL_YES_BUTTON);
+    }
+
 }

@@ -91,7 +91,7 @@ public class AndroidPageObject {
     public void multipleID(String name, By locator){
         List<AndroidElement> filters = androidDriver.findElements(locator);
         for (AndroidElement filter : filters) {
-            if (filter.getText().equalsIgnoreCase(name)) {
+            if (filter.getText().contains(name)) {
                 filter.click();
                 break;
             }
@@ -104,8 +104,8 @@ public class AndroidPageObject {
     }
 
     public boolean checkElement(By locator){
-        List<AndroidElement> createPINText = androidDriver. findElements (locator);
-        return createPINText.size()> 0;
+        List<AndroidElement> elements = androidDriver.findElements(locator);
+        return elements.size()> 0;
     }
 
 //    public boolean checkIfToastDisplayed(By id) {

@@ -51,8 +51,8 @@ public class MobileRechargeDefinition {
         detailPage.payButton();
     }
 
-    @Then("User see payment success page")
-    public void userSeePaymentSuccessPage() {
+    @Then("User see payment status page")
+    public void userSeePaymentStatusPage() {
         statusPage.isOnPage();
     }
 
@@ -112,14 +112,18 @@ public class MobileRechargeDefinition {
 
     @And("User open action menu")
     public void userOpenActionMenu() {
+        detailPage.actionMenu();
     }
 
     @And("User cancel transaction")
     public void userCancelTransaction() {
+        detailPage.cancelButton();
     }
 
     @And("User confirm to cancel transaction")
     public void userConfirmToCancelTransaction() {
+        detailPage.cancelDialog();
+        detailPage.cancelPositive();
     }
 
     @And("User click history icon")
@@ -138,5 +142,13 @@ public class MobileRechargeDefinition {
     @And("User choose from recent number")
     public void userChooseFromRecentNumber() {
         inputNumber.recentNumber();
+    }
+
+    @And("if {string} is {string}, user get a voucher")
+    public void ifIsUserGetAVoucher(String status, String actual) {
+        if(status.equals(actual)){
+            statusPage.voucherDialog();
+            statusPage.confirmDialog();
+        }
     }
 }
