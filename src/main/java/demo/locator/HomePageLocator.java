@@ -11,4 +11,7 @@ public interface HomePageLocator {
     // Button
     By BUTTON_MOBILE_RECHARGE = MobileBy.id("btnMobileRecharge");
     By BUTTON_PROFILE = MobileBy.id("navigation_profile");
+
+    // Promotion Banner
+    By PROMOTION_BANNER_1 = MobileBy.xpath("//androidx.cardview.widget.CardView[1]");
 }

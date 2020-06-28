@@ -10,8 +10,9 @@ import static demo.driver.AndroidDriverInstance.androidDriver;
 public class HomePage extends AndroidPageObject implements HomePageLocator {
 
     public boolean isOnPage() {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 10);
-        return wait.until(ExpectedConditions.textToBePresentInElementLocated(USER_BALANCE, "Rp"));
+        WebDriverWait wait = new WebDriverWait(androidDriver, 15);
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(USER_BALANCE, "Rp"));
+        return wait.until(ExpectedConditions.presenceOfElementLocated(PROMOTION_BANNER_1)).isDisplayed();
     }
 
     public void tapProfileIcon() {
