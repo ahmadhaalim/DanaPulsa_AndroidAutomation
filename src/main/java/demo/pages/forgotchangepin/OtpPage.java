@@ -6,9 +6,12 @@ import demo.imagecontroller.ImageController;
 import demo.locator.ForgotPinPageLocator;
 
 import io.appium.java_client.TouchAction;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import io.appium.java_client.touch.LongPressOptions;
 import io.appium.java_client.touch.offset.ElementOption;
+import org.openqa.selenium.NotFoundException;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import pageobjects.AndroidPageObject;
 
@@ -30,11 +33,14 @@ public class OtpPage extends AndroidPageObject {
     }
 
     public boolean checkIfNextEnabled() {
+        WebDriverWait wait = new WebDriverWait(AndroidDriverInstance.androidDriver, 20);
+        wait.until(ExpectedConditions.presenceOfElementLocated(ForgotPinPageLocator.NEXT_BUTTON));
         return checkIfEnabled(ForgotPinPageLocator.NEXT_BUTTON);
     }
 
-    public void waitForResend() {
-        WebDriverWait wait = new WebDriverWait(AndroidDriverInstance.androidDriver, 30);
+    public void waitForResend(){
+        WebDriverWait wait = new WebDriverWait(AndroidDriverInstance.androidDriver, 190);
+        wait.until(ExpectedConditions.elementToBeClickable(ForgotPinPageLocator.RESEND_BUTTON));
     }
 
     public void clickResendOtp() {
@@ -64,7 +70,12 @@ public class OtpPage extends AndroidPageObject {
     }
 
     public boolean checkIfResendEnabled(){
-        return checkIfEnabled(ForgotPinPageLocator.RESEND_BUTTON);
+        try {
+            return checkIfEnabled(ForgotPinPageLocator.RESEND_BUTTON);
+        }catch (NotFoundException e){
+            System.out.println("not found");
+            return false;
+        }
     }
 
 

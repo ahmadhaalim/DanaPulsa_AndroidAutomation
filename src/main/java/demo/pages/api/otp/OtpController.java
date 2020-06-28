@@ -6,16 +6,9 @@ import io.restassured.response.Response;
 import static io.restassured.RestAssured.given;
 
 public class OtpController {
-    public Response getOtpNumber(String userId) {
+    public Response getOtpNumber(String userId) throws InterruptedException {
 
-//        Thread.sleep(7000);
-//        Response response = given().baseUri("https://pokeapi.co").basePath("/member")
-//                .pathParam("userId", userId)
-//                .log().all()
-//                .contentType(ContentType.JSON)
-//                .accept(ContentType.JSON).get("/{userId}");
-//        response.getBody().prettyPrint();
-//        return response;
+        Thread.sleep(7000);
         String bodyRequest = "{\n" +
                 "\"queue\":\"getOTP\",\n" +
                 "\"message\": \"" + userId + "\"\n" +

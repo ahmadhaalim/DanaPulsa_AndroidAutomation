@@ -59,7 +59,7 @@ public class ForgotPinDefinition {
 
 
     @And("User input valid otp number with user id {string}")
-    public void userInputValidOtpNumber(String userId) {
+    public void userInputValidOtpNumber(String userId) throws InterruptedException {
 
         Response response = otpController.getOtpNumber(userId);
         String otp = response.path("code").toString();
@@ -70,7 +70,7 @@ public class ForgotPinDefinition {
     @And("User click next button on the otp page")
     public void userClickNextButtonOnTheOtpPage() throws InterruptedException {
         otpPage.clickNextOtp();
-        Thread.sleep(5000);
+        Thread.sleep(10000);
     }
 
     @And("User input new PIN {string}")
@@ -121,7 +121,7 @@ public class ForgotPinDefinition {
     }
 
     @And("User wait for the otp to expire in three minutes.")
-    public void userWaitForTheOtpToExpireInThreeMinutes() {
+    public void userWaitForTheOtpToExpireInThreeMinutes(){
         otpPage.waitForResend();
     }
 
@@ -216,7 +216,7 @@ public class ForgotPinDefinition {
     }
 
     @And("User unlock the device")
-    public void userUnlockTheDevice() {
+    public void userUnlockTheDevice() throws InterruptedException {
         deviceButton.pressUnlockDevice();
     }
 
@@ -226,8 +226,10 @@ public class ForgotPinDefinition {
     }
 
     @Then("User cannot click resend the button is disabled")
-    public void userCannotClickResendTheButtonIsDisabled() {
+    public void userCannotClickResendTheButtonIsDisabled() throws InterruptedException {
+        Thread.sleep(2000);
         Assert.assertFalse(otpPage.checkIfResendEnabled());
+        Thread.sleep(2000);
     }
 
     @And("User turn internet off")
@@ -261,8 +263,12 @@ public class ForgotPinDefinition {
     }
 
     @And("User click home button and reopen the app")
-    public void userClickHomeButton() throws InterruptedException {
-        deviceButton.pressHomeButton();
+    public void userClickHomeButtonAndReopenTheApp() throws InterruptedException {
+        deviceButton.pressDeviceHome();
+        Thread.sleep(3000);
+        deviceButton.pressDeviceRecent();
+        Thread.sleep(3000);
+        deviceButton.tapCenter();
     }
 
 
@@ -290,12 +296,12 @@ public class ForgotPinDefinition {
 
     @Then("User cant perform paste on the confirm input {string}")
     public void userCantPerformPasteOnTheConfirmInput(String deviceType) {
-        confirmPinPage.tryToPaste(deviceType);
+        Assert.assertFalse(confirmPinPage.tryToPaste(deviceType));
     }
 
     @Then("User cant perform paste on the new pin input {string}")
     public void userCantPerformPasteOnTheNewPinInput(String deviceType) {
-        newPinPage.tryToPaste(deviceType);
+        Assert.assertFalse(newPinPage.tryToPaste(deviceType));
     }
 
     @And("User turn internet on")

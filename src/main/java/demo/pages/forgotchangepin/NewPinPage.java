@@ -50,7 +50,7 @@ public class NewPinPage extends AndroidPageObject {
         System.out.println("LongPressed Tapped");
         ImageController imageController = new ImageController();
         try {
-            return imageController.checkIfWarningDisplayed(deviceType +"paste.png");
+            return imageController.checkIfWarningDisplayed("paste-"+deviceType +".png");
         } catch (Exception e) {
             e.printStackTrace();
             return false;

@@ -33,32 +33,6 @@ import java.util.UUID;
 import static org.bytedeco.javacpp.lept.pixRead;
 
 public class ImageController extends AndroidPageObject {
-    public void teslockunlock() throws InterruptedException {
-        AndroidDriverInstance.androidDriver.lockDevice();
-        Thread.sleep(5000);
-        AndroidDriverInstance.androidDriver.unlockDevice();
-        Thread.sleep(5000);
-    }
-
-    public void teshomeopen() throws InterruptedException {
-
-        Thread.sleep(5000);
-
-
-        Thread.sleep(5000);
-        try {
-            AndroidDriverInstance.androidDriver.runAppInBackground(Duration.ofSeconds(5));
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        Thread.sleep(5000);
-    }
-
-    public void tesdeviceback() throws InterruptedException {
-        Thread.sleep(5000);
-        AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
-    }
-
     Path getResource(String fileName) throws URISyntaxException {
         URL refImgUrl = getClass().getClassLoader().getResource(fileName);
         return Paths.get(refImgUrl.toURI()).toFile().toPath();
@@ -90,48 +64,5 @@ public class ImageController extends AndroidPageObject {
         return false;
     }
 
-//    public void getTextByTesseract() throws IOException {
-//        System.out.println("Capturing the snapshot of the page ");
-//        File srcFiler=((TakesScreenshot)AndroidDriverInstance.androidDriver).getScreenshotAs(OutputType.FILE);
-//        System.out.println(System.getProperty("user.dir") + File.separator + "src" + File.separator
-//                + "test" + File.separator + "resources" + File.separator + "validation");
-//        FileUtils.copyFile(srcFiler, new File(System.getProperty("user.dir") + File.separator + "src" + File.separator
-//            + "test" + File.separator + "resources" + File.separator + "validation"));
-////        BytePointer outText;
-////        tesseract.TessBaseAPI tessBaseAPI = new tesseract.TessBaseAPI();
-////        if (tessBaseAPI.Init(".", "ENG") != 0) {
-////            System.err.println("Could not initialize tesseract.");
-////            System.exit(1);
-////
-////            lept.PIX image = pixRead(filePath+"\\toastmessage1.png");
-////            tessBaseAPI.SetImage(image);
-//        }
-//        String text = OCR(image(driver));
-//        String Text = Certify(driver);
-//        System.out.println(text);
-//    }
-//
-//    public static String image(AppiumDriver<MobileElement> driver)
-//    {
-//        File targetFile = null;
-//        try{
-//            File scrfile = driver.getScreenshotAs(OutputType.FILE);
-//            String filename = UUID.randomUUID().toString();
-//            targetFile = new File("./screenshots"+ filename + ".png");
-//            FileUtils.copyFile(scrfile, targetFile);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return targetFile.toString();
-//    }
-//
-//    public static String OCR(String ImagePath){
-//        String result = null;
-//        File imageFile = new File(ImagePath);
-//        tesseract.Tesseract instance = new tesseract.Tesseract();
-//        try {
-//            result = instance.
-//        }
-//    }
 
 }
