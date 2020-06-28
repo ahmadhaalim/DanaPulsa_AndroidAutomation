@@ -12,15 +12,6 @@ public class GeneralStepsDefinition{
 
     AndroidDeviceUtilities androidDeviceUtilities = new AndroidDeviceUtilities();
     GeneralPage generalPage = new GeneralPage();
-    ForgotPinPage forgotPinPage = new ForgotPinPage();
-    HomePage homePage = new HomePage();
-    ProfilePage profilePage = new ProfilePage();
-    SignInPage signInPage = new SignInPage();
-    SignUpPage signUpPage = new SignUpPage();
-    SignInInputPinPage signInInputPinPage = new SignInInputPinPage();
-    MobileRechargePage mobileRechargePage = new MobileRechargePage();
-    PromotionListPage promotionListPage = new PromotionListPage();
-    PromotionDetailPage promotionDetailPage = new PromotionDetailPage();
 
     @When("User tap {string} menu button while internet is {string}")
     public void userTapMenuButton(String menu, String state) {
@@ -51,6 +42,10 @@ public class GeneralStepsDefinition{
             androidDeviceUtilities.unlockDevice();
         } else if(action.equalsIgnoreCase("hold down and release")) {
             androidDeviceUtilities.reloadScreen();
+        } else if(action.equalsIgnoreCase("swipe left and right")) {
+            androidDeviceUtilities.swipeLeft();
+            Thread.sleep(3000);
+            androidDeviceUtilities.swipeRight();
         }
     }
 

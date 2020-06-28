@@ -5,11 +5,13 @@ import org.openqa.selenium.By;
 
 public interface HistoryPageLocator {
 
-    By InProgress_Tab = MobileBy.xpath("\t//android.widget.LinearLayout[@content-desc=\"In Progress\"]");
-    By Completed_Tab = MobileBy.xpath("\t//android.widget.LinearLayout[@content-desc=\"Completed\"]");
-    By Transaction_Item = MobileBy.id("rvHistory");
+    By InProgress_Tab = MobileBy.AccessibilityId("In Progress");
+    By Completed_Tab = MobileBy.AccessibilityId("Completed");
     By TransactionItem_Price = MobileBy.id("tvHistoryItemPrice");
     By TransactionItem_Date = MobileBy.id("tvHistoryItemDate");
+    By TransactionItem_Status = MobileBy.id("tvHistoryItemStatus");
     By Warning_Message = MobileBy.id("tvLoadMessage");
-    By Transaction_Status = MobileBy.id("tvHistoryItemStatus");
+    By TransactionDetail_Status = MobileBy.id("tvTransactionStatusValue");
+    By TransactionDetail_Price = MobileBy.id("tvTransactionTotalValue");
+    By TransactionDetail_Date = MobileBy.id("tvTransactionDateValue");
 }

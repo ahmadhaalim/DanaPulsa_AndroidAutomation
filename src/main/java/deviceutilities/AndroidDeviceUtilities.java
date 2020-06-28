@@ -20,9 +20,6 @@ public class AndroidDeviceUtilities {
     public void toggleData(){
         AndroidDriverInstance.androidDriver.toggleData();
     }
-    public void pressDeviceHomeButton(){
-        AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.HOME));
-    }
     public void pressDeviceBackButton(){
         AndroidDriverInstance.androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
     }
@@ -45,8 +42,26 @@ public class AndroidDeviceUtilities {
         TouchAction touch = new TouchAction(androidDriver);
         //Change the coordinate according your screen resolution (center of it)
         touch.press(PointOption.point(500,500))
-                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(5000)))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
                 .moveTo(PointOption.point(500,1000)).release().perform();
+    }
+
+    public void swipeLeft() throws InterruptedException {
+        Thread.sleep(3000);
+        TouchAction touch = new TouchAction(androidDriver);
+        //Change the coordinate according your screen resolution (center of it)
+        touch.press(PointOption.point(1000,500))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
+                .moveTo(PointOption.point(100,500)).release().perform();
+    }
+
+    public void swipeRight() throws InterruptedException {
+        Thread.sleep(3000);
+        TouchAction touch = new TouchAction(androidDriver);
+        //Change the coordinate according your screen resolution (center of it)
+        touch.press(PointOption.point(100,500))
+                .waitAction(WaitOptions.waitOptions(Duration.ofMillis(5000)))
+                .moveTo(PointOption.point(1000,500)).release().perform();
     }
 
     public String setAndGetClipboardData(String text){

@@ -1,155 +1,129 @@
 @Android @Voucher
 
-#Tap/Tapping = Click/Clicking
 Feature: Voucher Feature Functionality Check
 
 #[Warning] Please use a new fresh account, which no transaction has been made before!!!
 
   Background:
-    Given User is on sign in page
-    #Change the phone number according your account
-    When User input phone number "08555333444"
-    And User click sign in button
-    Then User directed to input pin screen
-    When User input pin "123456"
-    Then User directed to home screen
+    Given User directed to "sign in" screen
+    #Change the phone number according your data table
+    When User input phone number "081213130000"
+    And User tap sign in button while internet is "on"
+    Then User directed to "input pin" screen
+    When User input pin "123456" while internet is "on"
+    Then User directed to "home" screen
 
-  #[WARNING] Run this scenario first before other scenarios!
+  #[WARNING] Run this scenario first before other scenarios!!!
   @VOSC001 @VOSC010-VOSC012
   Scenario Outline: User doesn't have any voucher
-    When User click voucher button
-    Then User directed to voucher screen
-    When User click "<button>" button on voucher screen
-    Then User see "<text>" message on voucher screen
-    Examples:
-      | button   | text                            |
-      | All      | You don't have any voucher      |
-      | Discount | You don't have discount voucher |
-      | Cashback | You don't have cashback voucher |
-
-  #[WARNING] Run this scenario first before @VOSC002, @VOSC004, @VOSC005, and @VOSC006
-  @VOSC003
-  Scenario: Go to Discount  Voucher List screen by tapping Discount button
-    #Precondition to get discount voucher
-    When User click "Mobile Recharge Icon" on home screen
-    Then User directed from home screen to "Mobile Recharge Screen"
-    When User input phone number "081271465456" on mobile recharge screen
-    And User choose nominal "50.000"
-    When User click pay button
-    Then User directed to payment success screen
-    When User click yes button on pop up dialog payment success screen
-    And User click back to home button
-    Then User directed to home screen
-    #Main scenario
-    When User click history button
-    And User click "Discount" button on voucher screen
-    Then User see voucher banner "5%"
-
-   #[WARNING] Run this scenario first before @VOSC004, @VOSC005, and @VOSC006
-  @VOSC004
-  Scenario: Go to Cashback Voucher List screen by tapping Casback button
-    #Precondition to get cashback voucher
-    When User click "Mobile Recharge Icon" on home screen
-    Then User directed from home screen to "Mobile Recharge Screen"
-    When User input phone number "081271465456" on mobile recharge screen
-    And User choose nominal "15.000"
-    And User click voucher action button
-    Then User directed to pick a voucher screen
-    When User click continue without using voucher
-    Then User directed to lets pay screen
-    When User click pay button
-    Then User directed to payment success screen
-    When User click yes button on pop up dialog payment success screen
-    And User click back to home button
-    Then User directed to home screen
-    #Main scenario
-    When User click history button
-    And User click "Cashback" button on voucher screen
-    Then User see voucher banner "5.000"
-
-  @VOSC002 @VOSC005 @VOSC006
-  Scenario: Go to voucher detail screen by tapping all button and click back button
-    When User click voucher button
-    Then User directed to voucher screen
-    And User click "All" button on voucher screen
-    And User click voucher banner "5%"
-    Then User directed to voucher detail screen
-    When user click back button on voucher detail screen
-    Then User directed to voucher screen
-    When User click voucher banner "5.0000"
-    Then User directed to voucher detail screen
-    When user click back button on voucher detail screen
-    Then User directed to voucher screen
-
-  @VOSC018-VOSC020
-  Scenario Outline: Voucher doesn't show up because internet connection isn't available
-    When User click voucher button while internet is off
-    Then User directed to voucher screen
-    When User click "<button>" button on voucher screen
-    Then User see warning "Connection error" on voucher screen
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    When User tap "<button>" button on voucher screen while internet is "on"
+    Then User see "You have no voucher" message on voucher screen
     Examples:
       | button   |
       | All      |
       | Discount |
       | Cashback |
 
-  @VOSC021
-  Scenario: Voucher Detail doesn't show up because internet connection isn't available
-    When User click voucher button
-    Then User directed to voucher screen
-    When User click one of voucher banner while internet is off
-    Then User directed to voucher detail screen
-    Then User see warning "Connection error" on voucher detail screen
+  @VOSC003 @VOSC004
+  Scenario Outline: Go to Discount / Cashback Voucher List screen by tapping filter button
+    When User tap "voucher" menu button while internet is "on"
+    When User tap "<button>" button on voucher screen while internet is "on"
+    Then User see "<voucher>" banner list
+    Examples:
+      | button   | voucher          |
+      #[WARNING] Please make completed transaction first to get Discount Voucher!!!
+      | Discount | Voucher Discount |
+      #[WARNING] Please make completed transaction first to get Cashback Voucher!!!
+      | Cashback | Voucher Cashback |
+      | All      | Voucher Discount |
+      | All      | Voucher Cashback |
 
+  @VOSC002 @VOSC005 @VOSC006
+  Scenario Outline: Go to voucher detail screen and click back button
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    When User tap "<button>" button on voucher screen while internet is "on"
+    And User tap voucher banner "<voucher>" while internet is "on"
+    Then User is on "voucher detail" screen
+    When User perform action "tap back button"
+    Then User is on "voucher" screen
+    Examples:
+      | button   | voucher                                  |
+       #Change this to the voucher you have
+      | Discount | Diskon 5% (max Rp 5.000) buat beli pulsa |
+      | Cashback | Cashback Rp 3.500 buat beli pulsa        |
 
-  #---Activity outside app scenarios---#
+  @VOSC007 @VOSC008
+  Scenario Outline: Perform action on voucher screen
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    When User perform action "<action>"
+    Then User directed to "<screen>" screen
+    Examples:
+      | action                             | screen |
+      # [@VOSC007] Proceed to home screen by tapping device back button
+      | tap device back button             | home   |
+      # [@VOSC008] Back to home screen by opening the app after running in the background for a moment
+      | reopen app after in the background | home   |
 
-  @OutsideAppVoucher @VOSC007
-  Scenario: Proceed to device Home by tapping device back button
-    When User click voucher button
-    Then User directed to voucher screen
-    When User click device home button
-    Then User directed to device home from voucher screen
-
-  @OutsideAppVoucher @VOSC008
-  Scenario: Back to voucher screen by opening the app after running in the background
-    When User click voucher button
-    Then User directed to voucher screen
-    When User open the app after running in the background for a moment
-    Then User directed to voucher screen
-
-  @OutsideAppVoucher @VOSC009
+  @VOSC009
   Scenario: Still on voucher screen when unlocking device
-    When User click voucher button
-    Then User directed to voucher screen
-    When User lock the device
-    And User unlock the device
-    Then User directed to voucher screen
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    When User perform action "unlock the device after being unlocked"
+    Then User is on "voucher" screen
 
-  @OutsideAppVoucher @VOSC013
-  Scenario: Back to voucher screen by tapping device back button while in voucher detail screen
-    When User click voucher button
-    Then User directed to voucher screen
-    When User click voucher banner "5%"
-    Then User directed to voucher detail screen
-    When User click device back button
-    Then User directed to voucher screen
+  @VOSC013 @VOSC015
+  Scenario Outline: Perform action on voucher detail screen
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    And User tap voucher banner "Diskon 5% (max Rp 5.000) buat beli pulsa" while internet is "on"
+    Then User is on "voucher detail" screen
+    When User perform action "<action>"
+    Then User is on "<screen>" screen
+    Examples:
+      | action                                 | screen         |
+      # [@VOSC013] Back to voucher screen by tapping device back button while in voucher detail screen
+      | tap device back button                 | voucher        |
+      # [@VOSC015] Still on voucher detail screen when unlocking device
+      #| unlock the device after being unlocked | voucher detail |
 
-  @OutsideAppVoucher @VOSC014
-  Scenario: Back to voucher detail screen by opening the app after running in the background
-    When User click voucher button
-    Then User directed to voucher screen
-    When User click voucher banner "5%"
-    Then User directed to voucher detail screen
-    When User open the app after running in the background for a moment
-    Then User directed to voucher detail screen
+  @VOSC014
+  Scenario: Back to home screen from voucher detail screen by opening the app
+  after running in the background for a moment
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    And User tap voucher banner "Diskon 5% (max Rp 5.000) buat beli pulsa" while internet is "on"
+    Then User is on "voucher detail" screen
+    When User perform action "reopen app after in the background"
+    Then User is on "home" screen
 
-  @OutsideAppVoucher @VOSC015
-  Scenario: Still on voucher detail screen when unlocking device
-    When User click voucher button
-    Then User directed to voucher screen
-    When User click voucher banner "5%"
-    Then User directed to voucher detail screen
-    When User lock the device
-    And User unlock the device
-    Then User directed to voucher detail screen
+  @VOSC016
+  Scenario: Reload voucher screen by press down and release
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    #Change the point according to testing device screen resolution
+    When User perform action "hold down and release"
+    Then User is on "voucher" screen
+
+  @VOSC023 @VOSC024 @VOSC025
+  Scenario Outline: Voucher doesn't show up because internet connection isn't available
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    When User tap "voucher" menu button while internet is "off"
+    When User tap "<button>" button on voucher screen while internet is "on"
+    Then User see warning "Error getting your voucher" on voucher screen
+    Examples:
+      | button   |
+      | All      |
+      | Discount |
+      | Cashback |
+
+  @VOSC025
+  Scenario: Voucher Detail doesn't show up because internet connection isn't available
+    When User tap "voucher" menu button while internet is "on"
+    Then User is on "voucher" screen
+    When User tap voucher banner "Diskon 5% (max Rp 5.000) buat beli pulsa" while internet is "off"
+    Then User see warning "Connection Error" on voucher detail screen

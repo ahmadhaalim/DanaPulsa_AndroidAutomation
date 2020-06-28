@@ -68,7 +68,7 @@ public class AndroidPageObject {
      * @return return condition
      */
     public boolean checkIfDisplayed(By id) {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 8);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 15);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         return element.isDisplayed();
     }

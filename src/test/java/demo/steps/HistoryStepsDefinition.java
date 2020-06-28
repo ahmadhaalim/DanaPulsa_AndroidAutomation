@@ -2,6 +2,7 @@ package demo.steps;
 
 import demo.driver.AndroidDriverInstance;
 import demo.pages.*;
+import io.appium.java_client.appmanagement.ApplicationState;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,144 +10,79 @@ import org.junit.Assert;
 
 public class HistoryStepsDefinition {
 
-    MobileRechargeStepsDefinition mobileRechargeStepsDefinition = new MobileRechargeStepsDefinition();
-
-    HomePage homePage = new HomePage();
     HistoryPage historyPage = new HistoryPage();
+    LetsPayPage letsPayPage = new LetsPayPage();
     TransactionDetailPage transactionDetailPage = new TransactionDetailPage();
 
-    @Then("User will directed to {string} screen")
-    public void userWillDirectedToHistoryScreen() {
+    String ExpectedPrice = "";
+    String ExpectedDate = "";
+    String ExpectedStatus = "";
 
+    @Then("User will directed to {string} screen")
+    public void userWillDirectedToHistoryScreen(String screenName) {
+        if(screenName.equalsIgnoreCase("history screen")) {
+            Assert.assertTrue(historyPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("lets pay")) {
+            Assert.assertTrue(letsPayPage.isOnPage());
+        } else if(screenName.equalsIgnoreCase("transaction detail")) {
+            Assert.assertTrue(transactionDetailPage.isOnPage());
+            Assert.assertTrue(transactionDetailPage.waitUntilTotalPriceDisplayed());
+            Assert.assertEquals(ExpectedPrice, transactionDetailPage.getTransactionPrice());
+            Assert.assertEquals(ExpectedDate, transactionDetailPage.getTransactionDate());
+            Assert.assertEquals(ExpectedStatus, transactionDetailPage.getTransactionStatus());
+        } else if(screenName.equalsIgnoreCase("device home")){
+            String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
+            Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
+        }
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    @And("User see {string} info")
-    public void userSeeInfoAtInProgressTabScreen(String expected) {
+    @Then("User see info {string} on history screen and internet is {string}")
+    public void userSeeInfoOnHistoryScreen(String expected, String state) throws InterruptedException {
+        Thread.sleep(5000);
         String actual = historyPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
+        if(state.equalsIgnoreCase("off")){
+            AndroidDriverInstance.androidDriver.toggleData();
+            AndroidDriverInstance.androidDriver.toggleWifi();
+        }
     }
 
-    @When("User click completed tab")
-    public void userClickCompletedTab() {
-        historyPage.clickCompletedTab();
-    }
-
-
-    @Then("User see  latest pending transaction at in progress tab")
-    public void userSeeLatestPendingTransactionAtInProgressTab() {
-        historyPage.waitUntilTransactionItemIsDiyplayed();
-    }
-
-    @When("User click {string} tab on history screen")
-    public void userClickTabOnHistoryScreen(String tabKeyword) {
-        if("In Progress".equals(tabKeyword)){
+    @When("User tap {string} tab while internet is {string}")
+    public void userTapTab(String tab, String state) throws InterruptedException {
+        Thread.sleep(3000);
+        if(state.equalsIgnoreCase("off")){
+            AndroidDriverInstance.androidDriver.toggleWifi();
+            AndroidDriverInstance.androidDriver.toggleData();
+        }
+        if(tab.equalsIgnoreCase("in progress")){
             historyPage.clickInProgressTab();
-        } else if("Completed".equals(tabKeyword)){
+        } else if(tab.equalsIgnoreCase("completed")) {
             historyPage.clickCompletedTab();
         }
     }
 
-    @Then("User see {string} on history screen")
-    public void userSeeOnHistoryScreen(String expected) {
-        String actual = historyPage.getWarningMessage();
-        Assert.assertEquals(expected, actual);
+    @And("User tap {string} transaction with price {string} while internet is {string}")
+    public void userTapTransactionWithPrice(String status, String price, String state) throws InterruptedException {
+        Thread.sleep(15000);
+        if(state.equalsIgnoreCase("off")){
+            AndroidDriverInstance.androidDriver.toggleWifi();
+            AndroidDriverInstance.androidDriver.toggleData();
+        }
+        historyPage.waitUntilTransactionHistoryDisplayed();
+        ExpectedDate = historyPage.getTransactionHistoryDateAndTime(status, price);
+        ExpectedPrice = historyPage.getTransactionHistoryPrice(status, price);
+        ExpectedStatus = historyPage.getTransactionHistoryStatus(status, price);
+        historyPage.clickOneTransactionHistory(status, price);
     }
 
-    @When("User click in progress transaction with price {string}")
-    public void userClickInProgressTransactionWithNominal(String price) {
-        historyPage.waitUntilTransactionItemIsDiyplayed();
-        historyPage.clickInProgressTransaction(price);
-    }
-
-    @And("User click completed transaction with price {string}")
-    public void userClickCompletedTransactionWithPrice(String price) {
-        historyPage.waitUntilTransactionItemIsDiyplayed();
-        historyPage.clickCompletedTransaction(price);
-    }
-
-    @Then("User directed to transaction detail screen")
-    public void userDirectedToTransactionDetailScreen() {
-        Assert.assertTrue(transactionDetailPage.isOnPage());
-    }
-
-    @When("User click back button on transaction detail screen")
-    public void userClickBackButtonOnTransactionDetailScreen() {
-        transactionDetailPage.clickBackButton();
-    }
-
-    @And("User click in progress tab while internet is off")
-    public void userClickInProgressTabWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-        historyPage.clickInProgressTab();
-    }
-
-    @Then("User see warning {string} on history screen")
-    public void userSeeWarningOnHistoryScreen(String expected) {
-        String actual = historyPage.getWarningMessage();
-        Assert.assertEquals(expected, actual);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-    }
-
-    @When("User click completed tab while internet is off")
-    public void userClickCompletedTabWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-        historyPage.clickCompletedTab();
-    }
-
-    @And("User click one completed transaction while internet is off")
-    public void userClickOneCompletedTransactionWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-        historyPage.clickOneCompletedTransaction();
-    }
-
-    @And("User see warning {string} at transaction detail screen")
-    public void userSeeWarningAtTransactionDetailScreen(String expected) {
+    @Then("User see warning message {string} on transaction detail screen")
+    public void userSeeWarningMessageOnTransactionDetailScreen(String expected) {
         String actual = transactionDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
     }
-
-
-    @Then("User directed to transaction detail screen with price {string}")
-    public void userDirectedToTransactionDetailScreenWithPrice(String expected) {
-        String actualStatus = transactionDetailPage.getTransactionStatus();
-        String actualId = transactionDetailPage.getTransactionId();
-        String actualPhone = transactionDetailPage.getTransactionPhone();
-        String actualProduct = transactionDetailPage.getTransactionProduct();
-        String actualPrice = transactionDetailPage.getTransactionPrice();
-        Assert.assertEquals(expected, actualPrice);
-        Assert.assertEquals(mobileRechargeStepsDefinition.transactionStatus, actualStatus);
-        Assert.assertEquals(mobileRechargeStepsDefinition.transactionPhone, actualPhone);
-        Assert.assertEquals(mobileRechargeStepsDefinition.transactionProduct, actualProduct);
-        Assert.assertEquals(mobileRechargeStepsDefinition.transactionID,actualId);
-    }
-
-    @And("User click completed transaction summary")
-    public void userClickCompletedTransactionSummary() {
-        historyPage.clickCompletedTransaction(mobileRechargeStepsDefinition.transactionDate);
-    }
-
-    @When("User click {string} tab")
-    public void userClickTab(String expected) {
-        historyPage.waitUntilTransactionItemIsDiyplayed();
-        String actual = historyPage.checkInProgressTransactionStatus();
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Then("User directed to device home from history screen")
-    public void userDirectedToDeviceHomeFromHistoryScreen() {
-        Assert.assertFalse(historyPage.isOnPage());
-    }
-
-    @And("User click one of completed transaction summary")
-    public void userClickOneOfCompletedTransactionSummary() {
-        historyPage.clickOneCompletedTransaction();
-    }
-
-
 }

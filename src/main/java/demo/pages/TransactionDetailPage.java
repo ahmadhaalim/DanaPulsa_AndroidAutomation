@@ -1,5 +1,6 @@
 package demo.pages;
 
+import demo.locator.GeneralLocator;
 import demo.locator.TransactionDetailPageLocator;
 import pageobjects.AndroidPageObject;
 
@@ -7,8 +8,8 @@ public class TransactionDetailPage extends AndroidPageObject {
     public boolean isOnPage(){
         return checkIfDisplayed(TransactionDetailPageLocator.TransactionDetail_Header);
     }
-    public void clickBackButton(){
-        clickOn(TransactionDetailPageLocator.Back_Button);
+    public boolean waitUntilTotalPriceDisplayed(){
+        return checkIfDisplayed(TransactionDetailPageLocator.Transaction_Price);
     }
     public String getTransactionPrice(){
         return getText(TransactionDetailPageLocator.Transaction_Price);
@@ -27,7 +28,8 @@ public class TransactionDetailPage extends AndroidPageObject {
     }
     public String getTransactionDate(){ return getText(TransactionDetailPageLocator.Transaction_Date);
     }
+
     public String getWarningMessage() {
-        return getText(TransactionDetailPageLocator.Warning_Message);
+        return getText(GeneralLocator.ErrorDialog_Text);
     }
 }

@@ -25,7 +25,7 @@ public class AndroidDriverInstance {
         //caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",
                 System.getProperty("user.dir") + File.separator + "APK" + File.separator
-                        + "DANA-Pulsa1.0.2-develop-debug.apk");
+                        + "DANA-Pulsa-1.0.3-develop-debug.apk");
         caps.setCapability("automationName", "UiAutomator2");
         try {
             androidDriver = new AndroidDriver<>(new URL(appiumUrl), caps);

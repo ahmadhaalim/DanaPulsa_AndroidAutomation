@@ -1,7 +1,6 @@
 package demo.steps;
 
 import demo.driver.AndroidDriverInstance;
-import demo.pages.HomePage;
 import demo.pages.VoucherDetailPage;
 import demo.pages.VoucherPage;
 import io.cucumber.java.en.And;
@@ -9,62 +8,51 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
-import java.sql.Time;
-
 public class VoucherStepsDefinition {
 
     VoucherPage voucherPage = new VoucherPage();
-    HomePage homePage = new HomePage();
     VoucherDetailPage voucherDetailPage = new VoucherDetailPage();
 
-    String expectedValue = "";
+    String expectedName = "";
 
-    @Then("User directed to voucher screen")
-    public void userDirectedToVoucherScreen() {
-        Assert.assertTrue(voucherPage.isOnPage());
-    }
-
-    @When("User click {string} button on voucher screen")
-    public void userClickButtonOnVoucherScreen(String buttonKeyWord) {
-        if ("All".equals(buttonKeyWord)){
+    @When("User tap {string} button on voucher screen while internet is {string}")
+    public void userTapButtonOnVoucherScreen(String button, String state) {
+        if(state.equalsIgnoreCase("off")){
+            AndroidDriverInstance.androidDriver.toggleWifi();
+            AndroidDriverInstance.androidDriver.toggleData();
+        }
+        if ("All".equals(button)){
             voucherPage.clickAllButton();
-        } else if("Discount".equals(buttonKeyWord)){
+        } else if("Discount".equals(button)){
             voucherPage.clickDiscountButton();
-        } else if("Cashback".equals(buttonKeyWord)){
+        } else if("Cashback".equals(button)){
             voucherPage.clickCashbackButton();
         }
     }
 
     @Then("User see {string} message on voucher screen")
-    public void userSeeMessageOnVoucherScreen(String expected) {
+    public void userSeeMessageOnVoucherScreen(String expected) throws InterruptedException {
+        Thread.sleep(5000);
         String actual = voucherPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
     }
 
     @Then("User see voucher banner {string}")
     public void userSeeVoucherBanner(String expected) {
-        voucherPage.checkIfVoucherBannerIsDisplayed();
-        String actual = voucherPage.getVoucherValue(expected);
+        voucherPage.waitUntilVoucherBannerDisplayed();
+        String actual = voucherPage.getVoucherName(expected);
         Assert.assertEquals(expected, actual);
     }
 
-
-    @And("User click voucher banner {string}")
-    public void userClickVoucherBanner(String value) {
-        expectedValue = voucherPage.getVoucherValue(value);
+    @And("User tap voucher banner {string} while internet is {string}")
+    public void userTapVoucherBanner(String value, String state) {
+        Assert.assertTrue(voucherPage.waitUntilVoucherBannerDisplayed());
+        if(state.equalsIgnoreCase("off")){
+            AndroidDriverInstance.androidDriver.toggleData();
+            AndroidDriverInstance.androidDriver.toggleWifi();
+        }
+        expectedName = voucherPage.getVoucherName(value);
         voucherPage.chooseVoucherBanner(value);
-    }
-
-    @Then("User directed to voucher detail screen")
-    public void userDirectedToVoucherDetailScreen() {
-        Assert.assertTrue(voucherDetailPage.isOnPage());
-        String actualValue = voucherDetailPage.getVoucherValue();
-        Assert.assertEquals(expectedValue, actualValue);
-    }
-
-    @When("user click back button on voucher detail screen")
-    public void userClickBackButtonOnVoucherDetailScreen() {
-        voucherDetailPage.clickBackButton();
     }
 
     @Then("User see warning {string} on voucher screen")
@@ -75,13 +63,6 @@ public class VoucherStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
-    @When("User click one of voucher banner while internet is off")
-    public void userClickOneOfVoucherBannerWhileInternetIsOff() {
-        AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
-        voucherPage.clickOneOfVoucherBanner();
-    }
-
     @Then("User see warning {string} on voucher detail screen")
     public void userSeeWarningOnVoucherDetailScreen(String expected) {
         String actual = voucherDetailPage.getWarningMessage();
@@ -90,8 +71,22 @@ public class VoucherStepsDefinition {
         AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
-    @Then("User directed to device home from voucher screen")
-    public void userDirectedToDeviceHomeFromVoucherScreen() {
-        Assert.assertFalse(voucherPage.isOnPage());
+    @Then("User is on {string} screen")
+    public void userIsOnScreen(String screen) throws InterruptedException {
+        Thread.sleep(5000);
+        if(screen.equalsIgnoreCase("voucher")){
+            Assert.assertTrue(voucherPage.isOnPage());
+        } else if (screen.equalsIgnoreCase("voucher detail")) {
+            Assert.assertTrue(voucherDetailPage.isOnPage());
+            String actualValue = voucherDetailPage.getVoucherName();
+            Assert.assertEquals(expectedName, actualValue);
+        }
+    }
+
+    @Then("User see {string} banner list")
+    public void userSeeBannerList(String expected) {
+        Assert.assertTrue(voucherPage.waitUntilVoucherBannerDisplayed());
+        String actual = voucherPage.getVoucherTitle(expected);
+        Assert.assertEquals(expected, actual);
     }
 }

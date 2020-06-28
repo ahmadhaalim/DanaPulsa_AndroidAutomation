@@ -25,28 +25,37 @@ public class VoucherPage extends AndroidPageObject{
     public String getWarningMessage(){
         return getText(VoucherPageLocator.Warning_Message);
     }
-    public void checkIfVoucherBannerIsDisplayed(){
-        waitUntilDisplayed(VoucherPageLocator.Voucher_Banner);
+    public boolean waitUntilVoucherBannerDisplayed(){
+        return checkIfDisplayed(VoucherPageLocator.Voucher_Title);
     }
-    public void clickOneOfVoucherBanner(){
-        clickOn(VoucherPageLocator.Voucher_Banner);
-    }
+
     public void chooseVoucherBanner(String value) {
-        List<AndroidElement> valueInBanner = AndroidDriverInstance.androidDriver
-                .findElements(VoucherPageLocator.Voucher_Amount);
-        for (int i = 0; i < valueInBanner.size(); i++) {
-            if (value.equalsIgnoreCase(valueInBanner.get(i).getText())) {
-                clickOn(VoucherPageLocator.Voucher_Banner);
+        List<AndroidElement> title = AndroidDriverInstance.androidDriver
+                .findElements(VoucherPageLocator.Voucher_Name);
+        for (AndroidElement androidElement : title) {
+            if (value.equalsIgnoreCase(androidElement.getText())) {
+                androidElement.click();
             }
         }
     }
-    public String getVoucherValue(String value){
+    public String getVoucherName(String value){
         List<AndroidElement> valueInBanner = AndroidDriverInstance.androidDriver
-                .findElements(VoucherPageLocator.Voucher_Amount);
+                .findElements(VoucherPageLocator.Voucher_Name);
         String getValue = "";
-        for (int i = 0; i < valueInBanner.size(); i++) {
-            if (value.equalsIgnoreCase(valueInBanner.get(i).getText())) {
-                getValue = getText(VoucherPageLocator.Voucher_Amount);
+        for (AndroidElement androidElement : valueInBanner) {
+            if (value.equalsIgnoreCase(androidElement.getText())) {
+                getValue = androidElement.getText();
+            }
+        }
+        return getValue;
+    }
+    public String getVoucherTitle(String value){
+        List<AndroidElement> nameInBanner = AndroidDriverInstance.androidDriver
+                .findElements(VoucherPageLocator.Voucher_Title);
+        String getValue = "";
+        for (AndroidElement androidElement : nameInBanner) {
+            if (value.equalsIgnoreCase(androidElement.getText())) {
+                getValue = androidElement.getText();
             }
         }
         return getValue;
