@@ -117,7 +117,7 @@ Feature: Sign In Feature Functionality Check
     Then User directed to "input pin" screen
     When User tap forgot pin text
     Then User directed to "forgot pin" screen
-    And User tap ok button on warning dialog box
+    #And User tap ok button on warning dialog box
     And User perform action "<action>"
     Then User directed to "<screen>" screen
     Examples:

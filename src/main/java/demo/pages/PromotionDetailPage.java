@@ -21,7 +21,7 @@ public class PromotionDetailPage extends AndroidPageObject {
     }
     public String checkPromotionDetailTitle(){
         try {
-            Thread.sleep(8000);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

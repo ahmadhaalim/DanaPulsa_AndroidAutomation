@@ -83,7 +83,7 @@ Feature: Home Feature Functionality Check
       # [@HOSC017] ack to home screen by tapping device back button while in promotion detail screen (via home screen)
       | tap device back button                 | home             |
       # [@HOSC018] Back to promotion detail screen by opening the app after running in the background for a moment
-      | reopen app after in the background     | promotion detail |
+      | reopen app after in the background     | home |
       # [@HOSC019] Still on promotion detail screen when unlocking device
       | unlock the device after being unlocked | promotion detail |
 
@@ -140,25 +140,25 @@ Feature: Home Feature Functionality Check
     When User perform action "hold down and release"
     Then User is directed to "Promotion List" screen
 
-  @HOSC029
+  @HOSC036
   Scenario: Promotion banner image doesn't show up on home screen because internet connection isn't available
     When User tap "home" menu button while internet is "off"
     Then User see warning message "Failed to get Promotion Info" on promotion area
 
-  @HOSC030 @HOSC031
+  @HOSC037 @HOSC038
   Scenario: Promotion detail doesn't show up because internet problem
     When User tap "Promotion Banner" on home screen while internet is "off"
     Then User see warning message pop up "Connection Error"
 
-  @HOSC032 @HOSC033
+  @HOSC039 @HOSC040
   Scenario: Promotion list doesn't show up because internet problem
     When User tap "View All Button" on home screen while internet is "off"
     Then User is directed to "promotion list" screen
     When User perform action "hold down and release"
     And User see warning message "Failed to get Promotion Info" on promotion list screen
 
-  @HOSC034
+  @HOSC041
   Scenario: Failed to reload home screen by tapping home button
     When User tap "home" menu button while internet is "off"
-    Then User see toast message "Balance Load Failed"
+    Then User see toast message "Connection Error"
 

@@ -7,7 +7,7 @@ Feature: Home Feature Functionality Check
   Background:
     Given User directed to "sign in" screen
     #Change the phone number according your data table
-    When User input phone number "081213130000"
+    When User input phone number "08555333444"
     And User tap sign in button while internet is "on"
     Then User directed to "input pin" screen
     When User input pin "123456" while internet is "on"
@@ -22,7 +22,7 @@ Feature: Home Feature Functionality Check
     Then User see info "<message>" on history screen and internet is "on"
     Examples:
       | tab         | message                                    |
-      | In Progress | You have no transaction in progress, yet.  |
+      #| In Progress | You have no transaction in progress, yet.  |
       | Completed   | You haven't completed any transaction yet. |
 
   @HISC002 @HISC005 @HISC006
@@ -96,14 +96,14 @@ Feature: Home Feature Functionality Check
       # [@HISC016]
       | swipe left and right  |
 
-  @HISC020 @HISC021
+  @HISC023 @HISC024
   Scenario: Failed to load transaction history because internet problem
     When User tap "history" menu button while internet is "on"
     Then User will directed to "history" screen
     When User tap "completed" tab while internet is "off"
     Then User see info "Error getting your transaction history" on history screen and internet is "off"
 
-  @HISC022
+  @HISC025
   Scenario: Completed Transaction detail doesn't show up because internet problem
     When User tap "history" menu button while internet is "on"
     Then User will directed to "history" screen

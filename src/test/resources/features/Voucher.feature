@@ -88,7 +88,7 @@ Feature: Voucher Feature Functionality Check
       # [@VOSC013] Back to voucher screen by tapping device back button while in voucher detail screen
       | tap device back button                 | voucher        |
       # [@VOSC015] Still on voucher detail screen when unlocking device
-      #| unlock the device after being unlocked | voucher detail |
+      | unlock the device after being unlocked | voucher detail |
 
   @VOSC014
   Scenario: Back to home screen from voucher detail screen by opening the app
