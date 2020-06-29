@@ -24,6 +24,7 @@ public class LoginStepsDefinition {
 
     @And("User input pin number {string}")
     public void userInputPinNumber(String pin) {
+        signIn.waitPIN();
         signIn.inputPIN(pin);
     }
 }

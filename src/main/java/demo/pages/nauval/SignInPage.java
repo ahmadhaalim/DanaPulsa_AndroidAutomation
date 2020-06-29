@@ -7,11 +7,15 @@ public class SignInPage implements SignInPageLocator {
     AndroidPageObject pageObject = new AndroidPageObject();
 
     public boolean isOnPage(){
-        return pageObject.checkIfDisplayed(DANA_LOGO);
+        return pageObject.waitUntilDisplayed(LOGIN_LABEL);
     }
 
     public void inputNumber(String number){
         pageObject.typeON(INPUT_NUMBER, number);
+    }
+
+    public void waitPIN(){
+        pageObject.waitUntilDisplayed(PIN_LABEL);
     }
 
     public void inputPIN(String pin){

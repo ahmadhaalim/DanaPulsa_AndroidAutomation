@@ -22,4 +22,8 @@ public class HomePage implements HomePageLocator {
     public void chooseHistory(){
         pageObject.clickOn(History_Button);
     }
+
+    public void chooseProfile(){
+        pageObject.clickOn(Profile_Button);
+    }
 }

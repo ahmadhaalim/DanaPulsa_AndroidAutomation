@@ -14,6 +14,7 @@ public class MobileRechargeDefinition {
     RechargePaymentDetailPage detailPage = new RechargePaymentDetailPage();
     RechargePaymentStatusPage statusPage = new RechargePaymentStatusPage();
     RechargeChooseVoucherPage chooseVoucher = new RechargeChooseVoucherPage();
+    ProfilePage profile = new ProfilePage();
 
     @Given("User is on homepage")
     public void userIsOnHomepage() {
@@ -150,5 +151,17 @@ public class MobileRechargeDefinition {
             statusPage.voucherDialog();
             statusPage.confirmDialog();
         }
+    }
+
+    @And("User click profile")
+    public void userClickProfile() {
+        homePage.chooseProfile();
+    }
+
+    @And("User click sign out")
+    public void userClickLogOut() {
+        profile.isOnPage();
+        profile.signOut();
+        profile.confirmPositive();
     }
 }

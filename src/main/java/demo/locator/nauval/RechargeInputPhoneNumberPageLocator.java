@@ -20,5 +20,5 @@ public interface RechargeInputPhoneNumberPageLocator {
     By BACK_BUTTON = MobileBy.id("btnBack");
 
     // Recycle View
-    By RECENT_NUMBER_ITEMS = MobileBy.id("rvRecentNumber");
+    By RECENT_NUMBER_ITEMS = MobileBy.xpath("//androidx.cardview.widget.CardView[1]");
 }

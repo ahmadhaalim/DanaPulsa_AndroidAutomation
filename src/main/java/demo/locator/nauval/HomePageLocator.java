@@ -11,6 +11,6 @@ public interface HomePageLocator {
     By ViewAll_Button = MobileBy.id("btnPromotionViewAll");
     By History_Button = MobileBy.id("menuHistory");
     By Voucher_Button = MobileBy.id("menuVoucher");
-    By Profile_Button = MobileBy.id("menuProfile");
+    By Profile_Button = MobileBy.id("navigation_profile");
 //    By Warning_Message = MobileBy.id();
 }
