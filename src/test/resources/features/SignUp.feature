@@ -6,7 +6,7 @@ Feature: Sign Up
     And User tap the Sign Up button on Sign In page
     And User is on "Full Name" page
 
-  # PLEASE USER YOUR OWN DATA TABLE TO RUN THIS SCENARIO
+  # PLEASE USE YOUR OWN DATA TABLE TO RUN THIS SCENARIO
   @SU001-SU014
   Scenario Outline: Sign up using valid inputs
     When User input "<full_name>" on "Full Name" page
@@ -28,23 +28,23 @@ Feature: Sign Up
     And User tap YES button on dialog box
     Then User is on "Sign In" page
     Examples:
-      | full_name            | email                         | phone_number  | pin    | confirm_pin |
-      | Zak                  | zakifaridzan@gmail.com        | 081223176610  | 654321 | 654321      |
-      | Zaki Ahmad           | zakiakhmadfaridzaa@gmail.com  | 081223176611  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zakiakhmadfaridznn@gmail.com  | 081223176612  | 654321 | 654321      |
-      | zakiakhmadfaridzan   | zakiakhmadfaridzzz@gmail.com  | 081223176613  | 654321 | 654321      |
-      | ZAKIAKHMADFARIDZAN   | zakiakhmadfaridzzn@gmail.com  | 081223176614  | 654321 | 654321      |
-      | zakiAkhmadFaridzan   | zakiakhmadfaridzna@gmail.com  | 081223176615  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zakiakhmadf25@gmail.com       | 081223176616  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zaki.akhmadf@gmail.com        | 081223176618  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zaki_akhmadf@gmail.com        | 081223176619  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zaki-akhmadf@gmail.com        | 081223176620  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | endeavour@my-company.id       | 081223176622  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | falconheavy@mars.space.org    | 081223176623  | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zakiakhmadfaridzan1@gmail.com | 0812234565    | 654321 | 654321      |
-      | Zaki Akhmad Faridzan | zakiakhmadfaridzan2@gmail.com | 0812234565888 | 654321 | 654321      |
+      | full_name            | email                        | phone_number  | pin    | confirm_pin |
+      | Lin                  | linc@yahoo.com               | 08571112201   | 456456 | 456456      |
+      | Lincoln Br           | lincolnbr@yahoo.com          | 08571112202   | 456456 | 456456      |
+      | John Lincoln Burrows | lincolnburrows@yahoo.com     | 08571112203   | 456456 | 456456      |
+      | lincolnburrows       | burrows@yahoo.com            | 08571112204   | 456456 | 456456      |
+      | LINCOLNBURROWS       | burrowslinc@yahoo.com        | 08571112205   | 456456 | 456456      |
+      | lincolnBurrows       | burrowslc@yahoo.com          | 08571112206   | 456456 | 456456      |
+      | Lincoln Burrows      | lincolnbr55@yahoo.com        | 08571112207   | 456456 | 456456      |
+      | Lincoln Burrows      | lincoln.burrows@yahoo.com    | 08571112208   | 456456 | 456456      |
+      | Lincoln Burrows      | lincoln_burrows@yahoo.com    | 08571112209   | 456456 | 456456      |
+      | Lincoln Burrows      | lincoln-burrows@yahoo.com    | 08571112210   | 456456 | 456456      |
+      | Lincoln Burrows      | lincolnburrows@my-company.id | 08571112211   | 456456 | 456456      |
+      | Lincoln Burrows      | lincolnburrows@run.hood.org  | 08571112212   | 456456 | 456456      |
+      | Lincoln Burrows      | lincolnburrows1@yahoo.com    | 0857111220    | 456456 | 456456      |
+      | Lincoln Burrows      | lincolnburrows2@yahoo.com    | 0857111220123 | 456456 | 456456      |
 
-  # PLEASE USER YOUR OWN DATA TABLE TO RUN THIS SCENARIO
+  # PLEASE USE YOUR OWN DATA TABLE TO RUN THIS SCENARIO
   @SU015
   Scenario Outline: Sign Up using valid inputs with Full Name that is changed by user after input and proceed a Full Name
     When User input "<full_name>" on "Full Name" page
@@ -69,10 +69,10 @@ Feature: Sign Up
     And User tap YES button on dialog box
     Then User is on "Sign In" page
     Examples:
-      | full_name   | new_full_name | email                         | phone_number | pin    | confirm_pin |
-      | Zaki Akhmad | Zaki          | zakiakhmadfaridzan4@gmail.com | 081223176624 | 123123 | 123123      |
+      | full_name | new_full_name | email                     | phone_number | pin    | confirm_pin |
+      | Burrows   | Lincoln       | lincolnburrows4@yahoo.com | 08571112214  | 200500 | 200500      |
 
-  # PLEASE USER YOUR OWN DATA TABLE TO RUN THIS SCENARIO
+  # PLEASE USE YOUR OWN DATA TABLE TO RUN THIS SCENARIO
   @SU016
   Scenario Outline: Sign Up using valid inputs with Email that is changed by user after input and proceed an Email
     When User input "<full_name>" on "Full Name" page
@@ -97,10 +97,10 @@ Feature: Sign Up
     And User tap YES button on dialog box
     Then User is on "Sign In" page
     Examples:
-      | full_name   | email                         | new_email                     | phone_number | pin    | confirm_pin |
-      | Zaki Akhmad | zakiakhmadfaridzan4@gmail.com | zakiakhmadfaridzan5@gmail.com | 081223176625 | 123123 | 123123      |
+      | full_name | email                     | new_email                 | phone_number | pin    | confirm_pin |
+      | Lincoln   | lincolnburrows4@yahoo.com | lincolnburrows5@yahoo.com | 08571112215  | 200500 | 200500      |
 
-  # PLEASE USER YOUR OWN DATA TABLE TO RUN THIS SCENARIO
+  # PLEASE USE YOUR OWN DATA TABLE TO RUN THIS SCENARIO
   @SU017
   Scenario Outline: Sign Up using valid inputs with Phone Number that is changed by user after input and proceed a Phone Number
     When User input "<full_name>" on "Full Name" page
@@ -125,10 +125,10 @@ Feature: Sign Up
     And User tap YES button on dialog box
     Then User is on "Sign In" page
     Examples:
-      | full_name   | email                         | phone_number | new_phone_number | pin    | confirm_pin |
-      | Zaki Akhmad | zakiakhmadfaridzan6@gmail.com | 081223176625 | 081223176626     | 123123 | 123123      |
+      | full_name | email                     | phone_number | new_phone_number | pin    | confirm_pin |
+      | Lincoln   | lincolnburrows6@yahoo.com | 08571112215  | 08571112216      | 200500 | 200500      |
 
-  # PLEASE USER YOUR OWN DATA TABLE TO RUN THIS SCENARIO
+  # PLEASE USE YOUR OWN DATA TABLE TO RUN THIS SCENARIO
   @SU018
   Scenario Outline: Sign Up using valid inputs with PIN that is changed by user after input and proceed a PIN
     When User input "<full_name>" on "Full Name" page
@@ -145,16 +145,18 @@ Feature: Sign Up
     And User input "<confirm_pin>" on "Confirm PIN" page
     And User tap Finish button on Confirm PIN page
     Then User is on "Home" page
+    And User tap Profile icon
+    And User tap Sign Out button on Profile page
+    And User tap YES button on dialog box
+    When User sign in using Phone Number "<phone_number>" and PIN "<new_pin>"
+    Then User is on "Home" page
     When User tap Profile icon
-    Then User see "<full_name>" as his "Full Name" on Profile page
-    And User see "<email>" as his "Email" on Profile page
-    And User see "<phone_number>" as his "Phone Number" on Profile page
-    When User tap Sign Out button on Profile page
+    And User tap Sign Out button on Profile page
     And User tap YES button on dialog box
     Then User is on "Sign In" page
     Examples:
-      | full_name   | email                         | phone_number | pin    | new_pin | confirm_pin |
-      | Zaki Akhmad | zakiakhmadfaridzan7@gmail.com | 081223176627 | 123123 | 987987  | 987987      |
+      | full_name | email                     | phone_number | pin    | new_pin | confirm_pin |
+      | Lincoln   | lincolnburrows7@yahoo.com | 08571112217  | 200500 | 300600  | 300600      |
 
   # Email michaelschofield@gmail.com and Phone Number 08997775555 already registered
   @SU019-SU021
@@ -176,7 +178,7 @@ Feature: Sign Up
       | Zaki Akhmad Faridzan | zakiakhmadfaridzan3@gmail.com | 08997775555  | 654321 | 654321      |
       | Zaki Akhmad Faridzan | michaelschofield@gmail.com    | 08997775555  | 654321 | 654321      |
 
-  @SU022-SU030
+  @SU022-SU029
   Scenario Outline: Sign up using invalid Full Name
     When User input "<full_name>" on "Full Name" page
     Then User cannot proceed because Next button on "Full Name" page is not clickable
@@ -191,7 +193,7 @@ Feature: Sign Up
       | Zaki!@                |
       | Zaki🙃                |
 
-  @SU031-SU045
+  @SU030-SU044
   Scenario Outline: Sign up using invalid Email
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -215,7 +217,7 @@ Feature: Sign Up
       | zakifaridzan@gmail.com.    |
       | zakiakhmad@gmail.c         |
 
-  @SU046-SU056
+  @SU045-SU054
   Scenario Outline: Sign up using invalid Phone Number
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -236,7 +238,7 @@ Feature: Sign Up
       | -08122317664   |
       | 0812-2317-661  |
 
-  @SU057-SU058
+  @SU055-SU056
   Scenario Outline: Sign up using less than 6 digit PIN
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -251,7 +253,7 @@ Feature: Sign Up
       |      |
       | 6543 |
 
-  @SU059-SU063
+  @SU057-SU062
   Scenario Outline: Sign up using invalid PIN format
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -260,16 +262,17 @@ Feature: Sign Up
     And User input "081223176630" on "Phone Number" page
     And User tap Next button on "Phone Number" page
     And User input "<pin>" on "Create PIN" page
-    Then User see error message "PIN format is invalid"
+    Then User see error message "Must be 6 digits and cannot start with 0"
     Examples:
       | pin    |
+      | 065432 |
       | 65*432 |
       | 6#5432 |
       | .65432 |
       | 654-32 |
       | P65A4S |
 
-  @SU064
+  @SU063
   Scenario: Sign up using empty Confirmation PIN
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -282,7 +285,7 @@ Feature: Sign Up
     And User input "" on "Confirm PIN" page
     Then User cannot proceed because Finish button on Confirm PIN page is not clickable
   
-  @SU065
+  @SU064
   Scenario: Sign up using incorrect Confirmation PIN
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -295,7 +298,7 @@ Feature: Sign Up
     And User input "123987" on "Confirm PIN" page
     Then User see error message "PIN doesn't match"
 
-  @SU066
+  @SU065
   Scenario: Sign up using valid inputs but the device's internet is off when user want to Finish on Confirm PIN screen
     When User input "Zaki Akhmad Faridzan" on "Full Name" page
     And User tap Next button on "Full Name" page
@@ -305,7 +308,8 @@ Feature: Sign Up
     And User tap Next button on "Phone Number" page
     And User input "500505" on "Create PIN" page
     And User tap Next button on "Create PIN" page
-    And The device's internet connection is turned off
+    And The device's internet connection is turned "off"
     And User input "500505" on "Confirm PIN" page
     And User tap Finish button on Confirm PIN page
-    Then User see error message "Connection Error" because connection issue
+    Then User see error message "Connection Error"
+    And The device's internet connection is turned "on"

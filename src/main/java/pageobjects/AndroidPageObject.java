@@ -4,6 +4,8 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.Setting;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
@@ -184,7 +186,7 @@ public class AndroidPageObject {
      * @param fileName file name on src > test > resources > images
      */
     public void tapOnImage(String fileName) throws IOException, URISyntaxException {
-        androidDriver.setSetting(Setting.IMAGE_MATCH_THRESHOLD, 0.95);
+        androidDriver.setSetting(Setting.IMAGE_MATCH_THRESHOLD, 0.9);
         String imageReference = getReferenceImageB64(fileName);
         boolean visible = false;
         int count = 0, maxCount = 2;
@@ -196,6 +198,17 @@ public class AndroidPageObject {
             } catch (NoSuchElementException ign) {
                 System.out.println("element by image not found");
             }
+        }
+    }
+
+    public void turnWifiAndData() {
+        androidDriver.toggleData();
+        try {
+            androidDriver.openNotifications();
+            androidDriver.findElement(By.xpath("//android.widget.Switch[contains(@content-desc, 'Wi-Fi,')]")).click();
+            androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
+        } catch (NoSuchElementException ignore) {
+            androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
         }
     }
 }

@@ -15,7 +15,8 @@ Feature: Functionality on Sign up - Full Name page
   Scenario: Use data from clipboard to fill Full Name input field
     Given User has copied "Morgenstein" to the clipboard
     When User press and hold on "Full Name" input field
-    And User paste clipboard data by tapping "Android 10.0" Paste button
+    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
+    And User paste clipboard data by tapping "Android 6.0" Paste button
     Then User see "Morgenstein" is shown in "Full Name" input field
 
   @SUFN002

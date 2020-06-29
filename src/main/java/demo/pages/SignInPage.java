@@ -12,4 +12,12 @@ public class SignInPage extends AndroidPageObject implements SignInPageLocator {
     public void tapSignUpButton() {
         clickOn(BUTTON_SIGN_UP);
     }
+
+    public void inputPhoneNumber(String phone) {
+        typeON(EDIT_PHONE_NUMBER, phone);
+    }
+
+    public void tapSignInButton() {
+        clickOn(BUTTON_SIGN_IN);
+    }
 }

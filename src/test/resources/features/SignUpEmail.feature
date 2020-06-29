@@ -17,7 +17,8 @@ Feature: Functionality on Sign up - Email page
   Scenario: Use data from clipboard to fill Email input field
     Given User has copied "morgenstein@co.uk" to the clipboard
     When User press and hold on "Email" input field
-    And User paste clipboard data by tapping "Android 10.0" Paste button
+    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
+    And User paste clipboard data by tapping "Android 8.0" Paste button
     Then User see "morgenstein@co.uk" is shown in "Email" input field
 
   @SUE002

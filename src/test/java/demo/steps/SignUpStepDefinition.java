@@ -8,6 +8,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import pageobjects.AndroidPageObject;
 
 
@@ -19,6 +21,7 @@ import static demo.driver.AndroidDriverInstance.androidDriver;
 public class SignUpStepDefinition extends AndroidPageObject {
 
     SignInPage signInPage = new SignInPage();
+    SignInPINPage signInPINPage = new SignInPINPage();
     SignUpFullNamePage signUpFullNamePage = new SignUpFullNamePage();
     SignUpEmailPage signUpEmailPage = new SignUpEmailPage();
     SignUpPhoneNumberPage signUpPhoneNumberPage = new SignUpPhoneNumberPage();
@@ -36,8 +39,14 @@ public class SignUpStepDefinition extends AndroidPageObject {
                 Assert.assertTrue(signInButtonDisplayed);
                 break;
             case "Home":
-                boolean mobRechargeIconDisplayed = homePage.isOnPage();
-                Assert.assertTrue(mobRechargeIconDisplayed);
+                boolean onPage = homePage.directedToPage();
+                if (onPage) {
+                    boolean userBalanceDisplayed = homePage.isOnPage();
+                    Assert.assertTrue(userBalanceDisplayed);
+                } else {
+                    String errorMsg = dialogPage.getErrorMessage();
+                    Assert.fail(errorMsg);
+                }
                 break;
             case "Full Name":
                 boolean textFullNameDisplayed = signUpFullNamePage.isOnPage();
@@ -371,27 +380,6 @@ public class SignUpStepDefinition extends AndroidPageObject {
         }
     }
 
-    @When("The device's internet connection is turned off")
-    public void theDeviceSInternetConnectionIsTurnedOff() throws InterruptedException {
-        androidDriver.toggleData();
-        androidDriver.toggleWifi();
-        Thread.sleep(2000);
-    }
-
-    @Then("User see error message {string} because connection issue")
-    public void userSeeErrorMessageBecauseConnectionIssue(String errorMsg) throws InterruptedException {
-        Thread.sleep(5000);
-        if (dialogPage.dialogIsShown()) {
-            String actualErrorMsg = dialogPage.getErrorMessage();
-            Assert.assertEquals(errorMsg, actualErrorMsg);
-        } else { Assert.fail("The dialog box didn't show up"); }
-        dialogPage.tapOKButton();
-        // Turning on the device's internet connection
-        androidDriver.toggleWifi();
-        androidDriver.toggleData();
-        Thread.sleep(15000);
-    }
-
     @Then("User cannot paste clipboard data because the {string} Paste button is not shown")
     public void userCannotPasteClipboardDataBecauseThePasteButtonIsNotShown(String androidVersion) throws IOException, URISyntaxException {
         switch (androidVersion) {
@@ -430,6 +418,28 @@ public class SignUpStepDefinition extends AndroidPageObject {
                 Assert.assertNotEquals(input.length(), lengthOfDigitsOnField);
                 Assert.assertEquals(input.substring(0, boundaryValue), phoneNumberOnField);
                 break;
+        }
+    }
+
+    @When("User sign in using Phone Number {string} and PIN {string}")
+    public void userSignInUsingPhoneNumberAndPIN(String phoneNumber, String pin) {
+        signInPage.inputPhoneNumber(phoneNumber);
+        signInPage.tapSignInButton();
+        try {
+            signInPINPage.inputPIN(pin);
+        } catch (TimeoutException ign) {
+            String errorMsg = dialogPage.getErrorMessage();
+            Assert.fail(errorMsg);
+        }
+    }
+
+    @When("The device's internet connection is turned {string}")
+    public void theDeviceSInternetConnectionIsTurned(String condition) throws InterruptedException {
+        turnWifiAndData();
+        if (condition.equals("off")) {
+            Thread.sleep(2000);
+        } else if (condition.equals("on")) {
+            Thread.sleep(15000);
         }
     }
 }

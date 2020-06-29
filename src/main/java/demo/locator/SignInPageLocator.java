@@ -8,4 +8,7 @@ public interface SignInPageLocator {
     // Button
     By BUTTON_SIGN_IN = MobileBy.id("btnLoginSignIn");
     By BUTTON_SIGN_UP = MobileBy.id("btnLoginSignUp");
+
+    // Edit Text
+    By EDIT_PHONE_NUMBER = MobileBy.id("edtLoginPhone");
 }
