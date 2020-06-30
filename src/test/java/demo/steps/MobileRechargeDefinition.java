@@ -20,6 +20,7 @@ public class MobileRechargeDefinition {
     public void userIsOnHomepage() {
         boolean on_page = homePage.onHomePage();
         Assert.assertTrue(on_page);
+        homePage.getBalance();
     }
 
     @When("User click mobile recharge icon")
@@ -76,14 +77,15 @@ public class MobileRechargeDefinition {
     }
 
     @And("User choose voucher value {string}")
-    public void userChooseVoucherValueChooseVoucher(String voucherValue) {
-        if (voucherValue.contains("cashback")){
+    public void userChooseVoucherValueChooseVoucher(String voucherValue) throws InterruptedException {
+        Thread.sleep(5000);
+        if (voucherValue.contains("Cashback")){
             chooseVoucher.chooseCashback(voucherValue);
         }
-        if (voucherValue.contains("discount")){
+        if (voucherValue.contains("Diskon")){
             chooseVoucher.chooseDiscount(voucherValue);
         }
-        else {
+        if (voucherValue.equalsIgnoreCase("no")){
             chooseVoucher.noVoucher();
         }
     }

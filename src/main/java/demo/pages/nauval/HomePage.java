@@ -1,5 +1,6 @@
 package demo.pages.nauval;
 
+import demo.driver.AndroidDriverInstance;
 import demo.locator.nauval.HomePageLocator;
 import pageobjects.AndroidPageObject;
 
@@ -7,7 +8,12 @@ public class HomePage implements HomePageLocator {
     AndroidPageObject pageObject = new AndroidPageObject();
 
     public boolean onHomePage(){
-        return pageObject.waitUntilDisplayed(Promotion_Banner);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return pageObject.waitUntilDisplayed(DANA_Balance);
     }
 
     public void chooseMobileRecharge(){
@@ -25,5 +31,10 @@ public class HomePage implements HomePageLocator {
 
     public void chooseProfile(){
         pageObject.clickOn(Profile_Button);
+    }
+
+    public void getBalance(){
+        String element = AndroidDriverInstance.androidDriver.findElement(DANA_Balance).getText();
+        System.out.println(element);
     }
 }

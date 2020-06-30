@@ -4,9 +4,9 @@ Feature: Mobile Recharge
 
   Background:
     Given User is on sign in page
-    When User input phone number "08555777888"
-#    When User input phone number "0812000000"
-    And User input pin number "123456"
+#    When User input phone number "08555777888"
+    When User input phone number "0812000000"
+    And User input pin number "111111"
 #  Gunakan username dan PIN masing-masing!!
 
   #passed
@@ -150,101 +150,101 @@ Feature: Mobile Recharge
     #tambahkan step dapet/ga dapet voucher
     And  User see payment status "<statusPayment>"
     Examples:
-      | phoneNumber  | topUp   | statusVoucher | chooseVoucher | statusPayment |
-      | 085902222222 | 5000    | unavailable   | no            | Completed     |
-      | 085902222222 | 10000   | available     | no            | Completed     |
-      | 085902222222 | 10000   | available     | cashback 1K   | Completed     |
-      | 085902222222 | 15000   | available     | no            | Completed     |
-      | 085902222222 | 15000   | available     | cashback 1K   | Completed     |
-      | 085902222222 | 30000   | available     | no            | Completed     |
-      | 085902222222 | 30000   | available     | cashback 1K   | Completed     |
-      | 085902222222 | 30000   | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 30000   | available     | cashback 2K   | Completed     |
-      | 085902222222 | 50000   | available     | no            | Completed     |
-      | 085902222222 | 50000   | available     | cashback 1K   | Completed     |
-      | 085902222222 | 50000   | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 50000   | available     | cashback 2K   | Completed     |
-      | 085902222222 | 50000   | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 50000   | available     | cashback 3K   | Completed     |
-      | 085902222222 | 50000   | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 100000  | available     | no            | Completed     |
-      | 085902222222 | 100000  | available     | cashback 1K   | Completed     |
-      | 085902222222 | 100000  | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 100000  | available     | cashback 2K   | Completed     |
-      | 085902222222 | 100000  | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 100000  | available     | cashback 3K   | Completed     |
-      | 085902222222 | 100000  | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 100000  | available     | discount 5%   | Completed     |
-      | 085902222222 | 100000  | available     | discount 10%  | Completed     |
-      | 085902222222 | 100000  | available     | discount 15%  | Completed     |
-      | 085902222222 | 150000  | available     | no            | Completed     |
-      | 085902222222 | 150000  | available     | cashback 1K   | Completed     |
-      | 085902222222 | 150000  | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 150000  | available     | cashback 2K   | Completed     |
-      | 085902222222 | 150000  | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 150000  | available     | cashback 3K   | Completed     |
-      | 085902222222 | 150000  | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 150000  | available     | discount 5%   | Completed     |
-      | 085902222222 | 150000  | available     | discount 10%  | Completed     |
-      | 085902222222 | 150000  | available     | discount 15%  | Completed     |
-      | 085902222222 | 150000  | available     | discount 20%  | Completed     |
-      | 085902222222 | 200000  | available     | no            | Completed     |
-      | 085902222222 | 200000  | available     | cashback 1K   | Completed     |
-      | 085902222222 | 200000  | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 200000  | available     | cashback 2K   | Completed     |
-      | 085902222222 | 200000  | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 200000  | available     | cashback 3K   | Completed     |
-      | 085902222222 | 200000  | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 200000  | available     | discount 5%   | Completed     |
-      | 085902222222 | 200000  | available     | discount 10%  | Completed     |
-      | 085902222222 | 200000  | available     | discount 15%  | Completed     |
-      | 085902222222 | 200000  | available     | discount 20%  | Completed     |
-      | 085902222222 | 200000  | available     | discount 25%  | Completed     |
-      | 085902222222 | 300000  | available     | no            | Completed     |
-      | 085902222222 | 300000  | available     | cashback 1K   | Completed     |
-      | 085902222222 | 300000  | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 300000  | available     | cashback 2K   | Completed     |
-      | 085902222222 | 300000  | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 300000  | available     | cashback 3K   | Completed     |
-      | 085902222222 | 300000  | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 300000  | available     | discount 5%   | Completed     |
-      | 085902222222 | 300000  | available     | discount 10%  | Completed     |
-      | 085902222222 | 300000  | available     | discount 15%  | Completed     |
-      | 085902222222 | 300000  | available     | discount 20%  | Completed     |
-      | 085902222222 | 300000  | available     | discount 25%  | Completed     |
-      | 085902222222 | 300000  | available     | discount 30%  | Completed     |
-      | 085902222222 | 300000  | available     | discount 35%  | Completed     |
-      | 085902222222 | 500000  | available     | no            | Completed     |
-      | 085902222222 | 500000  | available     | cashback 1K   | Completed     |
-      | 085902222222 | 500000  | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 500000  | available     | cashback 2K   | Completed     |
-      | 085902222222 | 500000  | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 500000  | available     | cashback 3K   | Completed     |
-      | 085902222222 | 500000  | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 500000  | available     | discount 5%   | Completed     |
-      | 085902222222 | 500000  | available     | discount 10%  | Completed     |
-      | 085902222222 | 500000  | available     | discount 15%  | Completed     |
-      | 085902222222 | 500000  | available     | discount 20%  | Completed     |
-      | 085902222222 | 500000  | available     | discount 25%  | Completed     |
-      | 085902222222 | 500000  | available     | discount 30%  | Completed     |
-      | 085902222222 | 500000  | available     | discount 35%  | Completed     |
-      | 085902222222 | 500000  | available     | discount 40%  | Completed     |
-      | 085902222222 | 1000000 | available     | no            | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 1K   | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 2K   | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 3K   | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 1000000 | available     | discount 5%   | Completed     |
-      | 085902222222 | 1000000 | available     | discount 10%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 15%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 20%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 25%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 30%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 35%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 40%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 45%  | Completed     |
+      | phoneNumber  | topUp     | statusVoucher | chooseVoucher  | statusPayment |
+      | 085902222222 | 5000      | unavailable   | no             | Completed     |
+      | 085902222222 | 10000     | available     | no             | Completed     |
+      | 085902222222 | 10000     | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 15000     | available     | no             | Completed     |
+      | 085902222222 | 15000     | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 30000     | available     | no             | Completed     |
+      | 085902222222 | 30000     | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 30000     | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 30000     | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 50000     | available     | no             | Completed     |
+      | 085902222222 | 50000     | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 50000     | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 50000     | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 50000     | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 50000     | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 50000     | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 100000    | available     | no             | Completed     |
+      | 085902222222 | 100000    | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 100000    | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 100000    | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 100000    | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 100000    | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 100000    | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 100000    | available     | diskon 5%      | Completed     |
+      | 085902222222 | 100000    | available     | diskon 10%     | Completed     |
+      | 085902222222 | 100000    | available     | diskon 15%     | Completed     |
+      | 085902222222 | 150000    | available     | no             | Completed     |
+      | 085902222222 | 150000    | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 150000    | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 150000    | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 150000    | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 150000    | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 150000    | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 150000    | available     | diskon 5%      | Completed     |
+      | 085902222222 | 150000    | available     | diskon 10%     | Completed     |
+      | 085902222222 | 150000    | available     | diskon 15%     | Completed     |
+      | 085902222222 | 150000    | available     | diskon 20%     | Completed     |
+      | 085902222222 | 200000    | available     | no             | Completed     |
+      | 085902222222 | 200000    | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 200000    | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 200000    | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 200000    | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 200000    | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 200000    | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 200000    | available     | diskon 5%      | Completed     |
+      | 085902222222 | 200000    | available     | diskon 10%     | Completed     |
+      | 085902222222 | 200000    | available     | diskon 15%     | Completed     |
+      | 085902222222 | 200000    | available     | diskon 20%     | Completed     |
+      | 085902222222 | 200000    | available     | diskon 25%     | Completed     |
+      | 085902222222 | 300000    | available     | no             | Completed     |
+      | 085902222222 | 300000    | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 300000    | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 300000    | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 300000    | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 300000    | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 300000    | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 300000    | available     | diskon 5%      | Completed     |
+      | 085902222222 | 300000    | available     | diskon 10%     | Completed     |
+      | 085902222222 | 300000    | available     | diskon 15%     | Completed     |
+      | 085902222222 | 300000    | available     | diskon 20%     | Completed     |
+      | 085902222222 | 300000    | available     | diskon 25%     | Completed     |
+      | 085902222222 | 300000    | available     | diskon 30%     | Completed     |
+      | 085902222222 | 300000    | available     | diskon 35%     | Completed     |
+      | 085902222222 | 500000    | available     | no             | Completed     |
+      | 085902222222 | 500000    | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 500000    | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 500000    | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 500000    | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 500000    | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 500000    | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 500000    | available     | diskon 5%      | Completed     |
+      | 085902222222 | 500000    | available     | diskon 10%     | Completed     |
+      | 085902222222 | 500000    | available     | diskon 15%     | Completed     |
+      | 085902222222 | 500000    | available     | diskon 20%     | Completed     |
+      | 085902222222 | 500000    | available     | diskon 25%     | Completed     |
+      | 085902222222 | 500000    | available     | diskon 30%     | Completed     |
+      | 085902222222 | 500000    | available     | diskon 35%     | Completed     |
+      | 085902222222 | 500000    | available     | diskon 40%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | no             | Completed     |
+      | 085902222222 | 1.000.000 | available     | cashback 1.000 | Completed     |
+      | 085902222222 | 1.000.000 | available     | cashback 1.500 | Completed     |
+      | 085902222222 | 1.000.000 | available     | cashback 2.000 | Completed     |
+      | 085902222222 | 1.000.000 | available     | cashback 2.500 | Completed     |
+      | 085902222222 | 1.000.000 | available     | cashback 3.000 | Completed     |
+      | 085902222222 | 1.000.000 | available     | cashback 3.500 | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 5%      | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 10%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 15%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 20%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 25%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 30%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 35%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 40%     | Completed     |
+      | 085902222222 | 1.000.000 | available     | diskon 45%     | Completed     |
 
     #passed
   @Cancel
@@ -287,8 +287,9 @@ Feature: Mobile Recharge
     Examples:
       | phoneNumber | topUp | statusVoucher | statusPayment |
       | 0895200000  | 5.000 | unavailable   | Completed     |
-#      | 0851000000  | 500.000 | available     | Completed     |
+#      | 0851.000.000  | 500.000 | available     | Completed     |
 
+  @Trial-2
   Scenario Outline: Top Up (12 digit phone number) using voucher (if available)
     Given User is on homepage
     When User click mobile recharge icon
@@ -302,21 +303,25 @@ Feature: Mobile Recharge
     Then User see payment status page
     #tambahkan step dapet/ga dapet voucher
     And  User see payment status "<statusPayment>"
+    And User click back to home button
+    Then User is on homepage
+    And User click profile
+    And User click sign out
     Examples:
       | phoneNumber  | topUp   | statusVoucher | chooseVoucher | statusPayment |
-      | 085902222222 | 1000000 | available     | no            | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 1K   | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 1.5K | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 2K   | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 2.5K | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 3K   | Completed     |
-      | 085902222222 | 1000000 | available     | cashback 3.5K | Completed     |
-      | 085902222222 | 1000000 | available     | discount 5%   | Completed     |
-      | 085902222222 | 1000000 | available     | discount 10%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 15%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 20%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 25%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 30%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 35%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 40%  | Completed     |
-      | 085902222222 | 1000000 | available     | discount 45%  | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 45%      | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 40%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 35%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 30%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 25%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 20%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 15%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 10%    | Completed     |
+#      | 081222223333 | 500.000 | available     | Diskon 5%     | Completed     |
+#      | 081222223333 | 500.000 | available     | no             | Completed     |
+#      | 081222223333 | 500.000 | available     | Cashback Rp 3.500 | Completed     |
+#      | 081222223333 | 500.000 | available     | Cashback Rp 3.000 | Completed     |
+#      | 081222223333 | 500.000 | available     | Cashback Rp 2.500 | Completed     |
+#      | 081222223333 | 500.000 | available     | Cashback Rp 2.000 | Completed     |
+      | 081222223333 | 500.000 | available     | Cashback Rp 1.500 | Completed     |
+      | 081222223333 | 500.000 | available     | Cashback Rp 1.000 | Completed     |

@@ -7,6 +7,11 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
     AndroidPageObject pageObject = new AndroidPageObject();
 
     public boolean isOnPage(){
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return pageObject.checkIfDisplayed(CHECKOUT_PRODUCT);
     }
 

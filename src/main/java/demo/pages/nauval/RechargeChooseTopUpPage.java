@@ -7,7 +7,12 @@ public class RechargeChooseTopUpPage implements RechargeChooseTopUpPageLocator {
     AndroidPageObject pageObject = new AndroidPageObject();
 
     public void chooseTopUpNominal(String nominal){
-       pageObject.multipleID(nominal,PULSA_VALUE);
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        pageObject.multipleID(nominal,PULSA_VALUE);
     }
 
     public boolean displayTopUp(){
