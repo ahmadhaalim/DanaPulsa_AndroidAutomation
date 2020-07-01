@@ -10,6 +10,7 @@ public interface RechargeInputPhoneNumberPageLocator {
 
     // Image View
     By RECENT_PROVIDER_ICON = MobileBy.id("ivRecentNumberProvider");
+    By PROVIDER_ICON = MobileBy.id("ivProviderIcon");
 
     // Edit Text
     By INPUT_PHONE_NUMBER = MobileBy.id("edtPhoneNumber");
@@ -22,5 +23,6 @@ public interface RechargeInputPhoneNumberPageLocator {
     By RECENT_NUMBER_ITEMS = MobileBy.id("rvRecentNumber");
 
     //Error Message
-    By NUMBER_ERROR = MobileBy.id("textError");
+    By NUMBER_ERROR = MobileBy.id("textinput_error");
+    By INVALID_ERROR = MobileBy.id("tvDialogContent");
 }

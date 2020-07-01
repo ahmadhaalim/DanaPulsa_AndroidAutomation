@@ -4,7 +4,7 @@ import demo.locator.RechargeChooseVoucherPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class RechargeChooseVoucherPage implements RechargeChooseVoucherPageLocator {
-    AndroidPageObject pageObject;
+    AndroidPageObject pageObject = new AndroidPageObject();
 
     public boolean isOnPage(){
         return pageObject.checkIfDisplayed(PHONE_IMAGE);

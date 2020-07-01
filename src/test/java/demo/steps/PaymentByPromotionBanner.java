@@ -11,13 +11,17 @@ public class PaymentByPromotionBanner {
     HomePage homePage = new HomePage();
     PromotionDetailPage detailPage = new PromotionDetailPage();
 
-    @When("User click Promotion Banner")
-    public void userClickPromotionBanner() {
-        homePage.clickPromotionItem();
-    }
+//    @When("User click Promotion Banner")
+//    public void userClickPromotionBanner() {
+//        homePage.clickPromotionItem();
+//    }
 
     @And("User click Buy Pulsa Now")
     public void userClickBuyPulsaNow() {detailPage.clickBuyPulsaNowButton();
     }
 
+    @When("User choose {string} on banner")
+    public void userChooseOnBanner(String titles) {
+        homePage.clickPromotionItem(titles);
+    }
 }

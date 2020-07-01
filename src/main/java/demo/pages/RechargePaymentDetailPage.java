@@ -12,11 +12,11 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
     }
 
     public boolean voucherUnavailable() {
-        return pageObject.checkIfEnabled(SELECT_VOUCHER);
+        return pageObject.checkElement(SELECT_VOUCHER);
     }
 
     public boolean voucherAvailable() {
-        return pageObject.checkIfEnabled(SELECT_VOUCHER);
+        return pageObject.checkElement(SELECT_VOUCHER);
     }
 
     public void clickBackButton() {
@@ -37,6 +37,10 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
 
     public boolean checkPayButton(){
         return pageObject.checkIfDisplayed(RechargePaymentDetailPageLocator.PAY_BUTTON);
+    }
+
+    public boolean checkVoucherButton(){
+        return pageObject.checkElement(RechargePaymentDetailPage.SELECT_VOUCHER);
     }
 }
 

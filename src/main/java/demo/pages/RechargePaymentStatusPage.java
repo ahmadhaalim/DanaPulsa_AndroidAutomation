@@ -12,10 +12,16 @@ public class RechargePaymentStatusPage implements RechargePaymentStatusPageLocat
     }
 
     public String statusPayment(){
+        pageObject.waitUntilDisplayed(TRANSACTION_RESULT);
         return AndroidDriverInstance.androidDriver.findElement(TRANSACTION_RESULT).getText();
     }
 
     public void voucherDialog(){
+        pageObject.clickOn(OK_DIALOG_BUTTON);
+    }
+
+    public void confirmationButton(){
+        pageObject.waitUntilDisplayed(OK_DIALOG_BUTTON);
         pageObject.clickOn(OK_DIALOG_BUTTON);
     }
 

@@ -28,6 +28,6 @@ public interface RechargePaymentStatusPageLocator {
 
     // Button
     By BACK_TO_HOME_BUTTON = MobileBy.id("btnBackToHome");
-    By OK_DIALOG_BUTTON = MobileBy.id("buttonDialogPositive");
+    By OK_DIALOG_BUTTON = MobileBy.id("btnDialogPositive");
 
 }

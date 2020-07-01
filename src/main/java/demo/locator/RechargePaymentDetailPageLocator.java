@@ -24,9 +24,9 @@ public interface RechargePaymentDetailPageLocator {
 
     // Button
     By TOOLBAR_MENU = MobileBy.id("");
-    By BACK_BUTTON = MobileBy.id("");
-    By SELECT_VOUCHER = MobileBy.id("cvVoucher");
-    By PAY_BUTTON = MobileBy.id("btnCheckoutPay");
+    By BACK_BUTTON = MobileBy.AccessibilityId("Navigate up");
+    By SELECT_VOUCHER = MobileBy.id("btnVoucherAction");
+    By PAY_BUTTON = MobileBy.id("btnPay");
 
 
     By CANCEL_YES_BUTTON = MobileBy.id("btnDialogPositive");

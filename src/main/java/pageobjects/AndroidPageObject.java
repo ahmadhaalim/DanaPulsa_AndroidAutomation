@@ -42,7 +42,7 @@ public class AndroidPageObject {
      * @param id locator of element
      */
     public void waitUntilDisplayed(By id) {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 10);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 20);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         element.isDisplayed();
     }
@@ -52,7 +52,7 @@ public class AndroidPageObject {
      * @param id locator of element
      */
     public void waitUntilEnabled(By id) {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 5);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 10);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         element.isEnabled();
     }
@@ -102,6 +102,10 @@ public class AndroidPageObject {
         }
     }
 
+    public boolean checkElement(By locator){
+        List<AndroidElement> providerIcon = androidDriver. findElements (locator);
+        return providerIcon.size()> 0;
+    }
     /**
      * Perform getting text from pop up dialog box
      * @param id locator of element

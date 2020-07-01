@@ -29,42 +29,42 @@ Feature: Mobile Recharge
     Then User is on homepage
     Examples:
       | phoneNumber    | topUp | statusVoucher | chooseVoucher | statusPayment |
-      | 0859233333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859433333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859533333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859633333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859733333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859933333333  | 15K   | available     | cashback 1K   | success       |
-      | 0877333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0878333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0817333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0818333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0819333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0895333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0896333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0897333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0898333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0899333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0815333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0816333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0855333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0856333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0857333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0858333333333  | 15K   | available     | cashback 1K   | success       |
-      | 08823333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08833333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08843333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08853333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08863333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08873333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08883333333333 | 15K   | available     | cashback 1K   | success       |
-      | 08893333333333 | 15K   | available     | cashback 1K   | success       |
-      | 0833333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0838333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0831333333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859133333333  | 15K   | available     | cashback 1K   | success       |
-      | 0859833333333  | 15K   | available     | cashback 1K   | success       |
+      | 0859233333333  | 15.000   | available     | Cashback Rp 1.000 buat beli pulsa | Payment Completed       |
+      | 0859333333333  | 25.000   | available     | Cashback Rp 2.000 buat beli pulsa | Payment Completed       |
+#      | 0859433333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0859533333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0859633333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0859733333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0859933333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0877333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0878333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0817333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0818333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0819333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0895333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0896333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0897333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0898333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0899333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0815333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0816333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0855333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0856333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0857333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0858333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 08823333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08833333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08843333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08853333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08863333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08873333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08883333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 08893333333333 | 15.000   | available     | cashback 1.000   | success       |
+#      | 0833333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0838333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0831333333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0859133333333  | 15.000   | available     | cashback 1.000   | success       |
+#      | 0859833333333  | 15.000   | available     | cashback 1.000   | success       |
 
   @MR027
   Scenario Outline: Top up without voucher via history in progress (13 digit phone number)
@@ -81,44 +81,61 @@ Feature: Mobile Recharge
     And User click in progress payment
     Then User see payment detail page
     And User pay the bill
+    And User click OK
     And User see payment status "<statusPayment>"
     And User click back to home button
     Then User is on homepage
     Examples:
       | phoneNumber    | topUp | statusPayment |
-      | 0859233333333  | 5k    | success       |
-      | 0859333333333  | 5k    | success       |
-      | 0859433333333  | 5k    | success       |
-      | 0859533333333  | 5k    | success       |
-      | 0859633333333  | 5k    | success       |
-      | 0859733333333  | 5k    | success       |
-      | 0859933333333  | 5k    | success       |
-      | 0877333333333  | 5k    | success       |
-      | 0878333333333  | 5k    | success       |
-      | 0817333333333  | 5k    | success       |
-      | 0818333333333  | 5k    | success       |
-      | 0819333333333  | 5k    | success       |
-      | 0895333333333  | 5k    | success       |
-      | 0896333333333  | 5k    | success       |
-      | 0897333333333  | 5k    | success       |
-      | 0898333333333  | 5k    | success       |
-      | 0899333333333  | 5k    | success       |
-      | 0815333333333  | 5k    | success       |
-      | 0816333333333  | 5k    | success       |
-      | 0855333333333  | 5k    | success       |
-      | 0856333333333  | 5k    | success       |
-      | 0857333333333  | 5k    | success       |
-      | 0858333333333  | 5k    | success       |
-      | 08823333333333 | 5k    | success       |
-      | 08833333333333 | 5k    | success       |
-      | 08843333333333 | 5k    | success       |
-      | 08853333333333 | 5k    | success       |
-      | 08863333333333 | 5k    | success       |
-      | 08873333333333 | 5k    | success       |
-      | 08883333333333 | 5k    | success       |
-      | 08893333333333 | 5k    | success       |
-      | 0833333333333  | 5k    | success       |
-      | 0838333333333  | 5k    | success       |
-      | 0831333333333  | 5k    | success       |
-      | 0859133333333  | 5k    | success       |
-      | 0859833333333  | 5k    | success       |
+      | 0859233333333  | 15.000    | Payment Completed       |
+#      | 0859333333333  | 15.000    | success       |
+#      | 0859433333333  | 15.000    | success       |
+#      | 0859533333333  | 15.000    | success       |
+#      | 0859633333333  | 15.000    | success       |
+#      | 0859733333333  | 15.000    | success       |
+#      | 0859933333333  | 15.000    | success       |
+#      | 0877333333333  | 15.000    | success       |
+#      | 0878333333333  | 15.000    | success       |
+#      | 0817333333333  | 15.000    | success       |
+#      | 0818333333333  | 15.000    | success       |
+#      | 0819333333333  | 15.000    | success       |
+#      | 0812000000    | 15.000 | success       |
+#      | 0813000000    | 15.000 | success       |
+#      | 0821000000    | 15.000 | success       |
+#      | 0822000000    | 15.000 | success       |
+#      | 0823000000    | 15.000 | success       |
+#      | 0852000000    | 15.000 | success       |
+#      | 0853000000    | 15.000 | success       |
+#      | 0851000000    | 15.000 | success       |
+#      | 0812000000    | 15.000 | success       |
+#      | 0813000000    | 15.000 | success       |
+#      | 0821000000    | 15.000 | success       |
+#      | 0822000000    | 15.000 | success       |
+#      | 0823000000    | 15.000 | success       |
+#      | 0852000000    | 15.000 | success       |
+#      | 0853000000    | 15.000 | success       |
+#      | 0851000000    | 15.000 | success       |
+#      | 0895333333333  | 15.000    | success       |
+#      | 0896333333333  | 15.000    | success       |
+#      | 0897333333333  | 15.000    | success       |
+#      | 0898333333333  | 15.000    | success       |
+#      | 0899333333333  | 15.000    | success       |
+#      | 0815333333333  | 10.000    | success       |
+#      | 0816333333333  | 10.000    | success       |
+#      | 0855333333333  | 10.000    | success       |
+#      | 0856333333333  | 10.000    | success       |
+#      | 0857333333333  | 10.000    | success       |
+#      | 0858333333333  | 10.000    | success       |
+#      | 08823333333333 | 10.000    | success       |
+#      | 08833333333333 | 10.000    | success       |
+#      | 08843333333333 | 10.000    | success       |
+#      | 08853333333333 | 10.000    | success       |
+#      | 08863333333333 | 10.000    | success       |
+#      | 08873333333333 | 10.000    | success       |
+#      | 08883333333333 | 10.000    | success       |
+#      | 08893333333333 | 10.000    | success       |
+#      | 0833333333333  | 10.000    | success       |
+#      | 0838333333333  | 10.000    | success       |
+#      | 0831333333333  | 10.000    | success       |
+#      | 0859133333333  | 10.000    | success       |
+#      | 0859833333333  | 10.000    | success       |

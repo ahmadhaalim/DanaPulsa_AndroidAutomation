@@ -5,9 +5,9 @@ import org.openqa.selenium.By;
 
 public interface HistoryPageLocator {
 
-    By InProgress_Tab = MobileBy.id("");
+    By InProgress_Tab = MobileBy.AccessibilityId("In Progress");
     By Completed_Tab = MobileBy.id("");
-    By Transaction_Item = MobileBy.id("rvHistory");
+    By Transaction_Item = MobileBy.id("tvHistoryItemProduct");
     By TransactionItem_Price = MobileBy.id("tvHistoryItemPrice");
     By TransactionItem_Date = MobileBy.id("tvHistoryItemDate");
     By Warning_Message = MobileBy.id("");

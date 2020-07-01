@@ -1,6 +1,7 @@
 package demo.pages;
 
 
+import demo.locator.RechargeChooseTopUpPageLocator;
 import demo.locator.RechargeInputPhoneNumberPageLocator;
 import pageobjects.AndroidPageObject;
 
@@ -29,5 +30,13 @@ public class RechargeInputNumberPage implements RechargeInputPhoneNumberPageLoca
 
     public boolean checkErrorMessage(){
         return pageObject.checkIfDisplayed(RechargeInputPhoneNumberPageLocator.NUMBER_ERROR);
+    }
+
+    public boolean invalidErrorMessage(){
+        return pageObject.checkIfDisplayed(RechargeInputPhoneNumberPageLocator.INVALID_ERROR);
+    }
+
+    public boolean topupUnavailable(){
+        return pageObject.checkIfDisplayed(RechargeChooseTopUpPageLocator.PULSA_CATALOG);
     }
 }

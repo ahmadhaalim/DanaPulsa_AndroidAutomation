@@ -18,7 +18,7 @@ public class PaymentByHistoryStepsDefinition {
     HistoryPage historyPage = new HistoryPage();
 
     @Given("User is on homepage")
-    public void userIsOnHomepage() throws InterruptedException {
+    public void userIsOnHomepage(){
         Assert.assertTrue(homePage.onHomePage());
     }
 
@@ -83,16 +83,16 @@ public class PaymentByHistoryStepsDefinition {
     }
 
     @And("User choose voucher value {string}")
-    public void userChooseVoucherValueChooseVoucher(String voucherValue) {
-        if (voucherValue.contains("cashback")){
-            chooseVoucherPage.chooseCashback(voucherValue);
+    public void userChooseVoucherValueChooseVoucher(String chooseVoucher) {
+        if (chooseVoucher.contains("Cashback")){
+            chooseVoucherPage.chooseCashback(chooseVoucher);
         }
-        if (voucherValue.contains("discount")){
-            chooseVoucherPage.chooseDiscount(voucherValue);
+        if (chooseVoucher.contains("Diskon")){
+            chooseVoucherPage.chooseDiscount(chooseVoucher);
         }
-        else {
-            chooseVoucherPage.noVoucher();
-        }
+//        else {
+//            chooseVoucherPage.noVoucher();
+//        }
     }
 
     @And("User pay the bill")
@@ -111,4 +111,7 @@ public class PaymentByHistoryStepsDefinition {
         statusPage.backToHome();
     }
 
+    @And("User click OK")
+    public void userClickOK() {statusPage.confirmationButton();
+    }
 }

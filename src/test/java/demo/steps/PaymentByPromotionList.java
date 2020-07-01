@@ -19,4 +19,9 @@ public class PaymentByPromotionList {
     public void userClickPromotion() {
         listPage.clickPromotionBanner();
     }
+
+    @Then("User choose {string} on promotion list")
+    public void userChooseOnPromotionList(String titles) {
+        homePage.clickPromotionItem(titles);
+    }
 }
