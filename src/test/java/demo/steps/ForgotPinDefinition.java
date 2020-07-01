@@ -21,8 +21,8 @@ public class ForgotPinDefinition {
     String phonenumber;
     String newPin;
     String otp;
-    LoginPage loginPage = new LoginPage();//dummy
-    PinPage pinPage = new PinPage();//dummy
+    LoginPage loginPage = new LoginPage();
+    PinPage pinPage = new PinPage();
     OtpPage otpPage = new OtpPage();
     OtpController otpController = new OtpController();
     NewPinPage newPinPage = new NewPinPage();
@@ -69,6 +69,7 @@ public class ForgotPinDefinition {
 
     @And("User click next button on the otp page")
     public void userClickNextButtonOnTheOtpPage() throws InterruptedException {
+        Thread.sleep(5000);
         otpPage.clickNextOtp();
         Thread.sleep(10000);
     }
@@ -171,7 +172,8 @@ public class ForgotPinDefinition {
     }
 
     @And("User input incorrect pin on the confirmation page {string}")
-    public void userInputIncorrectPinOnTheConfirmationPage(String incorrectpin) {
+    public void userInputIncorrectPinOnTheConfirmationPage(String incorrectpin) throws InterruptedException {
+
         confirmPinPage.inputConfirmPin(incorrectpin);
     }
 
@@ -227,7 +229,7 @@ public class ForgotPinDefinition {
 
     @Then("User cannot click resend the button is disabled")
     public void userCannotClickResendTheButtonIsDisabled() throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         Assert.assertFalse(otpPage.checkIfResendEnabled());
         Thread.sleep(2000);
     }
@@ -248,7 +250,8 @@ public class ForgotPinDefinition {
     }
 
     @And("User click the change pin menu")
-    public void userClickTheChangePinMenu() {
+    public void userClickTheChangePinMenu() throws InterruptedException {
+        Thread.sleep(1000);
         profilePage.clickChangePinMenu();
     }
 
@@ -276,7 +279,6 @@ public class ForgotPinDefinition {
     public void userInputOtpViaPasting(String userId) throws InterruptedException {
         Response response = otpController.getOtpNumber(userId);
         String otp = response.path("code").toString();
-        //String otp = "1111";
         otpPage.setForPaste(otp);
     }
     @Then("User cant perform paste on the OTP input {string}")

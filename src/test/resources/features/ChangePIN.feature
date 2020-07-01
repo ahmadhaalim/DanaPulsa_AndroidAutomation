@@ -4,10 +4,8 @@ Feature: Check the Change PIN feature functionality
   #SCENARIO, SAME AS BEFORE
   Background:
     Given User in the sign in page
-    When User input registered phone number "08126022339"
+    When User input registered phone number "08555222333"
     And User click the sign in button
-#    And User input their pin on the pin page "909090"
-#    And User is in the main page
 
   @CP_001
   Scenario: Change Pin with valid otp and PIN
@@ -69,7 +67,6 @@ Feature: Check the Change PIN feature functionality
 
   @CP_004-009
   Scenario Outline: Change PIN with invalid OTP (symbols and alphabets)
-    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
@@ -94,65 +91,58 @@ Feature: Check the Change PIN feature functionality
     And User click the change pin menu
     Then User cannot click next the button is disabled
 
-    #TRY
   @CP_011
   Scenario: Change PIN but inputting with only 2 digits of OTP number
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input two digits otp number with user id "2048"
+    And User input two digits otp number with user id "2040"
     Then User cannot click next the button is disabled
 
-#BERMASALAH
   @CP_012
   Scenario: Change PIN but with expired OTP
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User get otp number with user id "2048"
+    And User get otp number with user id "2040"
     And User wait for the otp to expire in three minutes.
     And User input the old otp
     And User click next button on the otp page
     Then User see display error "Code is expired. Please tap Resend button"
 
-#TRY
   @CP_013
   Scenario: Change PIN with valid OTP but empty new PIN
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     Then User cannot click next the button is disabled
 
-    #TRY
   @CP_014
   Scenario: Change PIN with valid OTP but invalid new PIN
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "51515"
     Then User cannot click next the button is disabled
 
-  #FAIL
   @CP_015-020
   Scenario Outline: Change PIN with valid OTP but invalid new PIN (symbols and alphabets)
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "<PIN>"
-    And User click next button on the new pin page
-#    Then User see warning message "PIN format is invalid"
-    Then User see display error "PIN format is invalid"
+    Then User see display error "Must be 6 digits and cannot start with 0"
     Examples:
       | PIN    |
       | 51*515 |
@@ -162,46 +152,43 @@ Feature: Check the Change PIN feature functionality
       | 515-15 |
       | P51A5S |
 
-    #TRY
   @CP_021
   Scenario: Change PIN with valid OTP but empty confirmation PIN
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "404040"
     And User click next button on the new pin page
     Then User cannot click finish button the button is disabled
-#TRY
+
   @CP_022
   Scenario: Change PIN with valid OTP but with incorrect confirmation PIN
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "404040"
     And User click next button on the new pin page
     And User input incorrect pin on the confirmation page "414141"
-#    Then User see warning message on the confirmation page "PIN doesn’t match"
     Then User see display error "PIN doesn't match"
-#TRY
+
   @CP_023-028
   Scenario Outline: Change PIN with valid OTP but with incorrect confirmation PIN (symbols and alphabets)
     When User input their pin on the pin page "515151"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "404040"
     And User click next button on the new pin page
     And User input incorrect pin on the confirmation page "<PIN>"
-#    Then User see warning message on the confirmation page "PIN doesn’t match"
-    Then User see display error "PIN doesn't match"
+    Then User see display error "Must be 6 digits and cannot start with 0"
     Examples:
       | PIN    |
       | 51*515 |
@@ -210,7 +197,7 @@ Feature: Check the Change PIN feature functionality
       | 5.1515 |
       | 515-15 |
       | P51A5S |
-#TRY
+
   @CP_029
   Scenario: Successfully Change PIN with valid otp and PIN, but Login with Old PIN
     When User input their pin on the pin page "515151"
@@ -233,7 +220,7 @@ Feature: Check the Change PIN feature functionality
     And User click the sign in button
     And User input old pin number on the page "515151"
     Then User see display error "incorrect pin"
-#prob
+
   @CP-OTP_001
   Scenario: Go back to Profile Screen Using the Arrow Icon Button
     When User input their pin on the pin page "505050"
@@ -242,7 +229,7 @@ Feature: Check the Change PIN feature functionality
     And User click the change pin menu
     And User click the back arrow icon on top bar
     Then User is in the profile page
-#prob
+
   @CP-OTP_002
   Scenario: Go back to Profile Screen Using the device back button
     When User input their pin on the pin page "505050"
@@ -303,100 +290,95 @@ Feature: Check the Change PIN feature functionality
     Then User see display error "Connection Error"
     And User turn internet on
 
-  #try
   @CP-OTP_008
     Scenario: Pasted Valid OTP from clipboard
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    #CHANGE THIS MANUALLY
-    And User input otp via pasting with user id "2048"
-    Then User cant perform paste on the OTP input "8.0"
-#try
+    And User input otp via pasting with user id "2040"
+    Then User cant perform paste on the OTP input "10.0"
+
   @CP-OTP_009
   Scenario: Click next with valid OTP but can't connect to server
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User turn internet off
     And User click next button on the otp page
     Then User see display error "Connection Error"
     And User turn internet on
-#probs
-  @CP-NP_001
+
+  @CP-NP_001 @CNP
   Scenario: Go back to Change PIN-OTP Screen Using the Arrow Icon Button
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User is in the new pin page
     And User click the back arrow icon on top bar
-    Then User is in otp page
-#probs
-  @CP-NP_002
+    Then User is in the profile page
+
+  @CP-NP_002 @CNP
   Scenario: Go back to Change PIN-OTP Screen using the device back button
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User is in the new pin page
     And User click device back button
-    Then User is in otp page
+    Then User is in the profile page
 
-#try
-  @CP-NP_003
+  @CP-NP_003 @CNP
   Scenario: Back to Change PIN - New PIN screen by opening the app after tapping the device home button
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User is in the new pin page
     And User click home button and reopen the app
     Then User is in the new pin page
-#try
-  @CP-NP_004
+
+  @CP-NP_004 @CNP
   Scenario: Still on Change PIN - New PIN screen by opening the app after locking and unlocking the device
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User is in the new pin page
     And User lock the device
     And User unlock the device
     Then User is in the new pin page
 
-    #try
-  @CP-NP_005
+  @CP-NP_005 @CNP
     Scenario: Pasted Valid PIN from clipboard into New PIN input
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User is in the new pin page
     And User input new pin via pasting "505050"
-    Then User cant perform paste on the new pin input "8.0"
+    Then User cant perform paste on the new pin input "10.0"
 
-    #try
-  @CP-CPN_001
+  @CP-CPN_001 @CCP
   Scenario: Go back to Change PIN-New PIN Screen Using the Arrow Icon Button
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "505050"
     And User click next button on the new pin page
@@ -404,14 +386,13 @@ Feature: Check the Change PIN feature functionality
     And User click the back arrow icon on top bar
     Then User is in the new pin page
 
-    #try
-  @CP-CPN_002
+  @CP-CPN_002 @CCP
   Scenario: Go back to Change PIN-New PIN Screen using the device back button
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "505050"
     And User click next button on the new pin page
@@ -420,13 +401,13 @@ Feature: Check the Change PIN feature functionality
     Then User is in the new pin page
 
     #try
-  @CP-CPN_003
+  @CP-CPN_003 @CCP
   Scenario: Back to Change PIN - Confrim PIN screen by opening the app after tapping the device home button
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "505050"
     And User click next button on the new pin page
@@ -435,13 +416,13 @@ Feature: Check the Change PIN feature functionality
     Then User is in the confirmation page
 
 #try
-  @CP-CPN_004
+  @CP-CPN_004 @CCP
   Scenario: Still on Change PIN - Confirm PIN screen by opening the app after locking and unlocking the device
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "505050"
     And User click next button on the new pin page
@@ -451,28 +432,28 @@ Feature: Check the Change PIN feature functionality
     Then User is in the confirmation page
 
 #try
-  @CP-CPN_005
+  @CP-CPN_005 @CCP
     Scenario: Pasted Valid PIN from clipboard into New PIN input
     When User input their pin on the pin page "505050"
     And User is in the main page
     And User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "505050"
     And User click next button on the new pin page
     And User is in the confirmation page
     And User input confirm pin via pasting
-    Then User cant perform paste on the confirm input "8.0"
+    Then User cant perform paste on the confirm input "10.0"
 
 #try
-  @CP-CPN_006
+  @CP-CPN_006 @CCP
   Scenario: Input all valid OTP, new PIN, and confirm PIN, but can't connect to server when clicking finish button
     When User input their pin on the pin page "505050"
     And User is in the main page
     When User click the profile menu on the bottom bar
     And User click the change pin menu
-    And User input valid otp number with user id "2048"
+    And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "505050"
     And User click next button on the new pin page

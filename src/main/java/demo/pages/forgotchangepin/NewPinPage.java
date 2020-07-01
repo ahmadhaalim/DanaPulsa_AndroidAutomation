@@ -21,6 +21,7 @@ public class NewPinPage extends AndroidPageObject {
 
     public void clickNext(){
         clickOn(ForgotPinPageLocator.NEXT_BUTTON);
+
     }
 
     public String getWarningMessage(){

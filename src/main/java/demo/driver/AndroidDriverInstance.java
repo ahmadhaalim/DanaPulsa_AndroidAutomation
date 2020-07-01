@@ -16,19 +16,19 @@ public class AndroidDriverInstance {
         String appiumUrl = "http://127.0.0.1:4723/wd/hub/";
         DesiredCapabilities caps = new DesiredCapabilities();
         caps.setCapability("platformName", "Android");
-        caps.setCapability("platformVersion", "6.0");
+        caps.setCapability("platformVersion", "10.0");
         caps.setCapability("deviceName", "device");
         caps.setCapability("udid", "emulator-5554");
         caps.setCapability("autoGrantPermissions", true);
         caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",
-                System.getProperty("user.dir") + File.separator + "APK" + File.separator + "DANA-Pulsa-1.0.3-develop-debug.apk");
+                System.getProperty("user.dir") + File.separator + "APK" + File.separator + "DANA-Pulsa-1.0.5.apk");
         caps.setCapability("automationName", "UiAutomator2");
         caps.setCapability("appWaitActivity", "id.dana.apprentech.danapulsa.ui.login." +
                 "LoginActivity");
         try {
             androidDriver = new AndroidDriver<>(new URL(appiumUrl), caps);
-            androidDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+            androidDriver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

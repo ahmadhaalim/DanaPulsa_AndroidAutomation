@@ -71,9 +71,10 @@ public class OtpPage extends AndroidPageObject {
 
     public boolean checkIfResendEnabled(){
         try {
-            return checkIfEnabled(ForgotPinPageLocator.RESEND_BUTTON);
-        }catch (NotFoundException e){
-            System.out.println("not found");
+            System.out.println(checkIfEnabled(ForgotPinPageLocator.RESEND_BUTTON));
+            return AndroidDriverInstance.androidDriver.findElements(ForgotPinPageLocator.RESEND_BUTTON).size() > 0;
+        }catch (Exception e){
+            System.out.println(e);
             return false;
         }
     }
