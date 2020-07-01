@@ -17,7 +17,7 @@ public class SignUpCreatePINPage extends AndroidPageObject implements SignUpCrea
     }
 
     public void inputPIN(String pin) {
-        typeON(EDIT_CREATE_PIN, pin);
+        typeOn(EDIT_CREATE_PIN, pin);
     }
 
     public void tapNextButton() {
@@ -28,17 +28,14 @@ public class SignUpCreatePINPage extends AndroidPageObject implements SignUpCrea
         clickOn(BUTTON_BACK);
     }
 
-    public boolean nextButtonDisabled() {
-        return !checkIfEnabled(BUTTON_NEXT);
-    }
+    public boolean nextButtonEnabled() { return checkIfEnabled(BUTTON_NEXT); }
 
     public String getCustomViewText() {
         return androidDriver.findElement(EDIT_CREATE_PIN).getText();
     }
 
-    public void pressAndHoldInputField() throws InterruptedException {
+    public void pressAndHoldInputField() {
         WebElement pinField = androidDriver.findElement(EDIT_CREATE_PIN);
         pressHoldOnElement(pinField);
-        Thread.sleep(1000);
     }
 }

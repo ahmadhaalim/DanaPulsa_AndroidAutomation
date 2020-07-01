@@ -16,7 +16,7 @@ public class SignUpEmailPage extends AndroidPageObject implements SignUpEmailPag
     }
 
     public void inputEmail(String email) {
-        typeON(EDIT_EMAIL, email);
+        typeOn(EDIT_EMAIL, email);
     }
 
     public void tapNextButton() {
@@ -27,14 +27,13 @@ public class SignUpEmailPage extends AndroidPageObject implements SignUpEmailPag
         clickOn(BUTTON_BACK);
     }
 
-    public boolean nextButtonDisabled() {
-        return !checkIfEnabled(BUTTON_NEXT);
+    public boolean nextButtonEnabled() {
+        return checkIfEnabled(BUTTON_NEXT);
     }
 
-    public void pressAndHoldInputField() throws InterruptedException {
+    public void pressAndHoldInputField() {
         WebElement emailField = androidDriver.findElement(EDIT_EMAIL);
         pressHoldOnElement(emailField);
-        Thread.sleep(1000);
     }
 
     public String getFieldText() {

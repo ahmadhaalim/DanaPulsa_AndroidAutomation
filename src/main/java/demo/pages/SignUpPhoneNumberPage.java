@@ -16,7 +16,13 @@ public class SignUpPhoneNumberPage extends AndroidPageObject implements SignUpPh
     }
 
     public void inputPhoneNumber(String phoneNumber) {
-        typeON(EDIT_PHONE_NUMBER, phoneNumber);
+        if (phoneNumber.length() > 13) {
+            clickOn(EDIT_PHONE_NUMBER);
+            androidDriver.getKeyboard().sendKeys(phoneNumber);
+            androidDriver.hideKeyboard();
+        } else {
+            typeOn(EDIT_PHONE_NUMBER, phoneNumber);
+        }
     }
 
     public void tapNextButton() {
@@ -27,14 +33,13 @@ public class SignUpPhoneNumberPage extends AndroidPageObject implements SignUpPh
         clickOn(BUTTON_BACK);
     }
 
-    public boolean nextButtonDisabled() {
-        return !checkIfEnabled(BUTTON_NEXT);
+    public boolean nextButtonEnabled() {
+        return checkIfEnabled(BUTTON_NEXT);
     }
 
-    public void pressAndHoldInputField() throws InterruptedException {
+    public void pressAndHoldInputField() {
         WebElement phoneNumberField = androidDriver.findElement(EDIT_PHONE_NUMBER);
         pressHoldOnElement(phoneNumberField);
-        Thread.sleep(1000);
     }
 
     public String getFieldText() {

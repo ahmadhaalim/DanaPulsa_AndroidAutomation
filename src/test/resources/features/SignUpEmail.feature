@@ -17,7 +17,7 @@ Feature: Functionality on Sign up - Email page
   Scenario: Use data from clipboard to fill Email input field
     Given User has copied "morgenstein@co.uk" to the clipboard
     When User press and hold on "Email" input field
-    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
+    # CHANGE the "Android 8.0" according to your android version e.g. "Android 10.0" or "Android 6.0"
     And User paste clipboard data by tapping "Android 8.0" Paste button
     Then User see "morgenstein@co.uk" is shown in "Email" input field
 
@@ -58,16 +58,16 @@ Feature: Functionality on Sign up - Email page
       | email                      | warning_message         |
       |                            | Field must be filled    |
       | zakiakhmad                 | Email format is invalid |
-#      | zakifaridzan.@gmail.com    | Email format is invalid |
+      | zakifaridzan.@gmail.com    | Email format is invalid |
       | zaki akhmad@gmail.com      | Email format is invalid |
       | zaki!$#akhmadf20@gmail.com | Email format is invalid |
-#      | .zakiakhmad@gmail.com      | Email format is invalid |
+      | .zakiakhmad@gmail.com      | Email format is invalid |
       | zakiakhmadgmail.com        | Email format is invalid |
       | zakiakhmad@                | Email format is invalid |
       | zakiakhmad@gmail           | Email format is invalid |
       | zakiakhmad@.gmail.com      | Email format is invalid |
       | zakiakhmad@@gmail.com      | Email format is invalid |
-#      | zaki..akhmad@gmail.com     | Email format is invalid |
+      | zaki..akhmad@gmail.com     | Email format is invalid |
       | zaki.akhmad@gmail..com     | Email format is invalid |
       | zakifaridzan@gmail.com.    | Email format is invalid |
       | zakiakhmad@gmail.c         | Email format is invalid |

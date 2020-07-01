@@ -19,7 +19,7 @@ Feature: Functionality on Sign up - Phone Number page
   Scenario: Use data from clipboard to fill Phone Number input field
     Given User has copied "081120203030" to the clipboard
     When User press and hold on "Phone Number" input field
-    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
+    # CHANGE the "Android 8.0" according to your android version e.g. "Android 10.0" or "Android 6.0"
     And User paste clipboard data by tapping "Android 8.0" Paste button
     Then User see "081120203030" is shown in "Phone Number" input field
 

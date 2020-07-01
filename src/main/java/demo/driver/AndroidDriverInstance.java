@@ -22,7 +22,7 @@ public class AndroidDriverInstance {
         caps.setCapability("autoGrantPermissions", true);
         caps.setCapability("newCommandTimeout", 120);
         caps.setCapability("app",
-                System.getProperty("user.dir") + File.separator + "APP" + File.separator + "DANA-Pulsa-1.0.3-develop-debug.apk");
+                System.getProperty("user.dir") + File.separator + "APP" + File.separator + "DANA-Pulsa-1.0.5.apk");
         caps.setCapability("automationName", "UiAutomator2");
 
 //        caps.setCapability("appPackage", "id.dana.apprentech.danapulsa.develop");

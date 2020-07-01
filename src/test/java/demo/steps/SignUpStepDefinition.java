@@ -1,15 +1,13 @@
 package demo.steps;
 
 import demo.pages.*;
+import deviceutilities.AndroidDeviceUtilities;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.TimeoutException;
 import pageobjects.AndroidPageObject;
 
 
@@ -18,7 +16,7 @@ import java.net.URISyntaxException;
 
 import static demo.driver.AndroidDriverInstance.androidDriver;
 
-public class SignUpStepDefinition extends AndroidPageObject {
+public class SignUpStepDefinition {
 
     SignInPage signInPage = new SignInPage();
     SignInPINPage signInPINPage = new SignInPINPage();
@@ -30,6 +28,9 @@ public class SignUpStepDefinition extends AndroidPageObject {
     HomePage homePage = new HomePage();
     ProfilePage profilePage = new ProfilePage();
     DialogPage dialogPage = new DialogPage();
+
+    AndroidDeviceUtilities deviceUtilities = new AndroidDeviceUtilities();
+    AndroidPageObject pageObject = new AndroidPageObject();
 
     @Given("User is on {string} page")
     public void userIsOnPage(String page) {
@@ -171,20 +172,20 @@ public class SignUpStepDefinition extends AndroidPageObject {
     public void userCannotProceedBecauseNextButtonOnPageIsNotClickable(String page) {
         switch (page) {
             case "Full Name":
-                boolean cantProceedName = signUpFullNamePage.nextButtonDisabled();
-                Assert.assertTrue(cantProceedName);
+                boolean canProceedName = signUpFullNamePage.nextButtonEnabled();
+                Assert.assertFalse(canProceedName);
                 break;
             case "Email":
-                boolean cantProceedEmail = signUpEmailPage.nextButtonDisabled();
-                Assert.assertTrue(cantProceedEmail);
+                boolean canProceedEmail = signUpEmailPage.nextButtonEnabled();
+                Assert.assertFalse(canProceedEmail);
                 break;
             case "Phone Number":
-                boolean cantProceedPhone = signUpPhoneNumberPage.nextButtonDisabled();
-                Assert.assertTrue(cantProceedPhone);
+                boolean canProceedPhone = signUpPhoneNumberPage.nextButtonEnabled();
+                Assert.assertFalse(canProceedPhone);
                 break;
             case "Create PIN":
-                boolean cantProceedPIN = signUpCreatePINPage.nextButtonDisabled();
-                Assert.assertTrue(cantProceedPIN);
+                boolean canProceedPIN = signUpCreatePINPage.nextButtonEnabled();
+                Assert.assertFalse(canProceedPIN);
                 break;
             default: break;
         }
@@ -192,8 +193,8 @@ public class SignUpStepDefinition extends AndroidPageObject {
 
     @Then("User cannot proceed because Finish button on Confirm PIN page is not clickable")
     public void userCannotProceedBecauseFinishButtonOnConfirmPINPageIsNotClickable() {
-        boolean cantFinish = signUpConfirmPINPage.finishButtonDisabled();
-        Assert.assertTrue(cantFinish);
+        boolean canFinish = signUpConfirmPINPage.finishButtonEnabled();
+        Assert.assertFalse(canFinish);
     }
 
     @Given("User has copied {string} to the clipboard")
@@ -202,7 +203,7 @@ public class SignUpStepDefinition extends AndroidPageObject {
     }
 
     @When("User press and hold on {string} input field")
-    public void userPressAndHoldOnInputField(String field) throws InterruptedException {
+    public void userPressAndHoldOnInputField(String field) {
         switch (field) {
             case "Full Name":
                 signUpFullNamePage.pressAndHoldInputField();
@@ -225,15 +226,16 @@ public class SignUpStepDefinition extends AndroidPageObject {
 
     @When("User paste clipboard data by tapping {string} Paste button")
     public void userPasteClipboardDataToInputFieldByTappingPaste(String androidVersion) throws IOException, URISyntaxException {
+        // Image File must be stored in src > test > resources > images;
         switch (androidVersion) {
             case "Android 10.0":
-                tapOnImage("paste-10.0.png");
+                pageObject.tapOnImage("paste-10.0.png");
                 break;
             case "Android 8.0":
-                tapOnImage("paste-8.0.png");
+                pageObject.tapOnImage("paste-8.0.png");
                 break;
             case "Android 6.0":
-                tapOnImage("paste-6.0.png");
+                pageObject.tapOnImage("paste-6.0.png");
                 break;
             default: break;
         }
@@ -309,7 +311,6 @@ public class SignUpStepDefinition extends AndroidPageObject {
     public void userTapTheDeviceSButton(String deviceButton) throws InterruptedException {
         switch (deviceButton) {
             case "Back":
-                Thread.sleep(2000);
                 androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
                 break;
             case "Home":
@@ -326,8 +327,7 @@ public class SignUpStepDefinition extends AndroidPageObject {
     @When("User tap the app on the device's overview")
     public void userTapTheAppOnTheDeviceSOverview() throws InterruptedException {
         Thread.sleep(1000);
-        tapOnCenter();
-        Thread.sleep(2000);
+        deviceUtilities.tapOnCenter();
     }
 
     @When("User lock the device")
@@ -339,20 +339,18 @@ public class SignUpStepDefinition extends AndroidPageObject {
     public void userUnlockTheDeviceBySwipingUpTheScreen() throws InterruptedException {
         Thread.sleep(5000);
         androidDriver.pressKey(new KeyEvent(AndroidKey.POWER));
-        swipeUp();
-        Thread.sleep(2000);
+        deviceUtilities.swipeUp();
     }
 
     @When("User close the app")
     public void userCloseTheApp() {
-        String appPackage = androidDriver.getCurrentPackage();
-        androidDriver.terminateApp(appPackage);
+        androidDriver.closeApp();
     }
 
     @When("User open the app")
     public void userOpenTheApp() throws InterruptedException {
         Thread.sleep(3000);
-        androidDriver.activateApp("id.dana.apprentech.danapulsa.develop");
+        androidDriver.launchApp();
     }
 
     @Then("User see warning message {string} on {string} page")
@@ -382,23 +380,24 @@ public class SignUpStepDefinition extends AndroidPageObject {
 
     @Then("User cannot paste clipboard data because the {string} Paste button is not shown")
     public void userCannotPasteClipboardDataBecauseThePasteButtonIsNotShown(String androidVersion) throws IOException, URISyntaxException {
+        // Image File must be stored in src > test > resources > images
         switch (androidVersion) {
             case "Android 10.0":
-                boolean btnPasteAPI29Shown = checkElementByImage("paste-10.0.png");
+                boolean btnPasteAPI29Shown = pageObject.elementByImageFound("paste-10.0.png");
                 Assert.assertFalse(btnPasteAPI29Shown);
                 break;
             case "Android 8.0":
-                boolean btnPasteAPI26Shown = checkElementByImage("paste-8.0.png");
+                boolean btnPasteAPI26Shown = pageObject.elementByImageFound("paste-8.0.png");
                 Assert.assertFalse(btnPasteAPI26Shown);
                 break;
             case "Android 6.0":
-                boolean btnPasteAPI23Shown = checkElementByImage("paste-6.0.png");
+                boolean btnPasteAPI23Shown = pageObject.elementByImageFound("paste-6.0.png");
                 Assert.assertFalse(btnPasteAPI23Shown);
                 break;
         }
     }
 
-    @And("User tap YES button on dialog box")
+    @When("User tap YES button on dialog box")
     public void userTapYESButtonOnDialogBox() {
         dialogPage.tapOKButton();
     }
@@ -425,17 +424,18 @@ public class SignUpStepDefinition extends AndroidPageObject {
     public void userSignInUsingPhoneNumberAndPIN(String phoneNumber, String pin) {
         signInPage.inputPhoneNumber(phoneNumber);
         signInPage.tapSignInButton();
-        try {
+        if (signInPINPage.isOnPage()) {
             signInPINPage.inputPIN(pin);
-        } catch (TimeoutException ign) {
+        } else {
             String errorMsg = dialogPage.getErrorMessage();
             Assert.fail(errorMsg);
         }
+
     }
 
     @When("The device's internet connection is turned {string}")
     public void theDeviceSInternetConnectionIsTurned(String condition) throws InterruptedException {
-        turnWifiAndData();
+        deviceUtilities.turnWifiAndData();
         if (condition.equals("off")) {
             Thread.sleep(2000);
         } else if (condition.equals("on")) {

@@ -16,7 +16,13 @@ public class SignUpFullNamePage extends AndroidPageObject implements SignUpFullN
     }
 
     public void inputFullName(String fullName) {
-        typeON(EDIT_FULL_NAME, fullName);
+        if (fullName.length() > 20) {
+            clickOn(EDIT_FULL_NAME);
+            androidDriver.getKeyboard().sendKeys(fullName);
+            androidDriver.hideKeyboard();
+        } else {
+            typeOn(EDIT_FULL_NAME, fullName);
+        }
     }
 
     public void tapNextButton() {
@@ -27,14 +33,13 @@ public class SignUpFullNamePage extends AndroidPageObject implements SignUpFullN
         clickOn(BUTTON_BACK);
     }
 
-    public boolean nextButtonDisabled() {
-        return !checkIfEnabled(BUTTON_NEXT);
+    public boolean nextButtonEnabled() {
+        return checkIfEnabled(BUTTON_NEXT);
     }
 
-    public void pressAndHoldInputField() throws InterruptedException {
+    public void pressAndHoldInputField() {
         WebElement fullNameField = androidDriver.findElement(EDIT_FULL_NAME);
         pressHoldOnElement(fullNameField);
-        Thread.sleep(1000);
     }
 
     public String getFieldText() {

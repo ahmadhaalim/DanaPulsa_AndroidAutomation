@@ -15,8 +15,8 @@ Feature: Functionality on Sign up - Full Name page
   Scenario: Use data from clipboard to fill Full Name input field
     Given User has copied "Morgenstein" to the clipboard
     When User press and hold on "Full Name" input field
-    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
-    And User paste clipboard data by tapping "Android 6.0" Paste button
+    # CHANGE the "Android 8.0" according to your android version e.g. "Android 10.0" or "Android 6.0"
+    And User paste clipboard data by tapping "Android 8.0" Paste button
     Then User see "Morgenstein" is shown in "Full Name" input field
 
   @SUFN002
@@ -77,12 +77,12 @@ Feature: Functionality on Sign up - Full Name page
     When User input "<full_name>" on "Full Name" page
     Then User see warning message "<warning_message>" on "Full Name" page
     Examples:
-      | full_name             | warning_message                   |
-      |                       | Field must be filled              |
-      | (threeSpaces)         | 3–20 characters and alphabet only |
-      | (space)Z(space)       | 3–20 characters and alphabet only |
-      | Za                    | 3–20 characters and alphabet only |
-      | Zaki123               | 3–20 characters and alphabet only |
-      | 123456                | 3–20 characters and alphabet only |
-      | Zaki!@                | 3–20 characters and alphabet only |
-      | Zaki🙃                | 3–20 characters and alphabet only |
+      | full_name       | warning_message                     |
+      |                 | Field must be filled                |
+      | (threeSpaces)   | 3–20 characters and alphabet \nonly |
+      | (space)Z(space) | 3–20 characters and alphabet \nonly |
+      | Za              | 3–20 characters and alphabet \nonly |
+      | Zaki123         | 3–20 characters and alphabet \nonly |
+      | 123456          | 3–20 characters and alphabet \nonly |
+      | Zaki!@          | 3–20 characters and alphabet \nonly |
+      | Zaki🙃          | 3–20 characters and alphabet \nonly |

@@ -17,7 +17,7 @@ public class SignUpConfirmPINPage extends AndroidPageObject implements SignUpCon
     }
 
     public void inputConfirmPIN(String confirmPIN) {
-        typeON(EDIT_CONFIRM_PIN, confirmPIN);
+        typeOn(EDIT_CONFIRM_PIN, confirmPIN);
     }
 
     public void tapFinishButton() {
@@ -28,13 +28,12 @@ public class SignUpConfirmPINPage extends AndroidPageObject implements SignUpCon
         clickOn(BUTTON_BACK);
     }
 
-    public boolean finishButtonDisabled() {
-        return !checkIfEnabled(BUTTON_FINISH);
+    public boolean finishButtonEnabled() {
+        return checkIfEnabled(BUTTON_FINISH);
     }
 
-    public void pressAndHoldInputField() throws InterruptedException {
+    public void pressAndHoldInputField() {
         WebElement pinField = androidDriver.findElement(EDIT_CONFIRM_PIN);
         pressHoldOnElement(pinField);
-        Thread.sleep(1000);
     }
 }

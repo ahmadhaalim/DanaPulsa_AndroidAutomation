@@ -4,12 +4,9 @@ import io.appium.java_client.MobileBy;
 import io.appium.java_client.Setting;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -35,9 +32,10 @@ public class AndroidPageObject {
      * @param id locator of element
      */
     public void clickOn(By id) {
-        waitUntilEnabled(id);
-        AndroidElement button = androidDriver.findElement(id);
-        button.click();
+        if (waitUntilEnabled(id)) {
+            AndroidElement button = androidDriver.findElement(id);
+            button.click();
+        }
     }
 
     /**
@@ -46,8 +44,7 @@ public class AndroidPageObject {
      * @param id locator of element
      * @param text user input text
      */
-    public void typeON(By id, String text) {
-        waitUntilDisplayed(id);
+    public void typeOn(By id, String text) {
         AndroidElement field = androidDriver.findElement(id);
         field.clear();
         field.sendKeys(text);
@@ -59,8 +56,7 @@ public class AndroidPageObject {
      */
     public boolean waitUntilDisplayed(By id) {
         WebDriverWait wait = new WebDriverWait(androidDriver, 10);
-        WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
-        return element.isDisplayed();
+        return wait.until(ExpectedConditions.presenceOfElementLocated(id)).isDisplayed();
     }
 
     /**
@@ -119,12 +115,12 @@ public class AndroidPageObject {
 
     /**
      * Perform checking an element by image and returning true if found
-     * @param fileName file name on src > test > resources > images
+     * @param imageFileName image file name on src > test > resources > images
      * @return return condition
      */
-    public boolean checkElementByImage(String fileName) throws IOException, URISyntaxException {
+    public boolean elementByImageFound(String imageFileName) throws IOException, URISyntaxException {
         androidDriver.setSetting(Setting.IMAGE_MATCH_THRESHOLD, 0.95);
-        String imageReference = getReferenceImageB64(fileName);
+        String imageReference = getReferenceImageB64(imageFileName);
         boolean visible = false;
         int count = 0, maxCount = 1;
         while (!visible && count < maxCount) {
@@ -137,34 +133,6 @@ public class AndroidPageObject {
             }
         }
         return visible;
-    }
-
-    /**
-     * Perform swipe up on the device screen
-     */
-    public void swipeUp() {
-        Dimension screenSize = androidDriver.manage().window().getSize();
-        int fromX = (int) (screenSize.getWidth() * 0.5);
-        int fromY = screenSize.getHeight() - 100;
-        int toX = (int) (screenSize.getWidth() * 0.5);
-        int toY = 100;
-        TouchAction action = new TouchAction(androidDriver);
-        action.press(PointOption.point(fromX, fromY))
-                .waitAction(new WaitOptions().withDuration(Duration.ofSeconds(2)))
-                .moveTo(PointOption.point(toX, toY))
-                .release()
-                .perform();
-    }
-
-    /**
-     * Perform tap on center of the device screen
-     */
-    public void tapOnCenter() {
-        Dimension screenSize = androidDriver.manage().window().getSize();
-        int centerX = (int) (screenSize.getWidth() * 0.5);
-        int centerY = (int) (screenSize.getHeight() * 0.5);
-        TouchAction action = new TouchAction(androidDriver);
-        action.tap(PointOption.point(centerX, centerY)).perform();
     }
 
     /**
@@ -183,11 +151,11 @@ public class AndroidPageObject {
 
     /**
      * Perform tap on selected element that found by image
-     * @param fileName file name on src > test > resources > images
+     * @param imageFileName file name on src > test > resources > images
      */
-    public void tapOnImage(String fileName) throws IOException, URISyntaxException {
+    public void tapOnImage(String imageFileName) throws IOException, URISyntaxException {
         androidDriver.setSetting(Setting.IMAGE_MATCH_THRESHOLD, 0.9);
-        String imageReference = getReferenceImageB64(fileName);
+        String imageReference = getReferenceImageB64(imageFileName);
         boolean visible = false;
         int count = 0, maxCount = 2;
         while (!visible && count < maxCount) {
@@ -198,17 +166,6 @@ public class AndroidPageObject {
             } catch (NoSuchElementException ign) {
                 System.out.println("element by image not found");
             }
-        }
-    }
-
-    public void turnWifiAndData() {
-        androidDriver.toggleData();
-        try {
-            androidDriver.openNotifications();
-            androidDriver.findElement(By.xpath("//android.widget.Switch[contains(@content-desc, 'Wi-Fi,')]")).click();
-            androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
-        } catch (NoSuchElementException ignore) {
-            androidDriver.pressKey(new KeyEvent(AndroidKey.BACK));
         }
     }
 }

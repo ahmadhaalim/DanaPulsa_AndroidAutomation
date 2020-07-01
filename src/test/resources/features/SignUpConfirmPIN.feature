@@ -48,9 +48,9 @@ Feature: Functionality on Sign up - Confirm PIN page
     And User open the app
     Then User is on "Sign In" page
 
-  @SUCP006
+  @SUCP007
   Scenario: Use data from clipboard to fill Confirm PIN field
     When User has copied "500505" to the clipboard
     And User press and hold on "Confirm PIN" input field
-    # CHANGE the "Android 10.0" according to your android version e.g. "Android 8.0" or "Android 6.0"
-    Then User cannot paste clipboard data because the "Android 10.0" Paste button is not shown
+    # CHANGE the "Android 8.0" according to your android version e.g. "Android 10.0" or "Android 6.0"
+    Then User cannot paste clipboard data because the "Android 8.0" Paste button is not shown

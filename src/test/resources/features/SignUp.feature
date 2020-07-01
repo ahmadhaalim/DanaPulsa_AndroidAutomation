@@ -1,4 +1,4 @@
-@Android @SignUpE2E
+@Android @SignUp
 Feature: Sign Up
 
   Background:
