@@ -1,10 +1,13 @@
 package demo.pages.nauval;
 
+import demo.driver.AndroidDriverInstance;
 import demo.locator.nauval.RechargePaymentDetailPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocator {
     AndroidPageObject pageObject = new AndroidPageObject();
+//    HomePage homePage = new HomePage();
+    public int calcOrder = 0;
 
     public boolean isOnPage(){
         try {
@@ -47,4 +50,19 @@ public class RechargePaymentDetailPage implements RechargePaymentDetailPageLocat
         pageObject.clickOn(CANCEL_YES_BUTTON);
     }
 
+    public int getTotal(){
+        calcOrder = pageObject.toInteger(CHECKOUT_TOTAL_VALUE);
+        return calcOrder;
+    }
+
+//    public int calculate(){
+//        int balance = homePage.balanceInit;
+//        int total = getTotal();
+//        return balance - total;
+//    }
+
+//    public int calcValue(){
+//        calcOrder = calculate();
+//        return calcOrder;
+//    }
 }

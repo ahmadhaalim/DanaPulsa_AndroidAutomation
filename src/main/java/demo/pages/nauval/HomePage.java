@@ -1,11 +1,12 @@
 package demo.pages.nauval;
 
-import demo.driver.AndroidDriverInstance;
 import demo.locator.nauval.HomePageLocator;
 import pageobjects.AndroidPageObject;
 
 public class HomePage implements HomePageLocator {
     AndroidPageObject pageObject = new AndroidPageObject();
+    public int balanceInit = 0;
+    public int balanceFinal = 0;
 
     public boolean onHomePage(){
         try {
@@ -33,8 +34,13 @@ public class HomePage implements HomePageLocator {
         pageObject.clickOn(Profile_Button);
     }
 
-    public void getBalance(){
-        String element = AndroidDriverInstance.androidDriver.findElement(DANA_Balance).getText();
-        System.out.println(element);
+    public int getInitialBalance(){
+       balanceInit = pageObject.toInteger(DANA_Balance);
+       return balanceInit;
+    }
+
+    public int getFinalBalance(){
+       balanceFinal = pageObject.toInteger(DANA_Balance);
+       return balanceFinal;
     }
 }

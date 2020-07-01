@@ -20,7 +20,6 @@ public class MobileRechargeDefinition {
     public void userIsOnHomepage() {
         boolean on_page = homePage.onHomePage();
         Assert.assertTrue(on_page);
-        homePage.getBalance();
     }
 
     @When("User click mobile recharge icon")
@@ -54,7 +53,8 @@ public class MobileRechargeDefinition {
     }
 
     @Then("User see payment status page")
-    public void userSeePaymentStatusPage() {
+    public void userSeePaymentStatusPage() throws InterruptedException {
+        Thread.sleep(5000);
         statusPage.isOnPage();
     }
 
@@ -165,5 +165,24 @@ public class MobileRechargeDefinition {
         profile.isOnPage();
         profile.signOut();
         profile.confirmPositive();
+    }
+
+    @Then("User see that balance is reduce")
+    public void userCalculateBalance() {
+        int calculate = homePage.balanceInit - detailPage.calcOrder;
+        int balance = homePage.getFinalBalance();
+        Assert.assertEquals(balance, calculate);
+    }
+
+    @When("User check initial balance")
+    public void userCheckInitialBalance() {
+        int balance = homePage.getInitialBalance();
+        System.out.println(balance);
+    }
+
+    @And("User check total payment")
+    public void userCheckTotalPayment() {
+        int total = detailPage.getTotal();
+        System.out.println(total);
     }
 }

@@ -7,6 +7,7 @@ Feature: Mobile Recharge
 #    When User input phone number "08555777888"
     When User input phone number "0812000000"
     And User input pin number "111111"
+    Then User is on homepage
 #  Gunakan username dan PIN masing-masing!!
 
   #passed
@@ -135,6 +136,7 @@ Feature: Mobile Recharge
 #      | 0859133333333 | 5.000  | unavailable   | Completed     |
 #      | 0859833333333 | 5.000  | unavailable   | Completed     |
 
+#  passed
   @MR008 @MR011 @MR014 @MR017 @MR020 @MR023
   Scenario Outline: Top Up (12 digit phone number) using voucher (if available)
     Given User is on homepage
@@ -286,8 +288,8 @@ Feature: Mobile Recharge
     Then User is on homepage
     Examples:
       | phoneNumber | topUp | statusVoucher | statusPayment |
-      | 0895200000  | 5.000 | unavailable   | Completed     |
-#      | 0851.000.000  | 500.000 | available     | Completed     |
+#      | 0895200000  | 5.000 | unavailable   | Completed     |
+      | 0851000000  | 500.000 | available     | Completed     |
 
   @Trial-2
   Scenario Outline: Top Up (12 digit phone number) using voucher (if available)
@@ -323,5 +325,20 @@ Feature: Mobile Recharge
 #      | 081222223333 | 500.000 | available     | Cashback Rp 3.000 | Completed     |
 #      | 081222223333 | 500.000 | available     | Cashback Rp 2.500 | Completed     |
 #      | 081222223333 | 500.000 | available     | Cashback Rp 2.000 | Completed     |
-      | 081222223333 | 500.000 | available     | Cashback Rp 1.500 | Completed     |
-      | 081222223333 | 500.000 | available     | Cashback Rp 1.000 | Completed     |
+#      | 081222223333 | 500.000 | available     | Cashback Rp 1.500 | Completed     |
+#      | 081222223333 | 500.000 | available     | Cashback Rp 1.000 | Completed     |
+
+  @Checking
+  Scenario: Check Balance
+    Given User is on homepage
+    When User check initial balance
+    And User click mobile recharge icon
+    And User input "085902222222"
+    And User choose "5.000" nominal
+    And User see payment detail page
+    And User check total payment
+    And User pay the bill
+    And User see payment status page
+    And User click back to home button
+    And User is on homepage
+    Then User see that balance is reduce

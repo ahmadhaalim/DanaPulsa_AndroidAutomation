@@ -17,11 +17,19 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static demo.driver.AndroidDriverInstance.androidDriver;
 
 public class AndroidPageObject {
     private By id;
+    private static String REGEX_1 = "Rp";
+    private static String REGEX_2 = "\\.";
+    private static String REPLACE = "";
+
+    Pattern p1 = Pattern.compile(REGEX_1);
+    Pattern p2 = Pattern.compile(REGEX_2);
 
     /**
      * Perform action to click button or clickable element,
@@ -104,6 +112,11 @@ public class AndroidPageObject {
         return toast.getAttribute("name");
     }
 
+    /**
+     *
+     * @param name string inside locator
+     * @param locator locator where the element is
+     */
     public void multipleID(String name, By locator) {
         List<AndroidElement> filters = androidDriver.findElements(locator);
         for (AndroidElement filter : filters) {
@@ -119,12 +132,26 @@ public class AndroidPageObject {
         }
     }
 
-
+    /**
+     *
+     * @param locator locator that want to be checked
+     * @return return the size of locator that appeared
+     */
     public boolean checkElement(By locator) {
         List<AndroidElement> elements = androidDriver.findElements(locator);
         return elements.size() > 0;
     }
 
+    public int toInteger(By locator){
+        String element_1 = androidDriver.findElement(locator).getText();
+
+        Matcher m1 = p1.matcher(element_1);
+        String element_2 = m1.replaceAll(REPLACE);
+        Matcher m2 = p2.matcher(element_2);
+        String element_3 = m2.replaceAll(REPLACE);
+        return Integer.parseInt(element_3);
+
+    }
 //    public boolean checkIfToastDisplayed(By id) {
 //        WebElement toast = androidDriver.findElement(id);
 //        return toast.isDisplayed();

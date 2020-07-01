@@ -17,7 +17,7 @@ public interface RechargePaymentDetailPageLocator {
     By CHECKOUT_PROMO_VALUE = MobileBy.id("tvCheckoutPromoValue");
 
     By CHECKOUT_TOTAL_LABEL = MobileBy.id("tvCheckoutTotalLabel");
-    By CHECKOUT_TOTAL_VALUE = MobileBy.id("tvCheckoutTotalValue");
+    By CHECKOUT_TOTAL_VALUE = MobileBy.id("tvTransactionTotalValue");
 
     By CANCEL_TRANSACTION_TITLE_DIALOG = MobileBy.id("tvDialogTitle");
     By CANCEL_TRANSACTION_DIALOG_CONTENT = MobileBy.id("tvDialogContent");
