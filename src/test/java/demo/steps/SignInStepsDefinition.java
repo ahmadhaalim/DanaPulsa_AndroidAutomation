@@ -20,6 +20,7 @@ public class SignInStepsDefinition {
 
     @Then("User directed to {string} screen")
     public void userDirectedToScreen(String screenName) throws InterruptedException {
+        Thread.sleep(2000);
         if(screenName.equalsIgnoreCase("sign in")){
             Assert.assertTrue(signInPage.isOnPage());
         } else if(screenName.equalsIgnoreCase("input pin")){
@@ -30,7 +31,7 @@ public class SignInStepsDefinition {
             Assert.assertTrue(homePage.isOnPage());
         } else if(screenName.equalsIgnoreCase("device home")){
             String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
-            Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
+            Assert.assertEquals( ApplicationState.RUNNING_IN_FOREGROUND, AndroidDriverInstance.androidDriver.queryAppState(appId));
         }
         Thread.sleep(5000);
     }
@@ -57,7 +58,7 @@ public class SignInStepsDefinition {
         }
         else if(state.equalsIgnoreCase("off")){
             androidDeviceUtilities.toggleData();
-            androidDeviceUtilities.toggleWifi();
+            //androidDeviceUtilities.toggleWifi();
             Thread.sleep(3000);
             signInInputPinPage.inputPin(pin);
         }
@@ -76,23 +77,21 @@ public class SignInStepsDefinition {
 
     @And("User tap sign in button while internet is {string}")
     public void userTapSignInButtonWhileInternetIs(String keyword) throws InterruptedException {
-        if (keyword.equalsIgnoreCase("on")){
-            signInPage.clickSignInButton();
-        } else if (keyword.equalsIgnoreCase("off")){
-            androidDeviceUtilities.toggleWifi();
+        if (keyword.equalsIgnoreCase("off")) {
             androidDeviceUtilities.toggleData();
-            Thread.sleep(3000);
-            signInPage.clickSignInButton();
+            //androidDeviceUtilities.toggleWifi();
         }
+        Thread.sleep(3000);
+        signInPage.clickSignInButton();
     }
 
     @Then("User see warning message pop up {string}")
-    public void userSeeWarningMessagePopUpOnScreen(String expected) {
+    public void userSeeWarningMessagePopUpOnScreen(String expected) throws InterruptedException {
         String actual = generalPage.getWarningMessagePopUpText();
         Assert.assertEquals(expected, actual);
         generalPage.clickWarningMessagePopUpOkButton();
         if(expected.equalsIgnoreCase("Connection Error")) {
-            androidDeviceUtilities.toggleWifi();
+            //androidDeviceUtilities.toggleWifi();
             androidDeviceUtilities.toggleData();
         }
     }

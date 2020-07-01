@@ -12,9 +12,6 @@ public class SignInInputPinPage extends AndroidPageObject {
     public void inputPin(String pin) {
         typeON(SignInInputPinPageLocator.Input_Pin_Field, pin);
     }
-    public void checkErrorDialog() {
-        waitUntilDisplayed(GeneralLocator.ErrorDialog_Text);
-    }
     public void clickForgotPinButton() {
         clickOn(SignInInputPinPageLocator.ForgotPin_Button);
     }

@@ -13,15 +13,12 @@ public class PromotionDetailPage extends AndroidPageObject {
     public boolean isOnPage() {
         return checkIfDisplayed(GeneralLocator.Screen_Title);
     }
-    public void clickBackButton() {
-        clickOn(GeneralLocator.Back_Button);
-    }
     public void clickBuyPulsaNowButton() {
         clickOn(PromotionDetailPageLocator.BuyPulsaNow_Button);
     }
     public String checkPromotionDetailTitle(){
         try {
-            Thread.sleep(5000);
+            Thread.sleep(3000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

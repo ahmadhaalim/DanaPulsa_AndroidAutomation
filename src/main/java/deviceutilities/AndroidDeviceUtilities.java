@@ -41,27 +41,34 @@ public class AndroidDeviceUtilities {
         Thread.sleep(3000);
         TouchAction touch = new TouchAction(androidDriver);
         //Change the coordinate according your screen resolution (center of it)
+        //Pixel 3 Xl = 400,300 - 400, 600
+        //Nexus S = 200,200 - 200,400
+        //Pixel 2= 500, 500 - 500,900
         touch.press(PointOption.point(500,500))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(PointOption.point(500,1000)).release().perform();
+                .moveTo(PointOption.point(500,900)).release().perform();
     }
 
     public void swipeLeft() throws InterruptedException {
         Thread.sleep(3000);
         TouchAction touch = new TouchAction(androidDriver);
         //Change the coordinate according your screen resolution (center of it)
-        touch.press(PointOption.point(1000,500))
+        //pixel 3 xl = 1000,1200 - 100,1200
+        //nexus s = 400,100 - 100, 400
+        touch.press(PointOption.point(1000,1200))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(2000)))
-                .moveTo(PointOption.point(100,500)).release().perform();
+                .moveTo(PointOption.point(100,1200)).release().perform();
     }
 
     public void swipeRight() throws InterruptedException {
         Thread.sleep(3000);
         TouchAction touch = new TouchAction(androidDriver);
         //Change the coordinate according your screen resolution (center of it)
-        touch.press(PointOption.point(100,500))
+        //pixel 3 xl = 100,1200 - 1000,1200
+        //nexus s = 100,400 - 400,400
+        touch.press(PointOption.point(100,1200))
                 .waitAction(WaitOptions.waitOptions(Duration.ofMillis(5000)))
-                .moveTo(PointOption.point(1000,500)).release().perform();
+                .moveTo(PointOption.point(1000,1200)).release().perform();
     }
 
     public String setAndGetClipboardData(String text){

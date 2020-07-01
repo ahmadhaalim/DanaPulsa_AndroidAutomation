@@ -15,15 +15,13 @@ Feature: Home Feature Functionality Check
 
   #[WARNING] Run this scenario first before other scenarios!
   @HISC001 @HISC010 @HISC011
-  Scenario Outline: User doesn't have in progress or completed transaction
+  Scenario: User doesn't have in progress or completed transaction
     When User tap "history" menu button while internet is "on"
     Then User will directed to "history" screen
-    When User tap "<tab>" tab while internet is "on"
-    Then User see info "<message>" on history screen and internet is "on"
-    Examples:
-      | tab         | message                                    |
-      #| In Progress | You have no transaction in progress, yet.  |
-      | Completed   | You haven't completed any transaction yet. |
+    When User tap "In Progress" tab while internet is "on"
+    Then User see info "You have no transaction in progress, yet." on history screen and internet is "on"
+    When User tap "Completed" tab while internet is "on"
+    Then User see info "You haven't completed any transaction yet." on history screen and internet is "on"
 
   @HISC002 @HISC005 @HISC006
   Scenario: Go to completed transaction detail screen and click back button
@@ -48,7 +46,7 @@ Feature: Home Feature Functionality Check
     Then User will directed to "lets pay" screen
 
   @HISC007 @HISC008
-  Scenario Outline: Proceed to device home by tapping device back button
+  Scenario Outline: Proceed to device home by tapping device back button / after app running in the background
     When User tap "history" menu button while internet is "on"
     Then User will directed to "history" screen
     When User perform action "<action>"
@@ -57,7 +55,7 @@ Feature: Home Feature Functionality Check
       | action                             |
       # [@HISC007] Proceed to Home Screen tapping device back button
       | tap device back button             |
-       # [@HISC008] Back to Home screen by opening the app after running in the background for a moment
+      # [@HISC008] Back to Home screen by opening the app after running in the background for a moment
       | reopen app after in the background |
 
   @HISC009
@@ -83,18 +81,14 @@ Feature: Home Feature Functionality Check
       | unlock the device after being unlocked | transaction detail |
 
   @HISC015 @HISC016
-  Scenario Outline: Reload History screen by press down and release /
+  Scenario: Reload History screen by press down and release /
   Perform swiping on History Screen
     When User tap "history" menu button while internet is "on"
     Then User will directed to "history" screen
-    When User perform action "<action>"
+    When User perform action "hold down and release"
     Then User will directed to "history" screen
-    Examples:
-      | action                |
-      # [@HISC015]
-      | hold down and release |
-      # [@HISC016]
-      | swipe left and right  |
+    When User perform action "swipe left and right"
+    Then User will directed to "history" screen
 
   @HISC023 @HISC024
   Scenario: Failed to load transaction history because internet problem
@@ -108,6 +102,5 @@ Feature: Home Feature Functionality Check
     When User tap "history" menu button while internet is "on"
     Then User will directed to "history" screen
     When User tap "completed" tab while internet is "on"
-    #Do manual scroll until the transaction history you need is found and show in the screen while steps down below is running
     And User tap "completed" transaction with price "Rp6.000" while internet is "off"
     Then User see warning message "Connection Error" on transaction detail screen

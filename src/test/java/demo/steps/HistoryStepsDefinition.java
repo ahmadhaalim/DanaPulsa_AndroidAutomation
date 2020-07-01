@@ -48,15 +48,14 @@ public class HistoryStepsDefinition {
         Assert.assertEquals(expected, actual);
         if(state.equalsIgnoreCase("off")){
             AndroidDriverInstance.androidDriver.toggleData();
-            AndroidDriverInstance.androidDriver.toggleWifi();
+           //AndroidDriverInstance.androidDriver.toggleWifi();
         }
     }
 
     @When("User tap {string} tab while internet is {string}")
     public void userTapTab(String tab, String state) throws InterruptedException {
-        Thread.sleep(3000);
         if(state.equalsIgnoreCase("off")){
-            AndroidDriverInstance.androidDriver.toggleWifi();
+           //AndroidDriverInstance.androidDriver.toggleWifi();
             AndroidDriverInstance.androidDriver.toggleData();
         }
         if(tab.equalsIgnoreCase("in progress")){
@@ -64,25 +63,30 @@ public class HistoryStepsDefinition {
         } else if(tab.equalsIgnoreCase("completed")) {
             historyPage.clickCompletedTab();
         }
+        Thread.sleep(8000);
     }
 
     @And("User tap {string} transaction with price {string} while internet is {string}")
     public void userTapTransactionWithPrice(String status, String price, String state) throws InterruptedException {
-        Thread.sleep(15000);
+        Thread.sleep(10000);
         if(state.equalsIgnoreCase("off")){
-            AndroidDriverInstance.androidDriver.toggleWifi();
+           //AndroidDriverInstance.androidDriver.toggleWifi();
             AndroidDriverInstance.androidDriver.toggleData();
         }
         historyPage.waitUntilTransactionHistoryDisplayed();
-        ExpectedDate = historyPage.getTransactionHistoryDateAndTime(status, price);
-        ExpectedPrice = historyPage.getTransactionHistoryPrice(status, price);
-        ExpectedStatus = historyPage.getTransactionHistoryStatus(status, price);
+        if (!status.equalsIgnoreCase("waiting")) {
+            ExpectedDate = historyPage.getTransactionHistoryDateAndTime(status, price);
+            ExpectedPrice = historyPage.getTransactionHistoryPrice(status, price);
+            ExpectedStatus = historyPage.getTransactionHistoryStatus(status, price);
+        }
         historyPage.clickOneTransactionHistory(status, price);
+        Thread.sleep(3000);
     }
 
     @Then("User see warning message {string} on transaction detail screen")
     public void userSeeWarningMessageOnTransactionDetailScreen(String expected) {
         String actual = transactionDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
+        AndroidDriverInstance.androidDriver.toggleData();
     }
 }

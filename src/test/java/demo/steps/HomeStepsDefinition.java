@@ -25,7 +25,7 @@ public class HomeStepsDefinition{
     @When("User tap {string} on home screen while internet is {string}")
     public void userTapOnHomeScreen(String elementKeyword, String state){
         if(state.equalsIgnoreCase("off")){
-            androidDeviceUtilities.toggleWifi();
+            //androidDeviceUtilities.toggleWifi();
             androidDeviceUtilities.toggleData();
         }
         if ("Mobile Recharge Icon".equals(elementKeyword)) {
@@ -39,7 +39,8 @@ public class HomeStepsDefinition{
     }
 
     @Then("User is directed to {string} screen")
-    public void userIsDirectedToScreen(String screenName)  {
+    public void userIsDirectedToScreen(String screenName) throws InterruptedException {
+        Thread.sleep(5000);
         if(screenName.equalsIgnoreCase("home")) {
             Assert.assertTrue(homePage.isOnPage());
         } else if(screenName.equalsIgnoreCase("mobile recharge")) {
@@ -60,13 +61,9 @@ public class HomeStepsDefinition{
             }
         } else if(screenName.equalsIgnoreCase("device home")){
             String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
-            Assert.assertEquals(AndroidDriverInstance.androidDriver.queryAppState(appId), ApplicationState.RUNNING_IN_BACKGROUND);
+            Assert.assertEquals( ApplicationState.RUNNING_IN_FOREGROUND, AndroidDriverInstance.androidDriver.queryAppState(appId));
         }
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Thread.sleep(3000);
     }
 
     @When("user click buy pulsa now on promotion detail screen")
@@ -78,7 +75,7 @@ public class HomeStepsDefinition{
     public void userSeeWarningMessageOnPromotionArea(String expected) {
         String actual = homePage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        androidDeviceUtilities.toggleWifi();
+        //androidDeviceUtilities.toggleWifi();
         androidDeviceUtilities.toggleData();
     }
 
@@ -86,14 +83,14 @@ public class HomeStepsDefinition{
     public void userSeeWarningMessageOnPromotionListScreen(String expected) {
         String actual = promotionListPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
-        androidDeviceUtilities.toggleWifi();
+        //androidDeviceUtilities.toggleWifi();
         androidDeviceUtilities.toggleData();
     }
 
     @When("User tap promotion banner on promotion list screen while internet is {string}")
     public void userTapPromotionBannerOnPromotionListScreenWhileInternetIs(String state) {
         if(state.equalsIgnoreCase("off")){
-            androidDeviceUtilities.toggleWifi();
+            //androidDeviceUtilities.toggleWifi();
             androidDeviceUtilities.toggleData();
         }
         promotionTitleExpected = promotionListPage.getPromotionBannerTitle();

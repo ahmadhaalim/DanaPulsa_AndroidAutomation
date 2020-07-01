@@ -17,13 +17,13 @@ public class AndroidHook {
 
     @After(value = "@Android")
     public void quitWebDriver(Scenario scenario) {
-        if (scenario.isFailed()) {
-            scenario
-                    .embed(((TakesScreenshot) AndroidDriverInstance.androidDriver)
-                                    .getScreenshotAs(OutputType.BYTES),
-                            "image/png");
-            scenario.write("Scenario Fail");
-        }
+//        if (scenario.isFailed()) {
+//            scenario
+//                    .embed(((TakesScreenshot) AndroidDriverInstance.androidDriver)
+//                                    .getScreenshotAs(OutputType.BYTES),
+//                            "image/png");
+//            scenario.write("Scenario Fail");
+//        }
         AndroidDriverInstance.quit();
     }
 }

@@ -3,11 +3,11 @@
 Feature: Home Feature Functionality Check
 
   Background:
-    Given User is directed to "sign in" screen
+    Given User directed to "sign in" screen
     #Change the phone number according your data table
     When User input phone number "08555333444"
     And User tap sign in button while internet is "on"
-    Then User is directed to "input pin" screen
+    Then User directed to "input pin" screen
     When User input pin "123456" while internet is "on"
     Then User is directed to "home" screen
 
@@ -56,6 +56,7 @@ Feature: Home Feature Functionality Check
 
   @HOSC011
   Scenario: Reload home screen by tapping home button
+    When User tap "history" menu button while internet is "on"
     When User tap "home" menu button while internet is "on"
     Then User is directed to "home" screen
 
@@ -83,7 +84,7 @@ Feature: Home Feature Functionality Check
       # [@HOSC017] ack to home screen by tapping device back button while in promotion detail screen (via home screen)
       | tap device back button                 | home             |
       # [@HOSC018] Back to promotion detail screen by opening the app after running in the background for a moment
-      | reopen app after in the background     | home |
+      | reopen app after in the background     | home             |
       # [@HOSC019] Still on promotion detail screen when unlocking device
       | unlock the device after being unlocked | promotion detail |
 
@@ -136,13 +137,13 @@ Feature: Home Feature Functionality Check
   Scenario: Reload promotion list screen by press down and release the screen
     When User tap "View All Button" on home screen while internet is "on"
     Then User is directed to "Promotion List" screen
-    #Change the pointer according to your screen resolution
     When User perform action "hold down and release"
     Then User is directed to "Promotion List" screen
 
   @HOSC036
   Scenario: Promotion banner image doesn't show up on home screen because internet connection isn't available
     When User tap "home" menu button while internet is "off"
+    When User perform action "hold down and release"
     Then User see warning message "Failed to get Promotion Info" on promotion area
 
   @HOSC037 @HOSC038
@@ -154,11 +155,10 @@ Feature: Home Feature Functionality Check
   Scenario: Promotion list doesn't show up because internet problem
     When User tap "View All Button" on home screen while internet is "off"
     Then User is directed to "promotion list" screen
-    When User perform action "hold down and release"
     And User see warning message "Failed to get Promotion Info" on promotion list screen
 
   @HOSC041
   Scenario: Failed to reload home screen by tapping home button
+    When User tap "history" menu button while internet is "on"
     When User tap "home" menu button while internet is "off"
     Then User see toast message "Connection Error"
-

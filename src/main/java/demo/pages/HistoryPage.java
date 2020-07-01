@@ -30,7 +30,7 @@ public class HistoryPage extends AndroidPageObject {
         clickOn(HistoryPageLocator.Completed_Tab);
     }
 
-    public void clickOneTransactionHistory(String status, String price) {
+    public void clickOneTransactionHistory(String status, String price) throws InterruptedException {
         List<AndroidElement> itemPrice = AndroidDriverInstance.androidDriver
                 .findElements(HistoryPageLocator.TransactionItem_Price);
         List<AndroidElement> itemStatus = AndroidDriverInstance.androidDriver
@@ -82,7 +82,6 @@ public class HistoryPage extends AndroidPageObject {
         List<AndroidElement> itemDate = AndroidDriverInstance.androidDriver
                 .findElements(HistoryPageLocator.TransactionItem_Date);
         for (int i = 0; i < itemPrice.size(); i++) {
-            System.out.println(itemPrice.size());
             if (price.equalsIgnoreCase(itemPrice.get(i).getText())) {
                 if(status.equalsIgnoreCase(itemStatus.get(i).getText())){
                     theDate = itemDate.get(i).getText();

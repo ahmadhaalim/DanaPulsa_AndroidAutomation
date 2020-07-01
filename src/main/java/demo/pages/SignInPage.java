@@ -21,7 +21,4 @@ public class SignInPage extends AndroidPageObject {
     public boolean checkSignButton() {
         return checkIfEnabled(SignInPageLocator.SignIn_Button);
     }
-    public String getInputPhoneNumberData(){
-        return getText(SignInPageLocator.Input_PhoneNumber_Field);
-    }
 }

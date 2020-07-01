@@ -17,7 +17,6 @@ Feature: Profile Feature Functionality Check
     Then User directed to "profile" screen
     When User tap "change pin" button on profile screen
     Then User directed to change pin screen
-    When User tap ok button on warning dialog box
     And User perform action "tap back button"
     Then User directed to "profile" screen
 
@@ -68,10 +67,11 @@ Feature: Profile Feature Functionality Check
     And User perform action "hold down and release"
     Then User see profile data is displayed
 
-  @PRSC011
+  @PRSC015
   Scenario: User can't sign out because internet problem
     When User tap "profile" menu button while internet is "off"
     Then User directed to "profile" screen
     When User tap "sign out" button on profile screen
     And User tap "yes" button on profile screen
     Then User see toast message "Connection Error"
+

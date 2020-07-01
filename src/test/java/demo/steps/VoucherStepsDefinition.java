@@ -18,7 +18,7 @@ public class VoucherStepsDefinition {
     @When("User tap {string} button on voucher screen while internet is {string}")
     public void userTapButtonOnVoucherScreen(String button, String state) {
         if(state.equalsIgnoreCase("off")){
-            AndroidDriverInstance.androidDriver.toggleWifi();
+            //AndroidDriverInstance.androidDriver.toggleWifi();
             AndroidDriverInstance.androidDriver.toggleData();
         }
         if ("All".equals(button)){
@@ -49,7 +49,7 @@ public class VoucherStepsDefinition {
         Assert.assertTrue(voucherPage.waitUntilVoucherBannerDisplayed());
         if(state.equalsIgnoreCase("off")){
             AndroidDriverInstance.androidDriver.toggleData();
-            AndroidDriverInstance.androidDriver.toggleWifi();
+            //AndroidDriverInstance.androidDriver.toggleWifi();
         }
         expectedName = voucherPage.getVoucherName(value);
         voucherPage.chooseVoucherBanner(value);
@@ -60,7 +60,7 @@ public class VoucherStepsDefinition {
         String actual = voucherPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
         AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        //AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
     @Then("User see warning {string} on voucher detail screen")
@@ -68,7 +68,7 @@ public class VoucherStepsDefinition {
         String actual = voucherDetailPage.getWarningMessage();
         Assert.assertEquals(expected, actual);
         AndroidDriverInstance.androidDriver.toggleData();
-        AndroidDriverInstance.androidDriver.toggleWifi();
+        //AndroidDriverInstance.androidDriver.toggleWifi();
     }
 
     @Then("User is on {string} screen")

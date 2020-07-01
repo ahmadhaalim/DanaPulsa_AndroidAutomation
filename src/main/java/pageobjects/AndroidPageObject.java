@@ -47,7 +47,7 @@ public class AndroidPageObject {
      * @param id locator of element
      */
     public void waitUntilDisplayed(By id) {
-        WebDriverWait wait = new WebDriverWait(androidDriver, 8);
+        WebDriverWait wait = new WebDriverWait(androidDriver, 15);
         WebElement element = wait.until(ExpectedConditions.presenceOfElementLocated(id));
         element.isDisplayed();
     }

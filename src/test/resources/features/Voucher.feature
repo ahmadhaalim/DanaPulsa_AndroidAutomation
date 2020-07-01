@@ -7,14 +7,14 @@ Feature: Voucher Feature Functionality Check
   Background:
     Given User directed to "sign in" screen
     #Change the phone number according your data table
-    When User input phone number "081213130000"
+    When User input phone number "081213130002"
     And User tap sign in button while internet is "on"
     Then User directed to "input pin" screen
     When User input pin "123456" while internet is "on"
     Then User directed to "home" screen
 
   #[WARNING] Run this scenario first before other scenarios!!!
-  @VOSC001 @VOSC010-VOSC012
+  @VOSC001 @VOSC010 @VOSC011 @VOSC012
   Scenario Outline: User doesn't have any voucher
     When User tap "voucher" menu button while internet is "on"
     Then User is on "voucher" screen
@@ -37,8 +37,6 @@ Feature: Voucher Feature Functionality Check
       | Discount | Voucher Discount |
       #[WARNING] Please make completed transaction first to get Cashback Voucher!!!
       | Cashback | Voucher Cashback |
-      | All      | Voucher Discount |
-      | All      | Voucher Cashback |
 
   @VOSC002 @VOSC005 @VOSC006
   Scenario Outline: Go to voucher detail screen and click back button
@@ -53,7 +51,7 @@ Feature: Voucher Feature Functionality Check
       | button   | voucher                                  |
        #Change this to the voucher you have
       | Discount | Diskon 5% (max Rp 5.000) buat beli pulsa |
-      | Cashback | Cashback Rp 3.500 buat beli pulsa        |
+      | Cashback | Cashback Rp 1.500 buat beli pulsa        |
 
   @VOSC007 @VOSC008
   Scenario Outline: Perform action on voucher screen
@@ -104,7 +102,6 @@ Feature: Voucher Feature Functionality Check
   Scenario: Reload voucher screen by press down and release
     When User tap "voucher" menu button while internet is "on"
     Then User is on "voucher" screen
-    #Change the point according to testing device screen resolution
     When User perform action "hold down and release"
     Then User is on "voucher" screen
 
@@ -112,8 +109,8 @@ Feature: Voucher Feature Functionality Check
   Scenario Outline: Voucher doesn't show up because internet connection isn't available
     When User tap "voucher" menu button while internet is "on"
     Then User is on "voucher" screen
-    When User tap "voucher" menu button while internet is "off"
-    When User tap "<button>" button on voucher screen while internet is "on"
+    When User tap "<button>" button on voucher screen while internet is "off"
+    When User perform action "hold down and release"
     Then User see warning "Error getting your voucher" on voucher screen
     Examples:
       | button   |
@@ -121,7 +118,7 @@ Feature: Voucher Feature Functionality Check
       | Discount |
       | Cashback |
 
-  @VOSC025
+  @VOSC026
   Scenario: Voucher Detail doesn't show up because internet connection isn't available
     When User tap "voucher" menu button while internet is "on"
     Then User is on "voucher" screen

@@ -3,7 +3,6 @@ package demo.steps;
 import demo.driver.AndroidDriverInstance;
 import demo.pages.*;
 import deviceutilities.AndroidDeviceUtilities;
-import io.appium.java_client.appmanagement.ApplicationState;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -17,7 +16,7 @@ public class GeneralStepsDefinition{
     public void userTapMenuButton(String menu, String state) {
         if(state.equalsIgnoreCase("off")){
             AndroidDriverInstance.androidDriver.toggleData();
-            AndroidDriverInstance.androidDriver.toggleWifi();
+            //AndroidDriverInstance.androidDriver.toggleWifi();
         }
         if(menu.equalsIgnoreCase("home")){
             generalPage.clickHomeButton();
@@ -53,7 +52,7 @@ public class GeneralStepsDefinition{
     public void userSeeToastMessage(String expected) {
         String actual = generalPage.getToastMessage();
         Assert.assertEquals(expected, actual);
-        androidDeviceUtilities.toggleWifi();
+        //androidDeviceUtilities.toggleWifi();
         androidDeviceUtilities.toggleData();
     }
 
