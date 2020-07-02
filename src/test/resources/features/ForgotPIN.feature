@@ -151,8 +151,6 @@ Feature: Check the Forgot PIN feature functionality
     And User input valid otp number with user id "2040"
     And User click next button on the otp page
     And User input new PIN "<PIN>"
-#    And User click next button on the new pin page
-#    Then User see warning message "PIN format is invalid"
     Then User see display error "Must be 6 digits and cannot start with 0"
     Examples:
       | PIN    |
@@ -161,7 +159,7 @@ Feature: Check the Forgot PIN feature functionality
       | 90909+ |
       | 9.0909 |
       | 909-09 |
-      | P90A9S |
+      | P90AS9 |
 
   @FP_021
   Scenario: Forgot PIN with valid OTP but empty confirmation PIN
@@ -210,7 +208,7 @@ Feature: Check the Forgot PIN feature functionality
       | 90909+ |
       | 9.0909 |
       | 909-09 |
-      | P90A9S |
+      | P90AS9 |
 
   @FP_029
   Scenario: Successfully do Forgot PIN with valid otp and PIN, but Login with Old PIN
@@ -232,6 +230,32 @@ Feature: Check the Forgot PIN feature functionality
     And User click the sign in button
     And User input old pin number on the page "919191"
     Then User see display error "incorrect pin"
+
+  @FP_030
+  Scenario: Forgot PIN with valid OTP but invalid new PIN (symbols and alphabets)
+    #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08555222333"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "2040"
+    And User click next button on the otp page
+    And User input new PIN "012345"
+    Then User see display error "Must be 6 digits and cannot start with 0"
+
+  @FP_031
+  Scenario: Forgot PIN with valid OTP but with incorrect confirmation PIN (symbols and alphabets)
+     #YOUR ACCOUNT PHONE NUMBER CHANGE THIS MANUALLY
+    When User input registered phone number "08555222333"
+    And User click the sign in button
+    And User click the forgot pin text
+    #YOUR ACCOUNT USER ID CHANGE THIS MANUALLY
+    And User input valid otp number with user id "2040"
+    And User click next button on the otp page
+    And User input new PIN "898989"
+    And User click next button on the new pin page
+    And User input incorrect pin on the confirmation page "012345"
+    Then User see display error "Must be 6 digits and cannot start with 0"
 
   @FP-OTP_001
   Scenario: Go back to Sign In PIN Screen Using the Arrow Icon Button

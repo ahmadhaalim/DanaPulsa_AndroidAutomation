@@ -221,6 +221,31 @@ Feature: Check the Change PIN feature functionality
     And User input old pin number on the page "515151"
     Then User see display error "incorrect pin"
 
+  @CP_030
+  Scenario: Change PIN with valid OTP but invalid new PIN (symbols and alphabets)
+    When User input their pin on the pin page "505050"
+    And User is in the main page
+    And User click the profile menu on the bottom bar
+    And User click the change pin menu
+    And User input valid otp number with user id "2040"
+    And User click next button on the otp page
+    And User input new PIN "012345"
+    Then User see display error "Must be 6 digits and cannot start with 0"
+
+  @CP_031
+  Scenario: Change PIN with valid OTP but with incorrect confirmation PIN (symbols and alphabets)
+    When User input their pin on the pin page "505050"
+    And User is in the main page
+    And User click the profile menu on the bottom bar
+    And User click the change pin menu
+    And User input valid otp number with user id "2040"
+    And User click next button on the otp page
+    And User input new PIN "404040"
+    And User click next button on the new pin page
+    And User input incorrect pin on the confirmation page "012345"
+    Then User see display error "Must be 6 digits and cannot start with 0"
+
+
   @CP-OTP_001
   Scenario: Go back to Profile Screen Using the Arrow Icon Button
     When User input their pin on the pin page "505050"
