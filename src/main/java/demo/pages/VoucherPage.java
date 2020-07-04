@@ -35,6 +35,7 @@ public class VoucherPage extends AndroidPageObject{
         for (AndroidElement androidElement : title) {
             if (value.equalsIgnoreCase(androidElement.getText())) {
                 androidElement.click();
+                break;
             }
         }
     }
@@ -45,6 +46,7 @@ public class VoucherPage extends AndroidPageObject{
         for (AndroidElement androidElement : valueInBanner) {
             if (value.equalsIgnoreCase(androidElement.getText())) {
                 getValue = androidElement.getText();
+                break;
             }
         }
         return getValue;
@@ -56,6 +58,7 @@ public class VoucherPage extends AndroidPageObject{
         for (AndroidElement androidElement : nameInBanner) {
             if (value.equalsIgnoreCase(androidElement.getText())) {
                 getValue = androidElement.getText();
+                break;
             }
         }
         return getValue;

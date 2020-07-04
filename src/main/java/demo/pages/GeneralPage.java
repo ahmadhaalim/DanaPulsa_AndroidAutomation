@@ -1,6 +1,7 @@
 package demo.pages;
 
 import demo.locator.GeneralLocator;
+import demo.locator.SignUpPageLocator;
 import pageobjects.AndroidPageObject;
 
 public class GeneralPage extends AndroidPageObject {
@@ -38,5 +39,11 @@ public class GeneralPage extends AndroidPageObject {
     }
     public boolean waitUntillErrorDialogBoxDisplayed(){
         return checkIfDisplayed(GeneralLocator.ErrorDialog_Text);
+    }
+    public void clickSignUpNextButton(){
+        clickOn(SignUpPageLocator.BUTTON_NEXT);
+    }
+    public void clickSignUpFinishButton(){
+        clickOn(SignUpPageLocator.BUTTON_FINISH);
     }
 }

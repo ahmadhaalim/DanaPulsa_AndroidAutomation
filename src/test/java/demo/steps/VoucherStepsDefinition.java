@@ -89,4 +89,11 @@ public class VoucherStepsDefinition {
         String actual = voucherPage.getVoucherTitle(expected);
         Assert.assertEquals(expected, actual);
     }
+
+    @Then("User see voucher {string} dismissed")
+    public void userSeeVoucherDismissed(String expected) {
+        voucherPage.waitUntilVoucherBannerDisplayed();
+        String actual = voucherPage.getVoucherName(expected);
+        Assert.assertNotEquals(expected, actual);
+    }
 }

@@ -20,7 +20,7 @@ public class SignInStepsDefinition {
 
     @Then("User directed to {string} screen")
     public void userDirectedToScreen(String screenName) throws InterruptedException {
-        Thread.sleep(2000);
+        Thread.sleep(5000);
         if(screenName.equalsIgnoreCase("sign in")){
             Assert.assertTrue(signInPage.isOnPage());
         } else if(screenName.equalsIgnoreCase("input pin")){
@@ -33,7 +33,6 @@ public class SignInStepsDefinition {
             String appId = AndroidDriverInstance.androidDriver.getCurrentPackage();
             Assert.assertEquals( ApplicationState.RUNNING_IN_FOREGROUND, AndroidDriverInstance.androidDriver.queryAppState(appId));
         }
-        Thread.sleep(5000);
     }
 
     @When("User input phone number {string}")

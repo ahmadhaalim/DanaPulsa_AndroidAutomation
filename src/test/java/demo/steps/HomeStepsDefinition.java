@@ -23,7 +23,8 @@ public class HomeStepsDefinition{
     String promotionTitleExpected = "";
 
     @When("User tap {string} on home screen while internet is {string}")
-    public void userTapOnHomeScreen(String elementKeyword, String state){
+    public void userTapOnHomeScreen(String elementKeyword, String state) throws InterruptedException {
+        Thread.sleep(3000);
         if(state.equalsIgnoreCase("off")){
             //androidDeviceUtilities.toggleWifi();
             androidDeviceUtilities.toggleData();
@@ -98,4 +99,10 @@ public class HomeStepsDefinition{
     }
 
 
+    @And("User see DANA balance {string}")
+    public void userSeeDANABalance(String balance) throws InterruptedException {
+        Thread.sleep(5000);
+        String actualBalance = homePage.getDanaBalance();
+        Assert.assertEquals(balance, actualBalance);
+    }
 }

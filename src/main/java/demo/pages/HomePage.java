@@ -43,4 +43,8 @@ public class HomePage extends AndroidPageObject {
         }
         return getText(HomePageLocator.PromotionBanner_Title);
     }
+
+    public String getDanaBalance() {
+        return getText(HomePageLocator.DANA_Balance);
+    }
 }

@@ -8,7 +8,7 @@ public interface TransactionDetailPageLocator {
     By Transaction_Status = MobileBy.id("tvTransactionStatusValue");
     By Transaction_Price = MobileBy.id("tvTransactionTotalValue");
     By Transaction_ID = MobileBy.id("tvTransactionIdValue");
-    By Transaction_Product = MobileBy.id("tvTransactionProductLabel");
+    By Transaction_Product = MobileBy.id("tvTransactionProductValue");
     By Transaction_Date = MobileBy.id("tvTransactionDateValue");
     By Transaction_Phone = MobileBy.id("tvTransactionPhoneValue");
 }

@@ -39,6 +39,7 @@ public class HistoryPage extends AndroidPageObject {
             if(status.equalsIgnoreCase(itemStatus.get(i).getText())){
                 if (price.equalsIgnoreCase(itemPrice.get(i).getText())) {
                     itemPrice.get(i).click();
+                    break;
                 }
             }
         }
@@ -53,6 +54,7 @@ public class HistoryPage extends AndroidPageObject {
             if (price.equalsIgnoreCase(itemPrice.get(i).getText())) {
                 if(status.equalsIgnoreCase(itemStatus.get(i).getText())){
                     thePrice = itemPrice.get(i).getText();
+                    break;
                 }
             }
         }
@@ -68,6 +70,7 @@ public class HistoryPage extends AndroidPageObject {
             if (price.equalsIgnoreCase(itemPrice.get(i).getText())) {
                 if(status.equalsIgnoreCase(itemStatus.get(i).getText())){
                     theStatus = itemStatus.get(i).getText();
+                    break;
                 }
             }
         }
@@ -85,6 +88,7 @@ public class HistoryPage extends AndroidPageObject {
             if (price.equalsIgnoreCase(itemPrice.get(i).getText())) {
                 if(status.equalsIgnoreCase(itemStatus.get(i).getText())){
                     theDate = itemDate.get(i).getText();
+                    break;
                 }
             }
         }

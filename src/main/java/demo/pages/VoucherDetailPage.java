@@ -16,7 +16,4 @@ public class VoucherDetailPage extends AndroidPageObject {
     public String getWarningMessage() {
         return getText(GeneralLocator.ErrorDialog_Text);
     }
-    public boolean waitUntilVoucherBannerName(){
-        return checkIfDisplayed(VoucherDetailPageLocator.VoucherDetail_Name);
-    }
 }
