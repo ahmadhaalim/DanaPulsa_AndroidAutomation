@@ -72,7 +72,7 @@ Feature: Functionality on Sign up - Full Name page
     When User input "Zaki Akhmad Faridzann" on "Full Name" page
     Then User see on "Full Name" field is not "Zaki Akhmad Faridzann" because input length can't be more than 20
 
-  @SUFN009-SUFN014
+  @SUFN009-SUFN016
   Scenario Outline: Showing the warning message by inputting invalid Full Name
     When User input "<full_name>" on "Full Name" page
     Then User see warning message "<warning_message>" on "Full Name" page

@@ -45,7 +45,7 @@ public class SignUpStepDefinition {
                     boolean userBalanceDisplayed = homePage.isOnPage();
                     Assert.assertTrue(userBalanceDisplayed);
                 } else {
-                    String errorMsg = dialogPage.getErrorMessage();
+                    String errorMsg = dialogPage.getDialogMessage();
                     Assert.fail(errorMsg);
                 }
                 break;
@@ -162,7 +162,7 @@ public class SignUpStepDefinition {
     @Then("User see error message {string}")
     public void userSeeErrorMessage(String errorMsg) {
         if (dialogPage.dialogIsShown()) {
-            String actualErrorMsg = dialogPage.getErrorMessage();
+            String actualErrorMsg = dialogPage.getDialogMessage();
             Assert.assertEquals(errorMsg, actualErrorMsg);
             dialogPage.tapOKButton();
         } else { Assert.fail("The dialog box didn't show up"); }
@@ -317,7 +317,7 @@ public class SignUpStepDefinition {
                 androidDriver.pressKey(new KeyEvent(AndroidKey.HOME));
                 break;
             case "Overview":
-                Thread.sleep(3000);
+                Thread.sleep(5000);
                 androidDriver.pressKey(new KeyEvent(AndroidKey.APP_SWITCH));
                 break;
             default: break;
@@ -427,7 +427,7 @@ public class SignUpStepDefinition {
         if (signInPINPage.isOnPage()) {
             signInPINPage.inputPIN(pin);
         } else {
-            String errorMsg = dialogPage.getErrorMessage();
+            String errorMsg = dialogPage.getDialogMessage();
             Assert.fail(errorMsg);
         }
 
