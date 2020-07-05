@@ -11,11 +11,11 @@ public class RechargeChooseVoucherPage implements RechargeChooseVoucherPageLocat
     }
 
     public void chooseCashback(String cashback){
-       pageObject.multipleID(cashback, VOUCHER_ITEM);
+       pageObject.multipleID(cashback, VOUCHER_TYPE);
     }
 
     public void chooseDiscount(String discount){
-        pageObject.multipleID(discount, VOUCHER_ITEM);
+        pageObject.multipleID(discount, VOUCHER_TYPE);
     }
 
     public void noVoucher(){

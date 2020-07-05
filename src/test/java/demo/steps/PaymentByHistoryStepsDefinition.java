@@ -18,7 +18,8 @@ public class PaymentByHistoryStepsDefinition {
     HistoryPage historyPage = new HistoryPage();
 
     @Given("User is on homepage")
-    public void userIsOnHomepage(){
+    public void userIsOnHomepage() throws InterruptedException {
+        Thread.sleep(6000);
         Assert.assertTrue(homePage.onHomePage());
     }
 
@@ -114,4 +115,11 @@ public class PaymentByHistoryStepsDefinition {
     @And("User click OK")
     public void userClickOK() {statusPage.confirmationButton();
     }
-}
+
+    @And("if {string} is {string}, user choose no voucher")
+    public void ifIsUserChooseNoVoucher(String status, String actual) {
+        if (status.equals(actual)){
+            detailPage.pickVoucher();
+            chooseVoucherPage.noVoucher();
+        }
+}}

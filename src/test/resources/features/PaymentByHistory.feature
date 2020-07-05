@@ -30,7 +30,7 @@ Feature: Mobile Recharge
     Examples:
       | phoneNumber    | topUp | statusVoucher | chooseVoucher | statusPayment |
       | 0859233333333  | 15.000   | available     | Cashback Rp 1.000 buat beli pulsa | Payment Completed       |
-      | 0859333333333  | 25.000   | available     | Cashback Rp 2.000 buat beli pulsa | Payment Completed       |
+#      | 0859333333333  | 25.000   | available     | Cashback Rp 2.000 buat beli pulsa | Payment Completed       |
 #      | 0859433333333  | 15.000   | available     | cashback 1.000   | success       |
 #      | 0859533333333  | 15.000   | available     | cashback 1.000   | success       |
 #      | 0859633333333  | 15.000   | available     | cashback 1.000   | success       |

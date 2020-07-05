@@ -90,7 +90,7 @@ public class AndroidPageObject {
     public void multipleID(String name, By locator){
         List<AndroidElement> filters = androidDriver.findElements(locator);
         for (AndroidElement filter : filters) {
-            if (filter.getText().equalsIgnoreCase(name)) {
+            if (filter.getText().contains(name)) {
                 filter.click();
                 break;
             }

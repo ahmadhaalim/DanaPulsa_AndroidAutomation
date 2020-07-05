@@ -7,7 +7,7 @@ Feature: Mobile Recharge
     And User input pin number "123456"
     Then User is on homepage
 
-  @MRN001
+  @MR038
     #ubah dulu di database
   Scenario Outline: Top up any valid provider number without voucher and the balance is not sufficient
     Given User is on homepage
@@ -20,7 +20,7 @@ Feature: Mobile Recharge
       | phoneNumber   | topUp |
       | 0859233333333 | 5.000    |
 
-  @MRN002
+  @MR039
   Scenario Outline: Top up any valid provider number with voucher but the balance is not sufficient
     Given User is on homepage
     When User click mobile recharge icon
@@ -35,19 +35,19 @@ Feature: Mobile Recharge
       | phoneNumber   | topUp | chooseVoucher |
       | 0859233333333 | 15.000   | Cashback Rp 1.000   |
 
-  @MRN003
+  @MR040
   Scenario: Input invalid provider
     When User click mobile recharge icon
     And User input "07986532124"
     Then User see invalid format message
 
-  @MRN004
+  @MR041
   Scenario: Input mobile phone number but in incorrect format (starting with +62)
     When User click mobile recharge icon
     And User input "+628123456789"
     Then User see invalid format message
 
-  @MRN005
+  @MR042
   Scenario Outline: Input mobile phone number but in incorrect format (9 digit)
     When User click mobile recharge icon
     And User input "<phoneNumber>"
@@ -57,7 +57,7 @@ Feature: Mobile Recharge
       | phoneNumber   | topUp |
       | 085912345 | 5.000    |
 
-  @MRN006
+  @MR043
   Scenario: Input mobile phone number but in incorrect format (did not start with 0)
     When User click mobile recharge icon
     And User input "812345678910"
