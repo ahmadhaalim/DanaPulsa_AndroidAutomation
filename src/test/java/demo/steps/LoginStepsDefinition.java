@@ -24,6 +24,11 @@ public class LoginStepsDefinition {
 
     @And("User input pin number {string}")
     public void userInputPinNumber(String pin) {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         signIn.waitPIN();
         signIn.inputPIN(pin);
     }

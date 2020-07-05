@@ -44,12 +44,22 @@ public class MobileRechargeDefinition {
 
     @And("User see payment detail page")
     public void userSeePaymentDetailPage() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         Assert.assertTrue(detailPage.isOnPage());
     }
 
     @And("User pay the bill")
     public void userPayTheBill() {
         detailPage.payButton();
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Then("User see payment status page")
@@ -157,6 +167,11 @@ public class MobileRechargeDefinition {
 
     @And("User click profile")
     public void userClickProfile() {
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         homePage.chooseProfile();
     }
 
@@ -184,5 +199,15 @@ public class MobileRechargeDefinition {
     public void userCheckTotalPayment() {
         int total = detailPage.getTotal();
         System.out.println(total);
+    }
+
+    @And("User click select from contact button")
+    public void userClickSelectFromContactButton() {
+        inputNumber.selectContact();
+    }
+
+    @And("User choose a contact")
+    public void userChooseAContact() {
+        inputNumber.chooseContact();
     }
 }

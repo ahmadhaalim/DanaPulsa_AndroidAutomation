@@ -8,6 +8,7 @@ public interface RechargeInputPhoneNumberPageLocator {
     By RECENT_PHONE_NUMBER = MobileBy.id("tvRecentNumberPhone");
     By RECENT_DATE = MobileBy.id("tvRecentNumberDate");
     By INVALID_INPUT = MobileBy.id("textinput_error");
+    By CONTACT = MobileBy.id("cliv_name_textview");
 
     // Image View
     By RECENT_PROVIDER_ICON = MobileBy.id("ivRecentNumberProvider");

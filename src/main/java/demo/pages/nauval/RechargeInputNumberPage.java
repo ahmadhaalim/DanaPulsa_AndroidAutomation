@@ -22,4 +22,8 @@ public class RechargeInputNumberPage implements RechargeInputPhoneNumberPageLoca
         pageObject.clickOn(BACK_BUTTON);
     }
 
+    public void chooseContact(){
+        pageObject.clickOn(CONTACT);
+    }
+
 }
