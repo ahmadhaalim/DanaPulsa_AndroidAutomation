@@ -23,8 +23,8 @@ Feature: Mobile Recharge
     Then User is on homepage
     Examples:
       | title | phoneNumber    | topUp | statusVoucher | chooseVoucher | statusPayment |
-      | Cashback Rp 1.500 buat beli pulsa | 0859233333333  | 15.000   | available     | Cashback Rp 1.000 buat beli pulsa | Payment Completed       |
-#      | Cashback Rp 1.500 buat beli pulsa | 0859333333333  | 25.000   | available     | Cashback Rp 2.000 buat beli pulsa | Payment Completed       |
+      | Cashback Rp 1.000 buat beli pulsa | 0859233333333  | 10.000   | available     | Cashback Rp 1.000 buat beli pulsa | Payment Completed       |
+      | Cashback Rp 1.500 buat beli pulsa | 0813000000  | 15.000   | available     | Cashback Rp 1.500 buat beli pulsa | Payment Completed       |
 #      | 0859433333333  | 15.000   | available     | cashback 1.000   | success       |
 #      | 0859533333333  | 15.000   | available     | cashback 1.000   | success       |
 #      | 0859633333333  | 15.000   | available     | cashback 1.000   | success       |
@@ -69,15 +69,17 @@ Feature: Mobile Recharge
     And User input "<phoneNumber>"
     And User choose "<topUp>" nominal
     Then User see payment detail page
+    And User check status voucher availability "<statusVoucher>"
+    And if "<statusVoucher>" is "available", user choose no voucher
     And User pay the bill
     And User click OK
     And User see payment status "<statusPayment>"
     And User click back to home button
     Then User is on homepage
     Examples:
-      | title | phoneNumber    | topUp | statusPayment |
-      | Cashback Rp 1.500 buat beli pulsa | 0859233333333  | 15.000    | Payment Completed  |
-#      | 0859333333333  | 15.000    | success       |
+      | title | phoneNumber    | topUp |statusVoucher| statusPayment |
+      | Cashback Rp 1.000 buat beli pulsa | 0859233333333  | 10.000    |unavailable| Payment Completed  |
+      | Cashback Rp 1.500 buat beli pulsa | 0813000000  | 15.000    |unavailable| Payment Completed  |
 #      | 0859433333333  | 15.000    | success       |
 #      | 0859533333333  | 15.000    | success       |
 #      | 0859633333333  | 15.000    | success       |
