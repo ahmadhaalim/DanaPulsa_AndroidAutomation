@@ -22,6 +22,8 @@ public class PaymentByPromotionBanner {
 
     @When("User choose {string} on banner")
     public void userChooseOnBanner(String titles) {
-        homePage.clickPromotionItem(titles);
+        if (titles.contains("Cashback")){
+            homePage.clickPromotionItem(titles);
+//        homePage.clickPromotionItem(titles);
     }
-}
+}}

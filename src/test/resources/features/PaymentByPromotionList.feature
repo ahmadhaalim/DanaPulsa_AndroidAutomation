@@ -24,8 +24,8 @@ Feature: Mobile Recharge
     Then User is on homepage
     Examples:
       | title | phoneNumber    | topUp | statusVoucher | chooseVoucher | statusPayment |
-      | Cashback Rp 1.000 buat beli pulsa | 0859233333333  | 10.000   | available     | Cashback Rp 1.000 | Payment Completed       |
-      | Cashback Rp 1.500 buat beli pulsa | 0813000000  | 15.000   | available     | Cashback Rp 1.500 | Payment Completed       |
+      | Cashback | 0859233333333  | 10.000   | available     | Cashback Rp 1.000 | Payment Completed       |
+      | Cashback | 0813000000  | 15.000   | available     | Cashback Rp 1.500 | Payment Completed       |
 #      | 0859433333333  | 15.000   | available     | cashback 1.000   | success       |
 #      | 0859533333333  | 15.000   | available     | cashback 1.000   | success       |
 #      | 0859633333333  | 15.000   | available     | cashback 1.000   | success       |
@@ -79,8 +79,8 @@ Feature: Mobile Recharge
     Then User is on homepage
     Examples:
       | title | phoneNumber    | topUp |statusVoucher| statusPayment |
-      | Cashback Rp 1.000 buat beli pulsa | 0859233333333  | 10.000   |unavailable| Payment Completed       |
-      | Cashback Rp 1.500 buat beli pulsa | 0813000000  | 15.000   |unavailable| Payment Completed       |
+      | Cashback | 0859233333333  | 10.000   |unavailable| Payment Completed       |
+      | Cashback | 0813000000  | 15.000   |available| Payment Completed       |
 #      | 0859433333333  | 15.000    | success       |
 #      | 0859533333333  | 15.000    | success       |
 #      | 0859633333333  | 15.000    | success       |
