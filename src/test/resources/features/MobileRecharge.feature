@@ -4,9 +4,9 @@ Feature: Mobile Recharge
 
   Background:
     Given User is on sign in page
-#    When User input phone number "08555777888"
+    When User input phone number "08555777888"
 #    When User input phone number "0812000000"
-    When User input phone number "0877010101"
+#    When User input phone number "0877010101"
 #    And User input pin number "111111"
     And User input pin number "123456"
     Then User is on homepage
@@ -189,10 +189,10 @@ Feature: Mobile Recharge
       | 081222223333 | 300.000 | available     | Diskon 35%    | Completed     |
       | 081222223333 | 200.000 | available     | Diskon 30%    | Completed     |
       | 081222223333 | 150.000 | available     | Diskon 25%    | Completed     |
-#      | 081222223333 | 100.000 | available     | Diskon 20%    | Completed     |
-#      | 081222223333 | 75.000  | available     | Diskon 15%    | Completed     |
-#      | 081222223333 | 75.000  | available     | Diskon 10%    | Completed     |
-#      | 081222223333 | 50.000  | available     | Diskon 5%     | Completed     |
+      | 081222223333 | 100.000 | available     | Diskon 20%    | Completed     |
+      | 081222223333 | 75.000  | available     | Diskon 15%    | Completed     |
+      | 081222223333 | 75.000  | available     | Diskon 10%    | Completed     |
+      | 081222223333 | 50.000  | available     | Diskon 5%     | Completed     |
 #      | 081222223333 | 500.000   | available     | Cashback Rp 3.500 | Completed     |
 #      | 081222223333 | 500.000   | available     | Cashback Rp 3.000 | Completed     |
 #      | 081222223333 | 500.000   | available     | Cashback Rp 2.500 | Completed     |
@@ -333,25 +333,6 @@ Feature: Mobile Recharge
     And User see payment detail page
     And User pay the bill
     Then User see payment status page
-
-  @EndtoEnd
-  Scenario: End to End
-    Given User is on homepage
-    When User check initial balance
-    And User click mobile recharge icon
-    And User input "0812000000"
-    And User choose "10.000" nominal
-    And User see payment detail page
-    And User check status voucher availability "unavailable"
-    And if "unavailable" is "available", user choose no voucher
-    And User check total payment
-    And User pay the bill
-    And if "available" is "available", user get a voucher
-    And User see payment status page
-    And User see payment status "Completed"
-    And User click back to home button
-    And User is on homepage
-    And User see that balance is reduce
 
 
   @Trial-2

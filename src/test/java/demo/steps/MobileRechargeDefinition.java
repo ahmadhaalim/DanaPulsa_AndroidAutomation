@@ -15,6 +15,7 @@ public class MobileRechargeDefinition {
     RechargePaymentStatusPage statusPage = new RechargePaymentStatusPage();
     RechargeChooseVoucherPage chooseVoucher = new RechargeChooseVoucherPage();
     ProfilePage profile = new ProfilePage();
+    HistoryPage history = new HistoryPage();
 
     @Given("User is on homepage")
     public void userIsOnHomepage() {
@@ -209,5 +210,54 @@ public class MobileRechargeDefinition {
     @And("User choose a contact")
     public void userChooseAContact() {
         inputNumber.chooseContact();
+    }
+
+    @And("User click completed tab")
+    public void userClickCompletedTab() {
+        history.completedTab();
+    }
+
+    @And("User choose a history")
+    public void userChooseAHistory() {
+        history.chooseHistory();
+    }
+
+    @And("User see history status {string}")
+    public void userSeeHistoryStatus(String status) {
+        Assert.assertEquals(history.checkStatus(),status);
+    }
+
+    @And("User back to history completed list")
+    public void userBackToHistoryCompletedList() {
+        history.backButton();
+    }
+
+    @And("User go to homepage")
+    public void userGoToHomepage() {
+    }
+
+    @And("User click voucher icon")
+    public void userClickVoucherIcon() {
+    }
+
+    @And("User get {string} voucher")
+    public void userGetVoucher(String arg0) {
+    }
+
+    @And("User confirm that voucher {string} is used")
+    public void userConfirmThatVoucherIsUsed(String arg0) {
+    }
+
+    @And("User see get voucher dialog")
+    public void userSeeGetVoucherDialog() {
+        statusPage.voucherDialog();
+        statusPage.confirmDialog();
+    }
+
+    @And("If {string} is {string}, user choose voucher value {string}")
+    public void ifIsUserChooseVoucherValue(String status, String actualStat, String value) {
+        while (status.contains(actualStat)){
+            chooseVoucher.chooseDiscount(value);
+        }
     }
 }
